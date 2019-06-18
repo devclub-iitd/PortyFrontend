@@ -67,3 +67,42 @@ input:hover::placeholder{
   color: white;
   border-radius: 10px;
 }
+.dropdownContainer{
+  width: 28.75%;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 10px;
+  cursor: pointer;
+  border: 2px solid black;
+}
+.dropdownContainer:hover{
+  border: 2px solid #3d40d8;
+}
+.dropdownContainer:hover .dropdownDrop{
+  transform: scaleY(1);
+}
+.dropdownDisp span{
+  color:#757575;
+}
+.dropdownDisp{
+  font-size: 13px;
+}
+.dropdownDrop{
+  height: 150px;
+  background-color: rgba(230,230,230,0.93);
+  overflow-y: scroll;
+  font-size: 13px;
+  width: 100%;
+  margin-top: 2px;
+  transform: scaleY(0);
+  text-indent: 10px;
+  transition: 0.09s ease-out;
+  margin-left:-2px;
+  border-right: 2px solid #3d40d8;
+  border-left: 2px solid #3d40d8;
+  border-bottom: 2px solid #3d40d8;
+}
+.dropdownElement:hover{
+  background-color: #3d40d8;
+  color: white;
+}
