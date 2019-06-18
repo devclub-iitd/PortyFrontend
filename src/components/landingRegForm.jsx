@@ -1,8 +1,7 @@
 import React from 'react';
-import '../../style/reg.css';
+import '../style/reg.css';
 
-
-class About extends React.Component {
+class LandingRegForm extends React.Component {
   constructor(props) {
     super(props);
     this.subbtn = React.createRef();
@@ -56,4 +55,4 @@ class About extends React.Component {
   }
 }
 
-export default About;
+export default LandingRegForm;

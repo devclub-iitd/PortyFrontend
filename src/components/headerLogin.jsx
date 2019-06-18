@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import '../style/headerLogin.css';
-import { withRouter } from 'react-router-dom';
+
 import Register from '../pages/register';
 
 const theme = createMuiTheme({
@@ -76,16 +76,6 @@ class SimpleTabs extends React.Component {
     value: 0,
   };
 
-  current = () => {
-    const { location } = this.props;
-    const currentPath = location.pathname;
-    switch (currentPath) {
-      case '/login': return 0;
-      case '/register': return 1;
-      default: return 0;
-    }
-  }
-
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -101,7 +91,7 @@ class SimpleTabs extends React.Component {
             <div className="headerDetails">
               <div className="headerTitle"> Portfolio Creator </div>
             </div>
-            <Tabs value={value || this.current()} onChange={this.handleChange} className={classes.navbarContainer}>
+            <Tabs value={value} onChange={this.handleChange} className={classes.navbarContainer}>
               <Tab className={classes.navbarItem} label="Login" />
               <Tab className={classes.navbarItem} label="Register" />
             </Tabs>
@@ -118,4 +108,4 @@ SimpleTabs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRouter(withStyles(styles)(SimpleTabs));
+export default withStyles(styles)(SimpleTabs);

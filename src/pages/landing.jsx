@@ -1,12 +1,8 @@
 import React from 'react';
-
-
 import { BrowserRouter as Router } from 'react-router-dom';
-
 import HeaderLogin from '../components/headerLogin';
 
-
-class Land extends React.Component {
+class Landing extends React.Component {
   render() {
     return (
       <Router>
@@ -18,4 +14,4 @@ class Land extends React.Component {
   }
 }
 
-export default Land;
+export default Landing;

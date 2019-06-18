@@ -8,21 +8,14 @@ import Typography from '@material-ui/core/Typography';
 
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 
-import { BrowserRouter as Router } from 'react-router-dom';
-import About from '../components/reg/about';
-
+import RegForm from '../components/landingRegForm';
 
 import '../style/reg.css';
-
-
-// <Tab icon={<SchoolIcon/>} label="EDUCATION" />
-// <Tab icon={<AchIcon />} label="ACHIEVEMENTS" />
-// <Tab icon={<SettingsIcon />} label="LOGIN DETAILS" />
 
 const styles = {
   rootRegNav: {
     flexGrow: 1,
-    maxWidth: 670,
+    maxWidth: 400,
     margin: 'auto',
     marginTop: '40px',
   },
@@ -53,7 +46,6 @@ class IconLabelTabs extends React.Component {
     super(props);
     this.state = {
       value: 0,
-      subVal: 0,
     };
   }
 
@@ -66,46 +58,37 @@ class IconLabelTabs extends React.Component {
     event.preventDefault();
   }
 
-  btnClick = () => {
-    this.setState({
-      subVal: 1,
-    });
-    this.subbtn.click();
-  }
-
   render() {
     const { classes } = this.props;
 
     return (
-      <Router>
-        <div>
-          <div className="title">
+      <div>
+        <div className="title">
             Register
-          </div>
-          <Paper className={classes.rootRegPage}>
-            {this.state.value === 0 && (
+        </div>
+        <Paper className={classes.rootRegPage}>
+          {this.state.value === 0 && (
             <TabContainer>
               {' '}
-              <About submit={this.handleSubmit} />
+              <RegForm submit={this.handleSubmit} />
               {' '}
             </TabContainer>
-            )}
-          </Paper>
+          )}
+        </Paper>
 
-          <Paper square className={classes.rootRegNav}>
-            <Tabs
-              value={this.state.value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="secondary"
-              textColor="secondary"
-            >
-              <Tab icon={<PersonPinIcon />} label="ABOUT YOU" />
-            </Tabs>
-          </Paper>
-          <button form="regform" className="btn"> Let's Go </button>
-        </div>
-      </Router>
+        <Paper square className={classes.rootRegNav}>
+          <Tabs
+            value={this.state.value}
+            onChange={this.handleChange}
+            variant="fullWidth"
+            indicatorColor="secondary"
+            textColor="secondary"
+          >
+            <Tab icon={<PersonPinIcon />} label="ABOUT YOU" />
+          </Tabs>
+        </Paper>
+        <button form="regform" className="btn" type="submit"> Let's Go </button>
+      </div>
     );
   }
 }
