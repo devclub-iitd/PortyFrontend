@@ -29,9 +29,10 @@ const styles = {
   },
 };
 function TabContainer(props) {
+  const { children } = props;
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
+      {children}
     </Typography>
   );
 }
@@ -60,6 +61,7 @@ class IconLabelTabs extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { value } = this.state;
 
     return (
       <div>
@@ -67,7 +69,7 @@ class IconLabelTabs extends React.Component {
             Register
         </div>
         <Paper className={classes.rootRegPage}>
-          {this.state.value === 0 && (
+          {value === 0 && (
             <TabContainer>
               {' '}
               <RegForm submit={this.handleSubmit} />
@@ -78,7 +80,7 @@ class IconLabelTabs extends React.Component {
 
         <Paper square className={classes.rootRegNav}>
           <Tabs
-            value={this.state.value}
+            value={value}
             onChange={this.handleChange}
             variant="fullWidth"
             indicatorColor="secondary"
@@ -87,14 +89,14 @@ class IconLabelTabs extends React.Component {
             <Tab icon={<PersonPinIcon />} label="ABOUT YOU" />
           </Tabs>
         </Paper>
-        <button form="regform" className="btn" type="submit"> Let's Go </button>
+        <button form="regform" className="btn" type="submit"> Let&apos;s Go </button>
       </div>
     );
   }
 }
 
 IconLabelTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styles)(IconLabelTabs);
