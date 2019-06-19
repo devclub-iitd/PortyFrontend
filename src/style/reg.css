@@ -6,7 +6,6 @@
 .row{
   display: flex;
   flex-direction: row;
-  /* background-color: red; */
   margin-top: 20px;
   height: 36px;
   line-height: 36px;

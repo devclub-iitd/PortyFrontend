@@ -89,7 +89,7 @@ class IconLabelTabs extends React.Component {
             <Tab icon={<PersonPinIcon />} label="ABOUT YOU" />
           </Tabs>
         </Paper>
-        <button form="regform" className="btn" type="submit"> Let&apos;s Go </button>
+        <button form="regform" className="btn" type="submit"> Let's Go </button>
       </div>
     );
   }

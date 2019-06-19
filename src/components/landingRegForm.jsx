@@ -70,14 +70,7 @@ class LandingRegForm extends React.Component {
       yeareValPlaceholder: '',
     });
   }
-  // handleDropdown(event){
-  //   this.setState({
-  //     monthVal: event.target.innerText,
-  //     monthValPlaceholder:''
-  //   });
-  // }
-
-
+  
   handleChange(event) {
     if (event.target.name === 'name') {
       this.setState({ nameVal: event.target.value });
