@@ -8,7 +8,7 @@ class Education extends React.Component{
   render(){
     return(
       <Paper className="locationContainer formContainer">
-        <div className="formContainerTitle">Education</div>
+        <div className="formContainerTitle">Education <span className="formContainerTitleDesc">| Insert relevant caption here</span></div>
         <div className="formContainerLineSeperator"></div>
         <div className="formContainerContent">
           <EducationDetails />

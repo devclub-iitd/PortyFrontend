@@ -8,7 +8,7 @@ class Location extends React.Component{
   render(){
     return(
       <Paper className="locationContainer formContainer">
-        <div className="formContainerTitle">Location</div>
+      <div className="formContainerTitle">Location <span className="formContainerTitleDesc">| Insert relevant caption here</span></div>
         <div className="formContainerLineSeperator"></div>
         <div className="formContainerContent">
           <form>

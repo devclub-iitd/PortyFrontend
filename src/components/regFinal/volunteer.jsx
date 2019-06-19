@@ -8,7 +8,7 @@ class Volunteer extends React.Component{
   render(){
     return(
       <Paper className="locationContainer formContainer">
-        <div className="formContainerTitle">Volunteer</div>
+      <div className="formContainerTitle">Volunteer <span className="formContainerTitleDesc">| Insert relevant caption here</span></div>
         <div className="formContainerLineSeperator"></div>
         <div className="formContainerContent">
           <VolunteerDetails />
