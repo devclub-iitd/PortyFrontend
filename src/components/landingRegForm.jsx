@@ -70,7 +70,7 @@ class LandingRegForm extends React.Component {
       yeareValPlaceholder: '',
     });
   }
-  
+
   handleChange(event) {
     if (event.target.name === 'name') {
       this.setState({ nameVal: event.target.value });
