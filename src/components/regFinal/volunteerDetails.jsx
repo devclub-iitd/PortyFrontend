@@ -1,7 +1,7 @@
 import React from 'react';
 
 const VolunteerDetails = () => (
-  <form>
+  <div>
     <input type="text" required placeholder="Organisation:" />
     <input type="text" required placeholder="Position:" />
     <input type="text" required placeholder="Website:" />
@@ -10,7 +10,7 @@ const VolunteerDetails = () => (
       <input className="right" type="text" required placeholder="End Date: DD/MM/YYYY or Ongoing" />
     </div>
     <textarea resize="none" placeholder="Summary | Highlights : " />
-  </form>
+  </div>
 );
 
 export default VolunteerDetails;

@@ -26,17 +26,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ControlledExpansionPanels() {
+export default function ControlledExpansionPanels(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
 
   return (
     <div className={classes.root}>
-      <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+      <ExpansionPanel expanded={props.expanded === 'aboutPanel'} onChange={props.action}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -48,10 +43,10 @@ export default function ControlledExpansionPanels() {
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <form>
+          <div className="epDetails">
             <input type="text" required placeholder="Label: Student" />
             <textarea resize="none" placeholder="A brief summary about you ..." />
-          </form>
+          </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>

@@ -25,17 +25,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ControlledExpansionPanels() {
+export default function ControlledExpansionPanels(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
 
   return (
     <div className={classes.root}>
-      <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+      <ExpansionPanel expanded={props.expanded === 'locationPanel'} onChange={props.action}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -47,7 +42,7 @@ export default function ControlledExpansionPanels() {
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <form>
+          <div className="epDetails">
             <input type="text" required placeholder="Address Line 1:" />
             <input type="text" required placeholder="Address Line 2:" />
             <div className="row">
@@ -55,7 +50,7 @@ export default function ControlledExpansionPanels() {
               <input className="rowInputThree" type="text" required placeholder="Pincode:" />
               <input className="rowInputThree" type="text" required placeholder="Country:" />
             </div>
-          </form>
+          </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>

@@ -23,18 +23,40 @@ const theme = createMuiTheme({
 });
 
 class RegFinal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expanded: false,
+    };
+    this.handlePanel = this.handlePanel.bind(this);
+  }
+
+  handlePanel(panel) {
+    if (this.state.expanded === panel) {
+      this.setState({
+        expanded: false,
+      });
+    } else {
+      this.setState({
+        expanded: panel,
+      });
+    }
+  }
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ paddingBottom: 100 }}>
           <Image />
           <Intro name="aryan" />
-          <Account />
-          <About />
-          <Location />
-          <Work />
-          <Volunteer />
-          <Education />
+          <form>
+            <Account expanded={this.state.expanded} action={() => this.handlePanel('accountPanel')} />
+            <About expanded={this.state.expanded} action={() => this.handlePanel('aboutPanel')} />
+            <Location expanded={this.state.expanded} action={() => this.handlePanel('locationPanel')} />
+            <Work expanded={this.state.expanded} action={() => this.handlePanel('workPanel')} />
+            <Volunteer expanded={this.state.expanded} action={() => this.handlePanel('volunteerPanel')} />
+            <Education expanded={this.state.expanded} action={() => this.handlePanel('educationPanel')} />
+          </form>
           <div className="headerSimple">
             <div className="headerSimpleTitle">
               Portfolio Creator

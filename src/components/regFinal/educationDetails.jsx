@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EducationDetails = () => (
-  <form>
+  <div>
     <input type="text" required placeholder="Institution:" />
     <div className="row rowtwo">
       <input className="left" type="text" required placeholder="Area: Software Development" />
@@ -13,7 +13,7 @@ const EducationDetails = () => (
     </div>
     <input type="text" required placeholder="GPA: xx/10" />
     <textarea resize="none" placeholder="Details | Courses : " />
-  </form>
+  </div>
 );
 
 export default EducationDetails;
