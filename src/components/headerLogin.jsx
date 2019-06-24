@@ -8,7 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import '../style/headerLogin.css';
 
-import Register from '../pages/register';
+import Register from '../pages/registerationLanding';
 
 const theme = createMuiTheme({
   palette: {
