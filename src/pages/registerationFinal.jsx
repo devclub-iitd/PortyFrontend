@@ -22,32 +22,28 @@ const theme = createMuiTheme({
   },
 });
 
-class RegFinal extends React.Component {
-  render() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <div style={{ paddingBottom: 100 }}>
-          <Image />
-          <Intro name="aryan" />
-          <Account />
-          <About />
-          <Location />
-          <Work />
-          <Volunteer />
-          <Education />
-          <div className="headerSimple">
-            <div className="headerSimpleTitle">
-              Portfolio Creator
-              {' '}
-              <span>
-                  | Register
-              </span>
-            </div>
-          </div>
+const RegFinal = () => (
+  <MuiThemeProvider theme={theme}>
+    <div style={{ paddingBottom: 100 }}>
+      <Image />
+      <Intro name="aryan" />
+      <Account />
+      <About />
+      <Location />
+      <Work />
+      <Volunteer />
+      <Education />
+      <div className="headerSimple">
+        <div className="headerSimpleTitle">
+            Portfolio Creator
+          {' '}
+          <span>
+              | Register
+          </span>
         </div>
-      </MuiThemeProvider>
-    );
-  }
-}
+      </div>
+    </div>
+  </MuiThemeProvider>
+);
 
 export default RegFinal;

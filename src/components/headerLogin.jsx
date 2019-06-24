@@ -23,9 +23,10 @@ const theme = createMuiTheme({
 
 
 function TabContainer(props) {
+  const { children } = props;
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
+      {children}
     </Typography>
   );
 }
@@ -74,11 +75,11 @@ const styles = () => ({
 class SimpleTabs extends React.Component {
   state = {
     value: 0,
-  };
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });
-  };
+  }
 
   render() {
     const { classes } = this.props;
@@ -96,8 +97,8 @@ class SimpleTabs extends React.Component {
               <Tab className={classes.navbarItem} label="Register" />
             </Tabs>
           </AppBar>
-          {this.state.value === 1 && <TabContainer>Page One</TabContainer>}
-          {this.state.value === 0 && <TabContainer><Register /></TabContainer>}
+          {value === 1 && <TabContainer>Page One</TabContainer>}
+          {value === 0 && <TabContainer><Register /></TabContainer>}
         </div>
       </MuiThemeProvider>
     );
@@ -105,7 +106,7 @@ class SimpleTabs extends React.Component {
 }
 
 SimpleTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styles)(SimpleTabs);
