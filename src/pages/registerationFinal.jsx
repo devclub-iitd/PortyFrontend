@@ -22,6 +22,7 @@ const theme = createMuiTheme({
   },
 });
 
+<<<<<<< HEAD
 class RegFinal extends React.Component {
   constructor(props) {
     super(props);
@@ -66,10 +67,30 @@ class RegFinal extends React.Component {
               </span>
             </div>
           </div>
+=======
+const RegFinal = () => (
+  <MuiThemeProvider theme={theme}>
+    <div style={{ paddingBottom: 100 }}>
+      <Image />
+      <Intro name="aryan" />
+      <Account />
+      <About />
+      <Location />
+      <Work />
+      <Volunteer />
+      <Education />
+      <div className="headerSimple">
+        <div className="headerSimpleTitle">
+            Portfolio Creator
+          {' '}
+          <span>
+              | Register
+          </span>
+>>>>>>> upstream/master
         </div>
-      </MuiThemeProvider>
-    );
-  }
-}
+      </div>
+    </div>
+  </MuiThemeProvider>
+);
 
 export default RegFinal;

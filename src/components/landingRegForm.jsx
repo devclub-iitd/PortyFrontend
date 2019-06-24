@@ -54,7 +54,8 @@ class LandingRegForm extends React.Component {
   }
 
   handleDropdownDate(event) {
-    if (this.state.monthVal === '') {
+    const { monthVal } = this.state;
+    if (monthVal === '') {
       alert('Please select the month first');
     } else {
       this.setState({
@@ -91,7 +92,8 @@ class LandingRegForm extends React.Component {
 
   render() {
     const {
-      nameVal, entryVal, monthValPlaceholder, monthVal, dateValPlaceholder, dateVal, yeareValPlaceholder, yearVal, emailVal, numVal,
+      nameVal, entryVal, monthValPlaceholder,
+      monthVal, dateValPlaceholder, dateVal, yeareValPlaceholder, yearVal, emailVal, numVal,
       webVal, extendMonthDisp, specialMonth,
     } = this.state;
     return (
