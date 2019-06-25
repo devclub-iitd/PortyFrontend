@@ -9,6 +9,12 @@ import Location from '../components/regFinal/location';
 import Work from '../components/regFinal/work';
 import Volunteer from '../components/regFinal/volunteer';
 import Education from '../components/regFinal/education';
+import Award from '../components/regFinal/award';
+import Publication from '../components/regFinal/publication';
+import Language from '../components/regFinal/language';
+import Skill from '../components/regFinal/skill';
+import Interest from '../components/regFinal/interest';
+import Reference from '../components/regFinal/reference';
 import '../style/regFinal.css';
 
 const theme = createMuiTheme({
@@ -58,6 +64,12 @@ class RegFinal extends React.Component {
             <Work expanded={expanded} action={() => this.handlePanel('workPanel')} />
             <Volunteer expanded={expanded} action={() => this.handlePanel('volunteerPanel')} />
             <Education expanded={expanded} action={() => this.handlePanel('educationPanel')} />
+            <Award expanded={expanded} action={() => this.handlePanel('awardPanel')} />
+            <Publication expanded={expanded} action={() => this.handlePanel('publicationPanel')} />
+            <Skill expanded={expanded} action={() => this.handlePanel('skillPanel')} />
+            <Language expanded={expanded} action={() => this.handlePanel('languagePanel')} />
+            <Interest expanded={expanded} action={() => this.handlePanel('interestPanel')} />
+            <Reference expanded={expanded} action={() => this.handlePanel('referencePanel')} />
           </form>
           <div className="headerSimple">
             <div className="headerSimpleTitle">

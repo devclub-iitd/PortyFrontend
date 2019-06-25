@@ -6,24 +6,24 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import VolunteerDetails from './volunteerDetailsContainer';
+import SkillDetails from './skillDetailsContainer';
 
-class VolunteerExpansionPanel extends React.Component {
+class SkillExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
     const tempFields = [];
     const tempFieldsTracker = [];
     this.state = {
-      volunteerDetailsCount: 1,
+      skillDetailsCount: 1,
       btnStyle: {
         display: 'none',
       },
       expanded: false,
-      volunteerFields: tempFields,
-      volunteerFieldTracker: tempFieldsTracker,
+      skillFields: tempFields,
+      skillFieldTracker: tempFieldsTracker,
     };
     const { expanded } = this.state;
-    tempFields.push(<VolunteerDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`volunteerPanel${0}`)} moveFieldUp={() => this.moveFieldUp(0)} />);
+    tempFields.push(<SkillDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`skillPanel${0}`)} moveFieldUp={() => this.moveFieldUp(0)} />);
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
@@ -32,40 +32,40 @@ class VolunteerExpansionPanel extends React.Component {
   }
 
   onAddChild() {
-    const { volunteerFields } = this.state;
-    const { volunteerFieldTracker } = this.state;
-    const { volunteerDetailsCount } = this.state;
+    const { skillFields } = this.state;
+    const { skillFieldTracker } = this.state;
+    const { skillDetailsCount } = this.state;
     const { expanded } = this.state;
-    const tempFields = volunteerFields;
-    const tempFieldsTracker = volunteerFieldTracker;
-    const i = volunteerDetailsCount;
+    const tempFields = skillFields;
+    const tempFieldsTracker = skillFieldTracker;
+    const i = skillDetailsCount;
     const exp = expanded;
     tempFieldsTracker.push(i);
-    tempFields.push(<VolunteerDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`volunteerPanel${i}`)} moveFieldUp={() => this.moveFieldUp(i)} />);
+    tempFields.push(<SkillDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldUp={() => this.moveFieldUp(i)} />);
     this.setState(state => ({
-      volunteerDetailsCount: state.volunteerDetailsCount + 1,
+      skillDetailsCount: state.skillDetailsCount + 1,
       btnStyle: {
         display: 'block',
       },
-      volunteerFields: tempFields,
-      volunteerFieldTracker: tempFieldsTracker,
+      skillFields: tempFields,
+      skillFieldTracker: tempFieldsTracker,
     }));
   }
 
   onSubChild() {
-    const { volunteerFields } = this.state;
-    const { volunteerFieldTracker } = this.state;
-    const { volunteerDetailsCount } = this.state;
-    const tempFields = volunteerFields;
-    const tempFieldsTracker = volunteerFieldTracker;
+    const { skillFields } = this.state;
+    const { skillFieldTracker } = this.state;
+    const { skillDetailsCount } = this.state;
+    const tempFields = skillFields;
+    const tempFieldsTracker = skillFieldTracker;
     tempFieldsTracker.pop();
     tempFields.pop();
     this.setState(state => ({
-      volunteerDetailsCount: state.volunteerDetailsCount - 1,
-      volunteerFields: tempFields,
-      volunteerFieldTracker: tempFieldsTracker,
+      skillDetailsCount: state.skillDetailsCount - 1,
+      skillFields: tempFields,
+      skillFieldTracker: tempFieldsTracker,
     }));
-    if (volunteerDetailsCount === 2) {
+    if (skillDetailsCount === 2) {
       this.setState({
         btnStyle: {
           display: 'none',
@@ -76,29 +76,29 @@ class VolunteerExpansionPanel extends React.Component {
 
   handlePanel(panel) {
     const { expanded } = this.state;
-    const { volunteerFieldTracker } = this.state;
-    const { volunteerDetailsCount } = this.state;
+    const { skillFieldTracker } = this.state;
+    const { skillDetailsCount } = this.state;
     if (expanded === panel) {
       const tempFields = [];
-      const tempFieldsTracker = volunteerFieldTracker;
-      for (let i = 0; i < volunteerDetailsCount; i += 1) {
+      const tempFieldsTracker = skillFieldTracker;
+      for (let i = 0; i < skillDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<VolunteerDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`volunteerPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
+        tempFields.push(<SkillDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
       }
       this.setState({
         expanded: false,
-        volunteerFields: tempFields,
+        skillFields: tempFields,
       });
     } else {
       const tempFields = [];
-      const tempFieldsTracker = volunteerFieldTracker;
-      for (let i = 0; i < volunteerDetailsCount; i += 1) {
+      const tempFieldsTracker = skillFieldTracker;
+      for (let i = 0; i < skillDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<VolunteerDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`volunteerPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
+        tempFields.push(<SkillDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
       }
       this.setState({
         expanded: panel,
-        volunteerFields: tempFields,
+        skillFields: tempFields,
       });
     }
   }
@@ -106,20 +106,20 @@ class VolunteerExpansionPanel extends React.Component {
   moveFieldUp(k) {
     // alert(k);
     const { expanded } = this.state;
-    const { volunteerFieldTracker } = this.state;
-    const { volunteerFields } = this.state;
-    const tempFields = volunteerFields;
-    const tempFieldsTracker = volunteerFieldTracker;
+    const { skillFieldTracker } = this.state;
+    const { skillFields } = this.state;
+    const tempFields = skillFields;
+    const tempFieldsTracker = skillFieldTracker;
     if (k !== 0) {
       const storeFieldTracker = tempFieldsTracker[k - 1];
       tempFieldsTracker[k - 1] = tempFieldsTracker[k];
       tempFieldsTracker[k] = storeFieldTracker;
-      tempFields[k] = <VolunteerDetails key={k - 1} id={k} expanded={expanded} action={() => this.handlePanel(`volunteerPanel${k}`)} moveFieldUp={() => this.moveFieldUp(k)} />;
-      tempFields[k - 1] = <VolunteerDetails key={k} id={k - 1} expanded={expanded} action={() => this.handlePanel(`volunteerPanel${k - 1}`)} moveFieldUp={() => this.moveFieldUp(k - 1)} />;
+      tempFields[k] = <SkillDetails key={k - 1} id={k} expanded={expanded} action={() => this.handlePanel(`skillPanel${k}`)} moveFieldUp={() => this.moveFieldUp(k)} />;
+      tempFields[k - 1] = <SkillDetails key={k} id={k - 1} expanded={expanded} action={() => this.handlePanel(`skillPanel${k - 1}`)} moveFieldUp={() => this.moveFieldUp(k - 1)} />;
     }
     this.setState({
-      volunteerFields: tempFields,
-      volunteerFieldTracker: tempFieldsTracker,
+      skillFields: tempFields,
+      skillFieldTracker: tempFieldsTracker,
     });
   }
 
@@ -154,17 +154,17 @@ class VolunteerExpansionPanel extends React.Component {
     };
     const { expanded } = this.props;
     const { action } = this.props;
-    const { volunteerFields } = this.state;
+    const { skillFields } = this.state;
     const { btnStyle } = this.state;
     return (
       <div style={useStyles.root}>
-        <ExpansionPanel expanded={expanded === 'volunteerPanel'} onChange={action}>
+        <ExpansionPanel expanded={expanded === 'skillPanel'} onChange={action}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
-            <Typography style={useStyles.heading}>Volunteer</Typography>
+            <Typography style={useStyles.heading}>Skills</Typography>
             <Typography style={useStyles.secondaryHeading}>
               <i>Insert Tagline here</i>
             </Typography>
@@ -172,7 +172,7 @@ class VolunteerExpansionPanel extends React.Component {
           <ExpansionPanelDetails>
             <div className="customDetailContainer">
               <div>
-                {volunteerFields}
+                {skillFields}
               </div>
               <div className="btnRow">
                 <div className="addBtn" onClick={this.onSubChild} style={btnStyle} role="presentation">-</div>
@@ -186,9 +186,9 @@ class VolunteerExpansionPanel extends React.Component {
   }
 }
 
-VolunteerExpansionPanel.propTypes = {
+SkillExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
 };
 
-export default VolunteerExpansionPanel;
+export default SkillExpansionPanel;
