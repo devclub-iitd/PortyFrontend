@@ -32,7 +32,8 @@ class RegFinal extends React.Component {
   }
 
   handlePanel(panel) {
-    if (this.state.expanded === panel) {
+    const { expanded } = this.state;
+    if (expanded === panel) {
       this.setState({
         expanded: false,
       });
@@ -44,18 +45,19 @@ class RegFinal extends React.Component {
   }
 
   render() {
+    const { expanded } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ paddingBottom: 100 }}>
           <Image />
           <Intro name="aryan" />
           <form>
-            <Account expanded={this.state.expanded} action={() => this.handlePanel('accountPanel')} />
-            <About expanded={this.state.expanded} action={() => this.handlePanel('aboutPanel')} />
-            <Location expanded={this.state.expanded} action={() => this.handlePanel('locationPanel')} />
-            <Work expanded={this.state.expanded} action={() => this.handlePanel('workPanel')} />
-            <Volunteer expanded={this.state.expanded} action={() => this.handlePanel('volunteerPanel')} />
-            <Education expanded={this.state.expanded} action={() => this.handlePanel('educationPanel')} />
+            <Account expanded={expanded} action={() => this.handlePanel('accountPanel')} />
+            <About expanded={expanded} action={() => this.handlePanel('aboutPanel')} />
+            <Location expanded={expanded} action={() => this.handlePanel('locationPanel')} />
+            <Work expanded={expanded} action={() => this.handlePanel('workPanel')} />
+            <Volunteer expanded={expanded} action={() => this.handlePanel('volunteerPanel')} />
+            <Education expanded={expanded} action={() => this.handlePanel('educationPanel')} />
           </form>
           <div className="headerSimple">
             <div className="headerSimpleTitle">

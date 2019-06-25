@@ -1,39 +1,71 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import WorkDetails from './workDetails';
+import WorkDetails from './workDetailsContainer';
 
-class ControlledExpansionPanels extends React.Component {
+class WorkExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
+    const tempFields = [];
+    const tempFieldsTracker = [];
     this.state = {
-      workDetails: 1,
+      workDetailsCount: 1,
       btnStyle: {
         display: 'none',
       },
+      expanded: false,
+      workFields: tempFields,
+      workFieldTracker: tempFieldsTracker,
     };
+    const { expanded } = this.state;
+    tempFields.push(<WorkDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`workPanel${0}`)} moveFieldUp={() => this.moveFieldUp(0)} />);
+    tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
+    this.handlePanel = this.handlePanel.bind(this);
+    this.moveFieldUp = this.moveFieldUp.bind(this);
   }
 
   onAddChild() {
-    this.setState((state) => ({
-      workDetails: state.workDetails + 1,
+    const { workFields } = this.state;
+    const { workFieldTracker } = this.state;
+    const { workDetailsCount } = this.state;
+    const { expanded } = this.state;
+    const tempFields = workFields;
+    const tempFieldsTracker = workFieldTracker;
+    const i = workDetailsCount;
+    const exp = expanded;
+    tempFieldsTracker.push(i);
+    tempFields.push(<WorkDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`workPanel${i}`)} moveFieldUp={() => this.moveFieldUp(i)} />);
+    this.setState(state => ({
+      workDetailsCount: state.workDetailsCount + 1,
       btnStyle: {
         display: 'block',
       },
+      workFields: tempFields,
+      workFieldTracker: tempFieldsTracker,
     }));
   }
 
   onSubChild() {
+    const { workFields } = this.state;
+    const { workFieldTracker } = this.state;
+    const { workDetailsCount } = this.state;
+    const tempFields = workFields;
+    const tempFieldsTracker = workFieldTracker;
+    tempFieldsTracker.pop();
+    tempFields.pop();
     this.setState(state => ({
-      workDetails: state.workDetails - 1,
+      workDetailsCount: state.workDetailsCount - 1,
+      workFields: tempFields,
+      workFieldTracker: tempFieldsTracker,
     }));
-    if (this.state.workDetails === 2) {
+    if (workDetailsCount === 2) {
       this.setState({
         btnStyle: {
           display: 'none',
@@ -42,6 +74,54 @@ class ControlledExpansionPanels extends React.Component {
     }
   }
 
+  handlePanel(panel) {
+    const { expanded } = this.state;
+    const { workFieldTracker } = this.state;
+    const { workDetailsCount } = this.state;
+    if (expanded === panel) {
+      const tempFields = [];
+      const tempFieldsTracker = workFieldTracker;
+      for (let i = 0; i < workDetailsCount; i += 1) {
+        const k = tempFieldsTracker[i];
+        tempFields.push(<WorkDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`workPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
+      }
+      this.setState({
+        expanded: false,
+        workFields: tempFields,
+      });
+    } else {
+      const tempFields = [];
+      const tempFieldsTracker = workFieldTracker;
+      for (let i = 0; i < workDetailsCount; i += 1) {
+        const k = tempFieldsTracker[i];
+        tempFields.push(<WorkDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`workPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
+      }
+      this.setState({
+        expanded: panel,
+        workFields: tempFields,
+      });
+    }
+  }
+
+  moveFieldUp(k) {
+    // alert(k);
+    const { expanded } = this.state;
+    const { workFieldTracker } = this.state;
+    const { workFields } = this.state;
+    const tempFields = workFields;
+    const tempFieldsTracker = workFieldTracker;
+    if (k !== 0) {
+      const storeFieldTracker = tempFieldsTracker[k - 1];
+      tempFieldsTracker[k - 1] = tempFieldsTracker[k];
+      tempFieldsTracker[k] = storeFieldTracker;
+      tempFields[k] = <WorkDetails key={k - 1} id={k} expanded={expanded} action={() => this.handlePanel(`workPanel${k}`)} moveFieldUp={() => this.moveFieldUp(k)} />;
+      tempFields[k - 1] = <WorkDetails key={k} id={k - 1} expanded={expanded} action={() => this.handlePanel(`workPanel${k - 1}`)} moveFieldUp={() => this.moveFieldUp(k - 1)} />;
+    }
+    this.setState({
+      workFields: tempFields,
+      workFieldTracker: tempFieldsTracker,
+    });
+  }
 
   render() {
     const theme = createMuiTheme({
@@ -72,13 +152,13 @@ class ControlledExpansionPanels extends React.Component {
         color: theme.palette.secondary.main,
       },
     };
-    const workDetails = [];
-    for (let i = 0; i < this.state.workDetails; i += 1) {
-      workDetails.push(<WorkDetails key={i} id={i} />);
-    }
+    const { expanded } = this.props;
+    const { action } = this.props;
+    const { workFields } = this.state;
+    const { btnStyle } = this.state;
     return (
       <div style={useStyles.root}>
-        <ExpansionPanel expanded={this.props.expanded === 'workPanel'} onChange={this.props.action}>
+        <ExpansionPanel expanded={expanded === 'workPanel'} onChange={action}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
@@ -91,10 +171,12 @@ class ControlledExpansionPanels extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div className="customDetailContainer">
-              {workDetails}
+              <div>
+                {workFields}
+              </div>
               <div className="btnRow">
-                <div className="addBtn" onClick={this.onSubChild} style={this.state.btnStyle}>-</div>
-                <div className="addBtn" onClick={this.onAddChild}>+</div>
+                <div className="addBtn" onClick={this.onSubChild} style={btnStyle} role="presentation">-</div>
+                <div className="addBtn" onClick={this.onAddChild} role="presentation">+</div>
               </div>
             </div>
           </ExpansionPanelDetails>
@@ -103,4 +185,10 @@ class ControlledExpansionPanels extends React.Component {
     );
   }
 }
-export default ControlledExpansionPanels;
+
+WorkExpansionPanel.propTypes = {
+  expanded: PropTypes.string.isRequired,
+  action: PropTypes.func.isRequired,
+};
+
+export default WorkExpansionPanel;

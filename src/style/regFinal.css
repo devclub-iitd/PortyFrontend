@@ -155,3 +155,10 @@ textarea:focus{
   align-items: center;
   justify-content: center;
 }
+.sideBtnCont{
+  /* background-color: red; */
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

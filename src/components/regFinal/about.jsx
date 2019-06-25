@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -26,12 +27,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ControlledExpansionPanels(props) {
+function AboutExpansionPanel(props) {
   const classes = useStyles();
-
+  const { expanded } = props;
+  const { action } = props;
   return (
     <div className={classes.root}>
-      <ExpansionPanel expanded={props.expanded === 'aboutPanel'} onChange={props.action}>
+      <ExpansionPanel expanded={expanded === 'aboutPanel'} onChange={action}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -52,3 +54,10 @@ export default function ControlledExpansionPanels(props) {
     </div>
   );
 }
+
+AboutExpansionPanel.propTypes = {
+  expanded: PropTypes.string.isRequired,
+  action: PropTypes.func.isRequired,
+};
+
+export default AboutExpansionPanel;
