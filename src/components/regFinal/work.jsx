@@ -23,7 +23,7 @@ class WorkExpansionPanel extends React.Component {
       workFieldTracker: tempFieldsTracker,
     };
     const { expanded } = this.state;
-    tempFields.push(<WorkDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`workPanel${0}`)} moveFieldUp={() => this.moveFieldUp(0)} />);
+    tempFields.push(<WorkDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`workPanel${0}`)} moveFieldDown={() => this.moveFieldDown(0, 0)} moveFieldUp={() => this.moveFieldUp(0, 0)} />);
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
@@ -41,7 +41,7 @@ class WorkExpansionPanel extends React.Component {
     const i = workDetailsCount;
     const exp = expanded;
     tempFieldsTracker.push(i);
-    tempFields.push(<WorkDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`workPanel${i}`)} moveFieldUp={() => this.moveFieldUp(i)} />);
+    tempFields.push(<WorkDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
     this.setState(state => ({
       workDetailsCount: state.workDetailsCount + 1,
       btnStyle: {
@@ -83,7 +83,7 @@ class WorkExpansionPanel extends React.Component {
       const tempFieldsTracker = workFieldTracker;
       for (let i = 0; i < workDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<WorkDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`workPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
+        tempFields.push(<WorkDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: false,
@@ -94,7 +94,7 @@ class WorkExpansionPanel extends React.Component {
       const tempFieldsTracker = workFieldTracker;
       for (let i = 0; i < workDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<WorkDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`workPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
+        tempFields.push(<WorkDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: panel,
@@ -103,19 +103,44 @@ class WorkExpansionPanel extends React.Component {
     }
   }
 
-  moveFieldUp(k) {
+  moveFieldUp(k, i) {
     // alert(k);
     const { expanded } = this.state;
     const { workFieldTracker } = this.state;
     const { workFields } = this.state;
     const tempFields = workFields;
     const tempFieldsTracker = workFieldTracker;
-    if (k !== 0) {
-      const storeFieldTracker = tempFieldsTracker[k - 1];
-      tempFieldsTracker[k - 1] = tempFieldsTracker[k];
-      tempFieldsTracker[k] = storeFieldTracker;
-      tempFields[k] = <WorkDetails key={k - 1} id={k} expanded={expanded} action={() => this.handlePanel(`workPanel${k}`)} moveFieldUp={() => this.moveFieldUp(k)} />;
-      tempFields[k - 1] = <WorkDetails key={k} id={k - 1} expanded={expanded} action={() => this.handlePanel(`workPanel${k - 1}`)} moveFieldUp={() => this.moveFieldUp(k - 1)} />;
+    if (i !== 0) {
+      const storeFieldTracker = tempFieldsTracker[i - 1];
+      tempFieldsTracker[i - 1] = tempFieldsTracker[i];
+      tempFieldsTracker[i] = storeFieldTracker;
+      tempFields[i] = <WorkDetails key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i - 1] = <WorkDetails key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`workPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+    } else {
+      alert('you cant move this field any more');
+    }
+    this.setState({
+      workFields: tempFields,
+      workFieldTracker: tempFieldsTracker,
+    });
+  }
+
+  moveFieldDown(k, i) {
+    // alert(k);
+    const { expanded } = this.state;
+    const { workFieldTracker } = this.state;
+    const { workFields } = this.state;
+    const { workDetailsCount } = this.state;
+    const tempFields = workFields;
+    const tempFieldsTracker = workFieldTracker;
+    if (i !== workDetailsCount - 1) {
+      const storeFieldTracker = tempFieldsTracker[i + 1];
+      tempFieldsTracker[i + 1] = tempFieldsTracker[i];
+      tempFieldsTracker[i] = storeFieldTracker;
+      tempFields[i] = <WorkDetails key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i + 1] = <WorkDetails key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`workPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+    } else {
+      alert('you cant move this field any more');
     }
     this.setState({
       workFields: tempFields,

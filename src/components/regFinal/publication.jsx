@@ -23,7 +23,7 @@ class PublicationExpansionPanel extends React.Component {
       publicationFieldTracker: tempFieldsTracker,
     };
     const { expanded } = this.state;
-    tempFields.push(<PublicationDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`publicationPanel${0}`)} moveFieldUp={() => this.moveFieldUp(0)} />);
+    tempFields.push(<PublicationDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`publicationPanel${0}`)} moveFieldDown={() => this.moveFieldDown(0, 0)} moveFieldUp={() => this.moveFieldUp(0, 0)} />);
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
@@ -41,7 +41,7 @@ class PublicationExpansionPanel extends React.Component {
     const i = publicationDetailsCount;
     const exp = expanded;
     tempFieldsTracker.push(i);
-    tempFields.push(<PublicationDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldUp={() => this.moveFieldUp(i)} />);
+    tempFields.push(<PublicationDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
     this.setState(state => ({
       publicationDetailsCount: state.publicationDetailsCount + 1,
       btnStyle: {
@@ -83,7 +83,7 @@ class PublicationExpansionPanel extends React.Component {
       const tempFieldsTracker = publicationFieldTracker;
       for (let i = 0; i < publicationDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<PublicationDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
+        tempFields.push(<PublicationDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: false,
@@ -94,7 +94,7 @@ class PublicationExpansionPanel extends React.Component {
       const tempFieldsTracker = publicationFieldTracker;
       for (let i = 0; i < publicationDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<PublicationDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
+        tempFields.push(<PublicationDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: panel,
@@ -103,19 +103,44 @@ class PublicationExpansionPanel extends React.Component {
     }
   }
 
-  moveFieldUp(k) {
+  moveFieldUp(k, i) {
     // alert(k);
     const { expanded } = this.state;
     const { publicationFieldTracker } = this.state;
     const { publicationFields } = this.state;
     const tempFields = publicationFields;
     const tempFieldsTracker = publicationFieldTracker;
-    if (k !== 0) {
-      const storeFieldTracker = tempFieldsTracker[k - 1];
-      tempFieldsTracker[k - 1] = tempFieldsTracker[k];
-      tempFieldsTracker[k] = storeFieldTracker;
-      tempFields[k] = <PublicationDetails key={k - 1} id={k} expanded={expanded} action={() => this.handlePanel(`publicationPanel${k}`)} moveFieldUp={() => this.moveFieldUp(k)} />;
-      tempFields[k - 1] = <PublicationDetails key={k} id={k - 1} expanded={expanded} action={() => this.handlePanel(`publicationPanel${k - 1}`)} moveFieldUp={() => this.moveFieldUp(k - 1)} />;
+    if (i !== 0) {
+      const storeFieldTracker = tempFieldsTracker[i - 1];
+      tempFieldsTracker[i - 1] = tempFieldsTracker[i];
+      tempFieldsTracker[i] = storeFieldTracker;
+      tempFields[i] = <PublicationDetails key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i - 1] = <PublicationDetails key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`publicationPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+    } else {
+      alert('you cant move this field any more');
+    }
+    this.setState({
+      publicationFields: tempFields,
+      publicationFieldTracker: tempFieldsTracker,
+    });
+  }
+
+  moveFieldDown(k, i) {
+    // alert(k);
+    const { expanded } = this.state;
+    const { publicationFieldTracker } = this.state;
+    const { publicationFields } = this.state;
+    const { publicationDetailsCount } = this.state;
+    const tempFields = publicationFields;
+    const tempFieldsTracker = publicationFieldTracker;
+    if (i !== publicationDetailsCount - 1) {
+      const storeFieldTracker = tempFieldsTracker[i + 1];
+      tempFieldsTracker[i + 1] = tempFieldsTracker[i];
+      tempFieldsTracker[i] = storeFieldTracker;
+      tempFields[i] = <PublicationDetails key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i + 1] = <PublicationDetails key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`publicationPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+    } else {
+      alert('you cant move this field any more');
     }
     this.setState({
       publicationFields: tempFields,

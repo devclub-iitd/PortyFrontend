@@ -23,7 +23,7 @@ class EducationExpansionPanel extends React.Component {
       educationFieldTracker: tempFieldsTracker,
     };
     const { expanded } = this.state;
-    tempFields.push(<EducationDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`educationPanel${0}`)} moveFieldUp={() => this.moveFieldUp(0)} />);
+    tempFields.push(<EducationDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`educationPanel${0}`)} moveFieldDown={() => this.moveFieldDown(0, 0)} moveFieldUp={() => this.moveFieldUp(0, 0)} />);
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
@@ -41,7 +41,7 @@ class EducationExpansionPanel extends React.Component {
     const i = educationDetailsCount;
     const exp = expanded;
     tempFieldsTracker.push(i);
-    tempFields.push(<EducationDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldUp={() => this.moveFieldUp(i)} />);
+    tempFields.push(<EducationDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
     this.setState(state => ({
       educationDetailsCount: state.educationDetailsCount + 1,
       btnStyle: {
@@ -83,7 +83,7 @@ class EducationExpansionPanel extends React.Component {
       const tempFieldsTracker = educationFieldTracker;
       for (let i = 0; i < educationDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<EducationDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
+        tempFields.push(<EducationDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: false,
@@ -94,7 +94,7 @@ class EducationExpansionPanel extends React.Component {
       const tempFieldsTracker = educationFieldTracker;
       for (let i = 0; i < educationDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<EducationDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldUp={() => this.moveFieldUp(k)} />);
+        tempFields.push(<EducationDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: panel,
@@ -103,19 +103,44 @@ class EducationExpansionPanel extends React.Component {
     }
   }
 
-  moveFieldUp(k) {
+  moveFieldUp(k, i) {
     // alert(k);
     const { expanded } = this.state;
     const { educationFieldTracker } = this.state;
     const { educationFields } = this.state;
     const tempFields = educationFields;
     const tempFieldsTracker = educationFieldTracker;
-    if (k !== 0) {
-      const storeFieldTracker = tempFieldsTracker[k - 1];
-      tempFieldsTracker[k - 1] = tempFieldsTracker[k];
-      tempFieldsTracker[k] = storeFieldTracker;
-      tempFields[k] = <EducationDetails key={k - 1} id={k} expanded={expanded} action={() => this.handlePanel(`educationPanel${k}`)} moveFieldUp={() => this.moveFieldUp(k)} />;
-      tempFields[k - 1] = <EducationDetails key={k} id={k - 1} expanded={expanded} action={() => this.handlePanel(`educationPanel${k - 1}`)} moveFieldUp={() => this.moveFieldUp(k - 1)} />;
+    if (i !== 0) {
+      const storeFieldTracker = tempFieldsTracker[i - 1];
+      tempFieldsTracker[i - 1] = tempFieldsTracker[i];
+      tempFieldsTracker[i] = storeFieldTracker;
+      tempFields[i] = <EducationDetails key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i - 1] = <EducationDetails key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`educationPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+    } else {
+      alert('you cant move this field any more');
+    }
+    this.setState({
+      educationFields: tempFields,
+      educationFieldTracker: tempFieldsTracker,
+    });
+  }
+
+  moveFieldDown(k, i) {
+    // alert(k);
+    const { expanded } = this.state;
+    const { educationFieldTracker } = this.state;
+    const { educationFields } = this.state;
+    const { educationDetailsCount } = this.state;
+    const tempFields = educationFields;
+    const tempFieldsTracker = educationFieldTracker;
+    if (i !== educationDetailsCount - 1) {
+      const storeFieldTracker = tempFieldsTracker[i + 1];
+      tempFieldsTracker[i + 1] = tempFieldsTracker[i];
+      tempFieldsTracker[i] = storeFieldTracker;
+      tempFields[i] = <EducationDetails key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i + 1] = <EducationDetails key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`educationPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+    } else {
+      alert('you cant move this field any more');
     }
     this.setState({
       educationFields: tempFields,
