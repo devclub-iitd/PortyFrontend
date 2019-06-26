@@ -9,6 +9,12 @@ import Location from '../components/regFinal/location';
 import Work from '../components/regFinal/work';
 import Volunteer from '../components/regFinal/volunteer';
 import Education from '../components/regFinal/education';
+import Award from '../components/regFinal/award';
+import Publication from '../components/regFinal/publication';
+import Language from '../components/regFinal/language';
+import Skill from '../components/regFinal/skill';
+import Interest from '../components/regFinal/interest';
+import Reference from '../components/regFinal/reference';
 import '../style/regFinal.css';
 
 const theme = createMuiTheme({
@@ -22,28 +28,62 @@ const theme = createMuiTheme({
   },
 });
 
-const RegFinal = () => (
-  <MuiThemeProvider theme={theme}>
-    <div style={{ paddingBottom: 100 }}>
-      <Image />
-      <Intro name="aryan" />
-      <Account />
-      <About />
-      <Location />
-      <Work />
-      <Volunteer />
-      <Education />
-      <div className="headerSimple">
-        <div className="headerSimpleTitle">
-            Portfolio Creator
-          {' '}
-          <span>
-              | Register
-          </span>
+class RegFinal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expanded: false,
+    };
+    this.handlePanel = this.handlePanel.bind(this);
+  }
+
+  handlePanel(panel) {
+    const { expanded } = this.state;
+    if (expanded === panel) {
+      this.setState({
+        expanded: false,
+      });
+    } else {
+      this.setState({
+        expanded: panel,
+      });
+    }
+  }
+
+  render() {
+    const { expanded } = this.state;
+    return (
+      <MuiThemeProvider theme={theme}>
+        <div style={{ paddingBottom: 100 }}>
+          <Image />
+          <Intro name="aryan" />
+          <form>
+            <Account expanded={expanded} action={() => this.handlePanel('accountPanel')} />
+            <About expanded={expanded} action={() => this.handlePanel('aboutPanel')} />
+            <Location expanded={expanded} action={() => this.handlePanel('locationPanel')} />
+            <Work expanded={expanded} action={() => this.handlePanel('workPanel')} />
+            <Volunteer expanded={expanded} action={() => this.handlePanel('volunteerPanel')} />
+            <Education expanded={expanded} action={() => this.handlePanel('educationPanel')} />
+            <Award expanded={expanded} action={() => this.handlePanel('awardPanel')} />
+            <Publication expanded={expanded} action={() => this.handlePanel('publicationPanel')} />
+            <Skill expanded={expanded} action={() => this.handlePanel('skillPanel')} />
+            <Language expanded={expanded} action={() => this.handlePanel('languagePanel')} />
+            <Interest expanded={expanded} action={() => this.handlePanel('interestPanel')} />
+            <Reference expanded={expanded} action={() => this.handlePanel('referencePanel')} />
+          </form>
+          <div className="headerSimple">
+            <div className="headerSimpleTitle">
+              Portfolio Creator
+              {' '}
+              <span>
+                  | Register
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </MuiThemeProvider>
-);
+      </MuiThemeProvider>
+    );
+  }
+}
 
 export default RegFinal;

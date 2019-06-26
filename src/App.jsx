@@ -4,7 +4,7 @@ import './App.css';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Landing from './pages/landing';
-import Register from './pages/registerationFinal'
+import Register from './pages/registerationFinal';
 
 const App = () => (
   <div>

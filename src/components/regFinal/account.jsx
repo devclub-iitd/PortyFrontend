@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -25,17 +26,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ControlledExpansionPanels() {
+function AccountExpansionPanel(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
-
+  const { expanded } = props;
+  const { action } = props;
   return (
     <div className={classes.root}>
-      <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+      <ExpansionPanel expanded={expanded === 'accountPanel'} onChange={action}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -47,15 +44,22 @@ export default function ControlledExpansionPanels() {
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <form>
+          <div className="epDetails">
             <div className="row rowtwo">
-              <input className="left" type="text" required placeholder="Password: " />
-              <input className="right" type="text" required placeholder="Confirm Password: " />
+              <input className="left" type="password" required placeholder="Password: " />
+              <input className="right" type="password" required placeholder="Confirm Password: " />
             </div>
             <input type="text" required placeholder="Password Hint: To help you remember incase you forget" />
-          </form>
+          </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
   );
 }
+
+AccountExpansionPanel.propTypes = {
+  expanded: PropTypes.string.isRequired,
+  action: PropTypes.func.isRequired,
+};
+
+export default AccountExpansionPanel;

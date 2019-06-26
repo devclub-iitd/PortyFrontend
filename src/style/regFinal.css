@@ -81,6 +81,11 @@
   display: flex;
   flex-direction: column;
 }
+.sectionSeperator{
+  width: 100%;
+  height: 3px;
+  background-color: #3d40d8;
+}
 form{
   width: 100%;
 }
@@ -119,14 +124,16 @@ textarea:focus{
 .rowtwo .right{
   margin-left: 4px;
 }
+.epDetails{
+  width: 100%;
+}
 .addBtn{
   width: 50px;
   height: 50px;
   /* background-color: rgba(61,64,141,1); */
   background-color: #3d40d8;
   border-radius: 100%;
-  margin: auto;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   cursor: pointer;
   box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.4);
   text-align: center;
@@ -134,8 +141,24 @@ textarea:focus{
   line-height:40px;
   font-size: 50px;
   font-weight: 700;
+  margin-left: 10px;
+  margin-right: 10px;
   transition: 0.1s ease-out;
 }
 .addBtn:hover{
   box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.4);
+}
+.btnRow{
+  display: flex;
+  margin-top: 35px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.sideBtnCont{
+  /* background-color: red; */
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
