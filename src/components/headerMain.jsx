@@ -1,12 +1,12 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import Portfolio from './portfolio';
+import Home from '../pages/home';
+import Edit from '../pages/edit';
 import '../style/header.css';
 
 const theme = createMuiTheme({
@@ -15,7 +15,7 @@ const theme = createMuiTheme({
       main: 'rgba(255,255,255,1)',
     },
     secondary: {
-      main: '#8f3066',
+      main: '#3d40d8',
     },
   },
 });
@@ -37,10 +37,6 @@ TabContainer.propTypes = {
 const styles = () => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#e6e6e6',
-  },
-  slider: {
-    backgroundColor: 'blue',
   },
   navbarContainer: {
     height: '55px',
@@ -48,10 +44,10 @@ const styles = () => ({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     lineHeight: '55px',
+    position: 'fixed',
   },
   navbarItem: {
     height: '55px',
-    borderBottom: '2px solid #E88666',
     transition: '0.12s ease-out',
     '&:tabSelected': {
       letterSpacing: '2px',
@@ -60,14 +56,13 @@ const styles = () => ({
     },
     '&:hover': {
       color: '#000',
-      // fontWeight: '600',
       letterSpacing: '2px',
     },
   },
   headercontainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-end',
   },
 
 });
@@ -88,27 +83,24 @@ class SimpleTabs extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
-          <AppBar position="static" className={classes.headercontainer}>
-            <div className="headerDetails">
-              <div className="headerImage" />
-              <div className="headerTitle"> User Name here </div>
+          <AppBar position="fixed" className={classes.headercontainer}>
+            <div className="headerTitle">
+              Portfolio Creator
+              {' '}
+              <span>| Aryan Gupta</span>
             </div>
             <Tabs value={value} onChange={this.handleChange} className={classes.navbarContainer}>
               <Tab className={classes.navbarItem} label="Home" />
               <Tab className={classes.navbarItem} label="Edit" />
-              <Tab className={classes.navbarItem} label="Add" />
-              <Tab className={classes.navbarItem} label="Settings" />
             </Tabs>
           </AppBar>
           {value === 0 && (
           <TabContainer>
-            <Portfolio />
+            <Home />
             {' '}
           </TabContainer>
           )}
-          {value === 1 && <TabContainer>Item Two</TabContainer>}
-          {value === 2 && <TabContainer>Item Three</TabContainer>}
-          {value === 3 && <TabContainer>Item Three</TabContainer>}
+          {value === 1 && <TabContainer><Edit /></TabContainer>}
         </div>
       </MuiThemeProvider>
     );

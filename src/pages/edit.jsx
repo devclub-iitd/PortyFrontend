@@ -28,7 +28,7 @@ const theme = createMuiTheme({
   },
 });
 
-class RegFinal extends React.Component {
+class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,7 +56,7 @@ class RegFinal extends React.Component {
       <MuiThemeProvider theme={theme}>
         <div style={{ paddingBottom: 100 }}>
           <Image />
-          <Intro name="aryan" caption="block" />
+          <Intro name="aryan" caption="none" />
           <form>
             <Account expanded={expanded} action={() => this.handlePanel('accountPanel')} />
             <About expanded={expanded} action={() => this.handlePanel('aboutPanel')} />
@@ -71,19 +71,10 @@ class RegFinal extends React.Component {
             <Interest expanded={expanded} action={() => this.handlePanel('interestPanel')} />
             <Reference expanded={expanded} action={() => this.handlePanel('referencePanel')} />
           </form>
-          <div className="headerSimple">
-            <div className="headerSimpleTitle">
-              Portfolio Creator
-              {' '}
-              <span>
-                  | Register
-              </span>
-            </div>
-          </div>
         </div>
       </MuiThemeProvider>
     );
   }
 }
 
-export default RegFinal;
+export default Edit;
