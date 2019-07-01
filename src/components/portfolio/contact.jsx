@@ -1,51 +1,68 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Contact = () => (
-  <div className="portfolioPage contactPage">
-    <div className="portfolioPageTitle">
-      Contact Me
-    </div>
-    <div className="portfolioContactCard">
-      <div className="miniLine" />
-      <li>
-        <span className="portfolioContactCardInfo">
-          <span className="portfolioContactCardInfoTitle">
-            Email ID -
-          </span>
-          {' '}
-          <span className="portfolioContactCardInfoDetails">
-            aryanguptaleo@gmail.com
-          </span>
-        </span>
-      </li>
-      <li>
-        <span className="portfolioContactCardInfo">
-          <span className="portfolioContactCardInfoTitle">
-            Contact No -
-          </span>
-          {' '}
-          <span className="portfolioContactCardInfoDetails">
-            191191919919
-          </span>
-        </span>
-      </li>
-      <div className="miniLine" />
-    </div>
-    <div className="portfolioContactCard">
-      <div className="miniLine" />
-      <div className="portfolioContactCardAddress">
-        <span>Adress line one to make it slightly longer</span>
-        <br />
-        Adress line two with random
-        <br />
-        city | pincode
+const Contact = (props) => {
+  const {
+    email, phone, location,
+  } = props;
+
+  return (
+    <div className="portfolioPage contactPage">
+      <div className="portfolioPageTitle">
+        Contact Me
       </div>
-      <div className="miniLine" />
+      <div className="portfolioContactCard">
+        <div className="miniLine" />
+        <li>
+          <span className="portfolioContactCardInfo">
+            <span className="portfolioContactCardInfoTitle">
+              Email ID -
+            </span>
+            {' '}
+            <span className="portfolioContactCardInfoDetails">
+              {email}
+            </span>
+          </span>
+        </li>
+        <li>
+          <span className="portfolioContactCardInfo">
+            <span className="portfolioContactCardInfoTitle">
+              Contact No -
+            </span>
+            {' '}
+            <span className="portfolioContactCardInfoDetails">
+              {phone}
+            </span>
+          </span>
+        </li>
+        <div className="miniLine" />
+      </div>
+      <div className="portfolioContactCard">
+        <div className="miniLine" />
+        <div className="portfolioContactCardAddress">
+          <span>{location.address}</span>
+          <br />
+          {location.city}
+          <br />
+          {location.country}
+          {' '}
+          |
+          {' '}
+          {location.postalCode}
+        </div>
+        <div className="miniLine" />
+      </div>
+      <div className="portfolioContactCard portfolioContactSocialCard">
+        <span>insert social icons with clickable links</span>
+      </div>
     </div>
-    <div className="portfolioContactCard portfolioContactSocialCard">
-      <span>insert social icons with clickable links</span>
-    </div>
-  </div>
-);
+  );
+};
+
+Contact.propTypes = {
+  email: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  location: PropTypes.objectOf(PropTypes.object).isRequired,
+};
 
 export default Contact;

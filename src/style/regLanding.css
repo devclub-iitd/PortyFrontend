@@ -11,6 +11,17 @@
   line-height: 36px;
   justify-content:space-around;
 }
+.rowTwo{
+  width: 96%;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.rowTwo input{
+  margin: 0px;
+}
 
 .row input{
   width: 45%;
@@ -66,8 +77,17 @@ input:hover::placeholder{
   color: white;
   border-radius: 10px;
 }
+.dropDownRow{
+  width: 96%;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .dropdownContainer{
-  width: 28.75%;
+  /* width: 28.75%; */
+  width: 32%;
   height: 30px;
   line-height: 30px;
   text-indent: 10px;
