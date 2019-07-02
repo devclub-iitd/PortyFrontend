@@ -162,3 +162,8 @@ textarea:focus{
   align-items: center;
   justify-content: center;
 }
+.btnContainer{
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+}

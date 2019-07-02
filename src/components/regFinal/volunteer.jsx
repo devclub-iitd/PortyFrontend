@@ -31,6 +31,10 @@ class VolunteerExpansionPanel extends React.Component {
     this.moveFieldUp = this.moveFieldUp.bind(this);
   }
 
+  callAlert() {
+    alert("volunteer");
+  }
+
   onAddChild() {
     const { volunteerFields } = this.state;
     const { volunteerFieldTracker } = this.state;

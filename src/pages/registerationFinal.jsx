@@ -1,5 +1,7 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 
 import Intro from '../components/regFinal/intro';
 import Image from '../components/regFinal/image';
@@ -34,10 +36,14 @@ class RegFinal extends React.Component {
     this.state = {
       expanded: false,
     };
+    this.child1 = React.createRef();
+    this.child2 = React.createRef();
     this.handlePanel = this.handlePanel.bind(this);
   }
 
   handlePanel(panel) {
+    // this.child1.current.callAlert();
+    // this.child2.current.callAlert();
     const { expanded } = this.state;
     if (expanded === panel) {
       this.setState({
@@ -61,8 +67,8 @@ class RegFinal extends React.Component {
             <Account expanded={expanded} action={() => this.handlePanel('accountPanel')} />
             <About expanded={expanded} action={() => this.handlePanel('aboutPanel')} />
             <Location expanded={expanded} action={() => this.handlePanel('locationPanel')} />
-            <Work expanded={expanded} action={() => this.handlePanel('workPanel')} />
-            <Volunteer expanded={expanded} action={() => this.handlePanel('volunteerPanel')} />
+            <Work ref={this.child1} expanded={expanded} action={() => this.handlePanel('workPanel')} />
+            <Volunteer ref={this.child2} expanded={expanded} action={() => this.handlePanel('volunteerPanel')} />
             <Education expanded={expanded} action={() => this.handlePanel('educationPanel')} />
             <Award expanded={expanded} action={() => this.handlePanel('awardPanel')} />
             <Publication expanded={expanded} action={() => this.handlePanel('publicationPanel')} />
@@ -70,6 +76,11 @@ class RegFinal extends React.Component {
             <Language expanded={expanded} action={() => this.handlePanel('languagePanel')} />
             <Interest expanded={expanded} action={() => this.handlePanel('interestPanel')} />
             <Reference expanded={expanded} action={() => this.handlePanel('referencePanel')} />
+            <div className="btnContainer">
+              <Button variant="contained" style={{ padding: '12px 50px' }} color="secondary" type="submit">
+                Done
+              </Button>
+            </div>
           </form>
           <div className="headerSimple">
             <div className="headerSimpleTitle">
