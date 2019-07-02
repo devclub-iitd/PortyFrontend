@@ -1,0 +1,25 @@
+.validationTitleContainer{
+  margin-top: 120px;
+  text-align: center;
+  padding: 20px;
+}
+.validationTitle{
+  font-size: 40px;
+  font-weight: 300;
+}
+.validationSubtitle{
+  margin-top: 30px;
+  font-weight: 600;
+  color: #3d40d8;
+  font-size: 20px;
+}
+.validationFormContainer{
+  padding: 40px;
+  text-align: center;
+  width: 500px;;
+  margin: auto;
+  margin-top: 30px;
+}
+.validationFormContainer input{
+  margin-bottom: 30px;
+}
