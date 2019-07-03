@@ -15,40 +15,59 @@ class LanguageExpansionPanel extends React.Component {
     const tempFieldsTracker = [];
     this.state = {
       languageDetailsCount: 1,
+      maxCount: 1,
       btnStyle: {
         display: 'none',
       },
       expanded: false,
       languageFields: tempFields,
       languageFieldTracker: tempFieldsTracker,
+      language: [{
+        language: '',
+        fluency: '',
+        hidden: false,
+      }],
     };
     const { expanded } = this.state;
-    tempFields.push(<LanguageDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`languagePanel${0}`)} moveFieldDown={() => this.moveFieldDown(0, 0)} moveFieldUp={() => this.moveFieldUp(0, 0)} />);
+    tempFields.push(<LanguageDetails handleChange={this.handleInputChange} key={0} id={0} expanded={expanded} action={() => this.handlePanel(`languagePanel${0}`)} moveFieldDown={() => this.moveFieldDown(0, 0)} moveFieldUp={() => this.moveFieldUp(0, 0)} />);
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
     this.handlePanel = this.handlePanel.bind(this);
     this.moveFieldUp = this.moveFieldUp.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   onAddChild() {
     const { languageFields } = this.state;
     const { languageFieldTracker } = this.state;
-    const { languageDetailsCount } = this.state;
+    const { languageDetailsCount, maxCount } = this.state;
     const { expanded } = this.state;
     const tempFields = languageFields;
     const tempFieldsTracker = languageFieldTracker;
     const i = languageDetailsCount;
+    const key = maxCount;
     const exp = expanded;
-    tempFieldsTracker.push(i);
-    tempFields.push(<LanguageDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`languagePanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
+    tempFieldsTracker.push(key);
+    tempFields.push(<LanguageDetails handleChange={this.handleInputChange} key={key} id={i} expanded={exp} action={() => this.handlePanel(`volunteerPanel${i}`)} moveFieldDown={() => this.moveFieldDown(key, i)} moveFieldUp={() => this.moveFieldUp(key, i)} />);
+
+    const { language } = this.state;
+    const languageObj = {
+      language: '',
+      fluency: '',
+      hidden: false,
+    };
+    const templanguage = language;
+    templanguage.push(languageObj);
     this.setState(state => ({
       languageDetailsCount: state.languageDetailsCount + 1,
+      maxCount: state.maxCount + 1,
       btnStyle: {
         display: 'block',
       },
       languageFields: tempFields,
       languageFieldTracker: tempFieldsTracker,
+      language: templanguage,
     }));
   }
 
@@ -60,10 +79,14 @@ class LanguageExpansionPanel extends React.Component {
     const tempFieldsTracker = languageFieldTracker;
     tempFieldsTracker.pop();
     tempFields.pop();
+    const { language } = this.state;
+    const templanguage = language;
+    templanguage.pop();
     this.setState(state => ({
       languageDetailsCount: state.languageDetailsCount - 1,
       languageFields: tempFields,
       languageFieldTracker: tempFieldsTracker,
+      language: templanguage,
     }));
     if (languageDetailsCount === 2) {
       this.setState({
@@ -72,6 +95,26 @@ class LanguageExpansionPanel extends React.Component {
         },
       });
     }
+  }
+
+  callApiRequest() {
+    alert('language');
+  }
+
+  handleInputChange(event) {
+    const { id } = event.target;
+    const { language } = this.state;
+    const type = event.target.name;
+    const templanguage = language;
+    if (type === 'hidden') {
+      templanguage[id][type] = event.target.checked;
+    } else {
+      templanguage[id][type] = event.target.value;
+    }
+    console.log(templanguage);
+    this.setState({
+      language: templanguage,
+    });
   }
 
   handlePanel(panel) {
@@ -83,7 +126,7 @@ class LanguageExpansionPanel extends React.Component {
       const tempFieldsTracker = languageFieldTracker;
       for (let i = 0; i < languageDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<LanguageDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`languagePanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(<LanguageDetails handleChange={this.handleInputChange} key={k} id={i} expanded={false} action={() => this.handlePanel(`languagePanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: false,
@@ -94,7 +137,7 @@ class LanguageExpansionPanel extends React.Component {
       const tempFieldsTracker = languageFieldTracker;
       for (let i = 0; i < languageDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<LanguageDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`languagePanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(<LanguageDetails handleChange={this.handleInputChange} key={k} id={i} expanded={panel} action={() => this.handlePanel(`languagePanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: panel,
@@ -110,18 +153,25 @@ class LanguageExpansionPanel extends React.Component {
     const { languageFields } = this.state;
     const tempFields = languageFields;
     const tempFieldsTracker = languageFieldTracker;
+    const { language } = this.state;
+    const templanguage = language;
     if (i !== 0) {
       const storeFieldTracker = tempFieldsTracker[i - 1];
       tempFieldsTracker[i - 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <LanguageDetails key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`languagePanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i - 1] = <LanguageDetails key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`languagePanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+      tempFields[i] = <LanguageDetails handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`languagePanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i - 1] = <LanguageDetails handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`languagePanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+
+      const tempstore = templanguage[i];
+      templanguage[i] = templanguage[i - 1];
+      templanguage[i - 1] = tempstore;
     } else {
       alert('you cant move this field any more');
     }
     this.setState({
       languageFields: tempFields,
       languageFieldTracker: tempFieldsTracker,
+      language: templanguage,
     });
   }
 
@@ -133,18 +183,25 @@ class LanguageExpansionPanel extends React.Component {
     const { languageDetailsCount } = this.state;
     const tempFields = languageFields;
     const tempFieldsTracker = languageFieldTracker;
+    const { language } = this.state;
+    const templanguage = language;
     if (i !== languageDetailsCount - 1) {
       const storeFieldTracker = tempFieldsTracker[i + 1];
       tempFieldsTracker[i + 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <LanguageDetails key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`languagePanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i + 1] = <LanguageDetails key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`languagePanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+      tempFields[i] = <LanguageDetails handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`languagePanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i + 1] = <LanguageDetails handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`languagePanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+
+      const tempstore = templanguage[i];
+      templanguage[i] = templanguage[i + 1];
+      templanguage[i + 1] = tempstore;
     } else {
       alert('you cant move this field any more');
     }
     this.setState({
       languageFields: tempFields,
       languageFieldTracker: tempFieldsTracker,
+      language: templanguage,
     });
   }
 

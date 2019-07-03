@@ -9,6 +9,8 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import IconButton from '@material-ui/core/IconButton';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const AwardField = (props) => {
   const { id } = props;
@@ -16,6 +18,15 @@ const AwardField = (props) => {
   const { action } = props;
   const { moveFieldUp } = props;
   const { moveFieldDown } = props;
+  const { handleChange } = props;
+  const [state, setState] = React.useState({
+    hidden: false,
+  });
+
+  const handleCheckBoxChange = name => (event) => {
+    setState({ ...state, [name]: event.target.checked });
+    handleChange(event);
+  };
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <ExpansionPanel expanded={expanded === `awardPanel${id}`} onChange={action} style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}>
@@ -33,12 +44,20 @@ const AwardField = (props) => {
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input name={`award[${id}][title]`} type="text" required placeholder="Title:" />
+            <input id={id} onChange={handleChange} name="title" type="text" required placeholder="Title:" />
             <div className="row rowtwo">
-              <input name={`award[${id}][date]`} className="left" type="text" required placeholder="Date Awarded: DD/MM/YYYY" />
-              <input name={`award[${id}][awarder]`} className="right" type="text" required placeholder="Awarded By:" />
+              <input id={id} onChange={handleChange} name="date" className="left" type="text" required placeholder="Date Awarded: DD/MM/YYYY" />
+              <input id={id} onChange={handleChange} name="awarder" className="right" type="text" required placeholder="Awarded By:" />
             </div>
-            <textarea name={`award[${id}][details]`} resize="none" placeholder="Details: " />
+            <textarea id={id} onChange={handleChange} name="details" resize="none" placeholder="Details: " />
+            <div style={{ marginLeft: '2px', marginTop: '15px' }}>
+              <FormControlLabel
+                control={
+                  <Checkbox id={id} name="hidden" checked={state.hidden} onChange={handleCheckBoxChange('hidden')} value="hidden" />
+                }
+                label="Hidden"
+              />
+            </div>
           </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -58,10 +77,11 @@ const AwardField = (props) => {
 
 AwardField.propTypes = {
   id: PropTypes.number.isRequired,
-  expanded: PropTypes.string.isRequired,
+  expanded: PropTypes.bool.isRequired,
   action: PropTypes.func.isRequired,
   moveFieldUp: PropTypes.func.isRequired,
   moveFieldDown: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default AwardField;

@@ -9,6 +9,8 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import IconButton from '@material-ui/core/IconButton';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const WorkField = (props) => {
   const { id } = props;
@@ -17,6 +19,14 @@ const WorkField = (props) => {
   const { moveFieldUp } = props;
   const { moveFieldDown } = props;
   const { handleChange } = props;
+  const [state, setState] = React.useState({
+    hidden: false,
+  });
+
+  const handleCheckBoxChange = name => (event) => {
+    setState({ ...state, [name]: event.target.checked });
+    handleChange(event);
+  };
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <ExpansionPanel expanded={expanded === `workPanel${id}`} onChange={action} style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}>
@@ -42,6 +52,14 @@ const WorkField = (props) => {
               <input id={id} onChange={handleChange} className="right" type="text" name="enddate" required placeholder="End Date: DD/MM/YYYY or Ongoing" />
             </div>
             <textarea required id={id} onChange={handleChange} resize="none" name="summary" placeholder="Summary | Highlights : " />
+            <div style={{ marginLeft: '2px', marginTop: '15px' }}>
+              <FormControlLabel
+                control={
+                  <Checkbox id={id} name="hidden" checked={state.hidden} onChange={handleCheckBoxChange('hidden')} value="hidden" />
+                }
+                label="Hidden"
+              />
+            </div>
           </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -61,7 +79,7 @@ const WorkField = (props) => {
 
 WorkField.propTypes = {
   id: PropTypes.number.isRequired,
-  expanded: PropTypes.string.isRequired,
+  expanded: PropTypes.bool.isRequired,
   action: PropTypes.func.isRequired,
   moveFieldUp: PropTypes.func.isRequired,
   moveFieldDown: PropTypes.func.isRequired,

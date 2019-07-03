@@ -94,11 +94,11 @@ input{
 }
 textarea{
   resize: none;
-  width: 100%;
+  width: calc(100% - 10px);
   outline: none;
   margin-top: 20px;
-  line-height: 30px;
-  text-indent: 10px;
+  line-height: 20px;
+  padding-left: 10px;
   font-size: 13px;
   min-height: 200px;
   border:2px solid black;

@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import WorkDetails from './workDetailsContainer';
 
+
 class WorkExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,7 @@ class WorkExpansionPanel extends React.Component {
     const tempFieldsTracker = [];
     this.state = {
       workDetailsCount: 1,
+      maxCount: 1,
       btnStyle: {
         display: 'none',
       },
@@ -28,6 +30,7 @@ class WorkExpansionPanel extends React.Component {
         startdate: '',
         enddate: '',
         summary: '',
+        hidden: false,
       }],
     };
     const { expanded } = this.state;
@@ -40,21 +43,19 @@ class WorkExpansionPanel extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  // callAlert() {
-  //   alert("work");
-  // }
-
   onAddChild() {
     const { workFields } = this.state;
     const { workFieldTracker } = this.state;
     const { workDetailsCount } = this.state;
+    const { maxCount } = this.state;
     const { expanded } = this.state;
     const tempFields = workFields;
     const tempFieldsTracker = workFieldTracker;
-    const i = workDetailsCount;
+    const id = workDetailsCount;
+    const key = maxCount;
     const exp = expanded;
-    tempFieldsTracker.push(i);
-    tempFields.push(<WorkDetails handleChange={this.handleInputChange} key={i} id={i} expanded={exp} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
+    tempFieldsTracker.push(key);
+    tempFields.push(<WorkDetails handleChange={this.handleInputChange} key={key} id={id} expanded={exp} action={() => this.handlePanel(`workPanel${id}`)} moveFieldDown={() => this.moveFieldDown(key, id)} moveFieldUp={() => this.moveFieldUp(key, id)} />);
     const { work } = this.state;
     const workObj = {
       company: '',
@@ -63,11 +64,13 @@ class WorkExpansionPanel extends React.Component {
       startdate: '',
       enddate: '',
       summary: '',
+      hidden: false,
     };
     const tempwork = work;
     tempwork.push(workObj);
     this.setState(state => ({
       workDetailsCount: state.workDetailsCount + 1,
+      maxCount: state.maxCount + 1,
       btnStyle: {
         display: 'block',
       },
@@ -103,12 +106,20 @@ class WorkExpansionPanel extends React.Component {
     }
   }
 
+  callApiRequest() {
+    alert('work');
+  }
+
   handleInputChange(event) {
     const { id } = event.target;
     const { work } = this.state;
     const type = event.target.name;
     const tempwork = work;
-    tempwork[id][type] = event.target.value;
+    if (type === 'hidden') {
+      tempwork[id][type] = event.target.checked;
+    } else {
+      tempwork[id][type] = event.target.value;
+    }
     this.setState({
       work: tempwork,
     });
