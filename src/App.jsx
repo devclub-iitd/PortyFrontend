@@ -1,13 +1,15 @@
-import React from 'react';
-
+import React ,{ useEffect }from 'react';
+import { Provider } from 'react-redux';
 import './App.css';
-
+import store from './store';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Landing from './pages/landing';
 import Register from './pages/registerationFinal';
 import Validation from './pages/registerationValidation';
 import HeaderMain from './components/headerMain';
+import setAuthToken from './utility/setauthtoken';
+import { loadUser } from './actions/auth';
 
 const theme = createMuiTheme({
   palette: {
@@ -21,7 +23,19 @@ const theme = createMuiTheme({
 });
 // import Portfolio from './components/portfolio';
 
-const App = () => (
+if(localStorage.token) {
+  setAuthToken(localStorage.token)
+}
+
+
+const App = () => {
+  //useeffect hook
+  useEffect(() => {
+    store.dispatch(loadUser())
+  },[]) //we want to run only once hence the empty array
+  
+  return (
+    <Provider store={store}>
   <div>
     <MuiThemeProvider theme={theme}>
       <Router>
@@ -32,6 +46,7 @@ const App = () => (
       </Router>
     </MuiThemeProvider>
   </div>
-);
+    </Provider>
+);}
 
 export default App;
