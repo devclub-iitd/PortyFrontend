@@ -15,40 +15,59 @@ class ReferenceExpansionPanel extends React.Component {
     const tempFieldsTracker = [];
     this.state = {
       referenceDetailsCount: 1,
+      maxCount: 1,
       btnStyle: {
         display: 'none',
       },
       expanded: false,
       referenceFields: tempFields,
       referenceFieldTracker: tempFieldsTracker,
+      reference: [{
+        name: '',
+        reference: '',
+        hidden: false,
+      }],
     };
     const { expanded } = this.state;
-    tempFields.push(<ReferenceDetails key={0} id={0} expanded={expanded} action={() => this.handlePanel(`referencePanel${0}`)} moveFieldDown={() => this.moveFieldDown(0, 0)} moveFieldUp={() => this.moveFieldUp(0, 0)} />);
+    tempFields.push(<ReferenceDetails handleChange={this.handleInputChange} key={0} id={0} expanded={expanded} action={() => this.handlePanel(`referencePanel${0}`)} moveFieldDown={() => this.moveFieldDown(0, 0)} moveFieldUp={() => this.moveFieldUp(0, 0)} />);
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
     this.handlePanel = this.handlePanel.bind(this);
     this.moveFieldUp = this.moveFieldUp.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   onAddChild() {
     const { referenceFields } = this.state;
     const { referenceFieldTracker } = this.state;
     const { referenceDetailsCount } = this.state;
+    const { maxCount } = this.state;
     const { expanded } = this.state;
     const tempFields = referenceFields;
     const tempFieldsTracker = referenceFieldTracker;
-    const i = referenceDetailsCount;
+    const id = referenceDetailsCount;
+    const key = maxCount;
     const exp = expanded;
-    tempFieldsTracker.push(i);
-    tempFields.push(<ReferenceDetails key={i} id={i} expanded={exp} action={() => this.handlePanel(`referencePanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
+    tempFieldsTracker.push(key);
+    tempFields.push(<ReferenceDetails handleChange={this.handleInputChange} key={key} id={id} expanded={exp} action={() => this.handlePanel(`referencePanel${id}`)} moveFieldDown={() => this.moveFieldDown(key, id)} moveFieldUp={() => this.moveFieldUp(key, id)} />);
+    const { reference } = this.state;
+    const referenceObj = {
+      name: '',
+      reference: '',
+      hidden: false,
+    };
+    const tempreference = reference;
+    tempreference.push(referenceObj);
     this.setState(state => ({
       referenceDetailsCount: state.referenceDetailsCount + 1,
+      maxCount: state.maxCount + 1,
       btnStyle: {
         display: 'block',
       },
       referenceFields: tempFields,
       referenceFieldTracker: tempFieldsTracker,
+      reference: tempreference,
     }));
   }
 
@@ -60,10 +79,14 @@ class ReferenceExpansionPanel extends React.Component {
     const tempFieldsTracker = referenceFieldTracker;
     tempFieldsTracker.pop();
     tempFields.pop();
+    const { reference } = this.state;
+    const tempreference = reference;
+    tempreference.pop();
     this.setState(state => ({
       referenceDetailsCount: state.referenceDetailsCount - 1,
       referenceFields: tempFields,
       referenceFieldTracker: tempFieldsTracker,
+      reference: tempreference,
     }));
     if (referenceDetailsCount === 2) {
       this.setState({
@@ -72,6 +95,25 @@ class ReferenceExpansionPanel extends React.Component {
         },
       });
     }
+  }
+
+  callApiRequest() {
+    alert('reference');
+  }
+
+  handleInputChange(event) {
+    const { id } = event.target;
+    const { reference } = this.state;
+    const type = event.target.name;
+    const tempreference = reference;
+    if (type === 'hidden') {
+      tempreference[id][type] = event.target.checked;
+    } else {
+      tempreference[id][type] = event.target.value;
+    }
+    this.setState({
+      reference: tempreference,
+    });
   }
 
   handlePanel(panel) {
@@ -83,7 +125,7 @@ class ReferenceExpansionPanel extends React.Component {
       const tempFieldsTracker = referenceFieldTracker;
       for (let i = 0; i < referenceDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<ReferenceDetails key={k} id={i} expanded={false} action={() => this.handlePanel(`referencePanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(<ReferenceDetails handleChange={this.handleInputChange} key={k} id={i} expanded={false} action={() => this.handlePanel(`referencePanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: false,
@@ -94,7 +136,7 @@ class ReferenceExpansionPanel extends React.Component {
       const tempFieldsTracker = referenceFieldTracker;
       for (let i = 0; i < referenceDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<ReferenceDetails key={k} id={i} expanded={panel} action={() => this.handlePanel(`referencePanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(<ReferenceDetails handleChange={this.handleInputChange} key={k} id={i} expanded={panel} action={() => this.handlePanel(`referencePanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: panel,
@@ -110,18 +152,25 @@ class ReferenceExpansionPanel extends React.Component {
     const { referenceFields } = this.state;
     const tempFields = referenceFields;
     const tempFieldsTracker = referenceFieldTracker;
+    const { reference } = this.state;
+    const tempreference = reference;
     if (i !== 0) {
       const storeFieldTracker = tempFieldsTracker[i - 1];
       tempFieldsTracker[i - 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <ReferenceDetails key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`referencePanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i - 1] = <ReferenceDetails key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`referencePanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+      tempFields[i] = <ReferenceDetails handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`referencePanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i - 1] = <ReferenceDetails handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`referencePanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+
+      const tempstore = tempreference[i];
+      tempreference[i] = tempreference[i - 1];
+      tempreference[i - 1] = tempstore;
     } else {
       alert('you cant move this field any more');
     }
     this.setState({
       referenceFields: tempFields,
       referenceFieldTracker: tempFieldsTracker,
+      reference: tempreference,
     });
   }
 
@@ -133,18 +182,25 @@ class ReferenceExpansionPanel extends React.Component {
     const { referenceDetailsCount } = this.state;
     const tempFields = referenceFields;
     const tempFieldsTracker = referenceFieldTracker;
+    const { reference } = this.state;
+    const tempreference = reference;
     if (i !== referenceDetailsCount - 1) {
       const storeFieldTracker = tempFieldsTracker[i + 1];
       tempFieldsTracker[i + 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <ReferenceDetails key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`referencePanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i + 1] = <ReferenceDetails key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`referencePanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+      tempFields[i] = <ReferenceDetails handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`referencePanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i + 1] = <ReferenceDetails handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`referencePanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+
+      const tempstore = tempreference[i];
+      tempreference[i] = tempreference[i + 1];
+      tempreference[i + 1] = tempstore;
     } else {
       alert('you cant move this field any more');
     }
     this.setState({
       referenceFields: tempFields,
       referenceFieldTracker: tempFieldsTracker,
+      reference: tempreference,
     });
   }
 

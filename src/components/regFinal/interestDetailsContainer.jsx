@@ -9,6 +9,8 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import IconButton from '@material-ui/core/IconButton';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const InterestField = (props) => {
   const { id } = props;
@@ -16,6 +18,15 @@ const InterestField = (props) => {
   const { action } = props;
   const { moveFieldUp } = props;
   const { moveFieldDown } = props;
+  const { handleChange } = props;
+  const [state, setState] = React.useState({
+    hidden: false,
+  });
+
+  const handleCheckBoxChange = name => (event) => {
+    setState({ ...state, [name]: event.target.checked });
+    handleChange(event);
+  };
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <ExpansionPanel expanded={expanded === `interestPanel${id}`} onChange={action} style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}>
@@ -33,8 +44,16 @@ const InterestField = (props) => {
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input name={`interest[${id}][name]`} className="left" type="text" required placeholder="Interest Name:" />
-            <textarea name={`interest[${id}][keywordss]`} resize="none" placeholder="Keywords (seperated by a comma): keyword_1, keyword_2, keyword_3, ... " />
+            <input id={id} onChange={handleChange} name="name" className="left" type="text" required placeholder="Interest Name:" />
+            <textarea id={id} onChange={handleChange} name="keywords" resize="none" placeholder="Keywords (seperated by a comma): keyword_1, keyword_2, keyword_3, ... " />
+            <div style={{ marginLeft: '2px', marginTop: '15px' }}>
+              <FormControlLabel
+                control={
+                  <Checkbox id={id} name="hidden" checked={state.hidden} onChange={handleCheckBoxChange('hidden')} value="hidden" />
+                }
+                label="Hidden"
+              />
+            </div>
           </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -54,10 +73,11 @@ const InterestField = (props) => {
 
 InterestField.propTypes = {
   id: PropTypes.number.isRequired,
-  expanded: PropTypes.string.isRequired,
+  expanded: PropTypes.bool.isRequired,
   action: PropTypes.func.isRequired,
   moveFieldUp: PropTypes.func.isRequired,
   moveFieldDown: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default InterestField;

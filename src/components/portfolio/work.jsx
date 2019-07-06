@@ -1,28 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PaperCard from './cards/paper';
 
-const Work = () => (
-  <div className="portfolioPage workPage">
-    <div className="portfolioPageTitle">
-      Work
+const Work = (props) => {
+  const { work } = props;
+
+  return (
+    <div className="portfolioPage workPage">
+      <div className="portfolioPageTitle">
+        Work
+      </div>
+      <div className="portfolioCardContainer portfolioWorkCardContainer">
+        {
+          work.map(
+            workPlace => (
+              <PaperCard
+                company={workPlace.company}
+                position={workPlace.position}
+                website={workPlace.website}
+                startDate={workPlace.starstartDate}
+                endDate={workPlace.endDate}
+              >
+                {workPlace.summary}
+              </PaperCard>
+            ),
+          )
+        }
+      </div>
     </div>
-    <div className="portfolioCardContainer portfolioWorkCardContainer">
-      <PaperCard
-        company="company"
-        position="position"
-        website="websiteName"
-        startDate="DD/MM/YYYY"
-        endDate="DD/MM/YYYY"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </PaperCard>
-    </div>
-  </div>
-);
+  );
+};
+
+Work.propTypes = {
+  work: PropTypes.objectOf(PropTypes.object).isRequired,
+};
 
 export default Work;

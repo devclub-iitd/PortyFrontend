@@ -9,6 +9,8 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import IconButton from '@material-ui/core/IconButton';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const WorkField = (props) => {
   const { id } = props;
@@ -16,6 +18,15 @@ const WorkField = (props) => {
   const { action } = props;
   const { moveFieldUp } = props;
   const { moveFieldDown } = props;
+  const { handleChange } = props;
+  const [state, setState] = React.useState({
+    hidden: false,
+  });
+
+  const handleCheckBoxChange = name => (event) => {
+    setState({ ...state, [name]: event.target.checked });
+    handleChange(event);
+  };
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <ExpansionPanel expanded={expanded === `workPanel${id}`} onChange={action} style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}>
@@ -33,14 +44,22 @@ const WorkField = (props) => {
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input type="text" name={`work[${id}][company]`} required placeholder="Company:" />
-            <input type="text" name={`work[[${id}]position]`} required placeholder="Position:" />
-            <input type="text" name={`work[${id}][website]`} required placeholder="Website:" />
+            <input id={id} onChange={handleChange} type="text" name="company" required placeholder="Company:" />
+            <input id={id} onChange={handleChange} type="text" name="position" required placeholder="Position:" />
+            <input id={id} onChange={handleChange} type="text" name="website" required placeholder="Website:" />
             <div className="row rowtwo">
-              <input className="left" type="text" name={`work[${id}][startdate]`} required placeholder="Start Date: DD/MM/YYYY" />
-              <input className="right" type="text" name={`work[${id}][enddate]`} required placeholder="End Date: DD/MM/YYYY or Ongoing" />
+              <input id={id} onChange={handleChange} className="left" type="text" name="startdate" required placeholder="Start Date: DD/MM/YYYY" />
+              <input id={id} onChange={handleChange} className="right" type="text" name="enddate" required placeholder="End Date: DD/MM/YYYY or Ongoing" />
             </div>
-            <textarea resize="none" name={`work[${id}][summary]`} placeholder="Summary | Highlights : " />
+            <textarea required id={id} onChange={handleChange} resize="none" name="summary" placeholder="Summary | Highlights : " />
+            <div style={{ marginLeft: '2px', marginTop: '15px' }}>
+              <FormControlLabel
+                control={
+                  <Checkbox id={id} name="hidden" checked={state.hidden} onChange={handleCheckBoxChange('hidden')} value="hidden" />
+                }
+                label="Hidden"
+              />
+            </div>
           </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -60,10 +79,11 @@ const WorkField = (props) => {
 
 WorkField.propTypes = {
   id: PropTypes.number.isRequired,
-  expanded: PropTypes.string.isRequired,
+  expanded: PropTypes.bool.isRequired,
   action: PropTypes.func.isRequired,
   moveFieldUp: PropTypes.func.isRequired,
   moveFieldDown: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default WorkField;

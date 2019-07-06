@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/reg.css';
+import '../style/regLanding.css';
 
 class LandingRegForm extends React.Component {
   constructor(props) {
@@ -86,6 +86,8 @@ class LandingRegForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    //  add checks for all conditions especially dob and all
+    alert('form is now being submitted');
   }
 
   render() {
@@ -96,12 +98,12 @@ class LandingRegForm extends React.Component {
     } = this.state;
     return (
       <div className="formCont">
-        <form id="regform" action="#" method="POST" onSubmit={() => this.handleSubmit}>
-          <div className="row">
-            <input type="text" name="name" className="" placeholder="Full Name: John Doe" value={nameVal} onChange={this.handleChange} required />
-            <input type="text" name="eno" className="" placeholder="Entry Number: 2018XX20101" value={entryVal} onChange={this.handleChange} />
+        <form id="regform" action="#" method="POST" onSubmit={this.handleSubmit}>
+          <div className="row rowTwo">
+            <input style={{ width: '49%' }} type="text" name="name" className="" placeholder="Full Name: John Doe" value={nameVal} onChange={this.handleChange} />
+            <input style={{ width: '49%' }} type="text" name="eno" className="" placeholder="Entry Number: 2018XX20101" value={entryVal} onChange={this.handleChange} />
           </div>
-          <div className="row">
+          <div className="row dropDownRow">
             <div className="dropdownContainer">
               <div className="dropdownDisp">
                 <span>{monthValPlaceholder}</span>
@@ -196,9 +198,9 @@ class LandingRegForm extends React.Component {
               </div>
             </div>
           </div>
-          <input type="email" name="email" placeholder="Email Adress: " value={emailVal} onChange={this.handleChange} />
-          <input type="number" name="phone" placeholder="Phone Number: " value={numVal} onChange={this.handleChange} />
-          <input type="text" name="website" placeholder="Website: (if any)" value={webVal} onChange={this.handleChange} />
+          <input style={{ width: '95.3%' }} type="email" name="email" placeholder="Email Adress: " value={emailVal} onChange={this.handleChange} />
+          <input style={{ width: '95.3%' }} type="number" name="phone" placeholder="Phone Number: " value={numVal} onChange={this.handleChange} />
+          <input style={{ width: '95.3%' }} type="text" name="website" placeholder="Website: (if any)" value={webVal} onChange={this.handleChange} />
         </form>
       </div>
     );
