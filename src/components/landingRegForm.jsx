@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import {setAlert} from '../actions/alert'
+import {register} from "../actions/auth";
 import '../style/regLanding.css';
 
 class LandingRegForm extends React.Component {
@@ -73,6 +76,7 @@ class LandingRegForm extends React.Component {
   handleChange(event) {
     if (event.target.name === 'name') {
       this.setState({ nameVal: event.target.value });
+      //this.props.setAlert("Name Changes","Info")
     } else if (event.target.name === 'eno') {
       this.setState({ entryVal: event.target.value });
     } else if (event.target.name === 'email') {
@@ -87,7 +91,17 @@ class LandingRegForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     //  add checks for all conditions especially dob and all
-    alert('form is now being submitted');
+    //alert('form is now being submitted');
+    const {
+      nameVal, entryVal, emailVal
+    } = this.state;
+    const obj = {
+      name : nameVal,
+      email : emailVal,
+      password : entryVal
+    }
+    //console.log(obj)
+    this.props.register(obj)
   }
 
   render() {
@@ -207,4 +221,4 @@ class LandingRegForm extends React.Component {
   }
 }
 
-export default LandingRegForm;
+export default connect(null ,{register,setAlert})(LandingRegForm);
