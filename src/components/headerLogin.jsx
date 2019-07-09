@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import '../style/headerLogin.css';
 
 import Register from '../pages/registerationLanding';
+import Login from '../pages/login';
 
 const theme = createMuiTheme({
   palette: {
@@ -97,8 +98,8 @@ class SimpleTabs extends React.Component {
               <Tab className={classes.navbarItem} label="Register" />
             </Tabs>
           </AppBar>
-          {value === 1 && <TabContainer>Page One</TabContainer>}
-          {value === 0 && <TabContainer><Register /></TabContainer>}
+          {value === 1 && <TabContainer><Register /></TabContainer>}
+          {value === 0 && <TabContainer><Login /></TabContainer>}
         </div>
       </MuiThemeProvider>
     );
