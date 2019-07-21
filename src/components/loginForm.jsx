@@ -1,5 +1,7 @@
 import React from 'react';
 import '../style/regLanding.css';
+import {connect} from 'react-redux'
+import {login} from '../actions/auth'
 
 class LoginFrom extends React.Component {
   constructor(props) {
@@ -7,7 +9,7 @@ class LoginFrom extends React.Component {
     this.state = {
       emailVal: '',
       passVal: '',
-    };
+    }; 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -15,7 +17,7 @@ class LoginFrom extends React.Component {
   handleChange(event) {
     if (event.target.name === 'email') {
       this.setState({ emailVal: event.target.value });
-    } else if (event.target.name === 'passVal') {
+    } else if (event.target.name === 'password') {
       this.setState({ passVal: event.target.value });
     }
   }
@@ -24,6 +26,13 @@ class LoginFrom extends React.Component {
     event.preventDefault();
     //  add checks for all conditions especially dob and all
     //alert('form is now being submitted');
+    const {emailVal , passVal } = this.state;
+    const obj = {
+      email: emailVal,
+      password: passVal
+    }
+    this.props.login(obj);
+
   }
 
   render() {
@@ -32,7 +41,7 @@ class LoginFrom extends React.Component {
     } = this.state;
     return (
       <div className="formCont">
-        <form id="loginform" action="#" method="POST" onSubmit={this.handleSubmit}>
+        <form id="loginform" onSubmit={this.handleSubmit}>
           <input style={{ width: '95.3%' }} type="email" name="email" placeholder="Email Adress: " value={emailVal} onChange={this.handleChange} />
           <input style={{ width: '95.3%' }} type="password" name="password" placeholder="Password: " value={passVal} onChange={this.handleChange} />
         </form>
@@ -41,4 +50,6 @@ class LoginFrom extends React.Component {
   }
 }
 
-export default LoginFrom;
+
+
+export default connect(null,{ login })(LoginFrom);

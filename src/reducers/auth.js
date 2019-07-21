@@ -54,9 +54,10 @@ export default function(state = initialState,action){
             }
         }
         case LOGIN_SUCCESS : {
+            localStorage.setItem('token',payload.token)
             return {
                 ...state,
-                isAuthenticated: false,
+                isAuthenticated: true,
                 loading: false,
                 user: null
             }

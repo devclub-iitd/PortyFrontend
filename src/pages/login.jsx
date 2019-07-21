@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 
-import loginForm from '../components/loginForm';
+import LoginForm from '../components/loginForm';
 
 import '../style/regLanding.css';
 
@@ -40,7 +40,7 @@ class IconLabelTabs extends React.Component {
             Login
         </div>
         <Paper className={classes.rootRegPage}>
-          <loginForm />
+          <LoginForm />
         </Paper>
         <button form="loginform" className="btn" type="submit"> Login </button>
       </div>
