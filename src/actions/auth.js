@@ -3,7 +3,6 @@ import {REGISTER_SUCCESS , REGISTER_FAIL , USER_LOADED , AUTH_ERROR, LOGIN_FAIL,
 import { setAlert } from './alert';
 import setAuthToken from '../utility/setauthtoken';
 
-
 // Load User
 export const loadUser = () => async dispatch => {
     if(localStorage.token){
@@ -38,7 +37,6 @@ export const register = ({name , email , password}) => async dispatch => {
     console.log(body)
     try {
         const res = await axios.post('api/user', body , config)
-        //console.log(res.data)
         dispatch(setAlert('Register Success...Check your email for verification','green'))
         dispatch({
             type : REGISTER_SUCCESS,
@@ -64,26 +62,33 @@ export const login = ({email,password}) => async dispatch => {
             'Content-Type' : 'application/json'
         }
     }
-
+ 
     const body = JSON.stringify({email,password})
-
-    try {
-        const res = axios.post('/api/auth', body, config)
-
+    //console.log(body)
+    
+    try  {
+        const res = await axios.post('/api/auth', body, config)
+        console.log(body)
         dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data
         })
+
+        dispatch(loadUser());
+    
     } catch (err) {
-        const errors = err.response.data.errors
+         const errors = err.response.data.errors
 
         if (errors) {
             errors.forEach(error => dispatch(setAlert(error.msg, 'red')))
         }
 
+        console.log(errors)
+
         dispatch({
             type: LOGIN_FAIL
         })
 
+        dispatch(setAlert("Login Failed", 'red'))
     }
 }
