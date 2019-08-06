@@ -17,24 +17,36 @@ class EducationExpansionPanel extends React.Component {
       educationDetailsCount: 1,
       maxCount: 1,
       btnStyle: {
-        display: 'none',
+        display: "none"
       },
       expanded: false,
       educationFields: tempFields,
       educationFieldTracker: tempFieldsTracker,
-      education: [{
-        institution: '',
-        area: '',
-        qualification: '',
-        startdate: '',
-        enddate: '',
-        gpa: '',
-        details: '',
-        hidden: false,
-      }],
+      education: [
+        {
+          institution: "",
+          area: "",
+          qualification: "",
+          startdate: "",
+          enddate: "",
+          gpa: "",
+          details: "",
+          hidden: false
+        }
+      ]
     };
     const { expanded } = this.state;
-    tempFields.push(<EducationDetails handleChange={this.handleInputChange} key={0} id={0} expanded={expanded} action={() => this.handlePanel(`educationPanel${0}`)} moveFieldDown={() => this.moveFieldDown(0, 0)} moveFieldUp={() => this.moveFieldUp(0, 0)} />);
+    tempFields.push(
+      <EducationDetails
+        handleChange={this.handleInputChange}
+        key={0}
+        id={0}
+        expanded={expanded}
+        action={() => this.handlePanel(`educationPanel${0}`)}
+        moveFieldDown={() => this.moveFieldDown(0, 0)}
+        moveFieldUp={() => this.moveFieldUp(0, 0)}
+      />
+    );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
@@ -54,18 +66,28 @@ class EducationExpansionPanel extends React.Component {
     const key = maxCount;
     const exp = expanded;
     tempFieldsTracker.push(key);
-    tempFields.push(<EducationDetails handleChange={this.handleInputChange} key={key} id={i} expanded={exp} action={() => this.handlePanel(`volunteerPanel${i}`)} moveFieldDown={() => this.moveFieldDown(key, i)} moveFieldUp={() => this.moveFieldUp(key, i)} />);
+    tempFields.push(
+      <EducationDetails
+        handleChange={this.handleInputChange}
+        key={key}
+        id={i}
+        expanded={exp}
+        action={() => this.handlePanel(`volunteerPanel${i}`)}
+        moveFieldDown={() => this.moveFieldDown(key, i)}
+        moveFieldUp={() => this.moveFieldUp(key, i)}
+      />
+    );
 
     const { education } = this.state;
     const educationObj = {
-      institution: '',
-      area: '',
-      qualification: '',
-      startdate: '',
-      enddate: '',
-      gpa: '',
-      details: '',
-      hidden: false,
+      institution: "",
+      area: "",
+      qualification: "",
+      startdate: "",
+      enddate: "",
+      gpa: "",
+      details: "",
+      hidden: false
     };
     const tempeducation = education;
     tempeducation.push(educationObj);
@@ -73,11 +95,11 @@ class EducationExpansionPanel extends React.Component {
       educationDetailsCount: state.educationDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: 'block',
+        display: "block"
       },
       educationFields: tempFields,
       educationFieldTracker: tempFieldsTracker,
-      education: tempeducation,
+      education: tempeducation
     }));
   }
 
@@ -96,19 +118,27 @@ class EducationExpansionPanel extends React.Component {
       educationDetailsCount: state.educationDetailsCount - 1,
       educationFields: tempFields,
       educationFieldTracker: tempFieldsTracker,
-      education: tempeducation,
+      education: tempeducation
     }));
     if (educationDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: 'none',
-        },
+          display: "none"
+        }
       });
     }
   }
 
   callApiRequest() {
-    alert('education');
+    this.props.senData("education", this.state.education);
+  }
+
+  componentDidMount() {
+    // console.log(this.props)
+    this.setState({
+      education: [...this.state.education, ...this.props.existingData]
+    });
+    // console.log(this.state)
   }
 
   handleInputChange(event) {
@@ -116,13 +146,13 @@ class EducationExpansionPanel extends React.Component {
     const { education } = this.state;
     const type = event.target.name;
     const tempeducation = education;
-    if (type === 'hidden') {
+    if (type === "hidden") {
       tempeducation[id][type] = event.target.checked;
     } else {
       tempeducation[id][type] = event.target.value;
     }
     this.setState({
-      education: tempeducation,
+      education: tempeducation
     });
   }
 
@@ -135,22 +165,42 @@ class EducationExpansionPanel extends React.Component {
       const tempFieldsTracker = educationFieldTracker;
       for (let i = 0; i < educationDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<EducationDetails handleChange={this.handleInputChange} key={k} id={i} expanded={false} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(
+          <EducationDetails
+            handleChange={this.handleInputChange}
+            key={k}
+            id={i}
+            expanded={false}
+            action={() => this.handlePanel(`educationPanel${i}`)}
+            moveFieldDown={() => this.moveFieldDown(k, i)}
+            moveFieldUp={() => this.moveFieldUp(k, i)}
+          />
+        );
       }
       this.setState({
         expanded: false,
-        educationFields: tempFields,
+        educationFields: tempFields
       });
     } else {
       const tempFields = [];
       const tempFieldsTracker = educationFieldTracker;
       for (let i = 0; i < educationDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<EducationDetails handleChange={this.handleInputChange} key={k} id={i} expanded={panel} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(
+          <EducationDetails
+            handleChange={this.handleInputChange}
+            key={k}
+            id={i}
+            expanded={panel}
+            action={() => this.handlePanel(`educationPanel${i}`)}
+            moveFieldDown={() => this.moveFieldDown(k, i)}
+            moveFieldUp={() => this.moveFieldUp(k, i)}
+          />
+        );
       }
       this.setState({
         expanded: panel,
-        educationFields: tempFields,
+        educationFields: tempFields
       });
     }
   }
@@ -168,19 +218,39 @@ class EducationExpansionPanel extends React.Component {
       const storeFieldTracker = tempFieldsTracker[i - 1];
       tempFieldsTracker[i - 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <EducationDetails handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i - 1] = <EducationDetails handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`educationPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+      tempFields[i] = (
+        <EducationDetails
+          handleChange={this.handleInputChange}
+          key={storeFieldTracker}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`educationPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
+          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
+        />
+      );
+      tempFields[i - 1] = (
+        <EducationDetails
+          handleChange={this.handleInputChange}
+          key={k}
+          id={i - 1}
+          expanded={expanded}
+          action={() => this.handlePanel(`educationPanel${i - 1}`)}
+          moveFieldDown={() => this.moveFieldDown(k, i - 1)}
+          moveFieldUp={() => this.moveFieldUp(k, i - 1)}
+        />
+      );
 
       const tempstore = tempeducation[i];
       tempeducation[i] = tempeducation[i - 1];
       tempeducation[i - 1] = tempstore;
     } else {
-      alert('you cant move this field any more');
+      alert("you cant move this field any more");
     }
     this.setState({
       educationFields: tempFields,
       educationFieldTracker: tempFieldsTracker,
-      education: tempeducation,
+      education: tempeducation
     });
   }
 
@@ -198,19 +268,39 @@ class EducationExpansionPanel extends React.Component {
       const storeFieldTracker = tempFieldsTracker[i + 1];
       tempFieldsTracker[i + 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <EducationDetails handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i + 1] = <EducationDetails handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`educationPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+      tempFields[i] = (
+        <EducationDetails
+          handleChange={this.handleInputChange}
+          key={storeFieldTracker}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`educationPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
+          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
+        />
+      );
+      tempFields[i + 1] = (
+        <EducationDetails
+          handleChange={this.handleInputChange}
+          key={k}
+          id={i + 1}
+          expanded={expanded}
+          action={() => this.handlePanel(`educationPanel${i + 1}`)}
+          moveFieldDown={() => this.moveFieldDown(k, i + 1)}
+          moveFieldUp={() => this.moveFieldUp(k, i + 1)}
+        />
+      );
 
       const tempstore = tempeducation[i];
       tempeducation[i] = tempeducation[i + 1];
       tempeducation[i + 1] = tempstore;
     } else {
-      alert('you cant move this field any more');
+      alert("you cant move this field any more");
     }
     this.setState({
       educationFields: tempFields,
       educationFieldTracker: tempFieldsTracker,
-      education: tempeducation,
+      education: tempeducation
     });
   }
 
@@ -218,30 +308,30 @@ class EducationExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: 'rgba(255,255,255,1)',
+          main: "rgba(255,255,255,1)"
         },
         secondary: {
-          main: '#3d40d8',
-        },
-      },
+          main: "#3d40d8"
+        }
+      }
     });
     const useStyles = {
       root: {
-        width: '75%',
-        margin: 'auto',
-        marginTop: '15px',
+        width: "75%",
+        margin: "auto",
+        marginTop: "15px"
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: '33.33%',
-        textTransform: 'uppercase',
+        flexBasis: "33.33%",
+        textTransform: "uppercase",
         flexShrink: 0,
-        fontWeight: 700,
+        fontWeight: 700
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main,
-      },
+        color: theme.palette.secondary.main
+      }
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -249,7 +339,10 @@ class EducationExpansionPanel extends React.Component {
     const { btnStyle } = this.state;
     return (
       <div style={useStyles.root}>
-        <ExpansionPanel expanded={expanded === 'educationPanel'} onChange={action}>
+        <ExpansionPanel
+          expanded={expanded === "educationPanel"}
+          onChange={action}
+        >
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
@@ -262,12 +355,23 @@ class EducationExpansionPanel extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div className="customDetailContainer">
-              <div>
-                {educationFields}
-              </div>
+              <div>{educationFields}</div>
               <div className="btnRow">
-                <div className="addBtn" onClick={this.onSubChild} style={btnStyle} role="presentation">-</div>
-                <div className="addBtn" onClick={this.onAddChild} role="presentation">+</div>
+                <div
+                  className="addBtn"
+                  onClick={this.onSubChild}
+                  style={btnStyle}
+                  role="presentation"
+                >
+                  -
+                </div>
+                <div
+                  className="addBtn"
+                  onClick={this.onAddChild}
+                  role="presentation"
+                >
+                  +
+                </div>
               </div>
             </div>
           </ExpansionPanelDetails>

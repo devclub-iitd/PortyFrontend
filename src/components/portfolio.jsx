@@ -12,22 +12,35 @@ import Contact from './portfolio/contact';
 
 import '../style/portfolio.css';
 
-import { getCurrentProfile } from '../actions/profile'
+import { getCurrentProfile } from '../actions/profile';
 
 
 
 
 
-const Portfolio = ({ getCurrentProfile , auth , profile }) => {
+const Portfolio = ({ getCurrentProfile , auth , profile : {profile , loading} }) => {
   useEffect(() => {
     getCurrentProfile();
-    console.log(auth);
-    console.log(profile);
   },[])
 
-   return (
-    <div>hello</div>
-  )
+  return loading && profile === null ? (<div>loading</div>) : (<Paper className="portfolioContainer" elavation={4}>
+    <Landing name={profile.user.name} label={profile.label} />
+    <About summary={profile.about} />
+    <Education education={profile.education} />
+    <Work work={profile.work} />
+    <Volunteer volunteer={profile.volunteer} />
+    <Extra
+      awards={profile.awards}
+      publications={profile.publications}
+      languages={profile.languages}
+      skills={profile.skills}
+    />
+    <Contact
+      email={profile.user.email}
+      phone={profile.phone}
+      location={profile.location}
+    />
+  </Paper> )
 }
 
   
@@ -68,21 +81,4 @@ export default connect(mapStateToProps , {getCurrentProfile})(Portfolio);
 //     languages,
 //   } = this.state;
 
-{/* <Paper className="portfolioContainer" elavation={4}>
-      <Landing name={profile.user.name} label={profile.label} />
-      <About summary={profile.about} />
-      <Education education={profile.education} />
-      <Work work={profile.work} />
-      <Volunteer volunteer={profile.volunteer} />
-      <Extra
-        awards={profile.awards}
-        publications={profile.publications}
-        languages={profile.languages}
-        skills={profile.skills}
-      />
-      <Contact
-        email={profile.user.email}
-        phone={profile.phone}
-        location={profile.location}
-      />
-    </Paper> */}
+ 

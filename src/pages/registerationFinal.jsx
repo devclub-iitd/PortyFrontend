@@ -1,6 +1,8 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import {connect} from 'react-redux'
+import {createProfile} from '../actions/profile'
 
 
 import Intro from '../components/regFinal/intro';
@@ -34,7 +36,7 @@ class RegFinal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false,
+      expanded: false
     };
     this.account = React.createRef();
     this.about = React.createRef();
@@ -50,6 +52,7 @@ class RegFinal extends React.Component {
     this.reference = React.createRef();
     this.handlePanel = this.handlePanel.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
+    this.retrieveChildData = this.retrieveChildData.bind(this);
   }
 
   handlePanel(panel) {
@@ -65,9 +68,35 @@ class RegFinal extends React.Component {
     }
   }
 
+  retrieveChildData (type , data) {
+    switch(type) {
+        case 'work' :
+        case 'volunteer':
+        case 'education':
+        case 'awards':
+        case 'publications':
+        case 'skills':
+        case 'languages':
+        case 'interests':
+        case 'references':
+        case 'location': 
+        {
+            this.setState({
+              [type]: data,
+            });
+            const obj = { [type]: data }
+            console.log(obj)
+            const stringyobj = JSON.stringify(obj)
+            this.props.createProfile(stringyobj)
+        } 
+        
+    }
+    
+  }
+
   handleSumbit(event) {
     event.preventDefault();
-    this.account.current.callApiRequest();
+    //this.account.current.callApiRequest();
     this.about.current.callApiRequest();
     this.location.current.callApiRequest();
     this.work.current.callApiRequest();
@@ -89,18 +118,18 @@ class RegFinal extends React.Component {
           <Image />
           <Intro name="aryan" caption="block" />
           <form onSubmit={this.handleSumbit}>
-            <Account ref={this.account} expanded={expanded} action={() => this.handlePanel('accountPanel')} />
-            <About ref={this.about} expanded={expanded} action={() => this.handlePanel('aboutPanel')} />
-            <Location ref={this.location} expanded={expanded} action={() => this.handlePanel('locationPanel')} />
-            <Work ref={this.work} expanded={expanded} action={() => this.handlePanel('workPanel')} />
-            <Volunteer ref={this.volunteer} expanded={expanded} action={() => this.handlePanel('volunteerPanel')} />
-            <Education ref={this.education} expanded={expanded} action={() => this.handlePanel('educationPanel')} />
-            <Award ref={this.award} expanded={expanded} action={() => this.handlePanel('awardPanel')} />
-            <Publication ref={this.publication} expanded={expanded} action={() => this.handlePanel('publicationPanel')} />
-            <Skill ref={this.skill} expanded={expanded} action={() => this.handlePanel('skillPanel')} />
-            <Language ref={this.language} expanded={expanded} action={() => this.handlePanel('languagePanel')} />
-            <Interest ref={this.interest} expanded={expanded} action={() => this.handlePanel('interestPanel')} />
-            <Reference ref={this.reference} expanded={expanded} action={() => this.handlePanel('referencePanel')} />
+            {/* <Account ref={this.account} expanded={expanded} action={() => this.handlePanel('accountPanel')} />  */}
+            <About ref={this.about} expanded={expanded} action={() => this.handlePanel('aboutPanel')} senData={this.retrieveChildData}/> 
+            <Location ref={this.location} expanded={expanded} action={() => this.handlePanel('locationPanel')} senData={this.retrieveChildData} />
+            <Work ref={this.work} expanded={expanded} action={() => this.handlePanel('workPanel')} senData={this.retrieveChildData}/>
+            <Volunteer ref={this.volunteer} expanded={expanded} action={() => this.handlePanel('volunteerPanel')} senData={this.retrieveChildData} />
+            <Education ref={this.education} expanded={expanded} action={() => this.handlePanel('educationPanel')} senData={this.retrieveChildData}/>
+            <Award ref={this.award} expanded={expanded} action={() => this.handlePanel('awardPanel')} senData={this.retrieveChildData}/>
+            <Publication ref={this.publication} expanded={expanded} action={() => this.handlePanel('publicationPanel')} senData={this.retrieveChildData}/>
+            <Skill ref={this.skill} expanded={expanded} action={() => this.handlePanel('skillPanel')} senData={this.retrieveChildData}/>
+            <Language ref={this.language} expanded={expanded} action={() => this.handlePanel('languagePanel')} senData={this.retrieveChildData}/>
+            <Interest ref={this.interest} expanded={expanded} action={() => this.handlePanel('interestPanel')} senData={this.retrieveChildData}/>
+            <Reference ref={this.reference} expanded={expanded} action={() => this.handlePanel('referencePanel')} senData={this.retrieveChildData}/>
             <div className="btnContainer">
               <Button variant="contained" style={{ padding: '12px 50px' }} color="secondary" type="submit">
                 Done
@@ -122,4 +151,4 @@ class RegFinal extends React.Component {
   }
 }
 
-export default RegFinal;
+export default connect(null,{createProfile})(RegFinal);

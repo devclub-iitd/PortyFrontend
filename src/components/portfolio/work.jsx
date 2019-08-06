@@ -18,7 +18,7 @@ const Work = (props) => {
                 company={workPlace.company}
                 position={workPlace.position}
                 website={workPlace.website}
-                startDate={workPlace.starstartDate}
+                startDate={workPlace.startDate}
                 endDate={workPlace.endDate}
               >
                 {workPlace.summary}

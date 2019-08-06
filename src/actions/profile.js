@@ -18,7 +18,7 @@ export const getCurrentProfile = () => async dispatch => {
     }
 }
 
-export const createProfile = (formData , history , edit = false) => async dispatch => {
+export const createProfile = (formData , edit = false) => async dispatch => {
     try {
         
         const config = {
@@ -33,10 +33,9 @@ export const createProfile = (formData , history , edit = false) => async dispat
             type : GET_PROFILE,
             payload : res.data
         })
-
+        console.log("data posted")
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','green'))
 
-        history.push('/home')
 
     } catch (err) {
         const errors = err.response.data.errors
