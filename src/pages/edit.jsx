@@ -4,20 +4,20 @@ import PropTypes from "prop-types";
 import { getCurrentProfile } from "../actions/profile";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
-import Intro from "../components/regFinal/intro";
-import Image from "../components/regFinal/image";
-import Account from "../components/regFinal/account";
-import About from "../components/regFinal/about";
-import Location from "../components/regFinal/location";
-import Work from "../components/regFinal/work";
-import Volunteer from "../components/regFinal/volunteer";
-import Education from "../components/regFinal/education";
-import Award from "../components/regFinal/award";
-import Publication from "../components/regFinal/publication";
-import Language from "../components/regFinal/language";
-import Skill from "../components/regFinal/skill";
-import Interest from "../components/regFinal/interest";
-import Reference from "../components/regFinal/reference";
+import Intro from "../components/edit/intro";
+import Image from "../components/edit/image";
+import Account from "../components/edit/account";
+import About from "../components/edit/about";
+import Location from "../components/edit/location";
+import Work from "../components/edit/work";
+import Volunteer from "../components/edit/volunteer";
+import Education from "../components/edit/education";
+import Award from "../components/edit/award";
+import Publication from "../components/edit/publication";
+import Language from "../components/edit/language";
+import Skill from "../components/edit/skill";
+import Interest from "../components/edit/interest";
+import Reference from "../components/edit/reference";
 import "../style/regFinal.css";
 
 const theme = createMuiTheme({
