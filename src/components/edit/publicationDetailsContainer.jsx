@@ -19,6 +19,7 @@ const PublicationField = (props) => {
   const { moveFieldUp } = props;
   const { moveFieldDown } = props;
   const { handleChange } = props;
+  const { data } = props;
   const [state, setState] = React.useState({
     hidden: false,
   });
@@ -44,13 +45,13 @@ const PublicationField = (props) => {
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input name="name" id={id} onChange={handleChange} type="text" required placeholder="Name:" />
+            <input value={data.name} name="name" id={id} onChange={handleChange} type="text" required placeholder="Name:" />
             <div className="row rowtwo">
-              <input name="releaseDate" id={id} onChange={handleChange} className="left" type="text" required placeholder="Release Date: DD/MM/YYYY" />
-              <input name="publisher" id={id} onChange={handleChange} className="right" type="text" required placeholder="Publisher:" />
+              <input value={data.releaseDate} name="releaseDate" id={id} onChange={handleChange} className="left" type="text" required placeholder="Release Date: DD/MM/YYYY" />
+              <input value={data.publisher} name="publisher" id={id} onChange={handleChange} className="right" type="text" required placeholder="Publisher:" />
             </div>
-            <input name="website" id={id} onChange={handleChange} type="text" required placeholder="Website:" />
-            <textarea name="summary" id={id} onChange={handleChange} resize="none" placeholder="Summary: " />
+            <input value={data.website} name="website" id={id} onChange={handleChange} type="text" required placeholder="Website:" />
+            <textarea value={data.summary} name="summary" id={id} onChange={handleChange} resize="none" placeholder="Summary: " />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={

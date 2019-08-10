@@ -19,6 +19,7 @@ const ReferenceField = (props) => {
   const { moveFieldUp } = props;
   const { moveFieldDown } = props;
   const { handleChange } = props;
+  const { data } = props;
   const [state, setState] = React.useState({
     hidden: false,
   });
@@ -44,8 +45,8 @@ const ReferenceField = (props) => {
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input id={id} onChange={handleChange} name="name" className="left" type="text" required placeholder="Name:" />
-            <textarea id={id} onChange={handleChange} name="reference" resize="none" placeholder="Reference:" />
+            <input value={data.name} id={id} onChange={handleChange} name="name" className="left" type="text" required placeholder="Name:" />
+            <textarea value={data.reference} id={id} onChange={handleChange} name="reference" resize="none" placeholder="Reference:" />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={

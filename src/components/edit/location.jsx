@@ -11,24 +11,14 @@ class LocationExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addressline1: "",
-      addressline2: "",
-      city: "",
-      pincode: "",
-      country: ""
-    };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({
       addressline1: this.props.existingData.addressline1,
       addressline2: this.props.existingData.addressline2,
       city: this.props.existingData.city,
       pincode: this.props.existingData.pincode,
       country: this.props.existingData.country
-    });
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   callApiRequest() {
@@ -40,6 +30,7 @@ class LocationExpansionPanel extends React.Component {
     this.setState({
       [type]: event.target.value
     });
+    console.log(this.state);
   }
 
   render() {

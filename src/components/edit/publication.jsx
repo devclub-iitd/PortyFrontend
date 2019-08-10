@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -7,45 +8,35 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PublicationDetails from './publicationDetailsContainer';
+import {createProfile} from '../../actions/profile'
+
 
 class PublicationExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
+    const { existingData } = this.props;
     const tempFields = [];
     const tempFieldsTracker = [];
+    let btnDisp = 'none';
+    if (existingData.length > 1) {
+      btnDisp = 'block';
+    }
     this.state = {
-      publicationDetailsCount: 1,
-      maxCount: 1,
+      publicationDetailsCount: existingData.length,
+      maxCount: existingData.length,
       btnStyle: {
-        display: "none"
+        display: btnDisp,
       },
       expanded: false,
       publicationFields: tempFields,
       publicationFieldTracker: tempFieldsTracker,
-      publication: [
-        {
-          name: "",
-          publisher: "",
-          releaseDate: "",
-          website: "",
-          summary: "",
-          hidden: false
-        }
-      ]
+      publication: existingData,
     };
     const { expanded } = this.state;
-    tempFields.push(
-      <PublicationDetails
-        handleChange={this.handleInputChange}
-        key={0}
-        id={0}
-        expanded={expanded}
-        action={() => this.handlePanel(`publicationPanel${0}`)}
-        moveFieldDown={() => this.moveFieldDown(0, 0)}
-        moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
-    );
-    tempFieldsTracker.push(0);
+    for (let i = 0; i < existingData.length; i += 1) {
+      tempFields.push(<PublicationDetails data={existingData[0]} handleChange={this.handleInputChange} key={i} id={i} expanded={expanded} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
+      tempFieldsTracker.push(i);
+    }
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
     this.handlePanel = this.handlePanel.bind(this);
@@ -56,26 +47,14 @@ class PublicationExpansionPanel extends React.Component {
   onAddChild() {
     const { publicationFields } = this.state;
     const { publicationFieldTracker } = this.state;
-    const { publicationDetailsCount, maxCount } = this.state;
+    const { publicationDetailsCount } = this.state;
+    const { maxCount } = this.state;
     const { expanded } = this.state;
     const tempFields = publicationFields;
     const tempFieldsTracker = publicationFieldTracker;
-    const i = publicationDetailsCount;
+    const id = publicationDetailsCount;
     const key = maxCount;
     const exp = expanded;
-    tempFieldsTracker.push(key);
-    tempFields.push(
-      <PublicationDetails
-        handleChange={this.handleInputChange}
-        key={key}
-        id={i}
-        expanded={exp}
-        action={() => this.handlePanel(`volunteerPanel${i}`)}
-        moveFieldDown={() => this.moveFieldDown(key, i)}
-        moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
-    );
-
     const { publication } = this.state;
     const publicationObj = {
       name: "",
@@ -85,17 +64,19 @@ class PublicationExpansionPanel extends React.Component {
       summary: "",
       hidden: false
     };
+    tempFieldsTracker.push(key);
+    tempFields.push(<PublicationDetails data={publicationObj} handleChange={this.handleInputChange} key={key} id={id} expanded={exp} action={() => this.handlePanel(`publicationPanel${id}`)} moveFieldDown={() => this.moveFieldDown(key, id)} moveFieldUp={() => this.moveFieldUp(key, id)} />);
     const temppublication = publication;
     temppublication.push(publicationObj);
     this.setState(state => ({
       publicationDetailsCount: state.publicationDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: "block"
+        display: 'block',
       },
       publicationFields: tempFields,
       publicationFieldTracker: tempFieldsTracker,
-      publication: temppublication
+      publication: temppublication,
     }));
   }
 
@@ -114,89 +95,70 @@ class PublicationExpansionPanel extends React.Component {
       publicationDetailsCount: state.publicationDetailsCount - 1,
       publicationFields: tempFields,
       publicationFieldTracker: tempFieldsTracker,
-      publication: temppublication
+      publication: temppublication,
     }));
     if (publicationDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: "none"
-        }
+          display: 'none',
+        },
       });
     }
   }
 
   callApiRequest() {
-    this.props.senData("publication", this.state.publication);
-  }
-
-  componentDidMount() {
-    // console.log(this.props)
-    this.setState({
-      publication: [...this.state.publication, ...this.props.existingData]
-    });
-    // console.log(this.state)
+    this.props.senData('publication', this.state.publication);
   }
 
   handleInputChange(event) {
     const { id } = event.target;
-    const { publication } = this.state;
+    const { publication, publicationFieldTracker, publicationDetailsCount, expanded } = this.state;
     const type = event.target.name;
+    const tempFields = [];
+    const tempFieldsTracker = publicationFieldTracker;
     const temppublication = publication;
-    if (type === "hidden") {
+    if (type === 'hidden') {
       temppublication[id][type] = event.target.checked;
     } else {
       temppublication[id][type] = event.target.value;
     }
+    for (let i = 0; i < publicationDetailsCount; i += 1) {
+      const k = tempFieldsTracker[i];
+      tempFields.push(<PublicationDetails data={temppublication[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={expanded} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+    }
     this.setState({
-      publication: temppublication
+      publication: temppublication,
+      publicationFields: tempFields,
     });
+    console.log(temppublication);
   }
 
   handlePanel(panel) {
     const { expanded } = this.state;
     const { publicationFieldTracker } = this.state;
     const { publicationDetailsCount } = this.state;
+    const { publication } = this.state;
     if (expanded === panel) {
       const tempFields = [];
       const tempFieldsTracker = publicationFieldTracker;
       for (let i = 0; i < publicationDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(
-          <PublicationDetails
-            handleChange={this.handleInputChange}
-            key={k}
-            id={i}
-            expanded={false}
-            action={() => this.handlePanel(`publicationPanel${i}`)}
-            moveFieldDown={() => this.moveFieldDown(k, i)}
-            moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
-        );
+        tempFields.push(<PublicationDetails data={publication[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={false} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: false,
-        publicationFields: tempFields
+        publicationFields: tempFields,
       });
     } else {
       const tempFields = [];
       const tempFieldsTracker = publicationFieldTracker;
       for (let i = 0; i < publicationDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(
-          <PublicationDetails
-            handleChange={this.handleInputChange}
-            key={k}
-            id={i}
-            expanded={panel}
-            action={() => this.handlePanel(`publicationPanel${i}`)}
-            moveFieldDown={() => this.moveFieldDown(k, i)}
-            moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
-        );
+        tempFields.push(<PublicationDetails data={publication[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={panel} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: panel,
-        publicationFields: tempFields
+        publicationFields: tempFields,
       });
     }
   }
@@ -211,42 +173,23 @@ class PublicationExpansionPanel extends React.Component {
     const { publication } = this.state;
     const temppublication = publication;
     if (i !== 0) {
-      const storeFieldTracker = tempFieldsTracker[i - 1];
-      tempFieldsTracker[i - 1] = tempFieldsTracker[i];
-      tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = (
-        <PublicationDetails
-          handleChange={this.handleInputChange}
-          key={storeFieldTracker}
-          id={i}
-          expanded={expanded}
-          action={() => this.handlePanel(`publicationPanel${i}`)}
-          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
-          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
-        />
-      );
-      tempFields[i - 1] = (
-        <PublicationDetails
-          handleChange={this.handleInputChange}
-          key={k}
-          id={i - 1}
-          expanded={expanded}
-          action={() => this.handlePanel(`publicationPanel${i - 1}`)}
-          moveFieldDown={() => this.moveFieldDown(k, i - 1)}
-          moveFieldUp={() => this.moveFieldUp(k, i - 1)}
-        />
-      );
-
       const tempstore = temppublication[i];
       temppublication[i] = temppublication[i - 1];
       temppublication[i - 1] = tempstore;
+
+      const storeFieldTracker = tempFieldsTracker[i - 1];
+      tempFieldsTracker[i - 1] = tempFieldsTracker[i];
+      tempFieldsTracker[i] = storeFieldTracker;
+      tempFields[i] = <PublicationDetails data={temppublication[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i - 1] = <PublicationDetails data={temppublication[i - 1]} handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`publicationPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       publicationFields: tempFields,
       publicationFieldTracker: tempFieldsTracker,
-      publication: temppublication
+      publication: temppublication,
     });
   }
 
@@ -261,42 +204,22 @@ class PublicationExpansionPanel extends React.Component {
     const { publication } = this.state;
     const temppublication = publication;
     if (i !== publicationDetailsCount - 1) {
-      const storeFieldTracker = tempFieldsTracker[i + 1];
-      tempFieldsTracker[i + 1] = tempFieldsTracker[i];
-      tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = (
-        <PublicationDetails
-          handleChange={this.handleInputChange}
-          key={storeFieldTracker}
-          id={i}
-          expanded={expanded}
-          action={() => this.handlePanel(`publicationPanel${i}`)}
-          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
-          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
-        />
-      );
-      tempFields[i + 1] = (
-        <PublicationDetails
-          handleChange={this.handleInputChange}
-          key={k}
-          id={i + 1}
-          expanded={expanded}
-          action={() => this.handlePanel(`publicationPanel${i + 1}`)}
-          moveFieldDown={() => this.moveFieldDown(k, i + 1)}
-          moveFieldUp={() => this.moveFieldUp(k, i + 1)}
-        />
-      );
-
       const tempstore = temppublication[i];
       temppublication[i] = temppublication[i + 1];
       temppublication[i + 1] = tempstore;
+      const storeFieldTracker = tempFieldsTracker[i + 1];
+      tempFieldsTracker[i + 1] = tempFieldsTracker[i];
+      tempFieldsTracker[i] = storeFieldTracker;
+      tempFields[i] = <PublicationDetails data={temppublication[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`publicationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i + 1] = <PublicationDetails data={temppublication[i + 1]} handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`publicationPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       publicationFields: tempFields,
       publicationFieldTracker: tempFieldsTracker,
-      publication: temppublication
+      publication: temppublication,
     });
   }
 
@@ -304,30 +227,30 @@ class PublicationExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -335,39 +258,25 @@ class PublicationExpansionPanel extends React.Component {
     const { btnStyle } = this.state;
     return (
       <div style={useStyles.root}>
-        <ExpansionPanel
-          expanded={expanded === "publicationPanel"}
-          onChange={action}
-        >
+        <ExpansionPanel expanded={expanded === 'publicationPanel'} onChange={action}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
-            <Typography style={useStyles.heading}>Publications</Typography>
+            <Typography style={useStyles.heading}>Publication</Typography>
             <Typography style={useStyles.secondaryHeading}>
               <i>Insert Tagline here</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div className="customDetailContainer">
-              <div>{publicationFields}</div>
+              <div>
+                {publicationFields}
+              </div>
               <div className="btnRow">
-                <div
-                  className="addBtn"
-                  onClick={this.onSubChild}
-                  style={btnStyle}
-                  role="presentation"
-                >
-                  -
-                </div>
-                <div
-                  className="addBtn"
-                  onClick={this.onAddChild}
-                  role="presentation"
-                >
-                  +
-                </div>
+                <div className="addBtn" onClick={this.onSubChild} style={btnStyle} role="presentation">-</div>
+                <div className="addBtn" onClick={this.onAddChild} role="presentation">+</div>
               </div>
             </div>
           </ExpansionPanelDetails>
@@ -382,4 +291,4 @@ PublicationExpansionPanel.propTypes = {
   action: PropTypes.func.isRequired,
 };
 
-export default PublicationExpansionPanel;
+export default PublicationExpansionPanel

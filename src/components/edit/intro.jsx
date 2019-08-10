@@ -12,7 +12,6 @@ const Intro = (props) => {
         {' '}
         {name}
       </div>
-      <div className="pageTagline" style={{ display: caption }}>Just a few more things to get you started...</div>
     </div>
   );
 };

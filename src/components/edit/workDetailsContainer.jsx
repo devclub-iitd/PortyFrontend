@@ -49,8 +49,8 @@ const WorkField = (props) => {
             <input value={data.position} id={id} onChange={handleChange} type="text" name="position" required placeholder="Position:" />
             <input value={data.website} id={id} onChange={handleChange} type="text" name="website" required placeholder="Website:" />
             <div className="row rowtwo">
-              <input id={id} onChange={handleChange} className="left" type="text" name="startdate" required placeholder="Start Date: DD/MM/YYYY" />
-              <input id={id} onChange={handleChange} className="right" type="text" name="enddate" required placeholder="End Date: DD/MM/YYYY or Ongoing" />
+              <input value={data.startdate} id={id} onChange={handleChange} className="left" type="text" name="startdate" required placeholder="Start Date: DD/MM/YYYY" />
+              <input value={data.enddate} id={id} onChange={handleChange} className="right" type="text" name="enddate" required placeholder="End Date: DD/MM/YYYY or Ongoing" />
             </div>
             <textarea value={data.summary} required id={id} onChange={handleChange} resize="none" name="summary" placeholder="Summary | Highlights : " />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>

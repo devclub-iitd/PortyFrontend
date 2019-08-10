@@ -19,6 +19,7 @@ const LanguageField = (props) => {
   const { moveFieldUp } = props;
   const { moveFieldDown } = props;
   const { handleChange } = props;
+  const { data } = props;
   const [state, setState] = React.useState({
     hidden: false,
   });
@@ -45,8 +46,8 @@ const LanguageField = (props) => {
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
             <div className="row rowtwo">
-              <input id={id} onChange={handleChange} name="language" className="left" type="text" required placeholder="Language Name:" />
-              <input id={id} onChange={handleChange} name="fluency" className="right" type="text" required placeholder="Fluency: Option1 | Option2 | Option3" />
+              <input value={data.language} id={id} onChange={handleChange} name="language" className="left" type="text" required placeholder="Language Name:" />
+              <input value={data.fluency} id={id} onChange={handleChange} name="fluency" className="right" type="text" required placeholder="Fluency: Option1 | Option2 | Option3" />
             </div>
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel

@@ -19,6 +19,7 @@ const AwardField = (props) => {
   const { moveFieldUp } = props;
   const { moveFieldDown } = props;
   const { handleChange } = props;
+  const { data } = props;
   const [state, setState] = React.useState({
     hidden: false,
   });
@@ -44,12 +45,12 @@ const AwardField = (props) => {
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input id={id} onChange={handleChange} name="title" type="text" required placeholder="Title:" />
+            <input value={data.title} id={id} onChange={handleChange} name="title" type="text" required placeholder="Title:" />
             <div className="row rowtwo">
-              <input id={id} onChange={handleChange} name="date" className="left" type="text" required placeholder="Date Awarded: DD/MM/YYYY" />
-              <input id={id} onChange={handleChange} name="awarder" className="right" type="text" required placeholder="Awarded By:" />
+              <input value={data.date} id={id} onChange={handleChange} name="date" className="left" type="text" required placeholder="Date Awarded: DD/MM/YYYY" />
+              <input value={data.awarder} id={id} onChange={handleChange} name="awarder" className="right" type="text" required placeholder="Awarded By:" />
             </div>
-            <textarea id={id} onChange={handleChange} name="details" resize="none" placeholder="Details: " />
+            <textarea value={data.details} id={id} onChange={handleChange} name="details" resize="none" placeholder="Details: " />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={

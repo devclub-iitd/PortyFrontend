@@ -19,6 +19,7 @@ const EducationField = (props) => {
   const { moveFieldUp } = props;
   const { moveFieldDown } = props;
   const { handleChange } = props;
+  const { data } = props;
   const [state, setState] = React.useState({
     hidden: false,
   });
@@ -44,17 +45,17 @@ const EducationField = (props) => {
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input id={id} onChange={handleChange} name="institution" type="text" required placeholder="Institution:" />
+            <input value={data.institution} id={id} onChange={handleChange} name="institution" type="text" required placeholder="Institution:" />
             <div className="row rowtwo">
-              <input id={id} onChange={handleChange} name="area" className="left" type="text" required placeholder="Area: Software Development" />
-              <input id={id} onChange={handleChange} name="qualification" className="right" type="text" required placeholder="Qualification: Bachelors | Masters | etc" />
+              <input value={data.area} id={id} onChange={handleChange} name="area" className="left" type="text" required placeholder="Area: Software Development" />
+              <input value={data.qualification} id={id} onChange={handleChange} name="qualification" className="right" type="text" required placeholder="Qualification: Bachelors | Masters | etc" />
             </div>
             <div className="row rowtwo">
-              <input id={id} onChange={handleChange} name="startdate" className="left" type="text" required placeholder="Start Date: DD/MM/YYYY" />
-              <input id={id} onChange={handleChange} name="enddate" className="right" type="text" required placeholder="End Date: DD/MM/YYYY or Ongoing" />
+              <input value={data.startdate} id={id} onChange={handleChange} name="startdate" className="left" type="text" required placeholder="Start Date: DD/MM/YYYY" />
+              <input value={data.enddate} id={id} onChange={handleChange} name="enddate" className="right" type="text" required placeholder="End Date: DD/MM/YYYY or Ongoing" />
             </div>
-            <input id={id} onChange={handleChange} name="gpa" type="text" required placeholder="GPA: xx/10" />
-            <textarea id={id} onChange={handleChange} name="details" resize="none" placeholder="Details | Courses : " />
+            <input value={data.gpa} id={id} onChange={handleChange} name="gpa" type="text" required placeholder="GPA: xx/10" />
+            <textarea value={data.details} id={id} onChange={handleChange} name="details" resize="none" placeholder="Details | Courses : " />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={

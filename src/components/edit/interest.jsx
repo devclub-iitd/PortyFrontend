@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -7,42 +8,35 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import InterestDetails from './interestDetailsContainer';
+import {createProfile} from '../../actions/profile'
+
 
 class InterestExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
+    const { existingData } = this.props;
     const tempFields = [];
     const tempFieldsTracker = [];
+    let btnDisp = 'none';
+    if (existingData.length > 1) {
+      btnDisp = 'block';
+    }
     this.state = {
-      interestDetailsCount: 1,
-      maxCount: 1,
+      interestDetailsCount: existingData.length,
+      maxCount: existingData.length,
       btnStyle: {
-        display: "none"
+        display: btnDisp,
       },
       expanded: false,
       interestFields: tempFields,
       interestFieldTracker: tempFieldsTracker,
-      interest: [
-        {
-          name: "",
-          keywords: "",
-          hidden: false
-        }
-      ]
+      interest: existingData,
     };
     const { expanded } = this.state;
-    tempFields.push(
-      <InterestDetails
-        handleChange={this.handleInputChange}
-        key={0}
-        id={0}
-        expanded={expanded}
-        action={() => this.handlePanel(`interestPanel${0}`)}
-        moveFieldDown={() => this.moveFieldDown(0, 0)}
-        moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
-    );
-    tempFieldsTracker.push(0);
+    for (let i = 0; i < existingData.length; i += 1) {
+      tempFields.push(<InterestDetails data={existingData[0]} handleChange={this.handleInputChange} key={i} id={i} expanded={expanded} action={() => this.handlePanel(`interestPanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
+      tempFieldsTracker.push(i);
+    }
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
     this.handlePanel = this.handlePanel.bind(this);
@@ -53,43 +47,33 @@ class InterestExpansionPanel extends React.Component {
   onAddChild() {
     const { interestFields } = this.state;
     const { interestFieldTracker } = this.state;
-    const { interestDetailsCount, maxCount } = this.state;
+    const { interestDetailsCount } = this.state;
+    const { maxCount } = this.state;
     const { expanded } = this.state;
     const tempFields = interestFields;
     const tempFieldsTracker = interestFieldTracker;
-    const i = interestDetailsCount;
+    const id = interestDetailsCount;
     const key = maxCount;
     const exp = expanded;
-    tempFieldsTracker.push(key);
-    tempFields.push(
-      <InterestDetails
-        handleChange={this.handleInputChange}
-        key={key}
-        id={i}
-        expanded={exp}
-        action={() => this.handlePanel(`volunteerPanel${i}`)}
-        moveFieldDown={() => this.moveFieldDown(key, i)}
-        moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
-    );
-
     const { interest } = this.state;
     const interestObj = {
       name: "",
       keywords: "",
       hidden: false
     };
+    tempFieldsTracker.push(key);
+    tempFields.push(<InterestDetails data={interestObj} handleChange={this.handleInputChange} key={key} id={id} expanded={exp} action={() => this.handlePanel(`interestPanel${id}`)} moveFieldDown={() => this.moveFieldDown(key, id)} moveFieldUp={() => this.moveFieldUp(key, id)} />);
     const tempinterest = interest;
     tempinterest.push(interestObj);
     this.setState(state => ({
       interestDetailsCount: state.interestDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: "block"
+        display: 'block',
       },
       interestFields: tempFields,
       interestFieldTracker: tempFieldsTracker,
-      interest: tempinterest
+      interest: tempinterest,
     }));
   }
 
@@ -108,90 +92,70 @@ class InterestExpansionPanel extends React.Component {
       interestDetailsCount: state.interestDetailsCount - 1,
       interestFields: tempFields,
       interestFieldTracker: tempFieldsTracker,
-      interest: tempinterest
+      interest: tempinterest,
     }));
     if (interestDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: "none"
-        }
+          display: 'none',
+        },
       });
     }
   }
 
   callApiRequest() {
-    this.props.senData("interest", this.state.interest);
-  }
-
-  componentDidMount() {
-    // console.log(this.props)
-    this.setState({
-      interest: [...this.state.interest, ...this.props.existingData]
-    });
-    // console.log(this.state)
+    this.props.senData('interest', this.state.interest);
   }
 
   handleInputChange(event) {
     const { id } = event.target;
-    const { interest } = this.state;
+    const { interest, interestFieldTracker, interestDetailsCount, expanded } = this.state;
     const type = event.target.name;
+    const tempFields = [];
+    const tempFieldsTracker = interestFieldTracker;
     const tempinterest = interest;
-    if (type === "hidden") {
+    if (type === 'hidden') {
       tempinterest[id][type] = event.target.checked;
     } else {
       tempinterest[id][type] = event.target.value;
     }
-    console.log(tempinterest);
+    for (let i = 0; i < interestDetailsCount; i += 1) {
+      const k = tempFieldsTracker[i];
+      tempFields.push(<InterestDetails data={tempinterest[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={expanded} action={() => this.handlePanel(`interestPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+    }
     this.setState({
-      interest: tempinterest
+      interest: tempinterest,
+      interestFields: tempFields,
     });
+    console.log(tempinterest);
   }
 
   handlePanel(panel) {
     const { expanded } = this.state;
     const { interestFieldTracker } = this.state;
     const { interestDetailsCount } = this.state;
+    const { interest } = this.state;
     if (expanded === panel) {
       const tempFields = [];
       const tempFieldsTracker = interestFieldTracker;
       for (let i = 0; i < interestDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(
-          <InterestDetails
-            handleChange={this.handleInputChange}
-            key={k}
-            id={i}
-            expanded={false}
-            action={() => this.handlePanel(`interestPanel${i}`)}
-            moveFieldDown={() => this.moveFieldDown(k, i)}
-            moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
-        );
+        tempFields.push(<InterestDetails data={interest[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={false} action={() => this.handlePanel(`interestPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: false,
-        interestFields: tempFields
+        interestFields: tempFields,
       });
     } else {
       const tempFields = [];
       const tempFieldsTracker = interestFieldTracker;
       for (let i = 0; i < interestDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(
-          <InterestDetails
-            handleChange={this.handleInputChange}
-            key={k}
-            id={i}
-            expanded={panel}
-            action={() => this.handlePanel(`interestPanel${i}`)}
-            moveFieldDown={() => this.moveFieldDown(k, i)}
-            moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
-        );
+        tempFields.push(<InterestDetails data={interest[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={panel} action={() => this.handlePanel(`interestPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
       }
       this.setState({
         expanded: panel,
-        interestFields: tempFields
+        interestFields: tempFields,
       });
     }
   }
@@ -206,42 +170,23 @@ class InterestExpansionPanel extends React.Component {
     const { interest } = this.state;
     const tempinterest = interest;
     if (i !== 0) {
-      const storeFieldTracker = tempFieldsTracker[i - 1];
-      tempFieldsTracker[i - 1] = tempFieldsTracker[i];
-      tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = (
-        <InterestDetails
-          handleChange={this.handleInputChange}
-          key={storeFieldTracker}
-          id={i}
-          expanded={expanded}
-          action={() => this.handlePanel(`interestPanel${i}`)}
-          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
-          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
-        />
-      );
-      tempFields[i - 1] = (
-        <InterestDetails
-          handleChange={this.handleInputChange}
-          key={k}
-          id={i - 1}
-          expanded={expanded}
-          action={() => this.handlePanel(`interestPanel${i - 1}`)}
-          moveFieldDown={() => this.moveFieldDown(k, i - 1)}
-          moveFieldUp={() => this.moveFieldUp(k, i - 1)}
-        />
-      );
-
       const tempstore = tempinterest[i];
       tempinterest[i] = tempinterest[i - 1];
       tempinterest[i - 1] = tempstore;
+
+      const storeFieldTracker = tempFieldsTracker[i - 1];
+      tempFieldsTracker[i - 1] = tempFieldsTracker[i];
+      tempFieldsTracker[i] = storeFieldTracker;
+      tempFields[i] = <InterestDetails data={tempinterest[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`interestPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i - 1] = <InterestDetails data={tempinterest[i - 1]} handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`interestPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       interestFields: tempFields,
       interestFieldTracker: tempFieldsTracker,
-      interest: tempinterest
+      interest: tempinterest,
     });
   }
 
@@ -256,42 +201,22 @@ class InterestExpansionPanel extends React.Component {
     const { interest } = this.state;
     const tempinterest = interest;
     if (i !== interestDetailsCount - 1) {
-      const storeFieldTracker = tempFieldsTracker[i + 1];
-      tempFieldsTracker[i + 1] = tempFieldsTracker[i];
-      tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = (
-        <InterestDetails
-          handleChange={this.handleInputChange}
-          key={storeFieldTracker}
-          id={i}
-          expanded={expanded}
-          action={() => this.handlePanel(`interestPanel${i}`)}
-          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
-          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
-        />
-      );
-      tempFields[i + 1] = (
-        <InterestDetails
-          handleChange={this.handleInputChange}
-          key={k}
-          id={i + 1}
-          expanded={expanded}
-          action={() => this.handlePanel(`interestPanel${i + 1}`)}
-          moveFieldDown={() => this.moveFieldDown(k, i + 1)}
-          moveFieldUp={() => this.moveFieldUp(k, i + 1)}
-        />
-      );
-
       const tempstore = tempinterest[i];
       tempinterest[i] = tempinterest[i + 1];
       tempinterest[i + 1] = tempstore;
+      const storeFieldTracker = tempFieldsTracker[i + 1];
+      tempFieldsTracker[i + 1] = tempFieldsTracker[i];
+      tempFieldsTracker[i] = storeFieldTracker;
+      tempFields[i] = <InterestDetails data={tempinterest[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`interestPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i + 1] = <InterestDetails data={tempinterest[i + 1]} handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`interestPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       interestFields: tempFields,
       interestFieldTracker: tempFieldsTracker,
-      interest: tempinterest
+      interest: tempinterest,
     });
   }
 
@@ -299,30 +224,30 @@ class InterestExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -330,39 +255,25 @@ class InterestExpansionPanel extends React.Component {
     const { btnStyle } = this.state;
     return (
       <div style={useStyles.root}>
-        <ExpansionPanel
-          expanded={expanded === "interestPanel"}
-          onChange={action}
-        >
+        <ExpansionPanel expanded={expanded === 'interestPanel'} onChange={action}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
-            <Typography style={useStyles.heading}>Interests</Typography>
+            <Typography style={useStyles.heading}>Interest</Typography>
             <Typography style={useStyles.secondaryHeading}>
               <i>Insert Tagline here</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div className="customDetailContainer">
-              <div>{interestFields}</div>
+              <div>
+                {interestFields}
+              </div>
               <div className="btnRow">
-                <div
-                  className="addBtn"
-                  onClick={this.onSubChild}
-                  style={btnStyle}
-                  role="presentation"
-                >
-                  -
-                </div>
-                <div
-                  className="addBtn"
-                  onClick={this.onAddChild}
-                  role="presentation"
-                >
-                  +
-                </div>
+                <div className="addBtn" onClick={this.onSubChild} style={btnStyle} role="presentation">-</div>
+                <div className="addBtn" onClick={this.onAddChild} role="presentation">+</div>
               </div>
             </div>
           </ExpansionPanelDetails>
@@ -377,4 +288,4 @@ InterestExpansionPanel.propTypes = {
   action: PropTypes.func.isRequired,
 };
 
-export default InterestExpansionPanel;
+export default InterestExpansionPanel

@@ -19,6 +19,7 @@ const SkillField = (props) => {
   const { moveFieldUp } = props;
   const { moveFieldDown } = props;
   const { handleChange } = props;
+  const { data } = props;
   const [state, setState] = React.useState({
     hidden: false,
   });
@@ -44,10 +45,10 @@ const SkillField = (props) => {
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
             <div className="row rowtwo">
-              <input id={id} onChange={handleChange} name="name" className="left" type="text" required placeholder="Skill Name:" />
-              <input id={id} onChange={handleChange} name="level" className="right" type="text" required placeholder="Level: Option1 | Option2 | Option3" />
+              <input value={data.name} id={id} onChange={handleChange} name="name" className="left" type="text" required placeholder="Skill Name:" />
+              <input value={data.level} id={id} onChange={handleChange} name="level" className="right" type="text" required placeholder="Level: Option1 | Option2 | Option3" />
             </div>
-            <textarea id={id} onChange={handleChange} name="keywords" resize="none" placeholder="Keywords (seperated by ,): keyword_1, keyword_2, keyword_3, ... " />
+            <textarea value={data.keywords} id={id} onChange={handleChange} name="keywords" resize="none" placeholder="Keywords (seperated by ,): keyword_1, keyword_2, keyword_3, ... " />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={
