@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCurrentProfile } from "../actions/profile";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+
 
 import Intro from "../components/edit/intro";
 import Image from "../components/edit/image";
@@ -37,7 +39,20 @@ class Edit extends React.Component {
     this.state = {
       expanded: false
     };
+    this.account = React.createRef();
+    this.about = React.createRef();
+    this.location = React.createRef();
+    this.work = React.createRef();
+    this.volunteer = React.createRef();
+    this.education = React.createRef();
+    this.award = React.createRef();
+    this.publication = React.createRef();
+    this.skill = React.createRef();
+    this.language = React.createRef();
+    this.interest = React.createRef();
+    this.reference = React.createRef();
     this.handlePanel = this.handlePanel.bind(this);
+    this.handleSumbit = this.handleSumbit.bind(this);
   }
 
   componentDidMount() {
@@ -57,6 +72,22 @@ class Edit extends React.Component {
     }
   }
 
+  handleSumbit(event) {
+    event.preventDefault();
+    //this.account.current.callApiRequest();
+    this.about.current.callApiRequest();
+    this.location.current.callApiRequest();
+    this.work.current.callApiRequest();
+    this.volunteer.current.callApiRequest();
+    this.education.current.callApiRequest();
+    this.award.current.callApiRequest();
+    this.publication.current.callApiRequest();
+    this.skill.current.callApiRequest();
+    this.language.current.callApiRequest();
+    this.interest.current.callApiRequest();
+    this.reference.current.callApiRequest();
+  }
+
   render() {
     const { loading, profile } = this.props.profile;
     const { expanded } = this.state;
@@ -67,65 +98,87 @@ class Edit extends React.Component {
           <Intro name="aryan" caption="none" />
           <form>
             {/* <Account
+                ref={this.}
               expanded={expanded}
               action={() => this.handlePanel("accountPanel")}
               existingData={profile.account}
             /> */}
             <About
+              ref={this.about}
               expanded={expanded}
               action={() => this.handlePanel("aboutPanel")}
               existingData={profile.about}
             />
             <Location
+              ref={this.location}
               expanded={expanded}
               action={() => this.handlePanel("locationPanel")}
               existingData={profile.location}
             />
             <Work
+              ref={this.work}
               expanded={expanded}
               action={() => this.handlePanel("workPanel")}
               existingData={profile.work}
             />
             <Volunteer
+              ref={this.volunteer}
               expanded={expanded}
               action={() => this.handlePanel("volunteerPanel")}
               existingData={profile.volunteer}
             />
             <Education
+              ref={this.education}
               expanded={expanded}
               action={() => this.handlePanel("educationPanel")}
               existingData={profile.education}
             />
             <Award
+              ref={this.award}
               expanded={expanded}
               action={() => this.handlePanel("awardPanel")}
               existingData={profile.awards}
             />
             <Publication
+              ref={this.publication}
               expanded={expanded}
               action={() => this.handlePanel("publicationPanel")}
               existingData={profile.publications}
             />
             <Skill
+              ref={this.skill}
               expanded={expanded}
               action={() => this.handlePanel("skillPanel")}
               existingData={profile.skills}
             />
             <Language
+              ref={this.language}
               expanded={expanded}
               action={() => this.handlePanel("languagePanel")}
               existingData={profile.languages}
             />
             <Interest
+              ref={this.interest}
               expanded={expanded}
               action={() => this.handlePanel("interestPanel")}
               existingData={profile.interests}
             />
             <Reference
+              ref={this.reference}
               expanded={expanded}
               action={() => this.handlePanel("referencePanel")}
               existingData={profile.references}
             />
+            <div className="btnContainer">
+              <Button
+                variant="contained"
+                style={{ padding: "12px 50px" }}
+                color="secondary"
+                type="submit"
+              >
+                Done
+              </Button>
+            </div>
           </form>
         </div>
       </MuiThemeProvider>
