@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 const Landing = (props) => {
   const {
     name, label,
@@ -21,7 +22,7 @@ const Landing = (props) => {
         </div>
       </div>
       <div className="portfolioPage1SocialHolder">
-        <div className="portfolioBtn">Learn More</div>
+        <div className="portfolioBtn" onClick={props.initScroll}>Learn More</div>
       </div>
     </div>
   );

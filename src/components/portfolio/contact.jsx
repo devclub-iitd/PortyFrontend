@@ -40,7 +40,9 @@ const Contact = (props) => {
       <div className="portfolioContactCard">
         <div className="miniLine" />
         <div className="portfolioContactCardAddress">
-          <span>{location.address}</span>
+          <span>{location.addressline1}</span>
+          <br />
+          <span>{location.addressline2}</span>
           <br />
           {location.city}
           <br />
@@ -48,7 +50,7 @@ const Contact = (props) => {
           {' '}
           |
           {' '}
-          {location.postalCode}
+          {location.pincode}
         </div>
         <div className="miniLine" />
       </div>

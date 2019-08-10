@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 const MiniCard = (props) => {
   const {
-    title, items, handleDialogOpen,
+    title, items,
   } = props;
 
   return (
@@ -19,12 +19,12 @@ const MiniCard = (props) => {
           </Typography>
           {
             items.map(
-              item => <Chip className="chip" variant="outlined" color="primary" label={item} onClick={() => handleDialogOpen(title, item)} />,
+              item => <Chip className="chip" variant="outlined" label={item.language} />,
             )
           }
         </CardContent>
       </div>
-      <div className="portfolioExtraImage" />
+      <div className="portfolioExtraImage miniLanguageImage" />
     </Card>
   );
 };
@@ -32,7 +32,6 @@ const MiniCard = (props) => {
 MiniCard.propTypes = {
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf.isRequired,
-  handleDialogOpen: PropTypes.func.isRequired,
 };
 
 export default MiniCard;

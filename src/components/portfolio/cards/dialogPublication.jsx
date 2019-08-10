@@ -51,8 +51,8 @@ export default function AlertDialogSlide(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleDialogClose({ title })} color="primary">
-            Done!
+          <Button onClick={() => handleDialogClose({ title })}>
+            Close
           </Button>
         </DialogActions>
       </Dialog>

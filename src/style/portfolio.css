@@ -6,10 +6,21 @@
   bottom: 0px;
   left: 0;
   right: 0;
-  /* margin-top: 100px; */
+  margin-top: 100px;
   overflow-y: scroll;
-  /* transform: scale(0.6); */
-  /* border: 2px solid black; */
+  transform: scale(0.6);
+  border: 2px solid black;
+}
+.portfolioContainerFull{
+  width: 100%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  background-color: white;
 }
 .portfolioPage1{
   width: 100%;
@@ -313,12 +324,14 @@
   width: 500px;
   flex-direction: row;
   height: auto;
+  margin-left: 20px;
+  margin-right: 20px;
   background-color: #e6e6e6;
 }
 .portfolioExtraDetails{
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 300px;
 }
 .portfolioExtraContent{
   display: flex;
@@ -329,11 +342,22 @@
 }
 .portfolioExtraImage{
   height: auto;
-  width: 250px;
-  background-image: url('../images/language.png');
-  background-size: contain;;
+  width: 200px;
+  background-size: cover;;
   background-repeat: no-repeat;
   background-position: center;
+}
+.miniAwardImage {
+  background-image: url('../images/award.jpg');
+}
+.miniPublicationImage {
+  background-image: url('../images/publish.jpg');
+}
+.miniLanguageImage {
+  background-image: url('../images/language.png');
+}
+.miniSkillImage {
+  background-image: url('../images/skill.jpg');
 }
 .portfolioAwardCompany span,.portfolioAwardDate span{
   font-weight: 600;
@@ -364,6 +388,8 @@
 }
 .portfolioContactCardAddress{
   text-align: center;;
+  text-transform: capitalize;
+  line-height: 24px;
 }
 .portfolioContactCardAddress span{
   color: #f1c40f;

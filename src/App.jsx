@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import store from './store';
 import Landing from './pages/landing';
+import Portfolio from './pages/portfolio';
 import Register from './pages/registerationFinal';
 import Validation from './pages/registerationValidation';
 import HeaderMain from './components/headerMain';
@@ -42,6 +43,7 @@ const App = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/home" component={HeaderMain} />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/portfolio" component={Portfolio} />
             <Route exact path="/validate" component={Validation} />
           </Router>
         </MuiThemeProvider>

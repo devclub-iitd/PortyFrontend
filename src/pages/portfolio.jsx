@@ -1,31 +1,32 @@
 import React,{ useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import Landing from './portfolio/landing';
-import About from './portfolio/about';
-import Education from './portfolio/education';
-import Work from './portfolio/work';
-import Volunteer from './portfolio/volunteer';
-import Extra from './portfolio/extra';
-import Contact from './portfolio/contact';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Landing from '../components/portfolio/landing';
+import About from '../components/portfolio/about';
+import Education from '../components/portfolio/education';
+import Work from '../components/portfolio/work';
+import Volunteer from '../components/portfolio/volunteer';
+import Extra from '../components/portfolio/extra';
+import Contact from '../components/portfolio/contact';
 
 import '../style/portfolio.css';
 
 import { getCurrentProfile } from '../actions/profile';
 
-
-
-
+const scrollToRef = (ref) => alert("insert scroll page function");
+// const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 
 const Portfolio = ({ getCurrentProfile , auth , profile : {profile , loading} }) => {
   useEffect(() => {
     getCurrentProfile();
   },[])
-
+  const myRef = React.useRef(null);
+  const initScroll = () => scrollToRef(myRef);
+  // const { offsetTop } = myRef.current.offsetTop;
   return loading && profile === null ? (<div>loading</div>) : (
-    <Paper className="portfolioContainer" elavation={4}>
-      <Landing name={profile.user.name} label={profile.label} />
+    <div class="portfolioContainerFull">
+      <Landing name={profile.user.name} label={profile.label} initScroll={initScroll} />
       <About summary={profile.about} />
       <Education education={profile.education} />
       <Work work={profile.work} />
@@ -41,7 +42,7 @@ const Portfolio = ({ getCurrentProfile , auth , profile : {profile , loading} })
         phone={profile.phone}
         location={profile.location}
       />
-    </Paper>
+    </div>
   );
 };
 
@@ -60,25 +61,3 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps , {getCurrentProfile})(Portfolio);
-
-
-
-
-
-
-// render() {
-//   const {
-//     name,
-//     label,
-//     email,
-//     phone,
-//     about,
-//     location,
-//     education,
-//     work,
-//     volunteer,
-//     awards,
-//     publications,
-//     skills,
-//     languages,
-//   } = this.state;
