@@ -18,8 +18,8 @@ const Work = (props) => {
                 company={workPlace.company}
                 position={workPlace.position}
                 website={workPlace.website}
-                startDate={workPlace.startDate}
-                endDate={workPlace.endDate}
+                startDate={workPlace.startdate}
+                endDate={workPlace.enddate}
               >
                 {workPlace.summary}
               </PaperCard>

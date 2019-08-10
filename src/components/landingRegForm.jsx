@@ -93,14 +93,19 @@ class LandingRegForm extends React.Component {
     //  add checks for all conditions especially dob and all
     //alert('form is now being submitted');
     const {
-      nameVal, entryVal, emailVal
+      nameVal, entryVal, 
+      monthVal,  dateVal,emailVal, numVal,yearVal,webVal
     } = this.state;
     const obj = {
       name : nameVal,
       email : emailVal,
-      password : entryVal
+      password : entryVal,
+      entryno : entryVal,
+      phone : numVal,
+      dob : dateVal + '-' + monthVal + '-' + yearVal,
+      website : webVal
     }
-    //console.log(obj)
+    console.log(obj)
     this.props.register(obj)
   }
 

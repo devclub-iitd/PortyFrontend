@@ -133,14 +133,6 @@ class EducationExpansionPanel extends React.Component {
     this.props.senData("education", this.state.education);
   }
 
-  componentDidMount() {
-    // console.log(this.props)
-    this.setState({
-      education: [...this.state.education, ...this.props.existingData]
-    });
-    // console.log(this.state)
-  }
-
   handleInputChange(event) {
     const { id } = event.target;
     const { education } = this.state;

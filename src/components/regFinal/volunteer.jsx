@@ -130,14 +130,6 @@ class VolunteerExpansionPanel extends React.Component {
     this.props.senData("volunteer", this.state.volunteer);
   }
 
-  componentDidMount() {
-    // console.log(this.props)
-    this.setState({
-      volunteer: [...this.state.volunteer, ...this.props.existingData]
-    });
-    // console.log(this.state)
-  }
-
   handleInputChange(event) {
     const { id } = event.target;
     const { volunteer } = this.state;

@@ -21,16 +21,6 @@ class LocationExpansionPanel extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      addressline1: this.props.existingData.addressline1,
-      addressline2: this.props.existingData.addressline2,
-      city: this.props.existingData.city,
-      pincode: this.props.existingData.pincode,
-      country: this.props.existingData.country
-    });
-  }
-
   callApiRequest() {
     this.props.senData("location", this.state);
   }

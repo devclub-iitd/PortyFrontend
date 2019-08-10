@@ -126,15 +126,7 @@ class PublicationExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData("publication", this.state.publication);
-  }
-
-  componentDidMount() {
-    // console.log(this.props)
-    this.setState({
-      publication: [...this.state.publication, ...this.props.existingData]
-    });
-    // console.log(this.state)
+    this.props.senData("publications", this.state.publication);
   }
 
   handleInputChange(event) {

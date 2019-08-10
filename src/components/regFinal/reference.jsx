@@ -120,15 +120,7 @@ class ReferenceExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData("reference", this.state.reference);
-  }
-
-  componentDidMount() {
-    // console.log(this.props)
-    this.setState({
-      reference: [...this.state.reference, ...this.props.existingData]
-    });
-    // console.log(this.state)
+    this.props.senData("references", this.state.reference);
   }
 
   handleInputChange(event) {

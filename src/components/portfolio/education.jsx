@@ -17,13 +17,13 @@ const Education = (props) => {
             educationPlace => (
               <FlatCard
                 institution={educationPlace.institution}
-                degree={educationPlace.studyType}
+                degree={educationPlace.qualification}
                 area={educationPlace.area}
                 grade={educationPlace.gpa}
-                startDate={educationPlace.starstartDate}
-                endDate={educationPlace.endDate}
+                startDate={educationPlace.startdate}
+                endDate={educationPlace.enddate}
               >
-                {educationPlace.summary}
+                {educationPlace.details}
               </FlatCard>
             ),
           )

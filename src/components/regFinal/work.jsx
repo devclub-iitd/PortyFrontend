@@ -44,15 +44,7 @@ class WorkExpansionPanel extends React.Component {
     this.moveFieldUp = this.moveFieldUp.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-
-  componentDidMount() {
-    // console.log(this.props)
-    this.setState({
-      work : [...this.state.work,...this.props.existingData]
-    })
-    // console.log(this.state)
-  }
-
+  
   onAddChild() {
     const { workFields } = this.state;
     const { workFieldTracker } = this.state;
@@ -117,6 +109,7 @@ class WorkExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
+    console.log(this.state)
     this.props.senData('work', this.state.work);
   }
 

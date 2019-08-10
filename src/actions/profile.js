@@ -34,6 +34,7 @@ export const createProfile = (formData , edit = false) => async dispatch => {
             payload : res.data
         })
         console.log("data posted")
+        console.log(res.data)
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','green'))
 
 

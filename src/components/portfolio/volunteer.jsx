@@ -37,8 +37,8 @@ class Volunteer extends React.Component {
                   organisation={volunteerPlace.organisation}
                   position={volunteerPlace.position}
                   website={volunteerPlace.website}
-                  startDate={volunteerPlace.starstartDate}
-                  endDate={volunteerPlace.endDate}
+                  startDate={volunteerPlace.startdate}
+                  endDate={volunteerPlace.enddate}
                   handlePanelChange={this.handlePanelChange}
                   expanded={expanded}
                   id={volunteerPlace.id}

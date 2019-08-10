@@ -122,15 +122,7 @@ class SkillExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData("skill", this.state.skill);
-  }
-
-  componentDidMount() {
-    // console.log(this.props)
-    this.setState({
-      skill: [...this.state.skill, ...this.props.existingData]
-    });
-    // console.log(this.state)
+    this.props.senData("skills", this.state.skill);
   }
 
   handleInputChange(event) {
