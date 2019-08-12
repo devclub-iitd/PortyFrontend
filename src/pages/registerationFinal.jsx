@@ -78,6 +78,7 @@ class RegFinal extends React.Component {
       case "languages":
       case "interests":
       case "references":
+      case "about":
       case "location": {
         this.setState({
           [type]: data

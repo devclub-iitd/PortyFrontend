@@ -22,6 +22,8 @@ class LocationExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
+    // console.log("below is the props location data");
+    // console.log(this.state);
     this.props.senData("location", this.state);
   }
 

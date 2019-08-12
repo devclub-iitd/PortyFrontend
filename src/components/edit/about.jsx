@@ -11,9 +11,9 @@ class AboutExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      label: "",
-      summary: ""
-    };
+      label : this.props.existingData.label,
+      summary : this.props.existingData.summary
+    }; 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
@@ -22,7 +22,7 @@ class AboutExpansionPanel extends React.Component {
   }
 
   componentDidMount() {
-  }
+  } 
 
   handleInputChange(event) {
     const type = event.target.name;

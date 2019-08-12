@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCurrentProfile } from "../actions/profile";
+import { createProfile } from "../actions/profile";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
@@ -53,6 +54,7 @@ class Edit extends React.Component {
     this.reference = React.createRef();
     this.handlePanel = this.handlePanel.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
+    this.retrieveChildData = this.retrieveChildData.bind(this);
   }
 
   componentDidMount() {
@@ -72,8 +74,33 @@ class Edit extends React.Component {
     }
   }
 
+  retrieveChildData(type, data) {
+    switch (type) {
+      case "work":
+      case "volunteer":
+      case "education":
+      case "awards":
+      case "publications":
+      case "skills":
+      case "about":
+      case "languages":
+      case "interests":
+      case "references":
+      case "location": {
+        this.setState({
+          [type]: data
+        });
+        const obj = { [type]: data };
+        console.log(obj);
+        const stringyobj = JSON.stringify(obj);
+        this.props.createProfile(stringyobj);
+      }
+    }
+  }
+
   handleSumbit(event) {
     event.preventDefault();
+    //alert("being submitted");
     //this.account.current.callApiRequest();
     this.about.current.callApiRequest();
     this.location.current.callApiRequest();
@@ -96,7 +123,7 @@ class Edit extends React.Component {
         <div style={{ paddingBottom: 100 }}>
           <Image />
           <Intro name="aryan" caption="none" />
-          <form>
+          <form onSubmit={this.handleSumbit}>
             {/* <Account
                 ref={this.}
               expanded={expanded}
@@ -108,66 +135,77 @@ class Edit extends React.Component {
               expanded={expanded}
               action={() => this.handlePanel("aboutPanel")}
               existingData={profile.about}
+              senData={this.retrieveChildData}
             />
             <Location
               ref={this.location}
               expanded={expanded}
               action={() => this.handlePanel("locationPanel")}
               existingData={profile.location}
+              senData={this.retrieveChildData}
             />
             <Work
               ref={this.work}
               expanded={expanded}
               action={() => this.handlePanel("workPanel")}
               existingData={profile.work}
+              senData={this.retrieveChildData}
             />
             <Volunteer
               ref={this.volunteer}
               expanded={expanded}
               action={() => this.handlePanel("volunteerPanel")}
               existingData={profile.volunteer}
+              senData={this.retrieveChildData}
             />
             <Education
               ref={this.education}
               expanded={expanded}
               action={() => this.handlePanel("educationPanel")}
               existingData={profile.education}
+              senData={this.retrieveChildData}
             />
             <Award
               ref={this.award}
               expanded={expanded}
               action={() => this.handlePanel("awardPanel")}
               existingData={profile.awards}
+              senData={this.retrieveChildData}
             />
             <Publication
               ref={this.publication}
               expanded={expanded}
               action={() => this.handlePanel("publicationPanel")}
               existingData={profile.publications}
+              senData={this.retrieveChildData}
             />
             <Skill
               ref={this.skill}
               expanded={expanded}
               action={() => this.handlePanel("skillPanel")}
               existingData={profile.skills}
+              senData={this.retrieveChildData}
             />
             <Language
               ref={this.language}
               expanded={expanded}
               action={() => this.handlePanel("languagePanel")}
               existingData={profile.languages}
+              senData={this.retrieveChildData}
             />
             <Interest
               ref={this.interest}
               expanded={expanded}
               action={() => this.handlePanel("interestPanel")}
               existingData={profile.interests}
+              senData={this.retrieveChildData}
             />
             <Reference
               ref={this.reference}
               expanded={expanded}
               action={() => this.handlePanel("referencePanel")}
               existingData={profile.references}
+              senData={this.retrieveChildData}
             />
             <div className="btnContainer">
               <Button
@@ -199,5 +237,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getCurrentProfile , createProfile }
 )(Edit);
