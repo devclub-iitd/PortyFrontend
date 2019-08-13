@@ -107,7 +107,7 @@ class PublicationExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('publication', this.state.publication);
+    this.props.senData('publications', this.state.publication);
   }
 
   handleInputChange(event) {

@@ -104,7 +104,7 @@ class LanguageExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('language', this.state.language);
+    this.props.senData('languages', this.state.language);
   }
 
   handleInputChange(event) {

@@ -104,7 +104,7 @@ class InterestExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('interest', this.state.interest);
+    this.props.senData('interests', this.state.interest);
   }
 
   handleInputChange(event) {

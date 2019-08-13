@@ -105,7 +105,7 @@ class SkillExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('skill', this.state.skill);
+    this.props.senData('skills', this.state.skill);
   }
 
   handleInputChange(event) {

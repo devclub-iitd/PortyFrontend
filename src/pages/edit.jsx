@@ -113,6 +113,7 @@ class Edit extends React.Component {
     this.language.current.callApiRequest();
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
+    alert("Profile Updated")
   }
 
   render() {

@@ -106,7 +106,7 @@ class AwardExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('award', this.state.award);
+    this.props.senData('awards', this.state.award);
   }
 
   handleInputChange(event) {
