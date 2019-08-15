@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-
-import PersonPinIcon from '@material-ui/icons/PersonPin';
 
 import RegForm from '../components/landingRegForm';
 
@@ -71,18 +67,6 @@ class IconLabelTabs extends React.Component {
               {' '}
             </TabContainer>
           )}
-        </Paper>
-
-        <Paper square className={classes.rootRegNav}>
-          <Tabs
-            value={value}
-            onChange={this.handleChange}
-            variant="fullWidth"
-            indicatorColor="secondary"
-            textColor="secondary"
-          >
-            <Tab icon={<PersonPinIcon />} label="ABOUT YOU" />
-          </Tabs>
         </Paper>
         <button form="regform" className="btn" type="submit"> Let&apos;s Go </button>
       </div>

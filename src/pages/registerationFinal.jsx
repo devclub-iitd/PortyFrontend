@@ -1,24 +1,24 @@
-import React from "react";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import { connect } from "react-redux";
-import { createProfile } from "../actions/profile";
+import React from 'react';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { createProfile } from '../actions/profile';
 
-import Intro from "../components/regFinal/intro";
-import Image from "../components/regFinal/image";
-import Account from "../components/regFinal/account";
-import About from "../components/regFinal/about";
-import Location from "../components/regFinal/location";
-import Work from "../components/regFinal/work";
-import Volunteer from "../components/regFinal/volunteer";
-import Education from "../components/regFinal/education";
-import Award from "../components/regFinal/award";
-import Publication from "../components/regFinal/publication";
-import Language from "../components/regFinal/language";
-import Skill from "../components/regFinal/skill";
-import Interest from "../components/regFinal/interest";
-import Reference from "../components/regFinal/reference";
-import "../style/regFinal.css";
+import Intro from '../components/regFinal/intro';
+import Image from '../components/regFinal/image';
+import Account from '../components/regFinal/account';
+import About from '../components/regFinal/about';
+import Location from '../components/regFinal/location';
+import Work from '../components/regFinal/work';
+import Volunteer from '../components/regFinal/volunteer';
+import Education from '../components/regFinal/education';
+import Award from '../components/regFinal/award';
+import Publication from '../components/regFinal/publication';
+import Language from '../components/regFinal/language';
+import Skill from '../components/regFinal/skill';
+import Interest from '../components/regFinal/interest';
+import Reference from '../components/regFinal/reference';
+import '../style/regFinal.css';
 
 const theme = createMuiTheme({
   palette: {
@@ -127,7 +127,7 @@ class RegFinal extends React.Component {
               expanded={expanded}
               action={() => this.handlePanel("locationPanel")}
               senData={this.retrieveChildData}
-            /> 
+            />
             <Work
               ref={this.work}
               expanded={expanded}

@@ -19,8 +19,8 @@ const styles = {
     marginTop: '40px',
     minWidth: '570px',
     width: '65%',
-    minHeight: '240px', // 328px
-    paddingBottom: '30px',
+    height: 'auto',
+    padding: '20px',
   },
 };
 
@@ -35,7 +35,7 @@ class IconLabelTabs extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
+      <div className="loginPageContainer">
         <div className="title">
             Login
         </div>

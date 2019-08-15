@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Home from '../pages/home';
 import Edit from '../pages/edit';
+
 import '../style/header.css';
 
 const theme = createMuiTheme({
@@ -37,6 +38,10 @@ TabContainer.propTypes = {
 const styles = () => ({
   root: {
     flexGrow: 1,
+    backgroundColor: '#e6e6e6',
+  },
+  slider: {
+    backgroundColor: 'blue',
   },
   navbarContainer: {
     height: '55px',
@@ -44,7 +49,6 @@ const styles = () => ({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     lineHeight: '55px',
-    position: 'fixed',
   },
   navbarItem: {
     height: '55px',
@@ -56,13 +60,14 @@ const styles = () => ({
     },
     '&:hover': {
       color: '#000',
+      // fontWeight: '600',
       letterSpacing: '2px',
     },
   },
   headercontainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
   },
 
 });
@@ -70,11 +75,11 @@ const styles = () => ({
 class SimpleTabs extends React.Component {
   state = {
     value: 0,
-  };
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });
-  };
+  }
 
   render() {
     const { classes } = this.props;
@@ -83,23 +88,22 @@ class SimpleTabs extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
-          <AppBar position="fixed" className={classes.headercontainer}>
-            <div className="headerTitle">
-              Portfolio Creator
-              {' '}
-              <span>| Aryan Gupta</span>
+          <AppBar position="static" className={classes.headercontainer}>
+            <div className="headerDetails">
+              <div className="headerTitle">
+                Portfolio Creator |
+                {' '}
+                <span>
+                  Aryan Gupta
+                </span>
+              </div>
             </div>
             <Tabs value={value} onChange={this.handleChange} className={classes.navbarContainer}>
               <Tab className={classes.navbarItem} label="Home" />
               <Tab className={classes.navbarItem} label="Edit" />
             </Tabs>
           </AppBar>
-          {value === 0 && (
-          <TabContainer>
-            <Home />
-            {' '}
-          </TabContainer>
-          )}
+          {value === 0 && <TabContainer><Home /></TabContainer>}
           {value === 1 && <TabContainer><Edit /></TabContainer>}
         </div>
       </MuiThemeProvider>

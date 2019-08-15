@@ -3,6 +3,20 @@
   display: flex;
   flex-direction: column;
 }
+.loginFormCont {
+  /* background-color: red; */
+}
+.loginFormCont form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 120px;
+}
+.loginFormCont input {
+  margin: 0px;
+
+}
 .row{
   display: flex;
   flex-direction: row;
@@ -67,6 +81,7 @@ input:hover::placeholder{
   font-size:16px;
   color:#3d40d8;
   text-align: center;
+  background-color: transparent;
   /* line-height: 40px; */
   transition: 0.2s ease-out;
   outline: none;
