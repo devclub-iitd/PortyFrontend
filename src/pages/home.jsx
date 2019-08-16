@@ -15,13 +15,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const logout = () => {
+  alert('insert logout waala code here');
+};
+
 const Home = () => {
   const classes = useStyles();
   return (
     <div>
       <div className="homePageTitle">Your Portfolio is ready...</div>
       <Portfolio />
-      <Fab variant="extended" aria-label="delete" className={classes.fab}>
+      <Fab variant="extended" aria-label="delete" className={classes.fab} onClick={logout}>
         <NavigationIcon className={classes.extendedIcon} />
         Extended
       </Fab>
