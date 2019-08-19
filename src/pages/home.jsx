@@ -9,14 +9,29 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 const useStyles = makeStyles(theme => ({
   fab: {
     margin: theme.spacing(1),
+    marginRight: '10px',
+    marginLeft: '10px',
   },
   extendedIcon: {
     marginRight: theme.spacing(1),
   },
+  redBtn: {
+    backgroundColor: '#e74c3c',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#c0392b',
+    }
+  }
 }));
 
 const logout = () => {
   alert('insert logout waala code here');
+};
+const portfolio = () => {
+  alert('insert portfolio fullscreen waala code here');
+};
+const download = () => {
+  alert('insert download portfolio waala code here');
 };
 
 const Home = () => {
@@ -25,10 +40,20 @@ const Home = () => {
     <div>
       <div className="homePageTitle">Your Portfolio is ready...</div>
       <Portfolio />
-      <Fab variant="extended" aria-label="delete" className={classes.fab} onClick={logout}>
-        <NavigationIcon className={classes.extendedIcon} />
-        Extended
-      </Fab>
+      <div className="btnRow">
+        <Fab variant="extended" color="primary" aria-label="delete" className={`${classes.fab} ${classes.redBtn}`} onClick={logout}>
+          <NavigationIcon className={classes.extendedIcon} />
+          Logout
+        </Fab>
+        <Fab variant="extended" color="primary" aria-label="delete" className={classes.fab} onClick={portfolio}>
+          <NavigationIcon className={classes.extendedIcon} />
+          Portfolio
+        </Fab>
+        <Fab variant="extended" color="secondary" aria-label="delete" className={classes.fab} onClick={download}>
+          <NavigationIcon className={classes.extendedIcon} />
+          Download
+        </Fab>
+      </div>
     </div>
 
   )

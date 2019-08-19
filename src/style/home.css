@@ -5,3 +5,10 @@
   text-align: center;
   margin-top: 25px;
 }
+.btnRow {
+  /* background-color: red; */
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 5%;
+}

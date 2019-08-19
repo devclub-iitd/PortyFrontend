@@ -54,9 +54,9 @@ const Contact = (props) => {
         </div>
         <div className="miniLine" />
       </div>
-      <div className="portfolioContactCard portfolioContactSocialCard">
+      {/*<div className="portfolioContactCard portfolioContactSocialCard">
         <span>insert social icons with clickable links</span>
-      </div>
+      </div>*/}
     </div>
   );
 };
