@@ -1,10 +1,32 @@
-import React from 'react';
-import HeaderLogin from '../components/headerLogin';
+import React from "react";
+import HeaderLogin from "../components/headerLogin";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { Link , Redirect } from "react-router-dom";
 
-const Landing = () => (
-  <div>
-    <HeaderLogin />
-  </div>
-);
+const Landing = ({ isAuthenticated, auth: { loading } }) => {
 
-export default Landing;
+  if(loading) {
+    return <div>loading</div>
+  }
+
+  if(!loading && isAuthenticated) {
+    return <Redirect to="/home"/>
+  }
+  return (
+    <div>
+      <HeaderLogin />
+    </div>
+  );
+};
+
+
+
+ 
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  auth : state.auth
+});
+
+export default connect(mapStateToProps)(Landing);

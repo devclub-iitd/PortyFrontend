@@ -3,9 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import Portfolio from '../components/portfolio';
 import '../style/home.css';
-
+import {connect} from 'react-redux'
+import {logout} from '../actions/auth'
+import {Link}  from 'react-router-dom'
+import { createBrowserHistory } from "history";
 import NavigationIcon from '@material-ui/icons/Navigation';
 
+const history = createBrowserHistory();
 const useStyles = makeStyles(theme => ({
   fab: {
     margin: theme.spacing(1),
@@ -24,18 +28,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const logout = () => {
-  alert('insert logout waala code here');
-};
-const portfolio = () => {
-  alert('insert portfolio fullscreen waala code here');
-};
+
+
 const download = () => {
   alert('insert download portfolio waala code here');
 };
 
-const Home = () => {
+const Home = ({logout , history }) => {
   const classes = useStyles();
+  const portfolio = () => {
+    
+  };
   return (
     <div>
       <div className="homePageTitle">Your Portfolio is ready...</div>
@@ -47,7 +50,7 @@ const Home = () => {
         </Fab>
         <Fab variant="extended" color="primary" aria-label="delete" className={classes.fab} onClick={portfolio}>
           <NavigationIcon className={classes.extendedIcon} />
-          Portfolio
+          <Link to='/portfolio'>Portfolio</Link>
         </Fab>
         <Fab variant="extended" color="secondary" aria-label="delete" className={classes.fab} onClick={download}>
           <NavigationIcon className={classes.extendedIcon} />
@@ -59,4 +62,12 @@ const Home = () => {
   )
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Home);
