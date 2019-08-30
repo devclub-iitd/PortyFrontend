@@ -18,7 +18,7 @@ export const getCurrentProfile = () => async dispatch => {
     }
 }
 
-export const createProfile = (formData , edit = false) => async dispatch => {
+export const createProfile = (formData , history ,edit = true) => async dispatch => {
     try {
         
         const config = {
@@ -26,17 +26,18 @@ export const createProfile = (formData , edit = false) => async dispatch => {
                 'Content-Type' : 'application/json'
             }
         }
-
+        
         const res = await axios.post('/api/profile', formData , config)
-
         dispatch({
             type : GET_PROFILE,
             payload : res.data
         })
-        console.log("data posted")
-        //console.log(res.data)
+        
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','green'))
 
+       
+       if(!edit) {history.push("/home");}
+        
 
     } catch (err) {
         const errors = err.response.data.errors

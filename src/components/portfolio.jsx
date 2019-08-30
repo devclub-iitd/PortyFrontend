@@ -8,6 +8,7 @@ import Education from "./portfolio/education";
 import Work from "./portfolio/work";
 import Volunteer from "./portfolio/volunteer";
 import Extra from "./portfolio/extra";
+import {Link} from 'react-router-dom'
 import Contact from "./portfolio/contact";
 import "../style/portfolio.css";
 
@@ -42,7 +43,12 @@ const Portfolio = ({ getCurrentProfile, profile: { profile, loading } }) => {
       </Paper>
     );
   } else if (!loading && profile === null) {
-    return <div>No profile found....please make one</div>;
+    return (
+      <div>
+        No profile found....please make one by accessing{" "}
+        <Link to="/register">here</Link>
+      </div>
+    );
   }
 
   //return (<div>Hello</div>)

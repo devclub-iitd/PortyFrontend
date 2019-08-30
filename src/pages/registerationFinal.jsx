@@ -3,6 +3,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { createProfile } from '../actions/profile';
+import { withRouter } from "react-router-dom";
 
 import Intro from '../components/regFinal/intro';
 import Image from '../components/regFinal/image';
@@ -83,10 +84,6 @@ class RegFinal extends React.Component {
         this.setState({
           [type]: data
         });
-        const obj = { [type]: data };
-        console.log(obj);
-        const stringyobj = JSON.stringify(obj);
-        this.props.createProfile(stringyobj);
       }
     }
   }
@@ -105,6 +102,10 @@ class RegFinal extends React.Component {
     this.language.current.callApiRequest();
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
+    const obj = this.state;
+    console.log(obj);
+    const stringyobj = JSON.stringify(obj);
+    this.props.createProfile(stringyobj,this.props.history,false);
   }
 
   render() {
@@ -207,4 +208,4 @@ class RegFinal extends React.Component {
 export default connect(
   null,
   { createProfile }
-)(RegFinal);
+)(withRouter(RegFinal));

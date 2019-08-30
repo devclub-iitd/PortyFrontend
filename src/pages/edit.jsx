@@ -87,13 +87,13 @@ class Edit extends React.Component {
       case "interests":
       case "references":
       case "location": {
-        this.setState({
+        const obj = {
           [type]: data
-        });
-        const obj = { [type]: data };
+        };
         console.log(obj);
         const stringyobj = JSON.stringify(obj);
-        this.props.createProfile(stringyobj);
+        this.props.createProfile(stringyobj, this.props.history );
+        
       }
     }
   }
@@ -113,7 +113,7 @@ class Edit extends React.Component {
     this.language.current.callApiRequest();
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
-    alert("Profile Updated")
+    alert('Profile updated')
   }
 
   render() {
