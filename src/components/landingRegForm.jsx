@@ -107,6 +107,7 @@ class LandingRegForm extends React.Component {
     };
     console.log(obj);
     this.props.register(obj);
+    this.props.handleDial("insert message here");
   }
 
   render() {

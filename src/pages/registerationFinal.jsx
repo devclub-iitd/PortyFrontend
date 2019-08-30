@@ -3,7 +3,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { createProfile } from '../actions/profile';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 import Intro from '../components/regFinal/intro';
 import Image from '../components/regFinal/image';

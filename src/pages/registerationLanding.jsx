@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 import RegForm from '../components/landingRegForm';
 
@@ -43,7 +46,24 @@ class IconLabelTabs extends React.Component {
     super(props);
     this.state = {
       value: 0,
+      openDial: false,
+      message: '',
     };
+    this.handleClose = this.handleClose.bind(this);
+    this.openDial = this.openDial.bind(this);
+  }
+
+  handleClose() {
+    this.setState({
+      openDial: false,
+    });
+  }
+
+  openDial(mess) {
+    this.setState({
+      openDial: true,
+      message: mess,
+    });
   }
 
   handleChange = (event, value) => {
@@ -63,12 +83,36 @@ class IconLabelTabs extends React.Component {
           {value === 0 && (
             <TabContainer>
               {' '}
-              <RegForm />
+              <RegForm handleDial={this.openDial} />
               {' '}
             </TabContainer>
           )}
         </Paper>
         <button form="regform" className="btn" type="submit"> Let&apos;s Go </button>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.openDial}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{this.state.message}</span>}
+          action={[
+            <IconButton
+              key="close"
+              aria-label="close"
+              color="inherit"
+              className={classes.close}
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
       </div>
     );
   }
