@@ -17,20 +17,20 @@ class AwardExpansionPanel extends React.Component {
       awardDetailsCount: 1,
       maxCount: 1,
       btnStyle: {
-        display: "none"
+        display: 'none',
       },
       expanded: false,
       awardFields: tempFields,
       awardFieldTracker: tempFieldsTracker,
       award: [
         {
-          title: "",
-          date: "",
-          awarder: "",
-          details: "",
-          hidden: false
-        }
-      ]
+          title: '',
+          date: '',
+          awarder: '',
+          details: '',
+          hidden: false,
+        },
+      ],
     };
     const { expanded } = this.state;
     tempFields.push(
@@ -72,16 +72,16 @@ class AwardExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${i}`)}
         moveFieldDown={() => this.moveFieldDown(key, i)}
         moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
+      />,
     );
 
     const { award } = this.state;
     const awardObj = {
-      title: "",
-      date: "",
-      awarder: "",
-      details: "",
-      hidden: false
+      title: '',
+      date: '',
+      awarder: '',
+      details: '',
+      hidden: false,
     };
     const tempaward = award;
     tempaward.push(awardObj);
@@ -89,11 +89,11 @@ class AwardExpansionPanel extends React.Component {
       awardDetailsCount: state.awardDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: "block"
+        display: 'block',
       },
       awardFields: tempFields,
       awardFieldTracker: tempFieldsTracker,
-      award: tempaward
+      award: tempaward,
     }));
   }
 
@@ -112,19 +112,19 @@ class AwardExpansionPanel extends React.Component {
       awardDetailsCount: state.awardDetailsCount - 1,
       awardFields: tempFields,
       awardFieldTracker: tempFieldsTracker,
-      award: tempaward
+      award: tempaward,
     }));
     if (awardDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: "none"
-        }
+          display: 'none',
+        },
       });
     }
   }
 
   callApiRequest() {
-    this.props.senData("awards", this.state.award);
+    this.props.senData('awards', this.state.award);
   }
 
   handleInputChange(event) {
@@ -132,13 +132,13 @@ class AwardExpansionPanel extends React.Component {
     const { award } = this.state;
     const type = event.target.name;
     const tempaward = award;
-    if (type === "hidden") {
+    if (type === 'hidden') {
       tempaward[id][type] = event.target.checked;
     } else {
       tempaward[id][type] = event.target.value;
     }
     this.setState({
-      award: tempaward
+      award: tempaward,
     });
   }
 

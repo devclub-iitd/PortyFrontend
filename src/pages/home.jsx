@@ -1,20 +1,22 @@
-import React , {useEffect}  from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect } from 'react';
 import Fab from '@material-ui/core/Fab';
+import NavigationIcon from '@material-ui/icons/Navigation';
+import { makeStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../actions/auth';
+
 import Portfolio from '../components/portfolio';
 import '../style/home.css';
-import {getCurrentProfile} from '../actions/profile'
-import {connect} from 'react-redux'
-import {logout} from '../actions/auth'
-import {Link}  from 'react-router-dom'
 
-import NavigationIcon from '@material-ui/icons/Navigation';
+import { getCurrentProfile } from '../actions/profile';
 
 const useStyles = makeStyles(theme => ({
   fab: {
     margin: theme.spacing(1),
     marginRight: '10px',
     marginLeft: '10px',
+    textDecoration: 'none',
   },
   extendedIcon: {
     marginRight: theme.spacing(1),
@@ -24,17 +26,16 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     '&:hover': {
       backgroundColor: '#c0392b',
-    }
-  }
+    },
+  },
 }));
-
 
 
 const download = () => {
   alert('insert download portfolio waala code here');
 };
 
-const Home = ({logout , getCurrentProfile }) => {
+const Home = ({logout, getCurrentProfile }) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
@@ -45,14 +46,14 @@ const Home = ({logout , getCurrentProfile }) => {
     <div>
       <div className="homePageTitle">Your Portfolio is ready...</div>
       <Portfolio />
-      <div className="btnRow">
+      <div className="btnRowHome">
         <Fab variant="extended" color="primary" aria-label="delete" className={`${classes.fab} ${classes.redBtn}`} onClick={logout}>
           <NavigationIcon className={classes.extendedIcon} />
           Logout
         </Fab>
         <Fab variant="extended" color="primary" aria-label="delete" className={classes.fab} onClick={portfolio}>
           <NavigationIcon className={classes.extendedIcon} />
-          <Link to='/portfolio'>Portfolio</Link>
+          <Link to="/portfolio">Portfolio</Link>
         </Fab>
         <Fab variant="extended" color="secondary" aria-label="delete" className={classes.fab} onClick={download}>
           <NavigationIcon className={classes.extendedIcon} />
@@ -61,15 +62,15 @@ const Home = ({logout , getCurrentProfile }) => {
       </div>
     </div>
 
-  )
-}
+  );
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(
   mapStateToProps,
-  { logout , getCurrentProfile }
+  { logout, getCurrentProfile },
 )(Home);
