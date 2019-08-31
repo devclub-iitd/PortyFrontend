@@ -16,6 +16,7 @@ class LandingRegForm extends React.Component {
       dateVal: '',
       yeareValPlaceholder: 'Year: ',
       yearVal: '',
+      enoVal: '',
       emailVal: '',
       numVal: '',
       webVal: '',
@@ -85,6 +86,8 @@ class LandingRegForm extends React.Component {
       this.setState({ numVal: event.target.value });
     } else if (event.target.name === 'website') {
       this.setState({ webVal: event.target.value });
+    } else if (event.target.name === 'entryno') {
+      this.setState({ enoVal: event.target.value });
     }
   }
 
@@ -94,7 +97,7 @@ class LandingRegForm extends React.Component {
     //  alert('form is now being submitted');
     const {
       nameVal, passVal,
-      monthVal, dateVal, emailVal, numVal, yearVal, webVal,
+      monthVal, dateVal, emailVal, numVal, yearVal, webVal, enoVal,
     } = this.state;
     const obj = {
       name: nameVal,
@@ -102,8 +105,9 @@ class LandingRegForm extends React.Component {
       password: passVal,
       entryno: passVal,
       phone: numVal,
-      dob: dateVal + '-' + monthVal + '-' + yearVal,
+      dob: `${dateVal}-${monthVal}-${yearVal}`,
       website: webVal,
+      enoVal: enoVal,
     };
     console.log(obj);
     this.props.register(obj);
@@ -114,7 +118,7 @@ class LandingRegForm extends React.Component {
     const {
       nameVal, passVal, monthValPlaceholder,
       monthVal, dateValPlaceholder, dateVal, yeareValPlaceholder, yearVal, emailVal, numVal,
-      webVal, extendMonthDisp, specialMonth,
+      webVal, extendMonthDisp, specialMonth, enoVal,
     } = this.state;
     return (
       <div className="formCont">
@@ -218,6 +222,7 @@ class LandingRegForm extends React.Component {
               </div>
             </div>
           </div>
+          <input required style={{ width: '95.3%' }} type="text" name="entryno" placeholder="Entry Number: " value={enoVal} onChange={this.handleChange} />
           <input required style={{ width: '95.3%' }} type="email" name="email" placeholder="Email Adress: " value={emailVal} onChange={this.handleChange} />
           <input required style={{ width: '95.3%' }} type="number" name="phone" placeholder="Phone Number: " value={numVal} onChange={this.handleChange} />
           <input required style={{ width: '95.3%' }} type="text" name="website" placeholder="Website: (if any)" value={webVal} onChange={this.handleChange} />

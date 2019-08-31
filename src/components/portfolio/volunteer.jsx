@@ -32,7 +32,7 @@ class Volunteer extends React.Component {
         <div className="portfolioPageSplit leftVolunteer">
           {
             volunteer.map(
-              volunteerPlace => (
+              (volunteerPlace, index) => (
                 <ExpansionCard
                   organisation={volunteerPlace.organisation}
                   position={volunteerPlace.position}
@@ -41,7 +41,7 @@ class Volunteer extends React.Component {
                   endDate={volunteerPlace.enddate}
                   handlePanelChange={this.handlePanelChange}
                   expanded={expanded}
-                  id={volunteerPlace.id}
+                  id={index}
                 >
                   {volunteerPlace.summary}
                 </ExpansionCard>

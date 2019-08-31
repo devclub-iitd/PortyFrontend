@@ -11,9 +11,11 @@ class AboutExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name : 'this.props.existingData.name',
+      number : 'this.props.existingData.number',
       label : this.props.existingData.label,
       summary : this.props.existingData.summary
-    }; 
+    };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
@@ -22,7 +24,7 @@ class AboutExpansionPanel extends React.Component {
   }
 
   componentDidMount() {
-  } 
+  }
 
   handleInputChange(event) {
     const type = event.target.name;
@@ -62,10 +64,12 @@ class AboutExpansionPanel extends React.Component {
     };
     const { expanded } = this.props;
     const { action } = this.props;
-    const { label, summary } = this.state;
+    const {
+      label, summary, name, number,
+    } = this.state;
     return (
       <div style={useStyles.root}>
-        <ExpansionPanel expanded={expanded === "aboutPanel"} onChange={action}>
+        <ExpansionPanel expanded={expanded === 'aboutPanel'} onChange={action}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
@@ -78,6 +82,22 @@ class AboutExpansionPanel extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div className="epDetails">
+              <input
+                value={name}
+                onChange={this.handleInputChange}
+                name="name"
+                type="text"
+                required
+                placeholder="Name:"
+              />
+              <input
+                value={number}
+                onChange={this.handleInputChange}
+                name="number"
+                type="number"
+                required
+                placeholder="Contact Number:"
+              />
               <input
                 value={label}
                 onChange={this.handleInputChange}
