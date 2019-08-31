@@ -37,7 +37,7 @@ const Portfolio = ({ getCurrentProfile, profile: { profile, loading } }) => {
         />
         <Contact
           email={profile.user.email}
-          phone={profile.phone}
+          phone={profile.user.phone}
           location={profile.location}
         />
       </Paper>

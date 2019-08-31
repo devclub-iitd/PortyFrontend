@@ -36,7 +36,7 @@ export const createProfile = (formData , history ,edit = true) => async dispatch
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','green'))
 
        
-       if(!edit) {history.push("/home");}
+       
         
 
     } catch (err) {

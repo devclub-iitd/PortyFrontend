@@ -84,28 +84,30 @@ class RegFinal extends React.Component {
         this.setState({
           [type]: data
         });
+        const obj = {
+          [type] : data
+        }
+        const ts = JSON.stringify(obj)
+        this.props.createProfile(ts,this.props.history,false)
       }
     }
   }
 
-  handleSumbit(event) {
+  async handleSumbit(event) {
     event.preventDefault();
     //this.account.current.callApiRequest();
-    this.about.current.callApiRequest();
-    this.location.current.callApiRequest();
-    this.work.current.callApiRequest();
-    this.volunteer.current.callApiRequest();
-    this.education.current.callApiRequest();
-    this.award.current.callApiRequest();
-    this.publication.current.callApiRequest();
-    this.skill.current.callApiRequest();
-    this.language.current.callApiRequest();
-    this.interest.current.callApiRequest();
-    this.reference.current.callApiRequest();
-    const obj = this.state;
-    console.log(obj);
-    const stringyobj = JSON.stringify(obj);
-    this.props.createProfile(stringyobj,this.props.history,false);
+    await this.about.current.callApiRequest();
+    await this.location.current.callApiRequest();
+    await this.work.current.callApiRequest();
+    await this.volunteer.current.callApiRequest();
+    await this.education.current.callApiRequest();
+    await this.award.current.callApiRequest();
+    await this.publication.current.callApiRequest();
+    await this.skill.current.callApiRequest();
+    await this.language.current.callApiRequest();
+    await this.interest.current.callApiRequest();
+    await this.reference.current.callApiRequest();
+    alert('Profile has been created')
   }
 
   render() {
