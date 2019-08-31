@@ -11,8 +11,8 @@ class AboutExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name : 'this.props.existingData.name',
-      number : 'this.props.existingData.number',
+      name : this.props.existingContactData.name,
+      number : this.props.existingContactData.phone,
       label : this.props.existingData.label,
       summary : this.props.existingData.summary
     };
@@ -31,6 +31,7 @@ class AboutExpansionPanel extends React.Component {
     this.setState({
       [type]: event.target.value
     });
+    console.log(this.state);
   }
 
   render() {

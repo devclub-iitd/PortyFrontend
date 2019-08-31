@@ -11,8 +11,9 @@ import Validation from './pages/registerationValidation';
 import HeaderMain from './components/headerMain';
 import setAuthToken from './utility/setauthtoken';
 import { loadUser } from './actions/auth';
-import PrivateRoute from './components/privateRoute'
-import Alert from './components/alert'
+import PrivateRoute from './components/privateRoute';
+import Alert from './components/alert';
+import PublicPortfolio from './pages/publicPortfolio';
 
 const theme = createMuiTheme({
   palette: {
@@ -47,6 +48,7 @@ const App = () => {
             <Route exact path="/" component={Landing} />
             <PrivateRoute exact path="/portfolio" component={Portfolio} />
             <Route exact path="/validate" component={Validation} />
+            <Route exact path="/portfolio/:id" component={PublicPortfolio} />
           </Router>
         </MuiThemeProvider>
       </div>
