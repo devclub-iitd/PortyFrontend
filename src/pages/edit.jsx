@@ -93,7 +93,7 @@ class Edit extends React.Component {
         console.log(obj);
         const stringyobj = JSON.stringify(obj);
         this.props.createProfile(stringyobj, this.props.history );
-        
+
       }
     }
   }
@@ -123,7 +123,7 @@ class Edit extends React.Component {
       <MuiThemeProvider theme={theme}>
         <div style={{ paddingBottom: 100 }}>
           <Image />
-          <Intro name="aryan" caption="none" />
+          <Intro name={this.props.user.name} caption="none" />
           <form onSubmit={this.handleSumbit}>
             {/* <Account
                 ref={this.}
@@ -233,7 +233,8 @@ Edit.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
+  user: state.auth.user,
 });
 
 export default connect(

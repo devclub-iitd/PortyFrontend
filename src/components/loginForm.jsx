@@ -35,7 +35,6 @@ class LoginFrom extends React.Component {
       password: passVal,
     };
     this.props.login(obj);
-    this.props.handleDial("hello world");
   }
 
   render() {

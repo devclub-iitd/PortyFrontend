@@ -10,6 +10,7 @@ import Volunteer from "../components/portfolio/volunteer";
 import Extra from "../components/portfolio/extra";
 import Contact from "../components/portfolio/contact";
 import { Redirect } from "react-router-dom";
+import Loader from '../components/loader';
 
 import "../style/portfolio.css";
 
@@ -32,7 +33,7 @@ const Portfolio = ({
   // const { offsetTop } = myRef.current.offsetTop;
 
   if (loading) {
-    return <div>loading</div>;
+    return <div><Loader /></div>;
   }
 
   if (!loading && profile !== null && !auth.loading && auth.isAuthenticated) {
@@ -40,7 +41,7 @@ const Portfolio = ({
       <div class="portfolioContainerFull">
         <Landing
           name={profile.user.name}
-          label={profile.label}
+          label={profile.about.label}
           initScroll={initScroll}
         />
         <About summary={profile.about} />

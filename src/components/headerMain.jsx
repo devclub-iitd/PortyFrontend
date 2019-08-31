@@ -7,6 +7,9 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Home from '../pages/home';
 import Edit from '../pages/edit';
+import { connect } from 'react-redux';
+import { getCurrentProfile } from '../actions/profile';
+import { logout } from '../actions/auth';
 
 import '../style/header.css';
 
@@ -73,9 +76,15 @@ const styles = () => ({
 });
 
 class SimpleTabs extends React.Component {
+
   state = {
     value: 0,
   }
+
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -94,7 +103,7 @@ class SimpleTabs extends React.Component {
                 Portfolio Creator |
                 {' '}
                 <span>
-                  Aryan Gupta
+                  {this.props.user.name}
                 </span>
               </div>
             </div>
@@ -115,4 +124,12 @@ SimpleTabs.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default withStyles(styles)(SimpleTabs);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
+});
+
+export default connect(
+  mapStateToProps,
+  { logout, getCurrentProfile },
+)(withStyles(styles)(SimpleTabs));

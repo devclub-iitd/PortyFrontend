@@ -1,0 +1,5 @@
+.alert{
+   background-color: red;
+  line-height: 2px;
+  text-transform: capitalize;
+}

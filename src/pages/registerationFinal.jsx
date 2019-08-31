@@ -20,6 +20,8 @@ import Skill from '../components/regFinal/skill';
 import Interest from '../components/regFinal/interest';
 import Reference from '../components/regFinal/reference';
 import '../style/regFinal.css';
+import { getCurrentProfile } from '../actions/profile';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -116,7 +118,7 @@ class RegFinal extends React.Component {
       <MuiThemeProvider theme={theme}>
         <div style={{ paddingBottom: 100 }}>
           <Image />
-          <Intro name="aryan" caption="block" />
+          <Intro name={this.props.user.name} caption="block" />
           <form onSubmit={this.handleSumbit}>
             {/* <Account ref={this.account} expanded={expanded} action={() => this.handlePanel('accountPanel')} />  */}
             <About
@@ -207,7 +209,12 @@ class RegFinal extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
+});
+
 export default connect(
-  null,
-  { createProfile }
+  mapStateToProps,
+  { createProfile, getCurrentProfile }
 )(withRouter(RegFinal));

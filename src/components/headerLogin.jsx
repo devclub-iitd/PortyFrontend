@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import '../style/header.css';
-
+import Alert from './alert';
 import Register from '../pages/registerationLanding';
 import Login from '../pages/login';
 
@@ -100,6 +100,7 @@ class SimpleTabs extends React.Component {
           </AppBar>
           {value === 1 && <TabContainer><Register /></TabContainer>}
           {value === 0 && <TabContainer><Login /></TabContainer>}
+          <Alert />
         </div>
       </MuiThemeProvider>
     );

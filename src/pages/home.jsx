@@ -51,10 +51,12 @@ const Home = ({logout, getCurrentProfile }) => {
           <NavigationIcon className={classes.extendedIcon} />
           Logout
         </Fab>
-        <Fab variant="extended" color="primary" aria-label="delete" className={classes.fab} onClick={portfolio}>
-          <NavigationIcon className={classes.extendedIcon} />
-          <Link to="/portfolio">Portfolio</Link>
-        </Fab>
+        <Link to="/portfolio">
+          <Fab variant="extended" color="primary" aria-label="delete" className={classes.fab} onClick={portfolio}>
+            <NavigationIcon className={classes.extendedIcon} />
+            <div className="remDec">Portfolio</div>
+          </Fab>
+        </Link>
         <Fab variant="extended" color="secondary" aria-label="delete" className={classes.fab} onClick={download}>
           <NavigationIcon className={classes.extendedIcon} />
           Download

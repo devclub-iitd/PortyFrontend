@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
-import Paper from "@material-ui/core/Paper";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import Landing from "./portfolio/landing";
-import About from "./portfolio/about";
-import Education from "./portfolio/education";
-import Work from "./portfolio/work";
-import Volunteer from "./portfolio/volunteer";
-import Extra from "./portfolio/extra";
-import {Link} from 'react-router-dom'
-import Contact from "./portfolio/contact";
-import "../style/portfolio.css";
-
-import { getCurrentProfile } from "../actions/profile";
+import React, { useEffect } from 'react';
+import Paper from '@material-ui/core/Paper';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Landing from './portfolio/landing';
+import About from './portfolio/about';
+import Education from './portfolio/education';
+import Work from './portfolio/work';
+import Volunteer from './portfolio/volunteer';
+import Extra from './portfolio/extra';
+import Contact from './portfolio/contact';
+import '../style/portfolio.css';
+import Loader from './loader';
+import { getCurrentProfile } from '../actions/profile';
 
 const Portfolio = ({ getCurrentProfile, profile: { profile, loading } }) => {
   useEffect(() => {
@@ -20,11 +20,11 @@ const Portfolio = ({ getCurrentProfile, profile: { profile, loading } }) => {
   }, []);
 
   if (loading) {
-    return <div>loading</div>;
+    return <div><Loader /></div>;
   } else if (!loading && profile !== null) {
     return (
       <Paper className="portfolioContainer" elavation={4}>
-        <Landing name={profile.user.name} label={profile.label} />
+        <Landing name={profile.user.name} label={profile.about.label} />
         <About summary={profile.about} />
         <Education education={profile.education} />
         <Work work={profile.work} />
