@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const download = () => {
-  alert('insert download portfolio waala code here');
+     
 };
 
 const Home = ({logout, getCurrentProfile }) => {
@@ -59,7 +59,7 @@ const Home = ({logout, getCurrentProfile }) => {
         </Link>
         <Fab variant="extended" color="secondary" aria-label="delete" className={classes.fab} onClick={download}>
           <NavigationIcon className={classes.extendedIcon} />
-          Download
+         <a href="http://localhost:5000/api/profile/download">Download</a> 
         </Fab>
       </div>
     </div>
