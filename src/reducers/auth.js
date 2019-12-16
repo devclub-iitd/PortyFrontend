@@ -59,7 +59,7 @@ export default function(state = initialState,action){
             return {
                 ...state,
                 isAuthenticated: true,
-                loading: false,
+                loading : true,
                 user: null
             }
         }

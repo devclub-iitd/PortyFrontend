@@ -25,7 +25,6 @@ export const UpdateUser = (formdata , edit = true) => async dispatch => {
           headers: {
             "Content-Type": "application/json"
           }
-
         };
 
         const res = await axios.post("/api/user/update", formdata, config);
@@ -65,7 +64,7 @@ export const getPublicProfile = (entryno) => async dispatch => {
         })
 
     } catch (err) {
-        console.log("err")
+        console.log("Error caught in front")
         dispatch({
             type : PROFILE_ERROR
         })

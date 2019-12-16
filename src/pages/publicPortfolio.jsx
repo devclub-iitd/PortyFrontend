@@ -32,7 +32,7 @@ const Portfolio = ({
   // const { offsetTop } = myRef.current.offsetTop;
 
   if (loading) {
-    return <div><Loader /></div>;
+    return <div><Loader /></div> ;
   }
 
   if (!loading && profile !== null) {

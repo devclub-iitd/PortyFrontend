@@ -10,6 +10,7 @@ import Edit from '../pages/edit';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../actions/profile';
 import { logout } from '../actions/auth';
+import Loader from '../components/loader';
 
 import '../style/header.css';
 
@@ -93,30 +94,38 @@ class SimpleTabs extends React.Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
+    if (this.props.loading) {
+      return (<div><Loader /></div>) ;
+    }
 
-    return (
-      <MuiThemeProvider theme={theme}>
-        <div className={classes.root}>
-          <AppBar position="static" className={classes.headercontainer}>
-            <div className="headerDetails">
-              <div className="headerTitle">
-                Portfolio Creator |
-                {' '}
-                <span>
-                  {this.props.user.name}
-                </span>
+    if (this.props.loading == false) {
+      return (
+        <MuiThemeProvider theme={theme}>
+          <div className={classes.root}>
+            <AppBar position="static" className={classes.headercontainer}>
+              <div className="headerDetails">
+                <div className="headerTitle">
+                  Portfolio C reator |
+                  {' '}
+                  <span>
+                    {this.props.user.name}
+                  </span>
+                </div>
               </div>
-            </div>
-            <Tabs value={value} onChange={this.handleChange} className={classes.navbarContainer}>
-              <Tab className={classes.navbarItem} label="Home" />
-              <Tab className={classes.navbarItem} label="Edit" />
-            </Tabs>
-          </AppBar>
-          {value === 0 && <TabContainer><Home /></TabContainer>}
-          {value === 1 && <TabContainer><Edit /></TabContainer>}
-        </div>
-      </MuiThemeProvider>
-    );
+              <Tabs value={value} onChange={this.handleChange} className={classes.navbarContainer}>
+                <Tab className={classes.navbarItem} label="Home" />
+                <Tab className={classes.navbarItem} label="Edit" />
+              </Tabs>
+            </AppBar>
+            {value === 0 && <TabContainer><Home /></TabContainer>}
+            {value === 1 && <TabContainer><Edit /></TabContainer>}
+          </div>
+        </MuiThemeProvider>
+      );
+      
+    }
+
+    
   }
 }
 
@@ -126,6 +135,7 @@ SimpleTabs.propTypes = {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  loading : state.auth.loading,
   user: state.auth.user,
 });
 
@@ -133,3 +143,6 @@ export default connect(
   mapStateToProps,
   { logout, getCurrentProfile },
 )(withStyles(styles)(SimpleTabs));
+
+
+
