@@ -22,6 +22,7 @@ import Skill from '../components/edit/skill';
 import Interest from '../components/edit/interest';
 import Reference from '../components/edit/reference';
 import '../style/regFinal.css';
+import Loader from '../components/loader';
 
 const theme = createMuiTheme({
   palette: {
@@ -155,114 +156,125 @@ class Edit extends React.Component {
     const {
       expanded, open, alertTitle, alertContent,
     } = this.state;
-    return (
-      <MuiThemeProvider theme={theme}>
-        <div style={{ paddingBottom: 100 }}>
-          <Image />
-          <Intro name={this.props.user.name} caption="none" />
-          <form onSubmit={this.handleSumbit}>
-            {/* <Account
-                ref={this.}
-              expanded={expanded}
-              action={() => this.handlePanel("accountPanel")}
-              existingData={profile.account}
-            /> */}
-            <About
-              ref={this.about}
-              expanded={expanded}
-              action={() => this.handlePanel('aboutPanel')}
-              existingData={profile.about}
-              existingContactData={profile.user}
-              senData={this.retrieveChildData}
-            />
-            <Location
-              ref={this.location}
-              expanded={expanded}
-              action={() => this.handlePanel('locationPanel')}
-              existingData={profile.location}
-              senData={this.retrieveChildData}
-            />
-            <Work
-              ref={this.work}
-              expanded={expanded}
-              action={() => this.handlePanel('workPanel')}
-              existingData={profile.work}
-              senData={this.retrieveChildData}
-            />
-            <Volunteer
-              ref={this.volunteer}
-              expanded={expanded}
-              action={() => this.handlePanel('volunteerPanel')}
-              existingData={profile.volunteer}
-              senData={this.retrieveChildData}
-            />
-            <Education
-              ref={this.education}
-              expanded={expanded}
-              action={() => this.handlePanel('educationPanel')}
-              existingData={profile.education}
-              senData={this.retrieveChildData}
-            />
-            <Award
-              ref={this.award}
-              expanded={expanded}
-              action={() => this.handlePanel('awardPanel')}
-              existingData={profile.awards}
-              senData={this.retrieveChildData}
-            />
-            <Publication
-              ref={this.publication}
-              expanded={expanded}
-              action={() => this.handlePanel('publicationPanel')}
-              existingData={profile.publications}
-              senData={this.retrieveChildData}
-            />
-            <Skill
-              ref={this.skill}
-              expanded={expanded}
-              action={() => this.handlePanel('skillPanel')}
-              existingData={profile.skills}
-              senData={this.retrieveChildData}
-            />
-            <Language
-              ref={this.language}
-              expanded={expanded}
-              action={() => this.handlePanel('languagePanel')}
-              existingData={profile.languages}
-              senData={this.retrieveChildData}
-            />
-            <Interest
-              ref={this.interest}
-              expanded={expanded}
-              action={() => this.handlePanel('interestPanel')}
-              existingData={profile.interests}
-              senData={this.retrieveChildData}
-            />
-            <Reference
-              ref={this.reference}
-              expanded={expanded}
-              action={() => this.handlePanel('referencePanel')}
-              existingData={profile.references}
-              senData={this.retrieveChildData}
-            />
-            <div className="btnContainer">
-              <Button
-                variant="contained"
-                style={{ padding: '12px 50px' }}
-                color="secondary"
-                type="submit"
-                onClick={this.handleOpen}
-              >
-                Done
-              </Button>
-            </div>
-          </form>
-          <Alert open={open} handleClose={this.handleClose} title={alertTitle}>
-            {alertContent}
-          </Alert>
-        </div>
-      </MuiThemeProvider>
-    );
+
+    if (loading) {
+      return <div><Loader /></div>;
+    }
+
+    if (!loading && profile !== null){
+      return (
+        <MuiThemeProvider theme={theme}>
+          <div style={{ paddingBottom: 100 }}>
+            <Image />
+            <Intro name={this.props.user.name} caption="none" />
+            <form onSubmit={this.handleSumbit}>
+              {/* <Account
+                  ref={this.}
+                expanded={expanded}
+                action={() => this.handlePanel("accountPanel")}
+                existingData={profile.account}
+              /> */}
+              <About
+                ref={this.about}
+                expanded={expanded}
+                action={() => this.handlePanel('aboutPanel')}
+                existingData={profile.about}
+                existingContactData={profile.user}
+                senData={this.retrieveChildData}
+              />
+              <Location
+                ref={this.location}
+                expanded={expanded}
+                action={() => this.handlePanel('locationPanel')}
+                existingData={profile.location}
+                senData={this.retrieveChildData}
+              />
+              <Work
+                ref={this.work}
+                expanded={expanded}
+                action={() => this.handlePanel('workPanel')}
+                existingData={profile.work}
+                senData={this.retrieveChildData}
+              />
+              <Volunteer
+                ref={this.volunteer}
+                expanded={expanded}
+                action={() => this.handlePanel('volunteerPanel')}
+                existingData={profile.volunteer}
+                senData={this.retrieveChildData}
+              />
+              <Education
+                ref={this.education}
+                expanded={expanded}
+                action={() => this.handlePanel('educationPanel')}
+                existingData={profile.education}
+                senData={this.retrieveChildData}
+              />
+              <Award
+                ref={this.award}
+                expanded={expanded}
+                action={() => this.handlePanel('awardPanel')}
+                existingData={profile.awards}
+                senData={this.retrieveChildData}
+              />
+              <Publication
+                ref={this.publication}
+                expanded={expanded}
+                action={() => this.handlePanel('publicationPanel')}
+                existingData={profile.publications}
+                senData={this.retrieveChildData}
+              />
+              <Skill
+                ref={this.skill}
+                expanded={expanded}
+                action={() => this.handlePanel('skillPanel')}
+                existingData={profile.skills}
+                senData={this.retrieveChildData}
+              />
+              <Language
+                ref={this.language}
+                expanded={expanded}
+                action={() => this.handlePanel('languagePanel')}
+                existingData={profile.languages}
+                senData={this.retrieveChildData}
+              />
+              <Interest
+                ref={this.interest}
+                expanded={expanded}
+                action={() => this.handlePanel('interestPanel')}
+                existingData={profile.interests}
+                senData={this.retrieveChildData}
+              />
+              <Reference
+                ref={this.reference}
+                expanded={expanded}
+                action={() => this.handlePanel('referencePanel')}
+                existingData={profile.references}
+                senData={this.retrieveChildData}
+              />
+              <div className="btnContainer">
+                <Button
+                  variant="contained"
+                  style={{ padding: '12px 50px' }}
+                  color="secondary"
+                  type="submit"
+                  onClick={this.handleOpen}
+                >
+                  Done
+                </Button>
+              </div>
+            </form>
+            <Alert open={open} handleClose={this.handleClose} title={alertTitle}>
+              {alertContent}
+            </Alert>
+          </div>
+        </MuiThemeProvider >
+      );
+    }  
+
+    if(!loading && profile == null) {
+      return <div> No Profile Found.. please create a new one </div>
+    }
   }
 }
 

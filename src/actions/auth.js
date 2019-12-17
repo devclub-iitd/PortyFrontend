@@ -39,9 +39,9 @@ export const register = ({name , email , password , entryno , phone , dob , webs
             'Content-Type' : 'application/json'
         }
     }
-    const oo = {name , email , password , entryno , phone , dob , website }
+    
     const body = JSON.stringify({name , email , password , entryno , phone , dob , website })
-    console.log(oo)
+    
     try {
         const res = await axios.post('api/user', body , config)
         dispatch(setAlert('Register Success...Check your email for verification','green'))
@@ -84,13 +84,6 @@ export const login = ({email,password}) => async dispatch => {
         await dispatch(loadUser());
 
     } catch (err) {
-        // const errors = err.response.data.errors
-
-        // if (errors) {
-        //     errors.forEach(error => dispatch(setAlert(error.msg, 'red')))
-        // }
-
-        // console.log(errors)
 
         dispatch({
             type: LOGIN_FAIL

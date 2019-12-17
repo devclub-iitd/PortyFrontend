@@ -103,15 +103,12 @@ class LandingRegForm extends React.Component {
       name: nameVal,
       email: emailVal,
       password: passVal,
-      entryno: passVal,
+      entryno: enoVal,
       phone: numVal,
       dob: `${dateVal}-${monthVal}-${yearVal}`,
-      website: webVal,
-      enoVal: enoVal,
+      website: webVal
     };
-    console.log(obj);
     this.props.register(obj);
-    this.props.handleDial("insert message here");
   }
 
   render() {
