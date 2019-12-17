@@ -14,6 +14,10 @@ import '../style/portfolio.css';
 import Loader from './loader';
 import { getCurrentProfile } from '../actions/profile';
 
+const navToReg = () => {
+  window.location.href = '../register';
+};
+
 const Portfolio = ({ getCurrentProfile, profile: { profile, loading } }) => {
   useEffect(() => {
     getCurrentProfile();
@@ -44,9 +48,12 @@ const Portfolio = ({ getCurrentProfile, profile: { profile, loading } }) => {
     );
   } else if (!loading && profile === null) {
     return (
-      <div>
-        No profile found....please make one by accessing{" "}
-        <Link to="/register">here</Link>
+      <div className="noProf">
+        No profile found
+        <br />
+        please make one by clicking
+        {' '}
+        <span onClick={navToReg}>here</span>
       </div>
     );
   }

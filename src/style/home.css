@@ -1,9 +1,10 @@
 .homePageTitle{
   font-size: 45px;
   font-weight: 200;
+  letter-spacing: 4px;
   font-style: italic;
   text-align: center;
-  margin-top: 25px;
+  margin-top: 30px;
 }
 .btnRowHome {
   text-align: center;
@@ -25,3 +26,7 @@
   justify-content: center;
   position: absolute;
 }
+/* .homeCont {
+  background-color: red;
+  height: 500px;
+} */

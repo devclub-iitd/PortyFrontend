@@ -225,7 +225,7 @@ class LandingRegForm extends React.Component {
           <input required style={{ width: '95.3%' }} type="text" name="entryno" placeholder="Entry Number: " value={enoVal} onChange={this.handleChange} />
           <input required style={{ width: '95.3%' }} type="email" name="email" placeholder="Email Adress: " value={emailVal} onChange={this.handleChange} />
           <input required style={{ width: '95.3%' }} type="number" name="phone" placeholder="Phone Number: " value={numVal} onChange={this.handleChange} />
-          <input required style={{ width: '95.3%' }} type="text" name="website" placeholder="Website: (if any)" value={webVal} onChange={this.handleChange} />
+          <input style={{ width: '95.3%' }} type="text" name="website" placeholder="Website: (if any)" value={webVal} onChange={this.handleChange} />
         </form>
       </div>
     );

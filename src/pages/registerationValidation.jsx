@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 import '../style/validation.css';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   button: {
     width: '150px',
     height: '40px',
@@ -18,6 +18,10 @@ const useStyles = makeStyles(theme => ({
     display: 'none',
   },
 }));
+
+const navtoLog = () => {
+  window.location.href = '../';
+};
 
 const Validation = () => {
   const classes = useStyles();
@@ -34,21 +38,20 @@ const Validation = () => {
       </AppBar>
       <div className="fullScreen" style={{ marginLeft: '60px' }}>
         <div className="notFoundTextContainer">
-          <Typography variant="h2">
-            : )
-          </Typography>
-          <Typography variant="h3" style={{ marginTop: '80px', fontWeight: '600' }}>
+          <Typography variant="h3" style={{ marginTop: '140px', fontWeight: '600' }}>
             Verification Successful :)
           </Typography>
           <Typography style={{ marginTop: '30px', fontSize: '18px', fontWeight: '300' }}>
             Your email has been verified successfully.
+            <br />
             {' '}
             Kindly click the button below to proceed to the login page
             {' '}
-            <b>Login with your newly created account.</b>
+            <br />
+            <b>And Login with your newly created account.</b>
           </Typography>
         </div>
-        <Button variant="contained" color="secondary" className={classes.button}>
+        <Button variant="contained" color="secondary" className={classes.button} onClick={navtoLog}>
           Login
         </Button>
       </div>

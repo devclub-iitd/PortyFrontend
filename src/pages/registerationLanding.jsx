@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,10 +19,18 @@ const styles = {
     margin: 'auto',
     marginTop: '40px',
   },
+  button: {
+    width: '200px',
+    height: '55px',
+    marginTop: '33px',
+    textAlign: 'center',
+    borderRadius: '10px',
+  },
   rootRegPage: {
     margin: 'auto',
     marginTop: '40px',
     minWidth: '570px',
+    textAlign: 'left',
     width: '65%',
     minHeight: '240px', // 328px
     paddingBottom: '30px',
@@ -75,7 +84,7 @@ class IconLabelTabs extends React.Component {
     const { value } = this.state;
 
     return (
-      <div>
+      <div style={{ textAlign: 'center' }}>
         <div className="title">
             Register
         </div>
@@ -88,7 +97,9 @@ class IconLabelTabs extends React.Component {
             </TabContainer>
           )}
         </Paper>
-        <button form="regform" className="btn" type="submit"> Let&apos;s Go </button>
+        <Button variant="contained" color="secondary" className={classes.button} type="submit" form="regform">
+          Let's Go
+        </Button>
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',

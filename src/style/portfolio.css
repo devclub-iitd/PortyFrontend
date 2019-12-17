@@ -6,9 +6,10 @@
   bottom: 0px;
   left: 0;
   right: 0;
-  margin-top: 100px;
+  margin-top: 50px;
   overflow-y: scroll;
   transform: scale(0.6);
+  border-radius: 0px;
   border: 2px solid black;
 }
 .portfolioContainerFull{
@@ -405,4 +406,24 @@
   text-align: center;
   color: #f1c40f;
   background-color: black;
+}
+.noProf {
+  text-align: center;
+  text-transform: capitalize;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: 300;
+}
+.noProfLarge {
+  font-size: 30px;
+  font-weight: 600;
+}
+.noProf span {
+  font-weight: 700;
+  text-transform: uppercase;
+  /* font-style: italic; */
+  cursor: pointer;
 }

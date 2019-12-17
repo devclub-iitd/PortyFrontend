@@ -5,6 +5,12 @@ import { connect } from 'react-redux';
 import { createProfile } from '../actions/profile';
 import { withRouter } from 'react-router-dom';
 
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+
+import Alert from '../components/fancyAlert';
+
 import Intro from '../components/regFinal/intro';
 import Image from '../components/regFinal/image';
 import Account from '../components/regFinal/account';
@@ -55,39 +61,41 @@ class RegFinal extends React.Component {
     this.handlePanel = this.handlePanel.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
     this.retrieveChildData = this.retrieveChildData.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
   }
 
   handlePanel(panel) {
     const { expanded } = this.state;
     if (expanded === panel) {
       this.setState({
-        expanded: false
+        expanded: false,
       });
     } else {
       this.setState({
-        expanded: panel
+        expanded: panel,
       });
     }
   }
 
   retrieveChildData(type, data) {
     switch (type) {
-      case "work":
-      case "volunteer":
-      case "education":
-      case "awards":
-      case "publications":
-      case "skills":
-      case "languages":
-      case "interests":
-      case "references":
-      case "about":
-      case "location": {
+      case 'work':
+      case 'volunteer':
+      case 'education':
+      case 'awards':
+      case 'publications':
+      case 'skills':
+      case 'languages':
+      case 'interests':
+      case 'references':
+      case 'about':
+      case 'location': {
         this.setState({
           [type]: data
         });
         const obj = {
-          [type] : data
+          [type]: data
         }
         const ts = JSON.stringify(obj)
         this.props.createProfile(ts,this.props.history,false)
@@ -109,11 +117,32 @@ class RegFinal extends React.Component {
     await this.language.current.callApiRequest();
     await this.interest.current.callApiRequest();
     await this.reference.current.callApiRequest();
-    alert('Profile has been created')
+    this.setState({
+      open: true,
+      alertTitle: 'Profile has been created!',
+      alertContent: 'Kindly check the home page to view your portfolio',
+    });
+    window.location.href = '../home';
+  }
+
+  handleClose() {
+    this.setState({
+      open: false,
+    });
+  }
+
+  handleOpen() {
+    this.setState({
+      open: true,
+      alertTitle: 'Whoops!',
+      alertContent: 'There seems to be some sort of error. Check you have filled out all the fields and try again.',
+    });
   }
 
   render() {
-    const { expanded } = this.state;
+    const {
+      expanded, open, alertTitle, alertContent,
+    } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ paddingBottom: 100 }}>
@@ -198,11 +227,18 @@ class RegFinal extends React.Component {
               </Button>
             </div>
           </form>
-          <div className="headerSimple">
-            <div className="headerSimpleTitle">
-              Portfolio Creator <span>| Register</span>
-            </div>
-          </div>
+          <Alert open={open} handleClose={this.handleClose} title={alertTitle}>
+            {alertContent}
+          </Alert>
+          <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
+            <Toolbar>
+              <Typography>
+                <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
+                {' '}
+                <span style={{ color: '#3d40d8' }}>| Register</span>
+              </Typography>
+            </Toolbar>
+          </AppBar>
         </div>
       </MuiThemeProvider>
     );
@@ -216,5 +252,14 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createProfile, getCurrentProfile }
+  { createProfile, getCurrentProfile },
 )(withRouter(RegFinal));
+
+
+// <div className="headerSimple">
+//   <div className="headerSimpleTitle">
+//     Portfolio Creator|
+//     {' '}
+//     <span>Register</span>
+//   </div>
+// </div>

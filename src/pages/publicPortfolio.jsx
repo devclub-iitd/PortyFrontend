@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+
+import { withRouter } from 'react-router';
 import Landing from '../components/portfolio/landing';
 import About from '../components/portfolio/about';
 import Education from '../components/portfolio/education';
@@ -8,7 +15,6 @@ import Work from '../components/portfolio/work';
 import Volunteer from '../components/portfolio/volunteer';
 import Extra from '../components/portfolio/extra';
 import Contact from '../components/portfolio/contact';
-import { withRouter } from 'react-router';
 
 import Loader from '../components/loader';
 
@@ -16,8 +22,21 @@ import '../style/portfolio.css';
 
 import { getPublicProfile } from '../actions/profile';
 
+const useStyles = makeStyles(() => ({
+  button: {
+    width: '150px',
+    height: '40px',
+    marginTop: '30px',
+    borderRadius: '5px',
+  },
+}));
+
 const scrollToRef = ref => alert('insert scroll page function');
 // const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
+
+const navToHome = () => {
+  window.location.href = '../../home';
+};
 
 const Portfolio = ({
     match,
@@ -29,6 +48,7 @@ const Portfolio = ({
   }, []);
   const myRef = React.useRef(null);
   const initScroll = () => scrollToRef(myRef);
+  const classes = useStyles();
   // const { offsetTop } = myRef.current.offsetTop;
 
   if (loading) {
@@ -63,7 +83,28 @@ const Portfolio = ({
   }
 
   if (!loading && profile === null) {
-    return <div>No profile found...User Hasnt created his/her profile yet.</div>;
+    return (
+      <div>
+        <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
+          <Toolbar>
+            <Typography>
+              <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
+              {' '}
+              <span style={{ color: '#3d40d8' }}>| Whoops :(</span>
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <div className="noProf">
+          <span>No such User profile found</span>
+          <br />
+          Kindly proceed back to home
+          <br />
+          <Button variant="contained" color="secondary" className={classes.button} onClick={navToHome}>
+            home
+          </Button>
+        </div>
+      </div>
+    );
   }
 };
 

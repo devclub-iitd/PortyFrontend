@@ -1,17 +1,17 @@
-import React from "react";
-import HeaderLogin from "../components/headerLogin";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { Link , Redirect } from "react-router-dom";
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link , Redirect } from 'react-router-dom';
+import HeaderLogin from '../components/headerLogin';
+import Loader from '../components/loader';
 
 const Landing = ({ isAuthenticated, auth: { loading } }) => {
-
-  if(loading) {
-    return <div>loading</div>
+  if (loading) {
+    return <Loader />;
   }
 
-  if(!loading && isAuthenticated) {
-    return <Redirect to="/home"/>
+  if (!loading && isAuthenticated) {
+    return <Redirect to="/home" />;
   }
   return (
     <div>
@@ -20,13 +20,9 @@ const Landing = ({ isAuthenticated, auth: { loading } }) => {
   );
 };
 
-
-
- 
-
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  auth : state.auth
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps)(Landing);

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../actions/auth';
-
 import Portfolio from '../components/portfolio';
 import '../style/home.css';
 
@@ -32,34 +33,37 @@ const useStyles = makeStyles(theme => ({
 
 
 const download = () => {
-     
+  window.location.href = 'http://localhost:5000/api/profile/download';
+};
+const portfolio = () => {
+  window.location.href = './portfolio';
 };
 
-const Home = ({logout, getCurrentProfile }) => {
+const Home = ({ logout, getCurrentProfile }) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
   const classes = useStyles();
-  const portfolio = () => {};
-
   return (
-    <div>
-      <div className="homePageTitle">Your Portfolio is ready...</div>
+    <div className="homeCont">
+      <div className="homePageTitle">
+        Your Portfolio is
+        {' '}
+        ...
+      </div>
       <Portfolio />
       <div className="btnRowHome">
         <Fab variant="extended" color="primary" aria-label="delete" className={`${classes.fab} ${classes.redBtn}`} onClick={logout}>
-          <NavigationIcon className={classes.extendedIcon} />
+          <PowerSettingsNewIcon className={classes.extendedIcon} />
           Logout
         </Fab>
-        <Link to="/portfolio">
-          <Fab variant="extended" color="primary" aria-label="delete" className={classes.fab} onClick={portfolio}>
-            <NavigationIcon className={classes.extendedIcon} />
-            <div className="remDec">Portfolio</div>
-          </Fab>
-        </Link>
-        <Fab variant="extended" color="secondary" aria-label="delete" className={classes.fab} onClick={download}>
+        <Fab variant="extended" color="primary" aria-label="delete" className={classes.fab} onClick={portfolio}>
           <NavigationIcon className={classes.extendedIcon} />
-         <a href="http://localhost:5000/api/profile/download">Download</a> 
+          <div className="remDec">Portfolio</div>
+        </Fab>
+        <Fab variant="extended" color="secondary" aria-label="delete" className={classes.fab} onClick={download}>
+          <GetAppIcon className={classes.extendedIcon} />
+          Download
         </Fab>
       </div>
     </div>

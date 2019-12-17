@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { connect } from 'react-redux';
+
 import MySnackbarContentWrapper from '../components/snackbar';
 
 import LoginForm from '../components/loginForm';
@@ -18,11 +21,18 @@ const styles = {
     margin: 'auto',
     marginTop: '40px',
   },
+  button: {
+    width: '200px',
+    height: '55px',
+    marginTop: '33px',
+    textAlign: 'center',
+    borderRadius: '10px',
+  },
   rootRegPage: {
     margin: 'auto',
     marginTop: '40px',
     minWidth: '570px',
-    width: '65%',
+    width: '35%',
     height: 'auto',
     padding: '20px',
   },
@@ -52,18 +62,28 @@ class IconLabelTabs extends React.Component {
     });
   }
 
+  componentDidUpdate(oldProps) {
+    let index = 0;
+    if (oldProps.alerts.length !== this.props.alerts.length ) {
+      index = this.props.alerts.length - 1;
+      this.openDial(this.props.alerts[index].msg);
+    }
+  }
+
+
   render() {
     const { classes } = this.props;
-
     return (
-      <div className="loginPageContainer">
+      <div className="loginPageContainer" style={{ textAlign: 'center', marginTop: '100px' }}>
         <div className="title">
             Login
         </div>
         <Paper className={classes.rootRegPage}>
           <LoginForm handleDial={this.openDial} />
         </Paper>
-        <button form="loginform" className="btn" type="submit"> Login </button>
+        <Button variant="contained" color="secondary" className={classes.button} type="submit" form="loginform">
+          Login
+        </Button>
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -98,4 +118,8 @@ IconLabelTabs.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default withStyles(styles)(IconLabelTabs);
+const mapStateToProps = state => ({
+  alerts: state.alert,
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(IconLabelTabs));
