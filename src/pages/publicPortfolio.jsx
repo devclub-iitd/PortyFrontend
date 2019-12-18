@@ -94,12 +94,15 @@ const Portfolio = ({
             <Typography>
               <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
               {' '}
-              <span style={{ color: '#3d40d8' }}>| Whoops :(</span>
+              <span style={{ color: '#3d40d8' }}>| Error 404</span>
             </Typography>
           </Toolbar>
         </AppBar>
         <div className="noProf">
-          <span>No such User profile found</span>
+          <span style={{ fontSize: '50px' }}>WHOOPS ...</span>
+          <br />
+          <br />
+          <span style={{ fontWeight: '500' }}>No such User profile found</span>
           <br />
           Kindly proceed back to home
           <br />
