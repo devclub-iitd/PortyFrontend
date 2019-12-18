@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
-
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
 import { withRouter } from 'react-router';
 import Landing from '../components/portfolio/landing';
 import About from '../components/portfolio/about';
@@ -31,7 +31,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const scrollToRef = ref => alert('insert scroll page function');
+const scrollToRef = () => {
+  scroll.scrollTo(window.innerHeight);
+}
 // const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 
 const navToHome = () => {
@@ -63,21 +65,23 @@ const Portfolio = ({
           label={profile.about.label}
           initScroll={initScroll}
         />
-        <About summary={profile.about} />
-        <Education education={profile.education} />
-        <Work work={profile.work} />
-        <Volunteer volunteer={profile.volunteer} />
-        <Extra
-          awards={profile.awards}
-          publications={profile.publications}
-          languages={profile.languages}
-          skills={profile.skills}
-        />
-        <Contact
-          email={profile.user.email}
-          phone={profile.user.phone}
-          location={profile.location}
-        />
+        <div class="portfolioBodyCont" style={{ top: window.innerHeight + 'px' }}>
+          <About summary={profile.about} top={window.innerHeight} />
+          <Education education={profile.education} />
+          <Work work={profile.work} />
+          <Volunteer volunteer={profile.volunteer} />
+          <Extra
+            awards={profile.awards}
+            publications={profile.publications}
+            languages={profile.languages}
+            skills={profile.skills}
+          />
+          <Contact
+            email={profile.user.email}
+            phone={profile.user.phone}
+            location={profile.location}
+          />
+        </div>
       </div>
     );
   }

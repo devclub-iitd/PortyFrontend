@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { getCurrentProfile, createProfile, UpdateUser } from '../actions/profile';
-
+import { makeStyles } from '@material-ui/core/styles';
 import Alert from '../components/fancyAlert';
 
 import Intro from '../components/edit/intro';
@@ -100,7 +100,7 @@ class Edit extends React.Component {
         this.props.createProfile(stringyobj, this.props.history);
         break;
       }
-    case 'about': {
+      case 'about': {
         const userObj = {
           'name': data.name,
           'phone': data.number,
@@ -113,7 +113,7 @@ class Edit extends React.Component {
         const stringyobj2 = JSON.stringify(userObj);
         this.props.createProfile(stringyobj, this.props.history);
         this.props.UpdateUser(stringyobj2);
-    }
+      }
     }
   }
 
@@ -270,10 +270,17 @@ class Edit extends React.Component {
           </div>
         </MuiThemeProvider >
       );
-    }  
+    }
 
     if(!loading && profile == null) {
-      return <div> No Profile Found.. please create a new one </div>
+      return (
+        <div className="noProf noProfLarge">
+          Please create a profile first
+          {' '}
+          ...
+          <br />
+        </div>
+      );
     }
   }
 }

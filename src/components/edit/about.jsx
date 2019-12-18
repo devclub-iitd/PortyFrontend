@@ -14,7 +14,8 @@ class AboutExpansionPanel extends React.Component {
       name : this.props.existingContactData.name,
       number : this.props.existingContactData.phone,
       label : this.props.existingData.label,
-      summary : this.props.existingData.summary
+      summary : this.props.existingData.summary,
+      imgUrl: ''//insert this.props.existingData.imgUrl,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -66,7 +67,7 @@ class AboutExpansionPanel extends React.Component {
     const { expanded } = this.props;
     const { action } = this.props;
     const {
-      label, summary, name, number,
+      label, summary, name, number, imgUrl
     } = this.state;
     return (
       <div style={useStyles.root}>
@@ -106,6 +107,14 @@ class AboutExpansionPanel extends React.Component {
                 type="text"
                 required
                 placeholder="Label: Student"
+              />
+              <input
+                value={imgUrl}
+                onChange={this.handleInputChange}
+                name="imgUrl"
+                type="text"
+                required
+                placeholder="Image URL: Please upload a url link to your image"
               />
               <textarea
                 value={summary}

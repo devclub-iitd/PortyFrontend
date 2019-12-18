@@ -6,7 +6,7 @@ const Intro = (props) => {
     name, caption,
   } = props;
   return (
-    <div className="introContainer">
+    <div className="introContainer introContainerEdit">
       <div className="pageTitle">
         Welcome,
         {' '}

@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-// import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-// import { Redirect } from 'react-router-dom';
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -33,8 +32,10 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-const scrollToRef = ref => alert('insert scroll page function');
-// const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
+const scrollToRef = () => {
+  scroll.scrollTo(window.innerHeight);
+}
+
 const navToReg = () => {
   window.location.href = '../register';
 };
@@ -47,10 +48,10 @@ const Portfolio = ({
   useEffect(() => {
     getCurrentProfile();
   }, []);
+
   const classes = useStyles();
   const myRef = React.useRef(null);
-  const initScroll = () => scrollToRef(myRef);
-  // const { offsetTop } = myRef.current.offsetTop;
+  const initScroll = () => scrollToRef();
 
   if (loading) {
     return <div><Loader /></div>;
@@ -64,21 +65,23 @@ const Portfolio = ({
           label={profile.about.label}
           initScroll={initScroll}
         />
-        <About summary={profile.about} />
-        <Education education={profile.education} />
-        <Work work={profile.work} />
-        <Volunteer volunteer={profile.volunteer} />
-        <Extra
-          awards={profile.awards}
-          publications={profile.publications}
-          languages={profile.languages}
-          skills={profile.skills}
-        />
-        <Contact
-          email={profile.user.email}
-          phone={profile.user.phone}
-          location={profile.location}
-        />
+        <div class="portfolioBodyCont" style={{ top: window.innerHeight + 'px' }}>
+          <About summary={profile.about} top={window.innerHeight} />
+          <Education education={profile.education} />
+          <Work work={profile.work} />
+          <Volunteer volunteer={profile.volunteer} />
+          <Extra
+            awards={profile.awards}
+            publications={profile.publications}
+            languages={profile.languages}
+            skills={profile.skills}
+          />
+          <Contact
+            email={profile.user.email}
+            phone={profile.user.phone}
+            location={profile.location}
+          />
+        </div>
       </div>
     );
   }

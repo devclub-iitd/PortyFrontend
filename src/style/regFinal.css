@@ -26,6 +26,9 @@
 .imageContainer{
   margin-top: 100px;
 }
+.imageContainerEdit {
+  margin-top: 20px;
+}
 .userImgContainer{
   width: 170px;
   height: 170px;
@@ -58,8 +61,11 @@
   opacity: 1;
 }
 .introContainer{
-  margin-top: 40px;
+  margin-top: 100px;
   text-align: center;
+}
+.introContainerEdit {
+  margin-top: 20px;
 }
 .pageTitle{
   text-transform: capitalize;

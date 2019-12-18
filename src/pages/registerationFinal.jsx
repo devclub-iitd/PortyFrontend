@@ -146,7 +146,6 @@ class RegFinal extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ paddingBottom: 100 }}>
-          <Image />
           <Intro name={this.props.user.name} caption="block" />
           <form onSubmit={this.handleSumbit}>
             {/* <Account ref={this.account} expanded={expanded} action={() => this.handlePanel('accountPanel')} />  */}

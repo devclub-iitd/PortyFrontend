@@ -46,14 +46,14 @@ const VolunteerField = (props) => {
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input value={data.organisation} type="text" onChange={handleChange} id={id} name="organisation" required placeholder="Organisation:" />
-            <input value={data.position} type="text" onChange={handleChange} id={id} name="position" required placeholder="Position:" />
-            <input value={data.website} type="text" onChange={handleChange} id={id} name="website" required placeholder="Website:" />
+            <input value={data.organisation} type="text" onChange={handleChange} id={id} name="organisation" placeholder="Organisation:" />
+            <input value={data.position} type="text" onChange={handleChange} id={id} name="position" placeholder="Position:" />
+            <input value={data.website} type="text" onChange={handleChange} id={id} name="website" placeholder="Website:" />
             <div className="row rowtwo">
-              <input value={data.startdate} className="left" type="text" onChange={handleChange} id={id} name="startdate" required placeholder="Start Date: DD/MM/YYYY" />
-              <input value={data.enddate} className="right" type="text" onChange={handleChange} id={id} name="enddate" required placeholder="End Date: DD/MM/YYYY or Ongoing" />
+              <input value={data.startdate} className="left" type="text" onChange={handleChange} id={id} name="startdate" placeholder="Start Date: DD/MM/YYYY" />
+              <input value={data.enddate} className="right" type="text" onChange={handleChange} id={id} name="enddate" placeholder="End Date: DD/MM/YYYY or Ongoing" />
             </div>
-            <textarea value={data.summary} resize="none" onChange={handleChange} id={id} name="summary" placeholder="Summary | Highlights : " required />
+            <textarea value={data.summary} resize="none" onChange={handleChange} id={id} name="summary" placeholder="Summary | Highlights : " />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={

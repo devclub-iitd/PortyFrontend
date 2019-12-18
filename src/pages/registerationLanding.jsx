@@ -8,6 +8,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
+import { connect } from 'react-redux';
+
 import RegForm from '../components/landingRegForm';
 
 import '../style/regLanding.css';
@@ -75,6 +77,14 @@ class IconLabelTabs extends React.Component {
     });
   }
 
+  componentDidUpdate(oldProps) {
+    let index = 0;
+    if (oldProps.alerts.length !== this.props.alerts.length) {
+      index = this.props.alerts.length - 1;
+      this.openDial(this.props.alerts[index].msg);
+    }
+  }
+
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -133,4 +143,8 @@ IconLabelTabs.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default withStyles(styles)(IconLabelTabs);
+const mapStateToProps = state => ({
+  alerts: state.alert,
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(IconLabelTabs));

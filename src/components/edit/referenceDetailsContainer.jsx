@@ -45,7 +45,7 @@ const ReferenceField = (props) => {
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input value={data.name} id={id} onChange={handleChange} name="name" className="left" type="text" required placeholder="Name:" />
+            <input value={data.name} id={id} onChange={handleChange} name="name" className="left" type="text" placeholder="Name:" />
             <textarea value={data.reference} id={id} onChange={handleChange} name="reference" resize="none" placeholder="Reference:" />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
