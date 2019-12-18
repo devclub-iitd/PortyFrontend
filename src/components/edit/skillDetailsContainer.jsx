@@ -45,8 +45,8 @@ const SkillField = (props) => {
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
             <div className="row rowtwo">
-              <input value={data.name} id={id} onChange={handleChange} name="name" className="left" type="text" required placeholder="Skill Name:" />
-              <input value={data.level} id={id} onChange={handleChange} name="level" className="right" type="text" required placeholder="Level: Option1 | Option2 | Option3" />
+              <input value={data.name} id={id} onChange={handleChange} name="name" className="left" type="text" placeholder="Skill Name:" />
+              <input value={data.level} id={id} onChange={handleChange} name="level" className="right" type="text" placeholder="Level: Option1 | Option2 | Option3" />
             </div>
             <textarea value={data.keywords} id={id} onChange={handleChange} name="keywords" resize="none" placeholder="Keywords (seperated by ,): keyword_1, keyword_2, keyword_3, ... " />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
