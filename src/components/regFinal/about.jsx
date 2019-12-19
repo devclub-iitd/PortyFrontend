@@ -12,13 +12,15 @@ class AboutExpansionPanel extends React.Component {
     super(props);
     this.state = {
       label: '',
+      imgUrl: '',
       summary: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   callApiRequest() {
-    alert('about');
+    const { senData } = this.props;
+    senData('about', this.state);
   }
 
   handleInputChange(event) {
@@ -57,11 +59,10 @@ class AboutExpansionPanel extends React.Component {
         color: theme.palette.secondary.main,
       },
     };
-    const { expanded } = this.props;
-    const { action } = this.props;
     const {
-      label, summary,
-    } = this.state;
+      expanded, action,
+    } = this.props;
+    const { label, summary, imgUrl } = this.state;
     return (
       <div style={useStyles.root}>
         <ExpansionPanel expanded={expanded === 'aboutPanel'} onChange={action}>
@@ -77,8 +78,30 @@ class AboutExpansionPanel extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div className="epDetails">
-              <input value={label} onChange={this.handleInputChange} name="label" type="text" required placeholder="Label: Student" />
-              <textarea value={summary} onChange={this.handleInputChange} name="summary" resize="none" required placeholder="A brief summary about you ..." />
+              <input
+                value={label}
+                onChange={this.handleInputChange}
+                name="label"
+                type="text"
+                required
+                placeholder="Label: Student"
+              />
+              <input
+                value={imgUrl}
+                onChange={this.handleInputChange}
+                name="imgUrl"
+                type="text"
+                required
+                placeholder="Image URL: Please upload a url link to your image"
+              />
+              <textarea
+                value={summary}
+                onChange={this.handleInputChange}
+                name="summary"
+                resize="none"
+                required
+                placeholder="A brief summary about you ..."
+              />
             </div>
           </ExpansionPanelDetails>
         </ExpansionPanel>

@@ -1,7 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux'
-import {setAlert} from '../actions/alert'
-import {register} from "../actions/auth";
+import { connect } from 'react-redux';
+import { setAlert } from '../actions/alert';
+import { register } from '../actions/auth';
 import '../style/regLanding.css';
 
 class LandingRegForm extends React.Component {
@@ -9,13 +9,14 @@ class LandingRegForm extends React.Component {
     super(props);
     this.state = {
       nameVal: '',
-      entryVal: '',
+      passVal: '',
       monthValPlaceholder: 'Month: ',
       monthVal: '',
       dateValPlaceholder: 'Date: ',
       dateVal: '',
       yeareValPlaceholder: 'Year: ',
       yearVal: '',
+      enoVal: '',
       emailVal: '',
       numVal: '',
       webVal: '',
@@ -77,45 +78,51 @@ class LandingRegForm extends React.Component {
     if (event.target.name === 'name') {
       this.setState({ nameVal: event.target.value });
       //this.props.setAlert("Name Changes","Info")
-    } else if (event.target.name === 'eno') {
-      this.setState({ entryVal: event.target.value });
+    } else if (event.target.name === 'pass') {
+      this.setState({ passVal: event.target.value });
     } else if (event.target.name === 'email') {
       this.setState({ emailVal: event.target.value });
     } else if (event.target.name === 'phone') {
       this.setState({ numVal: event.target.value });
     } else if (event.target.name === 'website') {
       this.setState({ webVal: event.target.value });
+    } else if (event.target.name === 'entryno') {
+      this.setState({ enoVal: event.target.value });
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
     //  add checks for all conditions especially dob and all
-    //alert('form is now being submitted');
+    //  alert('form is now being submitted');
     const {
-      nameVal, entryVal, emailVal
+      nameVal, passVal,
+      monthVal, dateVal, emailVal, numVal, yearVal, webVal, enoVal,
     } = this.state;
     const obj = {
-      name : nameVal,
-      email : emailVal,
-      password : entryVal
-    }
-    //console.log(obj)
-    this.props.register(obj)
+      name: nameVal,
+      email: emailVal,
+      password: passVal,
+      entryno: enoVal,
+      phone: numVal,
+      dob: `${dateVal}-${monthVal}-${yearVal}`,
+      website: webVal
+    };
+    this.props.register(obj);
   }
 
   render() {
     const {
-      nameVal, entryVal, monthValPlaceholder,
+      nameVal, passVal, monthValPlaceholder,
       monthVal, dateValPlaceholder, dateVal, yeareValPlaceholder, yearVal, emailVal, numVal,
-      webVal, extendMonthDisp, specialMonth,
+      webVal, extendMonthDisp, specialMonth, enoVal,
     } = this.state;
     return (
       <div className="formCont">
         <form id="regform" action="#" method="POST" onSubmit={this.handleSubmit}>
           <div className="row rowTwo">
-            <input style={{ width: '49%' }} type="text" name="name" className="" placeholder="Full Name: John Doe" value={nameVal} onChange={this.handleChange} />
-            <input style={{ width: '49%' }} type="text" name="eno" className="" placeholder="Entry Number: 2018XX20101" value={entryVal} onChange={this.handleChange} />
+            <input required style={{ width: '49%' }} type="text" name="name" className="" placeholder="Full Name: John Doe" value={nameVal} onChange={this.handleChange} />
+            <input required style={{ width: '49%' }} type="password" name="pass" className="" placeholder="Password: XXXX " value={passVal} onChange={this.handleChange} />
           </div>
           <div className="row dropDownRow">
             <div className="dropdownContainer">
@@ -212,8 +219,9 @@ class LandingRegForm extends React.Component {
               </div>
             </div>
           </div>
-          <input style={{ width: '95.3%' }} type="email" name="email" placeholder="Email Adress: " value={emailVal} onChange={this.handleChange} />
-          <input style={{ width: '95.3%' }} type="number" name="phone" placeholder="Phone Number: " value={numVal} onChange={this.handleChange} />
+          <input required style={{ width: '95.3%' }} type="text" name="entryno" placeholder="Entry Number: " value={enoVal} onChange={this.handleChange} />
+          <input required style={{ width: '95.3%' }} type="email" name="email" placeholder="Email Adress: " value={emailVal} onChange={this.handleChange} />
+          <input required style={{ width: '95.3%' }} type="number" name="phone" placeholder="Phone Number: " value={numVal} onChange={this.handleChange} />
           <input style={{ width: '95.3%' }} type="text" name="website" placeholder="Website: (if any)" value={webVal} onChange={this.handleChange} />
         </form>
       </div>
@@ -221,4 +229,4 @@ class LandingRegForm extends React.Component {
   }
 }
 
-export default connect(null ,{register,setAlert})(LandingRegForm);
+export default connect(null, { register, setAlert })(LandingRegForm);

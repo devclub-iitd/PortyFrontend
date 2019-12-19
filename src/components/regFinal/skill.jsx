@@ -17,20 +17,32 @@ class SkillExpansionPanel extends React.Component {
       skillDetailsCount: 1,
       maxCount: 1,
       btnStyle: {
-        display: 'none',
+        display: "none"
       },
       expanded: false,
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
-      skill: [{
-        name: '',
-        level: '',
-        keywords: '',
-        hidden: false,
-      }],
+      skill: [
+        {
+          name: "",
+          level: "",
+          keywords: "",
+          hidden: false
+        }
+      ]
     };
     const { expanded } = this.state;
-    tempFields.push(<SkillDetails handleChange={this.handleInputChange} key={0} id={0} expanded={expanded} action={() => this.handlePanel(`skillPanel${0}`)} moveFieldDown={() => this.moveFieldDown(0, 0)} moveFieldUp={() => this.moveFieldUp(0, 0)} />);
+    tempFields.push(
+      <SkillDetails
+        handleChange={this.handleInputChange}
+        key={0}
+        id={0}
+        expanded={expanded}
+        action={() => this.handlePanel(`skillPanel${0}`)}
+        moveFieldDown={() => this.moveFieldDown(0, 0)}
+        moveFieldUp={() => this.moveFieldUp(0, 0)}
+      />
+    );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
     this.onSubChild = this.onSubChild.bind(this);
@@ -50,14 +62,24 @@ class SkillExpansionPanel extends React.Component {
     const key = maxCount;
     const exp = expanded;
     tempFieldsTracker.push(key);
-    tempFields.push(<SkillDetails handleChange={this.handleInputChange} key={key} id={i} expanded={exp} action={() => this.handlePanel(`volunteerPanel${i}`)} moveFieldDown={() => this.moveFieldDown(key, i)} moveFieldUp={() => this.moveFieldUp(key, i)} />);
+    tempFields.push(
+      <SkillDetails
+        handleChange={this.handleInputChange}
+        key={key}
+        id={i}
+        expanded={exp}
+        action={() => this.handlePanel(`volunteerPanel${i}`)}
+        moveFieldDown={() => this.moveFieldDown(key, i)}
+        moveFieldUp={() => this.moveFieldUp(key, i)}
+      />
+    );
 
     const { skill } = this.state;
     const skillObj = {
-      name: '',
-      level: '',
-      keywords: '',
-      hidden: false,
+      name: "",
+      level: "",
+      keywords: "",
+      hidden: false
     };
     const tempskill = skill;
     tempskill.push(skillObj);
@@ -65,11 +87,11 @@ class SkillExpansionPanel extends React.Component {
       skillDetailsCount: state.skillDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: 'block',
+        display: "block"
       },
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
-      skill: tempskill,
+      skill: tempskill
     }));
   }
 
@@ -88,19 +110,19 @@ class SkillExpansionPanel extends React.Component {
       skillDetailsCount: state.skillDetailsCount - 1,
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
-      skill: tempskill,
+      skill: tempskill
     }));
     if (skillDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: 'none',
-        },
+          display: "none"
+        }
       });
     }
   }
 
   callApiRequest() {
-    alert('skill');
+    this.props.senData("skills", this.state.skill);
   }
 
   handleInputChange(event) {
@@ -108,13 +130,13 @@ class SkillExpansionPanel extends React.Component {
     const { skill } = this.state;
     const type = event.target.name;
     const tempskill = skill;
-    if (type === 'hidden') {
+    if (type === "hidden") {
       tempskill[id][type] = event.target.checked;
     } else {
       tempskill[id][type] = event.target.value;
     }
     this.setState({
-      skill: tempskill,
+      skill: tempskill
     });
   }
 
@@ -127,22 +149,42 @@ class SkillExpansionPanel extends React.Component {
       const tempFieldsTracker = skillFieldTracker;
       for (let i = 0; i < skillDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<SkillDetails handleChange={this.handleInputChange} key={k} id={i} expanded={false} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(
+          <SkillDetails
+            handleChange={this.handleInputChange}
+            key={k}
+            id={i}
+            expanded={false}
+            action={() => this.handlePanel(`skillPanel${i}`)}
+            moveFieldDown={() => this.moveFieldDown(k, i)}
+            moveFieldUp={() => this.moveFieldUp(k, i)}
+          />
+        );
       }
       this.setState({
         expanded: false,
-        skillFields: tempFields,
+        skillFields: tempFields
       });
     } else {
       const tempFields = [];
       const tempFieldsTracker = skillFieldTracker;
       for (let i = 0; i < skillDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<SkillDetails handleChange={this.handleInputChange} key={k} id={i} expanded={panel} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(
+          <SkillDetails
+            handleChange={this.handleInputChange}
+            key={k}
+            id={i}
+            expanded={panel}
+            action={() => this.handlePanel(`skillPanel${i}`)}
+            moveFieldDown={() => this.moveFieldDown(k, i)}
+            moveFieldUp={() => this.moveFieldUp(k, i)}
+          />
+        );
       }
       this.setState({
         expanded: panel,
-        skillFields: tempFields,
+        skillFields: tempFields
       });
     }
   }
@@ -160,19 +202,39 @@ class SkillExpansionPanel extends React.Component {
       const storeFieldTracker = tempFieldsTracker[i - 1];
       tempFieldsTracker[i - 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <SkillDetails handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i - 1] = <SkillDetails handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`skillPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
+      tempFields[i] = (
+        <SkillDetails
+          handleChange={this.handleInputChange}
+          key={storeFieldTracker}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`skillPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
+          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
+        />
+      );
+      tempFields[i - 1] = (
+        <SkillDetails
+          handleChange={this.handleInputChange}
+          key={k}
+          id={i - 1}
+          expanded={expanded}
+          action={() => this.handlePanel(`skillPanel${i - 1}`)}
+          moveFieldDown={() => this.moveFieldDown(k, i - 1)}
+          moveFieldUp={() => this.moveFieldUp(k, i - 1)}
+        />
+      );
 
       const tempstore = tempskill[i];
       tempskill[i] = tempskill[i - 1];
       tempskill[i - 1] = tempstore;
     } else {
-      alert('you cant move this field any more');
+      alert("you cant move this field any more");
     }
     this.setState({
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
-      skill: tempskill,
+      skill: tempskill
     });
   }
 
@@ -190,19 +252,39 @@ class SkillExpansionPanel extends React.Component {
       const storeFieldTracker = tempFieldsTracker[i + 1];
       tempFieldsTracker[i + 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <SkillDetails handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i + 1] = <SkillDetails handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`skillPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
+      tempFields[i] = (
+        <SkillDetails
+          handleChange={this.handleInputChange}
+          key={storeFieldTracker}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`skillPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
+          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
+        />
+      );
+      tempFields[i + 1] = (
+        <SkillDetails
+          handleChange={this.handleInputChange}
+          key={k}
+          id={i + 1}
+          expanded={expanded}
+          action={() => this.handlePanel(`skillPanel${i + 1}`)}
+          moveFieldDown={() => this.moveFieldDown(k, i + 1)}
+          moveFieldUp={() => this.moveFieldUp(k, i + 1)}
+        />
+      );
 
       const tempstore = tempskill[i];
       tempskill[i] = tempskill[i + 1];
       tempskill[i + 1] = tempstore;
     } else {
-      alert('you cant move this field any more');
+      alert("you cant move this field any more");
     }
     this.setState({
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
-      skill: tempskill,
+      skill: tempskill
     });
   }
 
@@ -210,30 +292,30 @@ class SkillExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: 'rgba(255,255,255,1)',
+          main: "rgba(255,255,255,1)"
         },
         secondary: {
-          main: '#3d40d8',
-        },
-      },
+          main: "#3d40d8"
+        }
+      }
     });
     const useStyles = {
       root: {
-        width: '75%',
-        margin: 'auto',
-        marginTop: '15px',
+        width: "75%",
+        margin: "auto",
+        marginTop: "15px"
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: '33.33%',
-        textTransform: 'uppercase',
+        flexBasis: "33.33%",
+        textTransform: "uppercase",
         flexShrink: 0,
-        fontWeight: 700,
+        fontWeight: 700
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main,
-      },
+        color: theme.palette.secondary.main
+      }
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -241,7 +323,7 @@ class SkillExpansionPanel extends React.Component {
     const { btnStyle } = this.state;
     return (
       <div style={useStyles.root}>
-        <ExpansionPanel expanded={expanded === 'skillPanel'} onChange={action}>
+        <ExpansionPanel expanded={expanded === "skillPanel"} onChange={action}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
@@ -254,12 +336,23 @@ class SkillExpansionPanel extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div className="customDetailContainer">
-              <div>
-                {skillFields}
-              </div>
+              <div>{skillFields}</div>
               <div className="btnRow">
-                <div className="addBtn" onClick={this.onSubChild} style={btnStyle} role="presentation">-</div>
-                <div className="addBtn" onClick={this.onAddChild} role="presentation">+</div>
+                <div
+                  className="addBtn"
+                  onClick={this.onSubChild}
+                  style={btnStyle}
+                  role="presentation"
+                >
+                  -
+                </div>
+                <div
+                  className="addBtn"
+                  onClick={this.onAddChild}
+                  role="presentation"
+                >
+                  +
+                </div>
               </div>
             </div>
           </ExpansionPanelDetails>

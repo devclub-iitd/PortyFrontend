@@ -6,8 +6,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import '../style/headerLogin.css';
-
+import '../style/header.css';
+// import Alert from './alert';
 import Register from '../pages/registerationLanding';
 import Login from '../pages/login';
 
@@ -70,6 +70,9 @@ const styles = () => ({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  tcalign: {
+    backgroundColor: 'red',
+  },
 
 });
 
@@ -91,7 +94,7 @@ class SimpleTabs extends React.Component {
         <div className={classes.root}>
           <AppBar position="static" className={classes.headercontainer}>
             <div className="headerDetails">
-              <div className="headerTitle"> Portfolio Creator </div>
+              <div className="headerTitle" style={{ fontWeight: '600', fontSize: '20px' }}>Portfolio Creator</div>
             </div>
             <Tabs value={value} onChange={this.handleChange} className={classes.navbarContainer}>
               <Tab className={classes.navbarItem} label="Login" />
@@ -99,7 +102,7 @@ class SimpleTabs extends React.Component {
             </Tabs>
           </AppBar>
           {value === 1 && <TabContainer><Register /></TabContainer>}
-          {value === 0 && <TabContainer><Login /></TabContainer>}
+          {value === 0 && <TabContainer className={classes.tcalign}><Login /></TabContainer>}
         </div>
       </MuiThemeProvider>
     );

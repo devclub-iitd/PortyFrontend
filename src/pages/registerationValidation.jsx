@@ -2,61 +2,61 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import '../style/validation.css';
 
-class Validation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      otp: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const useStyles = makeStyles(() => ({
+  button: {
+    width: '150px',
+    height: '40px',
+    marginTop: '30px',
+    borderRadius: '5px',
+  },
+  input: {
+    display: 'none',
+  },
+}));
 
-  handleChange(event) {
-    this.setState({ otp: event.target.value });
-  }
+const navtoLog = () => {
+  window.location.href = '../';
+};
 
-  handleSubmit(event) {
-    event.preventDefault();
-  }
-
-  render() {
-    const { otp } = this.state;
-    return (
-      <div>
-        <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
-          <Toolbar>
-            <Typography>
-              <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
-              {' '}
-              <span style={{ color: '#3d40d8' }}>| Account Validation</span>
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <div className="validationTitleContainer">
-          <div className="validationTitle">
-            Please enter the otp recieved on the email address:
-          </div>
-          <div className="validationSubtitle">
-            aryanguptaleo@gmail.com
-          </div>
+const Validation = () => {
+  const classes = useStyles();
+  return (
+    <div>
+      <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
+        <Toolbar>
+          <Typography>
+            <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
+            {' '}
+            <span style={{ color: '#3d40d8' }}>| Verification</span>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <div className="fullScreen" style={{ marginLeft: '60px' }}>
+        <div className="notFoundTextContainer">
+          <Typography variant="h3" style={{ marginTop: '140px', fontWeight: '600' }}>
+            Verification Successful :)
+          </Typography>
+          <Typography style={{ marginTop: '30px', fontSize: '18px', fontWeight: '300' }}>
+            Your email has been verified successfully.
+            <br />
+            {' '}
+            Kindly click the button below to proceed to the login page
+            {' '}
+            <br />
+            <b>And Login with your newly created account.</b>
+          </Typography>
         </div>
-        <Paper className="validationFormContainer">
-          <form onSubmit={this.handleSubmit}>
-            <input type="number" value={otp} onChange={this.handleChange} required className="validationOtp" placeholder="OTP:" />
-            <Button variant="contained" color="secondary" type="submit">
-              Continue
-            </Button>
-          </form>
-        </Paper>
+        <Button variant="contained" color="secondary" className={classes.button} onClick={navtoLog}>
+          Login
+        </Button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Validation;

@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
-import PersonPinIcon from '@material-ui/icons/PersonPin';
+import { connect } from 'react-redux';
 
 import RegForm from '../components/landingRegForm';
 
@@ -19,10 +21,18 @@ const styles = {
     margin: 'auto',
     marginTop: '40px',
   },
+  button: {
+    width: '200px',
+    height: '55px',
+    marginTop: '33px',
+    textAlign: 'center',
+    borderRadius: '10px',
+  },
   rootRegPage: {
     margin: 'auto',
     marginTop: '40px',
     minWidth: '570px',
+    textAlign: 'left',
     width: '65%',
     minHeight: '240px', // 328px
     paddingBottom: '30px',
@@ -47,7 +57,32 @@ class IconLabelTabs extends React.Component {
     super(props);
     this.state = {
       value: 0,
+      openDial: false,
+      message: '',
     };
+    this.handleClose = this.handleClose.bind(this);
+    this.openDial = this.openDial.bind(this);
+  }
+
+  handleClose() {
+    this.setState({
+      openDial: false,
+    });
+  }
+
+  openDial(mess) {
+    this.setState({
+      openDial: true,
+      message: mess,
+    });
+  }
+
+  componentDidUpdate(oldProps) {
+    let index = 0;
+    if (oldProps.alerts.length !== this.props.alerts.length) {
+      index = this.props.alerts.length - 1;
+      this.openDial(this.props.alerts[index].msg);
+    }
   }
 
   handleChange = (event, value) => {
@@ -59,7 +94,7 @@ class IconLabelTabs extends React.Component {
     const { value } = this.state;
 
     return (
-      <div>
+      <div style={{ textAlign: 'center' }}>
         <div className="title">
             Register
         </div>
@@ -67,24 +102,38 @@ class IconLabelTabs extends React.Component {
           {value === 0 && (
             <TabContainer>
               {' '}
-              <RegForm />
+              <RegForm handleDial={this.openDial} />
               {' '}
             </TabContainer>
           )}
         </Paper>
-
-        <Paper square className={classes.rootRegNav}>
-          <Tabs
-            value={value}
-            onChange={this.handleChange}
-            variant="fullWidth"
-            indicatorColor="secondary"
-            textColor="secondary"
-          >
-            <Tab icon={<PersonPinIcon />} label="ABOUT YOU" />
-          </Tabs>
-        </Paper>
-        <button form="regform" className="btn" type="submit"> Let&apos;s Go </button>
+        <Button variant="contained" color="secondary" className={classes.button} type="submit" form="regform">
+          Let's Go
+        </Button>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.openDial}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{this.state.message}</span>}
+          action={[
+            <IconButton
+              key="close"
+              aria-label="close"
+              color="inherit"
+              className={classes.close}
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
       </div>
     );
   }
@@ -94,4 +143,8 @@ IconLabelTabs.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default withStyles(styles)(IconLabelTabs);
+const mapStateToProps = state => ({
+  alerts: state.alert,
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(IconLabelTabs));

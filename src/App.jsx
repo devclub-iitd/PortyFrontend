@@ -5,11 +5,15 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import store from './store';
 import Landing from './pages/landing';
+import Portfolio from './pages/portfolio';
 import Register from './pages/registerationFinal';
 import Validation from './pages/registerationValidation';
 import HeaderMain from './components/headerMain';
 import setAuthToken from './utility/setauthtoken';
 import { loadUser } from './actions/auth';
+import PrivateRoute from './components/privateRoute';
+import Alert from './components/alert';
+import PublicPortfolio from './pages/publicPortfolio';
 
 const theme = createMuiTheme({
   palette: {
@@ -39,10 +43,12 @@ const App = () => {
       <div>
         <MuiThemeProvider theme={theme}>
           <Router>
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/home" component={HeaderMain} />
+            <PrivateRoute exact path="/register" component={Register} />
+            <PrivateRoute exact path="/home" component={HeaderMain} />
             <Route exact path="/" component={Landing} />
+            <PrivateRoute exact path="/portfolio" component={Portfolio} />
             <Route exact path="/validate" component={Validation} />
+            <Route exact path="/portfolio/:id" component={PublicPortfolio} />
           </Router>
         </MuiThemeProvider>
       </div>

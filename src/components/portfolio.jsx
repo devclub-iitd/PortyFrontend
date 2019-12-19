@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
-
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Landing from './portfolio/landing';
 import About from './portfolio/about';
 import Education from './portfolio/education';
@@ -8,89 +10,70 @@ import Work from './portfolio/work';
 import Volunteer from './portfolio/volunteer';
 import Extra from './portfolio/extra';
 import Contact from './portfolio/contact';
-
 import '../style/portfolio.css';
+import Loader from './loader';
+import { getCurrentProfile } from '../actions/profile';
 
-class Portfolio extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      label: '',
-      email: '',
-      phone: '',
-      about: '',
-      location: '',
-      education: '',
-      work: '',
-      volunteer: '',
-      awards: '',
-      publications: '',
-      skills: '',
-      languages: '',
-    };
-    this.getUserData();
-  }
+const navToReg = () => {
+  window.location.href = '../register';
+};
 
-  getUserData = () => {
-    fetch('/api/getUserData')
-      .then(res => res.json())
-      .then(
-        user => this.setState({
-          name: user.basics.name,
-          label: user.basics.label,
-          email: user.basics.email,
-          phone: user.basics.phone,
-          about: user.basics.summary,
-          location: user.basics.location,
-          education: user.education,
-          work: user.work,
-          volunteer: user.volunteer,
-          awards: user.awards,
-          publications: user.publications,
-          skills: user.skills,
-          languages: user.languages,
-        }),
-      );
-  }
+const Portfolio = ({ getCurrentProfile, profile: { profile, loading } }) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, []);
 
-  render() {
-    const {
-      name,
-      label,
-      email,
-      phone,
-      about,
-      location,
-      education,
-      work,
-      volunteer,
-      awards,
-      publications,
-      skills,
-      languages,
-    } = this.state;
+  if (loading) {
+    return <div><Loader /></div>;
+  } else if (!loading && profile !== null) {
     return (
       <Paper className="portfolioContainer" elavation={4}>
-        <Landing name={name} label={label} />
-        <About summary={about} />
-        <Education education={education} />
-        <Work work={work} />
-        <Volunteer volunteer={volunteer} />
+        <Landing name={profile.user.name} label={profile.about.label} />
+        <About summary={profile.about} />
+        <Education education={profile.education} />
+        <Work work={profile.work} />
+        <Volunteer volunteer={profile.volunteer} />
         <Extra
-          awards={awards}
-          publications={publications}
-          languages={languages}
-          skills={skills}
+          awards={profile.awards}
+          publications={profile.publications}
+          languages={profile.languages}
+          skills={profile.skills}
         />
         <Contact
-          email={email}
-          phone={phone}
-          location={location}
+          email={profile.user.email}
+          phone={profile.user.phone}
+          location={profile.location}
         />
       </Paper>
     );
+  } else if (!loading && profile === null) {
+    return (
+      <div className="noProf">
+        No profile found
+        <br />
+        please make one by clicking
+        {' '}
+        <span onClick={navToReg}>here</span>
+      </div>
+    );
   }
-}
 
-export default Portfolio;
+  //return (<div>Hello</div>)
+};
+
+Portfolio.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile,
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { getCurrentProfile }
+)(Portfolio);

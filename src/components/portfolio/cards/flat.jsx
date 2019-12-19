@@ -10,6 +10,7 @@ const FlatCard = (props) => {
       <div className="portfolioCardTitle">
         <span className="portfolioCardTitleMain">
           {institution}
+          {' '}
            |
         </span>
         {' '}
