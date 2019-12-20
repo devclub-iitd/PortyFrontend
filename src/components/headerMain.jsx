@@ -84,7 +84,7 @@ class SimpleTabs extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    //this.props.getCurrentProfile();
   }
 
   handleChange = (event, value) => {

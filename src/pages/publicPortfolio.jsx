@@ -78,7 +78,7 @@ const Portfolio = ({
           />
           <Contact
             email={profile.user.email}
-            phone={profile.user.phone}
+            phone={profile.user.number}
             location={profile.location}
           />
         </div>
