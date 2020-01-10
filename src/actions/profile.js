@@ -1,11 +1,60 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_PROFILE, PROFILE_ERROR } from './types';
+import { GET_PROFILE, GETTING_PROFILE ,PROFILE_ERROR } from './types';
 import { loadUser } from './auth';
 
 export const getCurrentProfile = () => async dispatch => {
     try {
+        
+        // dispatch({
+        //     type : GETTING_PROFILE
+        // })
+
         const res = await axios.get('/api/profile/me')
+
+        dispatch({
+            type : GET_PROFILE,
+            payload : res.data
+        })
+        
+    } catch (err) {
+        dispatch({
+            type : PROFILE_ERROR
+        })
+        dispatch(setAlert("Server Error","red"))
+    }
+}
+
+export const getProfile = () => async dispatch => {
+    try {
+        
+        // dispatch({
+        //     type : GETTING_PROFILE
+        // })
+
+        const res = await axios.get('/api/profile/me')
+
+        dispatch({
+            type : GET_PROFILE,
+            payload : res.data
+        })
+        
+    } catch (err) {
+        dispatch({
+            type : PROFILE_ERROR
+        })
+        dispatch(setAlert("Server Error","red"))
+    }
+}
+
+export const getFullProfile = () => async dispatch => {
+    try {
+        
+        dispatch({
+            type : GETTING_PROFILE
+        })
+
+        const res = await axios.get('/api/profile/mefull')
 
         dispatch({
             type : GET_PROFILE,
@@ -29,12 +78,12 @@ export const UpdateUser = (formdata , edit = true) => async dispatch => {
 
         const res = await axios.post("/api/user/update", formdata, config);
 
-        dispatch(loadUser())
+        //dispatch(loadUser())
 
-        dispatch({
-          type: GET_PROFILE,
-          payload: res.data
-        });
+        // dispatch({
+        //   type: GET_PROFILE,
+        //   payload: res.data
+        // });
 
         dispatch(
           setAlert(edit ? "Profile Updated" : "Profile Created", "green")
@@ -81,17 +130,12 @@ export const createProfile = (formData , history ,edit = true) => async dispatch
         }
 
         const res = await axios.post('/api/profile', formData , config)
-        dispatch({
-            type : GET_PROFILE,
-            payload : res.data
-        })
-
-        dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','green'))
-
-
-
-
-
+        
+        // dispatch({
+        //     type : GET_PROFILE,
+        //     payload : res.data
+        // })
+        //dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','green'))
     } catch (err) {
         const errors = err.response.data.errors
 

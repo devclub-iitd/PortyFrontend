@@ -12,15 +12,16 @@ class AboutExpansionPanel extends React.Component {
     super(props);
     this.state = {
       name : this.props.existingContactData.name,
-      number : this.props.existingContactData.phone,
+      number : this.props.existingContactData.number,
       label : this.props.existingData.label,
       summary : this.props.existingData.summary,
-      imgUrl: ''//insert this.props.existingData.imgUrl,
+      imgUrl: this.props.existingData.imgUrl
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   callApiRequest() {
+    console.log(this.state)
     this.props.senData("about", this.state);
   }
 
