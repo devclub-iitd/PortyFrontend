@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { getCurrentProfile, createProfile, UpdateUser } from '../actions/profile';
+import { createProfile,  getFullProfile} from '../actions/profile';
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '../components/fancyAlert';
 
@@ -64,7 +64,7 @@ class Edit extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    this.props.getFullProfile();
   }
 
   handlePanel(panel) {
@@ -81,40 +81,11 @@ class Edit extends React.Component {
   }
 
   retrieveChildData(type, data) {
-    switch (type) {
-      case 'work':
-      case 'volunteer':
-      case 'education':
-      case 'awards':
-      case 'publications':
-      case 'skills':
-      case 'languages':
-      case 'interests':
-      case 'references':
-      case 'location': {
         const obj = {
           [type]: data,
         };
-        // console.log(obj);
         const stringyobj = JSON.stringify(obj);
-        this.props.createProfile(stringyobj, this.props.history);
-        break;
-      }
-      case 'about': {
-        const userObj = {
-          'name': data.name,
-          'phone': data.number,
-        };
-        const obj = {
-          'label': data.label,
-          'summary': data.summary,
-        }
-        const stringyobj = JSON.stringify(obj);
-        const stringyobj2 = JSON.stringify(userObj);
-        this.props.createProfile(stringyobj, this.props.history);
-        this.props.UpdateUser(stringyobj2);
-      }
-    }
+        this.props.createProfile(stringyobj, this.props.history);    
   }
 
   handleSumbit(event) {
@@ -286,7 +257,7 @@ class Edit extends React.Component {
 }
 
 Edit.propTypes = {
-  getCurrentProfile: PropTypes.func.isRequired,
+  getFullProfile : PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -299,5 +270,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile, createProfile, UpdateUser }
+  { createProfile, getFullProfile}
 )(Edit);

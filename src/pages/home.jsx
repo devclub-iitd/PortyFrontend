@@ -10,7 +10,7 @@ import { logout } from '../actions/auth';
 import Portfolio from '../components/portfolio';
 import '../style/home.css';
 
-import { getCurrentProfile } from '../actions/profile';
+import { getProfile } from '../actions/profile';
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -39,9 +39,9 @@ const portfolio = () => {
   window.location.href = './portfolio';
 };
 
-const Home = ({ logout, getCurrentProfile }) => {
+const Home = ({ logout, getProfile }) => {
   useEffect(() => {
-    getCurrentProfile();
+    //getProfile();
   }, []);
   const classes = useStyles();
   return (
@@ -78,5 +78,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logout, getCurrentProfile },
+  { logout, getProfile },
 )(Home);
