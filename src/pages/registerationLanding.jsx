@@ -24,16 +24,16 @@ const styles = {
   button: {
     width: '200px',
     height: '55px',
-    marginTop: '33px',
+    marginTop: '40px',
     textAlign: 'center',
     borderRadius: '10px',
   },
   rootRegPage: {
-    margin: 'auto',
     marginTop: '40px',
     minWidth: '570px',
     textAlign: 'left',
     width: '65%',
+    opacity: '0.6',
     minHeight: '240px', // 328px
     paddingBottom: '30px',
   },
@@ -94,7 +94,8 @@ class IconLabelTabs extends React.Component {
     const { value } = this.state;
 
     return (
-      <div style={{ textAlign: 'center' }}>
+      <div className="loginPageContainer" style={{ textAlign: 'center', marginTop: '0px' }}>
+        <div className="pageOverlay">
         <div className="title">
             Register
         </div>
@@ -134,6 +135,7 @@ class IconLabelTabs extends React.Component {
             </IconButton>,
           ]}
         />
+        </div>
       </div>
     );
   }

@@ -68,6 +68,10 @@ const styles = () => ({
   headercontainer: {
     display: 'flex',
     flexDirection: 'row',
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    backdropFilter: 'blur(5px)',
+    zIndex: '10',
+    position: 'fixed',
     justifyContent: 'space-around',
   },
   tcalign: {
@@ -101,8 +105,8 @@ class SimpleTabs extends React.Component {
               <Tab className={classes.navbarItem} label="Register" />
             </Tabs>
           </AppBar>
-          {value === 1 && <TabContainer><Register /></TabContainer>}
           {value === 0 && <TabContainer className={classes.tcalign}><Login /></TabContainer>}
+          {value === 1 && <TabContainer><Register /></TabContainer>}
         </div>
       </MuiThemeProvider>
     );

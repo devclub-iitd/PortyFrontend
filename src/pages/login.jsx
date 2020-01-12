@@ -18,19 +18,17 @@ const styles = {
   rootRegNav: {
     flexGrow: 1,
     maxWidth: 400,
-    margin: 'auto',
     marginTop: '40px',
   },
   button: {
     width: '200px',
     height: '55px',
-    marginTop: '33px',
-    textAlign: 'center',
     borderRadius: '10px',
+    marginTop: '40px'
   },
   rootRegPage: {
-    margin: 'auto',
     marginTop: '40px',
+    opacity: '0.6',
     minWidth: '570px',
     width: '35%',
     height: 'auto',
@@ -74,16 +72,19 @@ class IconLabelTabs extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="loginPageContainer" style={{ textAlign: 'center', marginTop: '100px' }}>
+      <div className="loginPageContainer" style={{ textAlign: 'center', marginTop: '0px' }}>
+        <div className="pageOverlay">
         <div className="title">
-            Login
+            Account Login
         </div>
         <Paper className={classes.rootRegPage}>
           <LoginForm handleDial={this.openDial} />
         </Paper>
+        <div className="lgnBtnCont">
         <Button variant="contained" color="secondary" className={classes.button} type="submit" form="loginform">
-          Login
+          Sign-In
         </Button>
+        </div>
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -108,7 +109,7 @@ class IconLabelTabs extends React.Component {
             </IconButton>,
           ]}
         />
-
+        </div>
       </div>
     );
   }
