@@ -85,7 +85,7 @@ class Edit extends React.Component {
           [type]: data,
         };
         const stringyobj = JSON.stringify(obj);
-        this.props.createProfile(stringyobj, this.props.history);    
+        this.props.createProfile(stringyobj, this.props.history);
   }
 
   handleSumbit(event) {
@@ -136,7 +136,7 @@ class Edit extends React.Component {
       return (
         <MuiThemeProvider theme={theme}>
           <div style={{ paddingBottom: 100 }}>
-            <Image />
+            <Image img={profile.about.imgUrl} />
             <Intro name={this.props.user.name} caption="none" />
             <form onSubmit={this.handleSumbit}>
               {/* <Account
@@ -160,6 +160,13 @@ class Edit extends React.Component {
                 existingData={profile.location}
                 senData={this.retrieveChildData}
               />
+              <Education
+                ref={this.education}
+                expanded={expanded}
+                action={() => this.handlePanel('educationPanel')}
+                existingData={profile.education}
+                senData={this.retrieveChildData}
+              />
               <Work
                 ref={this.work}
                 expanded={expanded}
@@ -174,13 +181,16 @@ class Edit extends React.Component {
                 existingData={profile.volunteer}
                 senData={this.retrieveChildData}
               />
-              <Education
-                ref={this.education}
+              <Language
+                ref={this.language}
                 expanded={expanded}
-                action={() => this.handlePanel('educationPanel')}
-                existingData={profile.education}
+                action={() => this.handlePanel('languagePanel')}
+                existingData={profile.languages}
                 senData={this.retrieveChildData}
               />
+              <div className="regSubTitle">
+                Optionals -
+              </div>
               <Award
                 ref={this.award}
                 expanded={expanded}
@@ -200,13 +210,6 @@ class Edit extends React.Component {
                 expanded={expanded}
                 action={() => this.handlePanel('skillPanel')}
                 existingData={profile.skills}
-                senData={this.retrieveChildData}
-              />
-              <Language
-                ref={this.language}
-                expanded={expanded}
-                action={() => this.handlePanel('languagePanel')}
-                existingData={profile.languages}
                 senData={this.retrieveChildData}
               />
               <Interest

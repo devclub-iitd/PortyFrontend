@@ -161,6 +161,12 @@ class RegFinal extends React.Component {
               action={() => this.handlePanel("locationPanel")}
               senData={this.retrieveChildData}
             />
+            <Education
+              ref={this.education}
+              expanded={expanded}
+              action={() => this.handlePanel("educationPanel")}
+              senData={this.retrieveChildData}
+            />
             <Work
               ref={this.work}
               expanded={expanded}
@@ -173,12 +179,15 @@ class RegFinal extends React.Component {
               action={() => this.handlePanel("volunteerPanel")}
               senData={this.retrieveChildData}
             />
-            <Education
-              ref={this.education}
+            <Language
+              ref={this.language}
               expanded={expanded}
-              action={() => this.handlePanel("educationPanel")}
+              action={() => this.handlePanel("languagePanel")}
               senData={this.retrieveChildData}
             />
+            <div className="regSubTitle">
+              Optionals -
+            </div>
             <Award
               ref={this.award}
               expanded={expanded}
@@ -195,12 +204,6 @@ class RegFinal extends React.Component {
               ref={this.skill}
               expanded={expanded}
               action={() => this.handlePanel("skillPanel")}
-              senData={this.retrieveChildData}
-            />
-            <Language
-              ref={this.language}
-              expanded={expanded}
-              action={() => this.handlePanel("languagePanel")}
               senData={this.retrieveChildData}
             />
             <Interest

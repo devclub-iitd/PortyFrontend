@@ -12,7 +12,7 @@ class AboutExpansionPanel extends React.Component {
     super(props);
     this.state = {
       name : this.props.existingContactData.name,
-      number : this.props.existingContactData.number,
+      number : this.props.existingData.number,
       label : this.props.existingData.label,
       summary : this.props.existingData.summary,
       imgUrl: this.props.existingData.imgUrl

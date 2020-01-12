@@ -1,0 +1,28 @@
+.fullScreen {
+  /* height: 100%; */
+  overflow-y: hidden;
+  position: fixed;
+  right:0%;
+  left: 0%;
+  display: flex;
+  text-align: left;
+  top: 50px;
+  bottom: 50px;
+  justify-content: center;
+  padding-left: 100px;
+  padding-right: 100px;
+  flex-direction: column;
+}
+.buttonRow {
+  width: auto;
+  padding: 20px;
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 20px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+  align-items: center;
+}

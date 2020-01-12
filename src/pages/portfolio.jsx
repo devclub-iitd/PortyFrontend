@@ -63,6 +63,7 @@ const Portfolio = ({
         <Landing
           name={profile.user.name}
           label={profile.about.label}
+          img={profile.about.imgUrl}
           initScroll={initScroll}
         />
         <div class="portfolioBodyCont" style={{ top: window.innerHeight + 'px' }}>
@@ -78,7 +79,7 @@ const Portfolio = ({
           />
           <Contact
             email={profile.user.email}
-            phone={profile.user.number}
+            phone={profile.about.number}
             location={profile.location}
           />
         </div>

@@ -44,7 +44,7 @@ const InterestField = (props) => {
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input id={id} onChange={handleChange} name="name" className="left" type="text" required placeholder="Interest Name:" />
+            <input id={id} onChange={handleChange} name="name" className="left" type="text" placeholder="Interest Name:" />
             <textarea id={id} onChange={handleChange} name="keywords" resize="none" placeholder="Keywords (seperated by a comma): keyword_1, keyword_2, keyword_3, ... " />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel

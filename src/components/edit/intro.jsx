@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Intro = (props) => {
   const {
-    name, caption,
+    name, caption, img
   } = props;
   return (
     <div className="introContainer introContainerEdit">
