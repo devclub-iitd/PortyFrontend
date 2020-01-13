@@ -78,7 +78,7 @@ class RegFinal extends React.Component {
     }
   }
 
-  retrieveChildData(type, data) {
+  async retrieveChildData(type, data) {
     switch (type) {
       case 'work':
       case 'volunteer':
@@ -98,7 +98,7 @@ class RegFinal extends React.Component {
           [type]: data
         }
         const ts = JSON.stringify(obj)
-        this.props.createProfile(ts,this.props.history,false)
+        await this.props.createProfile(ts,this.props.history,false)
       }
     }
   }
@@ -122,7 +122,7 @@ class RegFinal extends React.Component {
       alertTitle: 'Profile has been created!',
       alertContent: 'Kindly check the home page to view your portfolio',
     });
-    window.location.href = '../home';
+    //window.location.href = '../home';
   }
 
   handleClose() {
@@ -224,6 +224,7 @@ class RegFinal extends React.Component {
                 style={{ padding: "12px 50px" }}
                 color="secondary"
                 type="submit"
+                onSubmit={this.handleSumbit}
               >
                 Done
               </Button>

@@ -120,7 +120,7 @@ export const getPublicProfile = (entryno) => async dispatch => {
         dispatch(setAlert("Server Error","red"))
     }
 }
-export const createProfile = (formData , history ,edit = true) => async dispatch => {
+export const createProfile = (formData , history ,edit = false) => async dispatch => {
     try {
 
         const config = {
@@ -135,7 +135,7 @@ export const createProfile = (formData , history ,edit = true) => async dispatch
         //     type : GET_PROFILE,
         //     payload : res.data
         // })
-        //dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','green'))
+        dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','green'))
     } catch (err) {
         const errors = err.response.data.errors
 
