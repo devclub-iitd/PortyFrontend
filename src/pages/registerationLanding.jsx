@@ -62,11 +62,19 @@ class IconLabelTabs extends React.Component {
     };
     this.handleClose = this.handleClose.bind(this);
     this.openDial = this.openDial.bind(this);
+    this.openTemp = this.openTemp.bind(this);
   }
 
   handleClose() {
     this.setState({
       openDial: false,
+    });
+  }
+
+  openTemp() {
+    this.setState({
+      openDial: true,
+      message: "Please wait while we register your profile. Do not click away.",
     });
   }
 
@@ -108,7 +116,7 @@ class IconLabelTabs extends React.Component {
             </TabContainer>
           )}
         </Paper>
-        <Button variant="contained" color="secondary" className={classes.button} type="submit" form="regform">
+        <Button variant="contained" color="secondary" className={classes.button} type="submit" form="regform" onSubmit={this.openTemp}>
           Let's Go
         </Button>
         <Snackbar

@@ -14,6 +14,7 @@ class AboutExpansionPanel extends React.Component {
       label: '',
       imgUrl: '',
       summary: '',
+      number: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -62,7 +63,7 @@ class AboutExpansionPanel extends React.Component {
     const {
       expanded, action,
     } = this.props;
-    const { label, summary, imgUrl } = this.state;
+    const { label, summary, imgUrl, number } = this.state;
     return (
       <div style={useStyles.root}>
         <ExpansionPanel expanded={expanded === 'aboutPanel'} onChange={action}>
@@ -85,6 +86,14 @@ class AboutExpansionPanel extends React.Component {
                 type="text"
                 required
                 placeholder="Label: Student"
+              />
+              <input
+                value={number}
+                onChange={this.handleInputChange}
+                name="number"
+                type="number"
+                required
+                placeholder="Contact Number:"
               />
               <input
                 value={imgUrl}

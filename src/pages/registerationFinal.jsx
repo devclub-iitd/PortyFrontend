@@ -122,7 +122,9 @@ class RegFinal extends React.Component {
       alertTitle: 'Profile has been created!',
       alertContent: 'Kindly check the home page to view your portfolio',
     });
-    //window.location.href = '../home';
+    setTimeout(function() {
+      window.location.href = '../home';
+    }, 2000);
   }
 
   handleClose() {
@@ -224,7 +226,7 @@ class RegFinal extends React.Component {
                 style={{ padding: "12px 50px" }}
                 color="secondary"
                 type="submit"
-                onSubmit={this.handleSumbit}
+                onClick={this.handleOpen}
               >
                 Done
               </Button>

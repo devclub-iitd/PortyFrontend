@@ -21,7 +21,7 @@ const InterestField = (props) => {
   const { handleChange } = props;
   const { data } = props;
   const [state, setState] = React.useState({
-    hidden: false,
+    hidden: data.hidden,
   });
 
   const handleCheckBoxChange = name => (event) => {

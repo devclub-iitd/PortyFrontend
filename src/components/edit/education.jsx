@@ -34,7 +34,7 @@ class EducationExpansionPanel extends React.Component {
     };
     const { expanded } = this.state;
     for (let i = 0; i < existingData.length; i += 1) {
-      tempFields.push(<EducationDetails data={existingData[0]} handleChange={this.handleInputChange} key={i} id={i} expanded={expanded} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
+      tempFields.push(<EducationDetails data={existingData[i]} handleChange={this.handleInputChange} key={i} id={i} expanded={expanded} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
       tempFieldsTracker.push(i);
     }
     this.onAddChild = this.onAddChild.bind(this);
