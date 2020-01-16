@@ -9,6 +9,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
+import AlertStatic from '../components/fancyAlertStatic';
 import Alert from '../components/fancyAlert';
 
 import Intro from '../components/regFinal/intro';
@@ -44,7 +49,10 @@ class RegFinal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false
+      expanded: false,
+      message: '',
+      openDial: false,
+      obj: {}
     };
     this.account = React.createRef();
     this.about = React.createRef();
@@ -63,8 +71,10 @@ class RegFinal extends React.Component {
     this.retrieveChildData = this.retrieveChildData.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
+    this.openDial = this.openDial.bind(this);
+    this.handleCloseMini = this.handleCloseMini.bind(this);
+    this.redirectHome = this.redirectHome.bind(this);
   }
-
   handlePanel(panel) {
     const { expanded } = this.state;
     if (expanded === panel) {
@@ -94,37 +104,69 @@ class RegFinal extends React.Component {
         this.setState({
           [type]: data
         });
-        const obj = {
-          [type]: data
-        }
-        const ts = JSON.stringify(obj)
-        await this.props.createProfile(ts,this.props.history,false)
+        // const obj = {
+        //   [type]: data
+        // }
+        this.setState(prevState => ({
+          obj: {
+            ...prevState.obj,    // keep all other key-value pairs
+            [type]: data       // update the value of specific key
+          }
+        }))
+        console.log(this.state.obj);
+        // const ts = JSON.stringify(obj)
+        // await this.props.createProfile(ts,this.props.history,false)
       }
     }
   }
 
   async handleSumbit(event) {
     event.preventDefault();
+    // this.openDial('Please wait for a few seconds while we register your details, do not click on anything');
     //this.account.current.callApiRequest();
-    await this.about.current.callApiRequest();
-    await this.location.current.callApiRequest();
-    await this.work.current.callApiRequest();
-    await this.volunteer.current.callApiRequest();
-    await this.education.current.callApiRequest();
-    await this.award.current.callApiRequest();
-    await this.publication.current.callApiRequest();
-    await this.skill.current.callApiRequest();
-    await this.language.current.callApiRequest();
-    await this.interest.current.callApiRequest();
-    await this.reference.current.callApiRequest();
-    this.setState({
-      open: true,
-      alertTitle: 'Profile has been created!',
-      alertContent: 'Kindly check the home page to view your portfolio',
-    });
-    setTimeout(function() {
-      window.location.href = '../home';
-    }, 2000);
+    this.about.current.callApiRequest();
+    this.location.current.callApiRequest();
+    this.work.current.callApiRequest();
+    this.volunteer.current.callApiRequest();
+    this.education.current.callApiRequest();
+    this.award.current.callApiRequest();
+    this.publication.current.callApiRequest();
+    this.skill.current.callApiRequest();
+    this.language.current.callApiRequest();
+    this.interest.current.callApiRequest();
+    this.reference.current.callApiRequest();
+    await this.props.createProfile(this.state.obj,this.props.history,false);
+    var len = this.props.alert.length;
+    if (this.props.alert[len - 1].alertType != 'blue') {
+      this.setState({
+        open: false,
+        openDial: true,
+        message: this.props.alert[len - 1].msg
+      })
+    } else if (this.props.alert[len - 1].alertType == 'blue'){
+      this.setState({
+        open: false,
+        openStatic: true,
+        alertTitle: 'Profile has been created!',
+        alertContent: 'Please click okay to continue',
+      })
+    }
+    // this.setState({
+    //   open: false,
+    //   openDial: true,
+    //   message: this.props.alert[0].msg
+    // })
+    // this.setState({
+    //   open: false,
+    //   openStatic: true,
+    //   alertTitle: 'Profile has been created!',
+    //   alertContent: 'Please wait while we redirect you to the homepage',
+    // });
+    console.log(this.state.obj);
+        // window.location.href = '../home';
+    // setTimeout(function() {
+    //   window.location.href = '../home';
+    // }, 10000);
   }
 
   handleClose() {
@@ -141,9 +183,26 @@ class RegFinal extends React.Component {
     });
   }
 
+  openDial(mess) {
+    this.setState({
+      openDial: true,
+      message: mess,
+    });
+  }
+
+  redirectHome() {
+    window.location.href = '../home';
+  }
+
+  handleCloseMini() {
+    this.setState({
+      openDial: false,
+    });
+  }
+
   render() {
     const {
-      expanded, open, alertTitle, alertContent,
+      expanded, open, alertTitle, alertContent, openStatic
     } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
@@ -232,9 +291,35 @@ class RegFinal extends React.Component {
               </Button>
             </div>
           </form>
+          <AlertStatic handleRedirect={this.redirectHome} open={openStatic} title={alertTitle}>
+            {alertContent}
+          </AlertStatic>
           <Alert open={open} handleClose={this.handleClose} title={alertTitle}>
             {alertContent}
           </Alert>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.state.openDial}
+            autoHideDuration={6000}
+            onClose={this.handleCloseMini}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={<span id="message-id">{this.state.message}</span>}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="close"
+                color="inherit"
+                onClick={this.handleCloseMini}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
           <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
             <Toolbar>
               <Typography>
@@ -253,6 +338,7 @@ class RegFinal extends React.Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
+  alert: state.alert
 });
 
 export default connect(

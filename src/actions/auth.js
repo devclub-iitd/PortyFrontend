@@ -40,10 +40,11 @@ export const register = ({name , email , password , entryno , phone , dob , webs
             'Content-Type' : 'application/json'
         }
     }
-    
+
     const body = JSON.stringify({name , email , password , entryno , phone , dob , website })
-    
+
     try {
+        dispatch(setAlert('Please wait while we create your account', 'green'));
         const res = await axios.post('api/user', body , config)
         dispatch(setAlert('Register Success...Check your email for verification','green'))
         dispatch({

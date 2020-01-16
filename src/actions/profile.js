@@ -5,7 +5,7 @@ import { loadUser } from './auth';
 
 export const getCurrentProfile = () => async dispatch => {
     try {
-        
+
         // dispatch({
         //     type : GETTING_PROFILE
         // })
@@ -16,7 +16,7 @@ export const getCurrentProfile = () => async dispatch => {
             type : GET_PROFILE,
             payload : res.data
         })
-        
+
     } catch (err) {
         dispatch({
             type : PROFILE_ERROR
@@ -27,7 +27,7 @@ export const getCurrentProfile = () => async dispatch => {
 
 export const getProfile = () => async dispatch => {
     try {
-        
+
         // dispatch({
         //     type : GETTING_PROFILE
         // })
@@ -38,7 +38,7 @@ export const getProfile = () => async dispatch => {
             type : GET_PROFILE,
             payload : res.data
         })
-        
+
     } catch (err) {
         dispatch({
             type : PROFILE_ERROR
@@ -49,7 +49,7 @@ export const getProfile = () => async dispatch => {
 
 export const getFullProfile = () => async dispatch => {
     try {
-        
+
         dispatch({
             type : GETTING_PROFILE
         })
@@ -122,7 +122,7 @@ export const getPublicProfile = (entryno) => async dispatch => {
 }
 export const createProfile = (formData , history ,edit = false) => async dispatch => {
     try {
-
+        console.log(formData)
         const config = {
             headers : {
                 'Content-Type' : 'application/json'
@@ -130,12 +130,12 @@ export const createProfile = (formData , history ,edit = false) => async dispatc
         }
 
         const res = await axios.post('/api/profile', formData , config)
-        
+
         // dispatch({
         //     type : GET_PROFILE,
         //     payload : res.data
         // })
-        dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','green'))
+        dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','blue'))
     } catch (err) {
         const errors = err.response.data.errors
 
