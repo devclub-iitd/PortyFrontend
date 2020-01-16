@@ -68,40 +68,34 @@ export const getFullProfile = () => async dispatch => {
     }
 }
 
-export const UpdateUser = (formdata , edit = true) => async dispatch => {
-    try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        };
+// export const UpdateUser = (formdata , edit = true) => async dispatch => {
+//     try {
+//         const config = {
+//           headers: {
+//             "Content-Type": "application/json"
+//           }
+//         };
 
-        const res = await axios.post("/api/user/update", formdata, config);
+//         const res = await axios.post("/api/user/update", formdata, config);
 
-        //dispatch(loadUser())
-
-        // dispatch({
-        //   type: GET_PROFILE,
-        //   payload: res.data
-        // });
-
-        dispatch(
-          setAlert(edit ? "Profile Updated" : "Profile Created", "green")
-        );
+//         dispatch(
+//           setAlert(edit ? "Profile Updated" : "Profile Created", "green")
+//         );
 
 
-    } catch (err) {
-        const errors = err.response.data.errors;
+//     } catch (err) {
+        
+//         const errors = err.response.data.errors;
 
-        if (errors) {
-          errors.forEach(error => dispatch(setAlert(error.msg, "red")));
-        }
+//         if (errors) {
+//           errors.forEach(error => dispatch(setAlert(error.msg, "red")));
+//         }
 
-        dispatch({
-          type: PROFILE_ERROR
-        });
-    }
-}
+//         dispatch({
+//           type: PROFILE_ERROR
+//         });
+//     }
+// }
 
 export const getPublicProfile = (entryno) => async dispatch => {
     try {
@@ -120,9 +114,11 @@ export const getPublicProfile = (entryno) => async dispatch => {
         dispatch(setAlert("Server Error","red"))
     }
 }
-export const createProfile = (formData , history ,edit = false) => async dispatch => {
+export const createProfile = (formData , edit) => async dispatch => {
     try {
-        console.log(formData)
+        
+        //console.log(formData)
+        
         const config = {
             headers : {
                 'Content-Type' : 'application/json'
@@ -131,14 +127,16 @@ export const createProfile = (formData , history ,edit = false) => async dispatc
 
         const res = await axios.post('/api/profile', formData , config)
 
-        // dispatch({
-        //     type : GET_PROFILE,
-        //     payload : res.data
-        // })
+        //dispatch(loadUser())   used in edit only previously
+
+        // dispatch({     used in both previously
+        //   type: GET_PROFILE,
+        //   payload: res.data
+        // });
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','blue'))
     } catch (err) {
         const errors = err.response.data.errors
-
+        dispatch(setAlert('Could not register. Please try again..'))
         if (errors) {
             errors.forEach(error => dispatch(setAlert(error.msg, 'red')))
         }
