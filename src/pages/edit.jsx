@@ -24,6 +24,8 @@ import Reference from '../components/edit/reference';
 import '../style/regFinal.css';
 import Loader from '../components/loader';
 
+var obj = {};
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -81,14 +83,10 @@ class Edit extends React.Component {
   }
 
   retrieveChildData(type, data) {
-        const obj = {
-          [type]: data,
-        };
-        const stringyobj = JSON.stringify(obj);
-        this.props.createProfile(stringyobj, this.props.history);
+      obj[type] = data;
   }
 
-  handleSumbit(event) {
+  async handleSumbit(event) {
     event.preventDefault();
     this.about.current.callApiRequest();
     this.location.current.callApiRequest();
@@ -101,6 +99,9 @@ class Edit extends React.Component {
     this.language.current.callApiRequest();
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
+    await this.props.createProfile(obj,true)
+    
+    //change from here==================================change from here
     this.setState({
       open: true,
       alertTitle: 'Profile updated successfully!',

@@ -33,6 +33,7 @@ import Reference from '../components/regFinal/reference';
 import '../style/regFinal.css';
 import { getCurrentProfile } from '../actions/profile';
 
+var obj = {};
 
 const theme = createMuiTheme({
   palette: {
@@ -52,7 +53,6 @@ class RegFinal extends React.Component {
       expanded: false,
       message: '',
       openDial: false,
-      obj: {}
     };
     this.account = React.createRef();
     this.about = React.createRef();
@@ -88,42 +88,14 @@ class RegFinal extends React.Component {
     }
   }
 
-  async retrieveChildData(type, data) {
-    switch (type) {
-      case 'work':
-      case 'volunteer':
-      case 'education':
-      case 'awards':
-      case 'publications':
-      case 'skills':
-      case 'languages':
-      case 'interests':
-      case 'references':
-      case 'about':
-      case 'location': {
-        this.setState({
-          [type]: data
-        });
-        // const obj = {
-        //   [type]: data
-        // }
-        this.setState(prevState => ({
-          obj: {
-            ...prevState.obj,    // keep all other key-value pairs
-            [type]: data       // update the value of specific key
-          }
-        }))
-        console.log(this.state.obj);
-        // const ts = JSON.stringify(obj)
-        // await this.props.createProfile(ts,this.props.history,false)
-      }
-    }
+  retrieveChildData(type, data) {
+      obj[type] = data;
   }
 
   async handleSumbit(event) {
     event.preventDefault();
     // this.openDial('Please wait for a few seconds while we register your details, do not click on anything');
-    //this.account.current.callApiRequest();
+    // this.account.current.callApiRequest();
     this.about.current.callApiRequest();
     this.location.current.callApiRequest();
     this.work.current.callApiRequest();
@@ -135,7 +107,8 @@ class RegFinal extends React.Component {
     this.language.current.callApiRequest();
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
-    await this.props.createProfile(this.state.obj,this.props.history,false);
+    //console.log(obj)
+    await this.props.createProfile(obj,false);
     var len = this.props.alert.length;
     if (this.props.alert[len - 1].alertType != 'blue') {
       this.setState({
@@ -151,22 +124,6 @@ class RegFinal extends React.Component {
         alertContent: 'Please click okay to continue',
       })
     }
-    // this.setState({
-    //   open: false,
-    //   openDial: true,
-    //   message: this.props.alert[0].msg
-    // })
-    // this.setState({
-    //   open: false,
-    //   openStatic: true,
-    //   alertTitle: 'Profile has been created!',
-    //   alertContent: 'Please wait while we redirect you to the homepage',
-    // });
-    console.log(this.state.obj);
-        // window.location.href = '../home';
-    // setTimeout(function() {
-    //   window.location.href = '../home';
-    // }, 10000);
   }
 
   handleClose() {
