@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
+import InfoIcon from '@material-ui/icons/Info';
 
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -94,6 +95,7 @@ class RegFinal extends React.Component {
 
   async handleSumbit(event) {
     event.preventDefault();
+    this.openDial('Please wait while we create your profile...');
     // this.openDial('Please wait for a few seconds while we register your details, do not click on anything');
     // this.account.current.callApiRequest();
     this.about.current.callApiRequest();
@@ -112,16 +114,17 @@ class RegFinal extends React.Component {
     var len = this.props.alert.length;
     if (this.props.alert[len - 1].alertType != 'blue') {
       this.setState({
-        open: false,
-        openDial: true,
-        message: this.props.alert[len - 1].msg
+        openDial: false,
+        open: true,
+        alertTitle: 'Whoops!!',
+        alertContent: this.props.alert[len - 1].msg
       })
     } else if (this.props.alert[len - 1].alertType == 'blue'){
       this.setState({
-        open: false,
+        openDial: false,
         openStatic: true,
         alertTitle: 'Profile has been created!',
-        alertContent: 'Please click okay to continue',
+        alertContent: 'You will be redirected to the Home page...Please click done to continue',
       })
     }
   }
@@ -133,11 +136,7 @@ class RegFinal extends React.Component {
   }
 
   handleOpen() {
-    this.setState({
-      open: true,
-      alertTitle: 'Whoops!',
-      alertContent: 'There seems to be some sort of error. Check you have filled out all the fields and try again.',
-    });
+    this.openDial('Whoops...Please check you have filled all your details and try again');
   }
 
   openDial(mess) {
@@ -265,7 +264,12 @@ class RegFinal extends React.Component {
             ContentProps={{
               'aria-describedby': 'message-id',
             }}
-            message={<span id="message-id">{this.state.message}</span>}
+            message={(
+              <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                <InfoIcon style={{ marginRight: '10px' }} />
+                {this.state.message}
+              </span>
+            )}
             action={[
               <IconButton
                 key="close"

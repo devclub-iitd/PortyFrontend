@@ -7,6 +7,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { connect } from 'react-redux';
+import InfoIcon from '@material-ui/icons/Info';
 
 import MySnackbarContentWrapper from '../components/snackbar';
 
@@ -96,7 +97,12 @@ class IconLabelTabs extends React.Component {
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={<span id="message-id">{this.state.message}</span>}
+          message={(
+            <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+              <InfoIcon style={{ marginRight: '10px' }} />
+              {this.state.message}
+            </span>
+          )}
           action={[
             <IconButton
               key="close"

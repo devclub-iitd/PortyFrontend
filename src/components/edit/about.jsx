@@ -86,14 +86,6 @@ class AboutExpansionPanel extends React.Component {
           <ExpansionPanelDetails>
             <div className="epDetails">
               <input
-                value={name}
-                onChange={this.handleInputChange}
-                name="name"
-                type="text"
-                required
-                placeholder="Name:"
-              />
-              <input
                 value={number}
                 onChange={this.handleInputChange}
                 name="number"

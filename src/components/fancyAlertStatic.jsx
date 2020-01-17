@@ -8,6 +8,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const Alert = (props) => {
 
@@ -18,6 +21,9 @@ const Alert = (props) => {
   return (
     <Dialog
       open={open}
+      TransitionComponent={Transition}
+      fullWidth={true}
+      maxWidth= "sm"
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
     >

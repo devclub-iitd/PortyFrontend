@@ -84,7 +84,7 @@ export const getFullProfile = () => async dispatch => {
 
 
 //     } catch (err) {
-        
+
 //         const errors = err.response.data.errors;
 
 //         if (errors) {
@@ -116,9 +116,9 @@ export const getPublicProfile = (entryno) => async dispatch => {
 }
 export const createProfile = (formData , edit) => async dispatch => {
     try {
-        
+
         //console.log(formData)
-        
+
         const config = {
             headers : {
                 'Content-Type' : 'application/json'
@@ -136,7 +136,7 @@ export const createProfile = (formData , edit) => async dispatch => {
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created','blue'))
     } catch (err) {
         const errors = err.response.data.errors
-        dispatch(setAlert('Could not register. Please try again..'))
+        dispatch(setAlert('An error occurred...Profile could not be created. Please try again.'))
         if (errors) {
             errors.forEach(error => dispatch(setAlert(error.msg, 'red')))
         }
