@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import InfoIcon from '@material-ui/icons/Info';
 
 import { connect } from 'react-redux';
 
@@ -24,16 +25,16 @@ const styles = {
   button: {
     width: '200px',
     height: '55px',
-    marginTop: '33px',
+    marginTop: '40px',
     textAlign: 'center',
     borderRadius: '10px',
   },
   rootRegPage: {
-    margin: 'auto',
     marginTop: '40px',
     minWidth: '570px',
     textAlign: 'left',
     width: '65%',
+    opacity: '0.6',
     minHeight: '240px', // 328px
     paddingBottom: '30px',
   },
@@ -62,11 +63,19 @@ class IconLabelTabs extends React.Component {
     };
     this.handleClose = this.handleClose.bind(this);
     this.openDial = this.openDial.bind(this);
+    this.openTemp = this.openTemp.bind(this);
   }
 
   handleClose() {
     this.setState({
       openDial: false,
+    });
+  }
+
+  openTemp() {
+    this.setState({
+      openDial: true,
+      message: "Please wait while we register your profile. Do not click away.",
     });
   }
 
@@ -94,7 +103,8 @@ class IconLabelTabs extends React.Component {
     const { value } = this.state;
 
     return (
-      <div style={{ textAlign: 'center' }}>
+      <div className="loginPageContainer" style={{ textAlign: 'center', marginTop: '0px' }}>
+        <div className="pageOverlay">
         <div className="title">
             Register
         </div>
@@ -107,7 +117,7 @@ class IconLabelTabs extends React.Component {
             </TabContainer>
           )}
         </Paper>
-        <Button variant="contained" color="secondary" className={classes.button} type="submit" form="regform">
+        <Button variant="contained" color="secondary" className={classes.button} type="submit" form="regform" onSubmit={this.openTemp}>
           Let's Go
         </Button>
         <Snackbar
@@ -121,7 +131,12 @@ class IconLabelTabs extends React.Component {
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={<span id="message-id">{this.state.message}</span>}
+          message={(
+            <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+              <InfoIcon style={{ marginRight: '10px' }} />
+              {this.state.message}
+            </span>
+          )}
           action={[
             <IconButton
               key="close"
@@ -134,6 +149,7 @@ class IconLabelTabs extends React.Component {
             </IconButton>,
           ]}
         />
+        </div>
       </div>
     );
   }

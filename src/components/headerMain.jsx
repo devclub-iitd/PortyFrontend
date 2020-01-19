@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 
 import Home from '../pages/home';
 import Edit from '../pages/edit';
+import Deploy from '../pages/deploy';
 import { getCurrentProfile } from '../actions/profile';
 import { logout } from '../actions/auth';
 
@@ -84,7 +85,7 @@ class SimpleTabs extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    //this.props.getCurrentProfile();
   }
 
   handleChange = (event, value) => {
@@ -116,10 +117,12 @@ class SimpleTabs extends React.Component {
             <Tabs value={value} onChange={this.handleChange} className={classes.navbarContainer}>
               <Tab className={classes.navbarItem} label="Home" />
               <Tab className={classes.navbarItem} label="Edit" />
+              <Tab className={classes.navbarItem} label="Deploy" />
             </Tabs>
           </AppBar>
           {value === 0 && <TabContainer><Home /></TabContainer>}
           {value === 1 && <TabContainer><Edit /></TabContainer>}
+          {value === 2 && <TabContainer><Deploy /></TabContainer>}
         </div>
       </MuiThemeProvider>
     );

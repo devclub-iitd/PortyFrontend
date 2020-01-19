@@ -33,6 +33,7 @@ const FlatCard = (props) => {
       </div>
       <div className="portfolioCardDateContainer">
         {startDate}
+        {' '}
          -
         {' '}
         {endDate}

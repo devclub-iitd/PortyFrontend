@@ -40,10 +40,9 @@
   height: 170px;
   border-radius: 100%;
   position: relative;
-  cursor: pointer;
 }
 .userImg{
-  background-color: #3d40d8;
+  background-color: rgba(255,255,255,0.5);
 }
 .userImgOverlay{
   background-color: rgba(0,0,0,0.7);
@@ -172,4 +171,15 @@ textarea:focus{
   width: 100%;
   text-align: center;
   margin-top: 40px;
+}
+.regSubTitle {
+  font-weight: 600;
+  font-size: 24px;
+  text-transform: capitalize;
+  width: 75%;
+  padding: 10px;
+  text-indent: 5px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }

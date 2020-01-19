@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 
 const Landing = (props) => {
   const {
-    name, label,
+    name, label, img
   } = props;
   return (
     <div className="portfolioPage1">
       <div className="portfolioPage1Details">
-        <div className="portfolioUserImage" />
+        <img className="portfolioUserImage" src={img} />
         <div className="portfolioUserDetails">
           <span className="portfolioUserName">{name}</span>
           {' '}

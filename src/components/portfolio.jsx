@@ -12,41 +12,43 @@ import Extra from './portfolio/extra';
 import Contact from './portfolio/contact';
 import '../style/portfolio.css';
 import Loader from './loader';
-import { getCurrentProfile } from '../actions/profile';
+import { getProfile } from '../actions/profile';
 
 const navToReg = () => {
   window.location.href = '../register';
 };
 
-const Portfolio = ({ getCurrentProfile, profile: { profile, loading } }) => {
+const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
   useEffect(() => {
-    getCurrentProfile();
+    getProfile();
   }, []);
 
   if (loading) {
     return <div><Loader /></div>;
-  } else if (!loading && profile !== null) {
+  }  if (!loading && profile !== null) {
     return (
       <Paper className="portfolioContainer" elavation={4}>
-        <Landing name={profile.user.name} label={profile.about.label} />
-        <About summary={profile.about} />
-        <Education education={profile.education} />
-        <Work work={profile.work} />
-        <Volunteer volunteer={profile.volunteer} />
-        <Extra
-          awards={profile.awards}
-          publications={profile.publications}
-          languages={profile.languages}
-          skills={profile.skills}
-        />
-        <Contact
-          email={profile.user.email}
-          phone={profile.user.phone}
-          location={profile.location}
-        />
+        <Landing name={profile.user.name} label={profile.about.label} img={profile.about.imgUrl} />
+        <div class="portfolioBodyCont" style={{ top: (window.innerHeight - 54) + 'px' }}>
+          <About summary={profile.about} top={window.innerHeight} />
+          <Education education={profile.education} />
+          <Work work={profile.work} />
+          <Volunteer volunteer={profile.volunteer} />
+          <Extra
+            awards={profile.awards}
+            publications={profile.publications}
+            languages={profile.languages}
+            skills={profile.skills}
+          />
+          <Contact
+            email={profile.user.email}
+            phone={profile.about.number}
+            location={profile.location}
+          />
+        </div>
       </Paper>
     );
-  } else if (!loading && profile === null) {
+  }  if (!loading && profile === null) {
     return (
       <div className="noProf">
         No profile found
@@ -62,7 +64,7 @@ const Portfolio = ({ getCurrentProfile, profile: { profile, loading } }) => {
 };
 
 Portfolio.propTypes = {
-  getCurrentProfile: PropTypes.func.isRequired,
+  getProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -75,5 +77,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getProfile }
 )(Portfolio);

@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Image = () => (
+const Image = (props) => (
   <div className="imageContainerEdit">
     <div className="userImgContainer">
-      <div className="userImg" />
+      <img className="userImg" src={props.img} />
     </div>
 
   </div>

@@ -23,6 +23,7 @@ function App(props) {
           name={profile.user.name}
           label={profile.about.label}
           initScroll={scrollFunc}
+          img={profile.about.imgUrl}
         />
         <div class="portfolioBodyCont" style={{ top: window.innerHeight + 'px' }}>
           <About summary={profile.about} top={window.innerHeight} />

@@ -8,7 +8,13 @@ import { withRouter } from 'react-router-dom';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
+import InfoIcon from '@material-ui/icons/Info';
 
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
+import AlertStatic from '../components/fancyAlertStatic';
 import Alert from '../components/fancyAlert';
 
 import Intro from '../components/regFinal/intro';
@@ -28,6 +34,7 @@ import Reference from '../components/regFinal/reference';
 import '../style/regFinal.css';
 import { getCurrentProfile } from '../actions/profile';
 
+var obj = {};
 
 const theme = createMuiTheme({
   palette: {
@@ -44,7 +51,9 @@ class RegFinal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false
+      expanded: false,
+      message: '',
+      openDial: false,
     };
     this.account = React.createRef();
     this.about = React.createRef();
@@ -63,8 +72,10 @@ class RegFinal extends React.Component {
     this.retrieveChildData = this.retrieveChildData.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
+    this.openDial = this.openDial.bind(this);
+    this.handleCloseMini = this.handleCloseMini.bind(this);
+    this.redirectHome = this.redirectHome.bind(this);
   }
-
   handlePanel(panel) {
     const { expanded } = this.state;
     if (expanded === panel) {
@@ -79,50 +90,43 @@ class RegFinal extends React.Component {
   }
 
   retrieveChildData(type, data) {
-    switch (type) {
-      case 'work':
-      case 'volunteer':
-      case 'education':
-      case 'awards':
-      case 'publications':
-      case 'skills':
-      case 'languages':
-      case 'interests':
-      case 'references':
-      case 'about':
-      case 'location': {
-        this.setState({
-          [type]: data
-        });
-        const obj = {
-          [type]: data
-        }
-        const ts = JSON.stringify(obj)
-        this.props.createProfile(ts,this.props.history,false)
-      }
-    }
+      obj[type] = data;
   }
 
   async handleSumbit(event) {
     event.preventDefault();
-    //this.account.current.callApiRequest();
-    await this.about.current.callApiRequest();
-    await this.location.current.callApiRequest();
-    await this.work.current.callApiRequest();
-    await this.volunteer.current.callApiRequest();
-    await this.education.current.callApiRequest();
-    await this.award.current.callApiRequest();
-    await this.publication.current.callApiRequest();
-    await this.skill.current.callApiRequest();
-    await this.language.current.callApiRequest();
-    await this.interest.current.callApiRequest();
-    await this.reference.current.callApiRequest();
-    this.setState({
-      open: true,
-      alertTitle: 'Profile has been created!',
-      alertContent: 'Kindly check the home page to view your portfolio',
-    });
-    window.location.href = '../home';
+    this.openDial('Please wait while we create your profile...');
+    // this.openDial('Please wait for a few seconds while we register your details, do not click on anything');
+    // this.account.current.callApiRequest();
+    this.about.current.callApiRequest();
+    this.location.current.callApiRequest();
+    this.work.current.callApiRequest();
+    this.volunteer.current.callApiRequest();
+    this.education.current.callApiRequest();
+    this.award.current.callApiRequest();
+    this.publication.current.callApiRequest();
+    this.skill.current.callApiRequest();
+    this.language.current.callApiRequest();
+    this.interest.current.callApiRequest();
+    this.reference.current.callApiRequest();
+    //console.log(obj)
+    await this.props.createProfile(obj,false);
+    var len = this.props.alert.length;
+    if (this.props.alert[len - 1].alertType != 'blue') {
+      this.setState({
+        openDial: false,
+        open: true,
+        alertTitle: 'Whoops!!',
+        alertContent: this.props.alert[len - 1].msg
+      })
+    } else if (this.props.alert[len - 1].alertType == 'blue'){
+      this.setState({
+        openDial: false,
+        openStatic: true,
+        alertTitle: 'Profile has been created!',
+        alertContent: 'You will be redirected to the Home page...Please click done to continue',
+      })
+    }
   }
 
   handleClose() {
@@ -132,16 +136,29 @@ class RegFinal extends React.Component {
   }
 
   handleOpen() {
+    this.openDial('Whoops...Please check you have filled all your details and try again');
+  }
+
+  openDial(mess) {
     this.setState({
-      open: true,
-      alertTitle: 'Whoops!',
-      alertContent: 'There seems to be some sort of error. Check you have filled out all the fields and try again.',
+      openDial: true,
+      message: mess,
+    });
+  }
+
+  redirectHome() {
+    window.location.href = '../home';
+  }
+
+  handleCloseMini() {
+    this.setState({
+      openDial: false,
     });
   }
 
   render() {
     const {
-      expanded, open, alertTitle, alertContent,
+      expanded, open, alertTitle, alertContent, openStatic
     } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
@@ -161,6 +178,12 @@ class RegFinal extends React.Component {
               action={() => this.handlePanel("locationPanel")}
               senData={this.retrieveChildData}
             />
+            <Education
+              ref={this.education}
+              expanded={expanded}
+              action={() => this.handlePanel("educationPanel")}
+              senData={this.retrieveChildData}
+            />
             <Work
               ref={this.work}
               expanded={expanded}
@@ -173,12 +196,15 @@ class RegFinal extends React.Component {
               action={() => this.handlePanel("volunteerPanel")}
               senData={this.retrieveChildData}
             />
-            <Education
-              ref={this.education}
+            <Language
+              ref={this.language}
               expanded={expanded}
-              action={() => this.handlePanel("educationPanel")}
+              action={() => this.handlePanel("languagePanel")}
               senData={this.retrieveChildData}
             />
+            <div className="regSubTitle">
+              Optionals -
+            </div>
             <Award
               ref={this.award}
               expanded={expanded}
@@ -195,12 +221,6 @@ class RegFinal extends React.Component {
               ref={this.skill}
               expanded={expanded}
               action={() => this.handlePanel("skillPanel")}
-              senData={this.retrieveChildData}
-            />
-            <Language
-              ref={this.language}
-              expanded={expanded}
-              action={() => this.handlePanel("languagePanel")}
               senData={this.retrieveChildData}
             />
             <Interest
@@ -221,14 +241,46 @@ class RegFinal extends React.Component {
                 style={{ padding: "12px 50px" }}
                 color="secondary"
                 type="submit"
+                onClick={this.handleOpen}
               >
                 Done
               </Button>
             </div>
           </form>
+          <AlertStatic handleRedirect={this.redirectHome} open={openStatic} title={alertTitle}>
+            {alertContent}
+          </AlertStatic>
           <Alert open={open} handleClose={this.handleClose} title={alertTitle}>
             {alertContent}
           </Alert>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.state.openDial}
+            autoHideDuration={6000}
+            onClose={this.handleCloseMini}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={(
+              <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                <InfoIcon style={{ marginRight: '10px' }} />
+                {this.state.message}
+              </span>
+            )}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="close"
+                color="inherit"
+                onClick={this.handleCloseMini}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
           <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
             <Toolbar>
               <Typography>
@@ -247,6 +299,7 @@ class RegFinal extends React.Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
+  alert: state.alert
 });
 
 export default connect(

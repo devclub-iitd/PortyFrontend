@@ -2,10 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { getCurrentProfile, createProfile, UpdateUser } from '../actions/profile';
-import { makeStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import InfoIcon from '@material-ui/icons/Info';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import Alert from '../components/fancyAlert';
+import { createProfile, getFullProfile } from '../actions/profile';
 
 import Intro from '../components/edit/intro';
 import Image from '../components/edit/image';
@@ -24,6 +27,8 @@ import Reference from '../components/edit/reference';
 import '../style/regFinal.css';
 import Loader from '../components/loader';
 
+var obj = {};
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -41,6 +46,8 @@ class Edit extends React.Component {
     this.state = {
       expanded: false,
       open: false,
+      openMini: false,
+      message: '',
       alertTitle: '',
       alertContent: '',
     };
@@ -61,10 +68,11 @@ class Edit extends React.Component {
     this.retrieveChildData = this.retrieveChildData.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
+    this.handleCloseMini = this.handleCloseMini.bind(this);
   }
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    this.props.getFullProfile();
   }
 
   handlePanel(panel) {
@@ -81,44 +89,14 @@ class Edit extends React.Component {
   }
 
   retrieveChildData(type, data) {
-    switch (type) {
-      case 'work':
-      case 'volunteer':
-      case 'education':
-      case 'awards':
-      case 'publications':
-      case 'skills':
-      case 'languages':
-      case 'interests':
-      case 'references':
-      case 'location': {
-        const obj = {
-          [type]: data,
-        };
-        // console.log(obj);
-        const stringyobj = JSON.stringify(obj);
-        this.props.createProfile(stringyobj, this.props.history);
-        break;
-      }
-      case 'about': {
-        const userObj = {
-          'name': data.name,
-          'phone': data.number,
-        };
-        const obj = {
-          'label': data.label,
-          'summary': data.summary,
-        }
-        const stringyobj = JSON.stringify(obj);
-        const stringyobj2 = JSON.stringify(userObj);
-        this.props.createProfile(stringyobj, this.props.history);
-        this.props.UpdateUser(stringyobj2);
-      }
-    }
+      obj[type] = data;
   }
 
-  handleSumbit(event) {
+  async handleSumbit(event) {
     event.preventDefault();
+    this.setState({
+      message: 'Please wait while we update your profile'
+    })
     this.about.current.callApiRequest();
     this.location.current.callApiRequest();
     this.work.current.callApiRequest();
@@ -130,11 +108,23 @@ class Edit extends React.Component {
     this.language.current.callApiRequest();
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
-    this.setState({
-      open: true,
-      alertTitle: 'Profile updated successfully!',
-      alertContent: 'Kindly check the home page to view your updated portfolio',
-    });
+    await this.props.createProfile(obj,true)
+    var len = this.props.alert.length;
+    if (this.props.alert[len - 1].alertType != 'blue') {
+      this.setState({
+        open: true,
+        openMini: false,
+        alertTitle: 'Whoops!!',
+        alertContent: this.props.alert[len - 1].msg
+      })
+    } else if (this.props.alert[len - 1].alertType == 'blue') {
+      this.setState({
+        open: true,
+        openMini: false,
+        alertTitle: 'Profile updated successfully!',
+        alertContent: 'Kindly check the home page to view your updated portfolio',
+      });
+    }
   }
 
   handleClose() {
@@ -142,12 +132,15 @@ class Edit extends React.Component {
       open: false,
     })
   }
-
+  handleCloseMini() {
+    this.setState({
+      openMini: false
+    })
+  }
   handleOpen() {
     this.setState({
-      open: true,
-      alertTitle: 'Whoops!',
-      alertContent: 'There seems to be some sort of error. Check you have filled out all the fields and try again.',
+      openMini: true,
+      message: 'Whoops...Please check you have filled all the details'
     })
   }
 
@@ -165,7 +158,7 @@ class Edit extends React.Component {
       return (
         <MuiThemeProvider theme={theme}>
           <div style={{ paddingBottom: 100 }}>
-            <Image />
+            <Image img={profile.about.imgUrl} />
             <Intro name={this.props.user.name} caption="none" />
             <form onSubmit={this.handleSumbit}>
               {/* <Account
@@ -189,6 +182,13 @@ class Edit extends React.Component {
                 existingData={profile.location}
                 senData={this.retrieveChildData}
               />
+              <Education
+                ref={this.education}
+                expanded={expanded}
+                action={() => this.handlePanel('educationPanel')}
+                existingData={profile.education}
+                senData={this.retrieveChildData}
+              />
               <Work
                 ref={this.work}
                 expanded={expanded}
@@ -203,13 +203,16 @@ class Edit extends React.Component {
                 existingData={profile.volunteer}
                 senData={this.retrieveChildData}
               />
-              <Education
-                ref={this.education}
+              <Language
+                ref={this.language}
                 expanded={expanded}
-                action={() => this.handlePanel('educationPanel')}
-                existingData={profile.education}
+                action={() => this.handlePanel('languagePanel')}
+                existingData={profile.languages}
                 senData={this.retrieveChildData}
               />
+              <div className="regSubTitle">
+                Optionals -
+              </div>
               <Award
                 ref={this.award}
                 expanded={expanded}
@@ -229,13 +232,6 @@ class Edit extends React.Component {
                 expanded={expanded}
                 action={() => this.handlePanel('skillPanel')}
                 existingData={profile.skills}
-                senData={this.retrieveChildData}
-              />
-              <Language
-                ref={this.language}
-                expanded={expanded}
-                action={() => this.handlePanel('languagePanel')}
-                existingData={profile.languages}
                 senData={this.retrieveChildData}
               />
               <Interest
@@ -267,8 +263,36 @@ class Edit extends React.Component {
             <Alert open={open} handleClose={this.handleClose} title={alertTitle}>
               {alertContent}
             </Alert>
+            <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.state.openMini}
+            autoHideDuration={6000}
+            onClose={this.handleCloseMini}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={(
+              <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                <InfoIcon style={{ marginRight: '10px' }} />
+                {this.state.message}
+              </span>
+            )}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="close"
+                color="inherit"
+                onClick={this.handleCloseMini}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
           </div>
-        </MuiThemeProvider >
+        </MuiThemeProvider>
       );
     }
 
@@ -286,7 +310,7 @@ class Edit extends React.Component {
 }
 
 Edit.propTypes = {
-  getCurrentProfile: PropTypes.func.isRequired,
+  getFullProfile : PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -295,9 +319,10 @@ const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
   user: state.auth.user,
+  alert: state.alert
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile, createProfile, UpdateUser }
+  { createProfile, getFullProfile}
 )(Edit);

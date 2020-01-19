@@ -7,6 +7,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { connect } from 'react-redux';
+import InfoIcon from '@material-ui/icons/Info';
 
 import MySnackbarContentWrapper from '../components/snackbar';
 
@@ -18,19 +19,17 @@ const styles = {
   rootRegNav: {
     flexGrow: 1,
     maxWidth: 400,
-    margin: 'auto',
     marginTop: '40px',
   },
   button: {
     width: '200px',
     height: '55px',
-    marginTop: '33px',
-    textAlign: 'center',
     borderRadius: '10px',
+    marginTop: '40px'
   },
   rootRegPage: {
-    margin: 'auto',
     marginTop: '40px',
+    opacity: '0.6',
     minWidth: '570px',
     width: '35%',
     height: 'auto',
@@ -74,16 +73,19 @@ class IconLabelTabs extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="loginPageContainer" style={{ textAlign: 'center', marginTop: '100px' }}>
+      <div className="loginPageContainer" style={{ textAlign: 'center', marginTop: '0px' }}>
+        <div className="pageOverlay">
         <div className="title">
-            Login
+            Account Login
         </div>
         <Paper className={classes.rootRegPage}>
           <LoginForm handleDial={this.openDial} />
         </Paper>
+        <div className="lgnBtnCont">
         <Button variant="contained" color="secondary" className={classes.button} type="submit" form="loginform">
-          Login
+          Sign-In
         </Button>
+        </div>
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -95,7 +97,12 @@ class IconLabelTabs extends React.Component {
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={<span id="message-id">{this.state.message}</span>}
+          message={(
+            <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+              <InfoIcon style={{ marginRight: '10px' }} />
+              {this.state.message}
+            </span>
+          )}
           action={[
             <IconButton
               key="close"
@@ -108,7 +115,7 @@ class IconLabelTabs extends React.Component {
             </IconButton>,
           ]}
         />
-
+        </div>
       </div>
     );
   }

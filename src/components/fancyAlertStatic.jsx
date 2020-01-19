@@ -15,7 +15,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const Alert = (props) => {
 
   const {
-    open, title, handleClose, children,
+    open, title, handleRedirect, children,
   } = props;
 
   return (
@@ -24,7 +24,6 @@ const Alert = (props) => {
       TransitionComponent={Transition}
       fullWidth={true}
       maxWidth= "sm"
-      onClose={handleClose}
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
     >
@@ -35,7 +34,7 @@ const Alert = (props) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="secondary">
+        <Button onClick={handleRedirect} color="secondary">
           Done!
         </Button>
       </DialogActions>
