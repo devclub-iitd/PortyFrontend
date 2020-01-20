@@ -120,6 +120,10 @@ class IconLabelTabs extends React.Component {
         <Button variant="contained" color="secondary" className={classes.button} type="submit" form="regform" onSubmit={this.openTemp}>
           Let's Go
         </Button>
+        <div className="secBtnCont">
+          <Button variant="outlined" color="primary">Regenerate OTP</Button>
+          <Button variant="outlined" color="primary">Reset Password</Button>
+        </div>
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
