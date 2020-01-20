@@ -91,7 +91,13 @@ export const login = ({email,password}) => async dispatch => {
             type: LOGIN_FAIL
         })
 
-        dispatch(setAlert("Login Failed", 'red'))
+        const errors = err.response.data.errors
+
+        if(errors){
+            errors.forEach(error => dispatch(setAlert(error.msg , 'red')))
+        }
+
+        //dispatch(setAlert("Login Failed", 'red'))
     }
 }
 
