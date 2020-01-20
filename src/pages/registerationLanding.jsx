@@ -64,6 +64,8 @@ class IconLabelTabs extends React.Component {
     this.handleClose = this.handleClose.bind(this);
     this.openDial = this.openDial.bind(this);
     this.openTemp = this.openTemp.bind(this);
+    this.navToRegOTP = this.navToRegOTP.bind(this);
+    this.navToResPass = this.navToResPass.bind(this);
   }
 
   handleClose() {
@@ -84,6 +86,14 @@ class IconLabelTabs extends React.Component {
       openDial: true,
       message: mess,
     });
+  }
+
+  navToRegOTP () {
+    window.location.href = './regenerate';
+  }
+
+  navToResPass () {
+    window.location.href = './reset';
   }
 
   componentDidUpdate(oldProps) {
@@ -121,8 +131,8 @@ class IconLabelTabs extends React.Component {
           Let's Go
         </Button>
         <div className="secBtnCont">
-          <Button variant="outlined" color="primary">Regenerate OTP</Button>
-          <Button variant="outlined" color="primary">Reset Password</Button>
+          <Button variant="outlined" color="primary" onClick={this.navToRegOTP}>Regenerate OTP</Button>
+          <Button variant="outlined" color="primary" onClick={this.navToResPass}>Reset Password</Button>
         </div>
         <Snackbar
           anchorOrigin={{
