@@ -8,15 +8,17 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
-
+import {regenerate_otp} from '../actions/auth'
+import { connect } from 'react-redux';
 
 import '../style/validation.css';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   button: {
     width: '150px',
     height: '40px',
-    marginTop: '30px',
+    marginTop: '30px', 
     borderRadius: '5px',
   },
   input: {
@@ -24,7 +26,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Regenerate = () => {
+const Regenerate = ({regenerate_otp}) => {
   const [open, setOpen] = React.useState(false);
   const [mess, setMess] = React.useState('');
   const classes = useStyles();
@@ -32,7 +34,8 @@ const Regenerate = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
-    setMess('Kindly check your email for an updated OTP link');
+    regenerate_otp(email)
+    //setMess('Kindly check your email for an updated OTP link');
     setOpen(true);
   };
 
@@ -105,4 +108,11 @@ const Regenerate = () => {
   );
 };
 
-export default Regenerate;
+const mapStateToProps = state => ({
+  alert: state.alert
+});
+
+export default connect(
+  mapStateToProps,
+  {regenerate_otp}
+)(withRouter(Regenerate));
