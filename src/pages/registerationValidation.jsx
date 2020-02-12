@@ -36,24 +36,26 @@ const Validation = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <div className="fullScreen" style={{ marginLeft: '60px' }}>
-        <div className="notFoundTextContainer">
-          <Typography variant="h3" style={{ marginTop: '140px', fontWeight: '600' }}>
-            Verification Successful :)
-          </Typography>
-          <Typography style={{ marginTop: '30px', fontSize: '18px', fontWeight: '300' }}>
-            Your email has been verified successfully.
-            <br />
-            {' '}
-            Kindly click the button below to proceed to the login page
-            {' '}
-            <br />
-            <b>And Login with your newly created account.</b>
-          </Typography>
+      <div className="fullScreen">
+        <div className="overlay">
+          <div className="notFoundTextContainer">
+            <Typography variant="h3" style={{ marginTop: '0px', fontWeight: '600' }}>
+              Verification Successful :)
+            </Typography>
+            <Typography style={{ marginTop: '30px', fontSize: '18px', fontWeight: '300' }}>
+              Your email has been verified successfully.
+              <br />
+              {' '}
+              Kindly click the button below to proceed to the login page
+              {' '}
+              <br />
+              <b>And Login with your newly created account.</b>
+            </Typography>
+          </div>
+          <Button variant="contained" color="secondary" className={classes.button} onClick={navtoLog}>
+            Login
+          </Button>
         </div>
-        <Button variant="contained" color="secondary" className={classes.button} onClick={navtoLog}>
-          Login
-        </Button>
       </div>
     </div>
   );

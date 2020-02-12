@@ -178,3 +178,11 @@ input:hover::placeholder{
   background-color: #3d40d8;
   color: white;
 }
+.secBtnCont {
+  margin-top: 25px;
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
