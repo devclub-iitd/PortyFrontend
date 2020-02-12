@@ -23,3 +23,4 @@ yarn-error.log*
 # For designs folder
 node_modules/ 
 build/
+.env
