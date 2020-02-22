@@ -110,7 +110,7 @@ class RegFinal extends React.Component {
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
     //console.log(obj)
-    await this.props.createProfile(obj,false);
+    await this.props.createProfile(obj,false); 
     var len = this.props.alert.length;
     if (this.props.alert[len - 1].alertType != 'blue') {
       this.setState({
