@@ -8,7 +8,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
-import {regenerate_otp} from '../actions/auth'
+import { regenerate_otp } from '../actions/auth'
 import { connect } from 'react-redux';
 
 import '../style/validation.css';
