@@ -25,7 +25,7 @@ const styles = {
     width: '200px',
     height: '55px',
     borderRadius: '10px',
-    marginTop: '40px'
+    marginTop: '40px',
   },
   rootRegPage: {
     marginTop: '40px',
