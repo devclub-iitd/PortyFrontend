@@ -16,6 +16,7 @@ import Alert from './components/alert';
 import PublicPortfolio from './pages/publicPortfolio';
 import Regenerate from './pages/regenerateOTP';
 import Reset from './pages/resetPassword';
+import ResetSucc from './pages/resetSucc';
 
 const theme = createMuiTheme({
   palette: {
@@ -52,6 +53,7 @@ const App = () => {
             <Route exact path="/validate" component={Validation} />
             <Route exact path="/regenerate" component={Regenerate} />
             <Route exact path="/reset" component={Reset} />
+            <Route exact path="/resetSucc" component={ResetSucc} />
             <Route exact path="/portfolio/:id" component={PublicPortfolio} />
           </Router>
         </MuiThemeProvider>
