@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 const Deploy = () => {
   const classes = useStyles();
   return (
-      <div className="fullScreen">
+      <div className="fullScreenInside">
         <div>
           <Typography variant="h4" className={classes.bold}>
               To deploy your website -
