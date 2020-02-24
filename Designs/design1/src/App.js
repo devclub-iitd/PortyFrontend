@@ -38,7 +38,7 @@ function App(props) {
           />
           <Contact
             email={profile.user.email}
-            phone={profile.user.phone}
+            phone={profile.about.number}
             location={profile.location}
           />
         </div>
