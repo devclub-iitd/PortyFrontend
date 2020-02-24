@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
 import { connect } from 'react-redux';
+import {reset_pass} from '../actions/auth'
 
 import '../style/validation.css';
 import { withRouter } from 'react-router-dom';
@@ -39,7 +40,9 @@ class Reset extends React.Component {
    handleSubmit(event) {
     event.preventDefault();
     const email = event.target.email.value;
-    // insert the bloody function here
+    const password = event.target.password.value;
+    this.props.reset_pass({email,password});
+    // insert the bloody function here 
   };
 
   handleClose() {
@@ -140,4 +143,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
+  {reset_pass}
 )(withStyles(styles)(withRouter(Reset)));
