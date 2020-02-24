@@ -138,6 +138,44 @@ export const regenerate_otp = (email) => async dispatch => {
     }
 }
 
+//reset pass
+export const reset_pass = ({email,password}) => async dispatch => {
+    const config = {
+        headers : {
+            'Content-Type' : 'application/json'
+        }
+    }
+
+    const body = JSON.stringify({email,password})
+
+    try  {
+
+        dispatch(setAlert('Please wait while we send the email.', 'green'));
+        console.log(body)
+        const res = await axios.post('/api/user/forgot', body, config)
+
+        dispatch(setAlert('We have sent an email...Check your email to confirm password change','green'))
+
+        dispatch({
+            type: REGISTER_SUCCESS,
+            payload: res.data
+        })
+
+    } catch (err) {
+
+        dispatch({
+            type: REGISTER_FAIL
+        })
+
+        const errors = err.response.data.errors
+
+        if(errors){
+            errors.forEach(error => dispatch(setAlert(error.msg , 'red')))
+        }
+
+    }
+}
+
 //LogOUt
 
 export const logout = () => dispatch => {
