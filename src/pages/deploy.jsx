@@ -40,22 +40,19 @@ const Deploy = () => {
               To deploy your website -
           </Typography>
           <Typography className={classes.steps}>
-            1) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus mattis augu
-            et egestas ex facilisis eget.
+            1) Create a github account
             <br />
-            2) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus mattis augu
-            et egestas ex facilisis eget. Aliquam dolor nibh, gravida vel tellus vita
-            maximus rutrum enim.
+            2) Create a new repository in your account with the name as username.github.io where username is your github username.
             <br />
-            3) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus mattis augu
-            et egestas ex facilisis eget.
+            3) Click the Download button on the homepage to a download a file named - "file.json"
             <br />
-            4) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus mattis augu
-            et egestas ex facilisis eget. Aliquam dolor nibh, gravida vel tellus vita
-            maximus rutrum enim.
+            4) Choose a design template from below, download it and unzip it.
             <br />
-            5) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus mattis augu
-            et egestas ex facilisis eget.
+            5) Place your file.json in the folder named "data" inside the unzipped content. If prompted, replace the existing file.
+            <br />
+            6) On your github repository, click "add existing files" and drag the entire content in the unzipped folder to the browser in order to upload them.
+            <br />
+            7) Click on done, and wait for the files to upload. In a couple of minutes your website should become live on the url - username.github.io
           </Typography>
         </div>
         <div className="buttonRow">
