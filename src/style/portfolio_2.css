@@ -6,15 +6,17 @@
   bottom: 0px;
   left: 0;
   right: 0;
-  margin-top: 100px;
+  margin-top: 50px;
   overflow-y: scroll;
   transform: scale(0.6);
+  border-radius: 0px;
   border: 2px solid black;
 }
-.portfolioContainerFull{
+.portfolioContainerFull2{
   width: 100%;
+  height: 100%;
   margin: auto;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   bottom: 0px;
   left: 0;
@@ -22,92 +24,96 @@
   overflow-y: scroll;
   background-color: white;
 }
-.portfolioPage1{
+.portfolioContainerFull2 .portfolioBodyCont {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+}
+.portfolioContainerFull2 .portfolioPage1{
   width: 100%;
   height: 100%;
-  position: relative;
   background-color: black;
+  position: absolute;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content:center;
 }
-.portfolioPage1Details{
+.portfolioContainerFull2 .portfolioPage1Details{
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.portfolioPage1SocialHolder{
+.portfolioContainerFull2 .portfolioPage1SocialHolder{
   margin-top: 100px;
 }
-.portfolioUserImage{
+.portfolioContainerFull2 .portfolioUserImage{
   width: 200px;
   height: 200px;
-  background-color: white;
   border-radius: 100%;
   margin-right: 40px;
 }
-.portfolioUserDetails{
+.portfolioContainerFull2 .portfolioUserDetails{
   font-size: 35px;
   margin-left: 40px;
 }
-.portfolioUserName{
+.portfolioContainerFull2 .portfolioUserName{
   font-weight: 700;
   letter-spacing: 1px;
 }
-.portfolioUserLabel{
+.portfolioContainerFull2 .portfolioUserLabel{
   font-weight: 200;
   letter-spacing: 2px;
 }
-.miniLine{
+.portfolioContainerFull2 .miniLine{
   width: 20%;
   height: 2px;
-  background-color: #f1c40f;
+  background-color: #3498db;
   margin: auto;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 /* ------------------------------------------------------- */
-.portfolioBtn{
+.portfolioContainerFull2 .portfolioBtn{
   width: 150px;
   text-align: center;
   text-transform: uppercase;
   cursor: pointer;
   font-weight: 600;
   height: 45px;
-  border: 2px solid #f1c40f;
+  border: 2px solid #3498db;
   transition: 0.2s ease-out;
-  color: #f1c40f;
+  color: #3498db;
   line-height: 45px;
   border-radius: 4px;
 }
-.portfolioBtn:hover{
+.portfolioContainerFull2 .portfolioBtn:hover{
   color: black;
-  background-color: #f1c40f;
+  background-color: #3498db;
 }
-.portfolioPage{
+.portfolioContainerFull2 .portfolioPage{
   width: 100%;
   height: auto;
   padding-bottom: 40px;
 }
 /* ----------------------------------------------------------- */
-.aboutPage{
+.portfolioContainerFull2 .aboutPage{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-bottom: 0px;
+  padding-bottom: 80px;
 }
-.portfolioPageSplit{
+.portfolioContainerFull2 .portfolioPageSplit{
   width: 50%;
   min-height: 400px;
   height: auto;
 }
-.leftAbout{
-  background-color: #f1c40f;
+.portfolioContainerFull2 .leftAbout{
+  background-color: #3498db;
   color: white;
   display: flex;
   align-items: center;
@@ -115,31 +121,45 @@
   text-transform: uppercase;
   font-size: 20px;
   font-weight: 700;
+  border-radius: 0px 0px 0px 150px;
 }
-.rightAbout{
+.portfolioContainerFull2 .rightAbout{
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
 }
-.portfolioUserSummary{
+.portfolioContainerFull2 .portfolioUserSummary{
   width: 60%;
   text-align: justify;
 }
-  /* ---------------------------------------------------------- */
-.workPage{
-  background-color: #e6e6e6;
+/* ------------------------------------------------------------- */
+.portfolioContainerFull2 .portfolioEducationPage {
+  background-color: #3498db;
+  opacity: 0.9;
+  padding-bottom: 100px;
+  border-radius: 0px 0px 150px 150px;
 }
-.portfolioPageTitle{
+.portfolioContainerFull2 .portfolioEducationPage .portfolioPageTitle {
+  color: white;
+}
+.portfolioContainerFull2 .portfolioEducationPage .pageMiniLine{
+  background-color: white;
+}
+  /* ---------------------------------------------------------- */
+.portfolioContainerFull2 .workPage{
+  background-color: white;;
+}
+.portfolioContainerFull2 .portfolioPageTitle{
   text-align: center;
   padding-top: 40px;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 26px;
 }
-.portfolioCardContainer{
+.portfolioContainerFull2 .portfolioCardContainer{
   width: 80%;
   height: auto;
-  /* background-color: red; */
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -147,69 +167,70 @@
   justify-content: space-around;
   align-items: center;
 }
-.portfolioCard{
+.portfolioContainerFull2 .portfolioCard{
   width: 300px;
   padding: 20px;
   min-height: 400px;
   height: auto;
   margin-top: 30px;
 }
-.portfolioCardTitle{
+.portfolioContainerFull2 .portfolioCardTitle{
   /* background-color: red; */
 }
-.portfolioCardTitleMain{
+.portfolioContainerFull2 .portfolioCardTitleMain{
   font-size:20px;
   text-transform: uppercase;
   font-weight:500;
 }
-.portfolioCardTitleSub{
+.portfolioContainerFull2 .portfolioCardTitleSub{
   text-transform: capitalize;
   font-weight: 300;
   font-size: 18px;
 }
-.miniCardLine{
+.portfolioContainerFull2 .miniCardLine{
   margin-right: auto;
   margin-left: 0px;
 }
-.portfolioCardContent{
+.portfolioContainerFull2 .portfolioCardContent{
   width:100%;
   text-align: justify;
 }
-.portfolioCardWebsite{
+.portfolioContainerFull2 .portfolioCardWebsite{
   margin-top: 20px;
   font-size: 15px;
 }
-.portfolioCardWebsite span{
+.portfolioContainerFull2 .portfolioCardWebsite span{
   font-weight: 600;
   text-transform: uppercase;
 }
-.portfolioCardWebsite a{
-  color: #f1c40f;
+.portfolioContainerFull2 .portfolioCardWebsite a{
+  color: #3498db;
   text-decoration: none;
 }
-.portfolioCardDateContainer{
+.portfolioContainerFull2 .portfolioCardDateContainer{
   width: 100%;
   height: 50px;
-  border: 2px solid #f1c40f;
+  border: 2px solid #3498db;
   line-height: 50px;
   text-align: center;
   margin: auto;
   margin-top: 20px;
   font-weight: 600;
-  background-color: #f1c40f;
+  background-color: #3498db;
 }
 /* -------------------------------------------------------------- */
-.volunteerPage{
+.portfolioContainerFull2 .volunteerPage{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-bottom: 0px;
-  background-color: #f1c40f;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  background-color: rgba(240, 240, 240,1);
   border-bottom: 5px solid black;
 }
-.rightVolunteer{
-  background-color: #f1c40f;
+.portfolioContainerFull2 .rightVolunteer{
+  background-color: #3498db;
   color: white;
   width: 30%;
   display: flex;
@@ -220,8 +241,10 @@
   font-weight: 700;
   padding-bottom: 40px;
   padding-top: 40px;
+  text-align: center;
+  border-radius: 0px 100px 100px 0px;
 }
-.leftVolunteer{
+.portfolioContainerFull2 .leftVolunteer{
   display: flex;
   width: 70%;
   flex-direction: column;
@@ -231,94 +254,98 @@
   padding-top: 40px;
   padding-bottom: 40px;
 }
-.portfolioVolunteerExpansionPanel{
+.portfolioContainerFull2 .portfolioVolunteerExpansionPanel{
   width: 80%;
   margin: auto;
   margin-top: 3px;
   margin-bottom: 3px
 }
-.portfolioExpansionPanelTitle{
+.portfolioContainerFull2 .portfolioExpansionPanelTitle{
   flex-basis: 60%;
   flex-shrink: 0;
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
 }
-.portfolioExpansionPanelSubTitle{
-  color: #f1c40f;
+.portfolioContainerFull2 .portfolioExpansionPanelSubTitle{
+  color: #3498db;
   font-size: 13px;
   text-transform: capitalize;
 }
-.portfolioExpansionPanelDetails{
+.portfolioContainerFull2 .portfolioExpansionPanelDetails{
   display: flex;
   flex-direction: column;
 }
-.portfolioExpansionPanelWebsite{
+.portfolioContainerFull2 .portfolioExpansionPanelWebsite{
   margin-top: 0px;
 }
-.portfolioExpansionPanelWebsite span{
+.portfolioContainerFull2 .portfolioExpansionPanelWebsite span{
   font-weight: 600;
   text-transform: uppercase;
 }
-.portfolioExpansionPanelWebsite a{
-  color: #f1c40f;
+.portfolioContainerFull2 .portfolioExpansionPanelWebsite a{
+  color: #3498db;
   text-decoration: none;
 }
 /* ------------------------------------------------------------ */
-.portfolioFlatContainer{
-  width: 100%;
+.portfolioContainerFull2 .portfolioFlatContainer{
+  width: 80%;
+  margin: auto;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-around;
   padding-bottom: 30px;
 }
-.portfolioFlat{
+.portfolioContainerFull2 .portfolioFlat{
   width: 300px;
   min-height: 380px;
   height: auto;
   padding: 40px;
   border-radius: 20px;
-  border: 1px solid #f1c40f;
+  border: 1px solid #3498db;
   margin-top: 40px;
   transition: 0.2s ease-out;
 }
-.portfolioFlat:hover{
-  background-color: #f1c40f;
+.portfolioContainerFull2 .portfolioFlat:hover{
+  background-color: #3498db;
   color: white;
 }
-.portfolioFlat:hover .portfolioFlatSubTitle{
+.portfolioContainerFull2 .portfolioFlat:hover a{
+  color: white;
+}
+.portfolioContainerFull2 .portfolioFlat:hover .portfolioFlatSubTitle{
   color: black;
 }
-.portfolioFlat:hover .portfolioCardDateContainer{
+.portfolioContainerFull2 .portfolioFlat:hover .portfolioCardDateContainer{
   background-color: black;
 }
-.portfolioFlatSubTitle{
+.portfolioContainerFull2 .portfolioFlatSubTitle{
   transition: 0.2s ease-out;
-  color: #f1c40f;
+  color: #3498db;
   text-transform: capitalize;
   font-weight: 400;
   margin-top: 10px;
 }
-.portfolioFlatContentSummary{
+.portfolioContainerFull2 .portfolioFlatContentSummary{
   margin-top: 10px;
 }
 /* ---------------------------------------------------- */
-.extrasPage{
+.portfolioContainerFull2 .extrasPage{
   background-color: rgba(238, 238, 238, 0.5);
   padding-bottom: 20px;
 }
-.extrasPage .miniLine{
+.portfolioContainerFull2 .extrasPage .miniLine{
   margin-top: 30px;
 }
-.floodFill{
+.portfolioContainerFull2 .floodFill{
   background-color: black;;
   color: white;
   height: 50px;
   line-height: 50px;
   padding-bottom: 40px;
 }
-.portfolioExtraCard{
+.portfolioContainerFull2 .portfolioExtraCard{
   display: flex;
   margin-top: 50px;
   width: 500px;
@@ -326,58 +353,59 @@
   height: auto;
   margin-left: 20px;
   margin-right: 20px;
-  background-color: #e6e6e6;
+  /* background-color: #e6e6e6; */
+  background-color: white;
 }
-.portfolioExtraDetails{
+.portfolioContainerFull2 .portfolioExtraDetails{
   display: flex;
   flex-direction: column;
   width: 300px;
 }
-.portfolioExtraContent{
+.portfolioContainerFull2 .portfolioExtraContent{
   display: flex;
   flex-direction: column;
 }
-.chip{
+.portfolioContainerFull2 .chip{
   margin-top: 10px;
 }
-.portfolioExtraImage{
+.portfolioContainerFull2 .portfolioExtraImage{
   height: auto;
   width: 200px;
   background-size: cover;;
   background-repeat: no-repeat;
   background-position: center;
 }
-.miniAwardImage {
+.portfolioContainerFull2 .miniAwardImage {
   background-image: url('../images/award.jpg');
 }
-.miniPublicationImage {
+.portfolioContainerFull2 .miniPublicationImage {
   background-image: url('../images/publish.jpg');
 }
-.miniLanguageImage {
+.portfolioContainerFull2 .miniLanguageImage {
   background-image: url('../images/language.png');
 }
-.miniSkillImage {
+.portfolioContainerFull2 .miniSkillImage {
   background-image: url('../images/skill.jpg');
 }
-.portfolioAwardCompany span,.portfolioAwardDate span{
+.portfolioContainerFull2 .portfolioAwardCompany span,.portfolioAwardDate span{
   font-weight: 600;
 }
-.portfolioPublishCompany span,.portfolioPublishDate span, .portfolioPublishWebsite span{
+.portfolioContainerFull2 .portfolioPublishCompany span,.portfolioPublishDate span, .portfolioPublishWebsite span{
   font-weight: 600;
 }
-.portfolioPublishWebsite a{
-  color: #f1c40f;
+.portfolioContainerFull2 .portfolioPublishWebsite a{
+  color: #3498db;
   text-decoration: none;
 }
 
 
 /* --------------------------------------------- */
-.contactPage{
+.portfolioContainerFull2 .contactPage{
 }
-.contactPage .portfolioPageTitle{
+.portfolioContainerFull2 .contactPage .portfolioPageTitle{
   padding-bottom: 20px;
 }
-.portfolioContactCard{
+.portfolioContainerFull2 .portfolioContactCard{
   width: 360px;
   border-radius: 15px;
   margin: auto;
@@ -386,23 +414,43 @@
   height: auto;
   padding: 30px;
 }
-.portfolioContactCardAddress{
+.portfolioContainerFull2 .portfolioContactCardAddress{
   text-align: center;;
   text-transform: capitalize;
   line-height: 24px;
 }
-.portfolioContactCardAddress span{
-  color: #f1c40f;
+.portfolioContainerFull2 .portfolioContactCardAddress span{
+  color: #3498db;
 }
-.portfolioContactCard li{
+.portfolioContainerFull2 .portfolioContactCard li{
   margin-top: 10px;
 }
-.portfolioContactCardInfoTitle{
+.portfolioContainerFull2 .portfolioContactCardInfoTitle{
   font-weight: 600;
-  color: #f1c40f;
+  color: #3498db;
 }
-.portfolioContactSocialCard{
+.portfolioContainerFull2 .portfolioContactSocialCard{
   text-align: center;
-  color: #f1c40f;
+  color: #3498db;
   background-color: black;
+}
+.portfolioContainerFull2 .noProf {
+  text-align: center;
+  text-transform: capitalize;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: 300;
+}
+.portfolioContainerFull2 .noProfLarge {
+  font-size: 30px;
+  font-weight: 600;
+}
+.portfolioContainerFull2 .noProf span {
+  font-weight: 700;
+  text-transform: uppercase;
+  /* font-style: italic; */
+  cursor: pointer;
 }
