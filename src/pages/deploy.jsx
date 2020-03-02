@@ -33,6 +33,13 @@ const useStyles = makeStyles(theme => ({
 
 const Deploy = () => {
   const classes = useStyles();
+  const handleClick = (type) => {
+    if (type === 1) {
+      window.location.href = "https://drive.google.com/open?id=15O5YqdD_FrEXA5HzspQxCsk9AWEtAafW";
+    } else if (type === 2) {
+      window.location.href = "https://drive.google.com/open?id=18ECu1aB9bv5aHdnN83laOiiirOR7DIcm";
+    }
+  }
   return (
       <div className="fullScreenInside">
         <div>
