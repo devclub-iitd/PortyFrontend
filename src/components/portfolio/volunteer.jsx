@@ -50,7 +50,7 @@ class Volunteer extends React.Component {
           }
         </div>
         <div className="portfolioPageSplit rightVolunteer">
-          Volunteering
+          Volunteering | POR
         </div>
       </div>
     );
