@@ -33,6 +33,13 @@ const useStyles = makeStyles(theme => ({
 
 const Deploy = () => {
   const classes = useStyles();
+  const handleClick = (type) => {
+    if (type === 1) {
+      window.location.href = "https://drive.google.com/open?id=15O5YqdD_FrEXA5HzspQxCsk9AWEtAafW";
+    } else if (type === 2) {
+      window.location.href = "https://drive.google.com/open?id=18ECu1aB9bv5aHdnN83laOiiirOR7DIcm";
+    }
+  }
   return (
       <div className="fullScreenInside">
         <div>
@@ -56,18 +63,16 @@ const Deploy = () => {
           </Typography>
         </div>
         <div className="buttonRow">
-          <Button variant="contained" color="secondary" className={classes.button}>
-            Design 1
-          </Button>
-          <Button variant="contained" color="secondary" className={classes.button}>
-            Design 2
-          </Button>
-          <Button variant="contained" color="secondary" className={classes.button}>
-            Design 3
-          </Button>
-          <Button variant="contained" color="secondary" className={classes.button}>
-            Design 4
-          </Button>
+          <a href="https://drive.google.com/open?id=15O5YqdD_FrEXA5HzspQxCsk9AWEtAafW" target="_blank">
+            <Button variant="contained" color="secondary" style={{ textDecoration: 'none' }} className={classes.button}>
+              Design 1
+            </Button>
+          </a>
+          <a href="https://drive.google.com/open?id=18ECu1aB9bv5aHdnN83laOiiirOR7DIcm" target="_blank">
+            <Button variant="contained" color="secondary" style={{ textDecoration: 'none' }} className={classes.button}>
+              Design 2
+            </Button>
+          </a>
         </div>
       </div>
   );
