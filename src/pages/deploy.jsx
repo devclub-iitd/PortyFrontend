@@ -56,12 +56,12 @@ const Deploy = () => {
           </Typography>
         </div>
         <div className="buttonRow">
-          <a href="https://drive.google.com/open?id=15O5YqdD_FrEXA5HzspQxCsk9AWEtAafW" target="_blank">
+          <a href="https://drive.google.com/open?id=136g5dZ4kcHDYm3BPJTDn7smO5Db6HZJ8" target="_blank">
             <Button variant="contained" color="secondary" style={{ textDecoration: 'none' }} className={classes.button}>
               Design 1
             </Button>
           </a>
-          <a href="https://drive.google.com/open?id=18ECu1aB9bv5aHdnN83laOiiirOR7DIcm" target="_blank">
+          <a href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse" target="_blank">
             <Button variant="contained" color="secondary" style={{ textDecoration: 'none' }} className={classes.button}>
               Design 2
             </Button>
