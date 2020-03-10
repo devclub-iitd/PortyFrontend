@@ -30,7 +30,7 @@ const ExpansionCard = (props) => {
           <div className="portfolioExpansionPanelWebsite">
             <span>Website |</span>
             {' '}
-            <a href={website}>{website}</a>
+            <a href={website} target="_blank">{website}</a>
           </div>
           <div className="portfolioCardDateContainer">
             {startDate}

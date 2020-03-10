@@ -6,6 +6,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import store from './store';
 import Landing from './pages/landing';
 import Portfolio from './pages/portfolio';
+import Portfolio2 from './pages/portfolio_2';
 import Register from './pages/registerationFinal';
 import Validation from './pages/registerationValidation';
 import HeaderMain from './components/headerMain';
@@ -16,6 +17,7 @@ import Alert from './components/alert';
 import PublicPortfolio from './pages/publicPortfolio';
 import Regenerate from './pages/regenerateOTP';
 import Reset from './pages/resetPassword';
+import ResetSucc from './pages/resetSucc';
 
 const theme = createMuiTheme({
   palette: {
@@ -49,9 +51,11 @@ const App = () => {
             <PrivateRoute exact path="/home" component={HeaderMain} />
             <Route exact path="/" component={Landing} />
             <PrivateRoute exact path="/portfolio" component={Portfolio} />
+            <PrivateRoute exact path="/portfolio2" component={Portfolio2} />
             <Route exact path="/validate" component={Validation} />
             <Route exact path="/regenerate" component={Regenerate} />
             <Route exact path="/reset" component={Reset} />
+            <Route exact path="/resetSucc" component={ResetSucc} />
             <Route exact path="/portfolio/:id" component={PublicPortfolio} />
           </Router>
         </MuiThemeProvider>

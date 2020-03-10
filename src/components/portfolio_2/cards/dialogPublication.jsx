@@ -19,6 +19,8 @@ export default function AlertDialogSlide(props) {
       <Dialog
         open={open}
         TransitionComponent={Transition}
+        fullWidth={true}
+        maxWidth="sm"
         keepMounted
         onClose={() => handleDialogClose({ title })}
         aria-labelledby="alert-dialog-slide-title"

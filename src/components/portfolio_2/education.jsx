@@ -10,18 +10,18 @@ const Education = (props) => {
       <div className="portfolioPageTitle">
         Education
       </div>
-      <div className="miniLine" />
+      <div className="miniLine pageMiniLine" />
       <div className="portfolioFlatContainer">
         {
           education.map(
             educationPlace => (
               <PaperCard
-                institution={educationPlace.institution}
-                degree={educationPlace.qualification}
-                area={educationPlace.area}
+                company={educationPlace.institution}
+                position={educationPlace.area}
                 grade={educationPlace.gpa}
                 startDate={educationPlace.startdate}
                 endDate={educationPlace.enddate}
+                degree={educationPlace.qualification}
               >
                 {educationPlace.details}
               </PaperCard>
@@ -36,6 +36,14 @@ const Education = (props) => {
 Education.propTypes = {
   education: PropTypes.objectOf(PropTypes.object).isRequired,
 };
+// <FlatCard
+//   institution={educationPlace.institution}
+//   degree={educationPlace.qualification}
+//   area={educationPlace.area}
+//   grade={educationPlace.gpa}
+//   startDate={educationPlace.startdate}
+//   endDate={educationPlace.enddate}
+// >
 
 
 export default Education;

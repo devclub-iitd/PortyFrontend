@@ -61,6 +61,18 @@ class Extra extends React.Component {
     const {
       title, openPublishDialog, openAwardDialog, company, date, website, text, userAwards, userLanguages, userSkills, userPublication,
     } = this.state;
+    let AwardDisp, PublicDisp, SkillDisp;
+    console.log(userAwards);
+    if (userAwards.length > 0 && userAwards[0].title !== '') {
+      AwardDisp = <AwardCard title="awards" items={userAwards} handleDialogOpen={this.handleDialogOpen} />;
+    }
+    if (userPublication.length > 0 && userPublication[0].name !== '') {
+      PublicDisp = <PublicationCard title="publications" items={userPublication} handleDialogOpen={this.handleDialogOpen} />;
+    }
+    if (userSkills.length > 0 && userSkills[0].name !== '') {
+      SkillDisp = <SkillCard title="skills" items={userSkills} />;
+    }
+
     return (
       <div className="portfolioPage extrasPage">
         <div className="portfolioPageTitle floodFill">
@@ -69,9 +81,9 @@ class Extra extends React.Component {
           s
         </div>
         <div className="portfolioFlatContainer">
-          <AwardCard title="awards" items={userAwards} handleDialogOpen={this.handleDialogOpen} />
-          <PublicationCard title="publications" items={userPublication} handleDialogOpen={this.handleDialogOpen} />
-          <SkillCard title="skills" items={userSkills} />
+          {AwardDisp}
+          {PublicDisp}
+          {SkillDisp}
           <LanguageCard title="languages" items={userLanguages} handleDialogOpen={this.handleDialogOpen} />
         </div>
         <DialogPublication

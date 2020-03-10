@@ -29,6 +29,9 @@ class Volunteer extends React.Component {
     const { volunteer } = this.props;
     return (
       <div className="portfolioPage volunteerPage">
+        <div className="portfolioPageSplit rightVolunteer">
+          Volunteering | POR
+        </div>
         <div className="portfolioPageSplit leftVolunteer">
           {
             volunteer.map(
@@ -48,9 +51,6 @@ class Volunteer extends React.Component {
               ),
             )
           }
-        </div>
-        <div className="portfolioPageSplit rightVolunteer">
-          Volunteering
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PaperCard from './cards/paper';
+import FlatCard from './cards/flat';
 
 const Work = (props) => {
   const { work } = props;
@@ -14,15 +14,15 @@ const Work = (props) => {
         {
           work.map(
             workPlace => (
-              <PaperCard
-                company={workPlace.company}
-                position={workPlace.position}
+              <FlatCard
+                institution={workPlace.company}
+                degree={workPlace.position}
                 website={workPlace.website}
                 startDate={workPlace.startdate}
                 endDate={workPlace.enddate}
               >
                 {workPlace.summary}
-              </PaperCard>
+              </FlatCard>
             ),
           )
         }

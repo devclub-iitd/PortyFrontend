@@ -7,7 +7,6 @@ const About = (props) => {
   // console.log(props.summary.summary);
   return (
     <div className="portfolioPage aboutPage">
-      <div className="portfolioPageSplit leftAbout">About me</div>
       <div className="portfolioPageSplit rightAbout">
         <div className="portfolioUserSummary">
           <div className="miniLine" />
@@ -15,6 +14,7 @@ const About = (props) => {
           <div className="miniLine" />
         </div>
       </div>
+      <div className="portfolioPageSplit leftAbout">About me</div>
     </div>
   );
 };
