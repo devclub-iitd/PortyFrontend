@@ -56,5 +56,6 @@
     "eslint-plugin-react": "^7.14.0",
     "minimist": "^1.2.5"
   },
-  "proxy": "http://localhost:5000"
+  // "proxy": "http://localhost:5000",
+  "proxy": "https://portfolioback.devclub.in/",
 }
