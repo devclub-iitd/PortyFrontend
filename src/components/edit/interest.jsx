@@ -263,7 +263,7 @@ class InterestExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Interest</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>Insert Tagline here</i>
+              <i>Share your interests</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

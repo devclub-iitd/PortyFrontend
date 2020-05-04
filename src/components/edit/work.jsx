@@ -267,7 +267,7 @@ class WorkExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Work</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>Insert Tagline here</i>
+              <i>Work experience | Projects | Internships | Etc.</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

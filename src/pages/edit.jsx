@@ -130,18 +130,20 @@ class Edit extends React.Component {
   handleClose() {
     this.setState({
       open: false,
-    })
+    });
   }
+
   handleCloseMini() {
     this.setState({
-      openMini: false
-    })
+      openMini: false,
+    });
   }
+
   handleOpen() {
     this.setState({
       openMini: true,
-      message: 'Whoops...Please check you have filled all the details'
-    })
+      message: 'Whoops...Please check you have filled all the details',
+    });
   }
 
   render() {
@@ -154,7 +156,7 @@ class Edit extends React.Component {
       return <div><Loader /></div>;
     }
 
-    if (!loading && profile !== null){
+    if (!loading && profile !== null) {
       return (
         <MuiThemeProvider theme={theme}>
           <div style={{ paddingBottom: 100 }}>
@@ -264,39 +266,39 @@ class Edit extends React.Component {
               {alertContent}
             </Alert>
             <Snackbar
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            open={this.state.openMini}
-            autoHideDuration={6000}
-            onClose={this.handleCloseMini}
-            ContentProps={{
-              'aria-describedby': 'message-id',
-            }}
-            message={(
-              <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                <InfoIcon style={{ marginRight: '10px' }} />
-                {this.state.message}
-              </span>
-            )}
-            action={[
-              <IconButton
-                key="close"
-                aria-label="close"
-                color="inherit"
-                onClick={this.handleCloseMini}
-              >
-                <CloseIcon />
-              </IconButton>,
-            ]}
-          />
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              open={this.state.openMini}
+              autoHideDuration={6000}
+              onClose={this.handleCloseMini}
+              ContentProps={{
+                'aria-describedby': 'message-id',
+              }}
+              message={(
+                <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                  <InfoIcon style={{ marginRight: '10px' }} />
+                  {this.state.message}
+                </span>
+              )}
+              action={[
+                <IconButton
+                  key="close"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={this.handleCloseMini}
+                >
+                  <CloseIcon />
+                </IconButton>,
+              ]}
+            />
           </div>
         </MuiThemeProvider>
       );
     }
 
-    if(!loading && profile == null) {
+    if (!loading && profile == null) {
       return (
         <div className="noProf noProfLarge">
           Please create a profile first
@@ -310,7 +312,7 @@ class Edit extends React.Component {
 }
 
 Edit.propTypes = {
-  getFullProfile : PropTypes.func.isRequired,
+  getFullProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };

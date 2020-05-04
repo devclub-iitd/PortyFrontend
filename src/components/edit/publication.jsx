@@ -266,7 +266,7 @@ class PublicationExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Publication</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>Insert Tagline here</i>
+              <i>Tell us about your publications</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

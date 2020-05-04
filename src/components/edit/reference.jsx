@@ -263,7 +263,7 @@ class ReferenceExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Reference</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>Insert Tagline here</i>
+              <i>Any references?</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

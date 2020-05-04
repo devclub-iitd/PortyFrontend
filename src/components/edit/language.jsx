@@ -263,7 +263,7 @@ class LanguageExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Language</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>Insert Tagline here</i>
+              <i>What languages do you speak (or coding languages)</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

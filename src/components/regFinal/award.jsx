@@ -333,7 +333,7 @@ class AwardExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Awards</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>Insert Tagline here</i>
+              <i>Significant Achievements | Awards Recieved</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

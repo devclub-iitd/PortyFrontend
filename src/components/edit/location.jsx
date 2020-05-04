@@ -82,7 +82,7 @@ class LocationExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Location</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>insert random tagline here</i>
+              <i>Where are you currently situated</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

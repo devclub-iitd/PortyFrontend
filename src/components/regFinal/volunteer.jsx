@@ -339,7 +339,7 @@ class VolunteerExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Volunteer</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>Insert Tagline here</i>
+              <i>Volunteering activities | PORs | Other roles | Etc.</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

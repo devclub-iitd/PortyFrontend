@@ -264,7 +264,7 @@ class SkillExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Skill</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>Insert Tagline here</i>
+              <i>Showcase your skills</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

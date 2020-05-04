@@ -342,7 +342,7 @@ class EducationExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Education</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>Insert Tagline here</i>
+              <i>Educational qualifications</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

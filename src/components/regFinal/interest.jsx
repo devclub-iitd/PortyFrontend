@@ -333,7 +333,7 @@ class InterestExpansionPanel extends React.Component {
           >
             <Typography style={useStyles.heading}>Interests</Typography>
             <Typography style={useStyles.secondaryHeading}>
-              <i>Insert Tagline here</i>
+              <i>Share your interests</i>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
