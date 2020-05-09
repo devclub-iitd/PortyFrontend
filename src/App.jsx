@@ -7,6 +7,7 @@ import store from './store';
 import Landing from './pages/landing';
 import Portfolio from './pages/portfolio';
 import Portfolio2 from './pages/portfolio_2';
+import Portfolio3 from './pages/portfolio_3';
 import Register from './pages/registerationFinal';
 import Validation from './pages/registerationValidation';
 import HeaderMain from './components/headerMain';
@@ -51,6 +52,7 @@ const App = () => {
             <Route exact path="/" component={Landing} />
             <PrivateRoute exact path="/portfolio" component={Portfolio} />
             <PrivateRoute exact path="/portfolio2" component={Portfolio2} />
+            <PrivateRoute exact path="/portfolio3" component={Portfolio3} />
             <Route exact path="/validate" component={Validation} />
             <Route exact path="/regenerate" component={Regenerate} />
             <Route exact path="/reset" component={Reset} />

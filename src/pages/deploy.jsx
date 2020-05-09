@@ -39,6 +39,9 @@ const design1 = () => {
 const design2 = () => {
   window.location.href = './portfolio2';
 };
+const design3 = () => {
+  window.location.href = './portfolio3';
+};
 
 const navToTutorial = () => {
   window.location.href = 'https://youtu.be/BMEjPExaS_A';
@@ -63,13 +66,13 @@ const Deploy = () => {
           <br />
           4) Choose a design template from below, download it and unzip it.
           <br />
-          5) Place your file.json in the foldernamed &quot;data&quot; 
+          5) Place your file.json in the foldernamed &quot;data&quot;
           inside the unzipped content. If prompted, replace the existing file.
           <br />
-          6) On your github repository, click &quot;add existing files&quot; 
+          6) On your github repository, click &quot;add existing files&quot;
           and drag the entire content in the unzipped folder to the browser in order to upload them.
           <br />
-          7) Click on done, and wait for the files to upload. 
+          7) Click on done, and wait for the files to upload.
           In a couple of minutes your website should become live on the url - username.github.io
         </Typography>
       </div>
@@ -91,6 +94,15 @@ const Deploy = () => {
           </a>
           <br />
           <Button variant="outlined" onClick={design2}>View</Button>
+        </div>
+        <div className="buttonColumn">
+          <a href="https://drive.google.com/open?id=136g5dZ4kcHDYm3BPJTDn7smO5Db6HZJ8" target="_blank">
+            <Button variant="contained" color="secondary" style={{ textDecoration: 'none' }} className={classes.button}>
+              Design 3
+            </Button>
+          </a>
+          <br />
+          <Button variant="outlined" onClick={design3}>View</Button>
         </div>
       </div>
       <Button variant="outlined" className={classes.buttonSecondary} onClick={navToTutorial}>Tutorial</Button>
