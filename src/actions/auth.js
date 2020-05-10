@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-console */
 import axios from 'axios';
 import {
   REGISTER_SUCCESS,
@@ -13,7 +15,7 @@ import { setAlert } from './alert';
 import setAuthToken from '../utility/setauthtoken';
 
 // Load User
-export const loadUser = () => async dispatch => {
+export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -24,7 +26,6 @@ export const loadUser = () => async dispatch => {
       type: USER_LOADED,
       payload: res.data,
     });
-
   } catch (err) {
     dispatch({
       type: AUTH_ERROR,
@@ -34,151 +35,145 @@ export const loadUser = () => async dispatch => {
 
 // Register User
 
-export const register = ({name , email , password , entryno , phone , dob , website }) => async dispatch => {
-    const config = {
-        headers : {
-            'Content-Type' : 'application/json'
-        }
+export const register = ({
+  name, email, password, entryno, phone, dob, website,
+}) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({
+    name, email, password, entryno, phone, dob, website,
+  });
+
+  try {
+    dispatch(setAlert('Please wait while we create your account', 'green'));
+    const res = await axios.post('api/user', body, config);
+    dispatch(setAlert('Register Success...Check your email for verification', 'green'));
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    const { errors } = err.response.data;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'red')));
     }
 
-    const body = JSON.stringify({name , email , password , entryno , phone , dob , website })
+    dispatch({
+      type: REGISTER_FAIL,
+    });
+  }
+};
 
-    try {
-        dispatch(setAlert('Please wait while we create your account', 'green'));
-        const res = await axios.post('api/user', body , config)
-        dispatch(setAlert('Register Success...Check your email for verification','green'))
-        dispatch({
-            type : REGISTER_SUCCESS,
-            payload : res.data
-        })
-    } catch (err) {
-        const errors = err.response.data.errors
+// Login User
+export const login = ({ email, password }) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
 
-        if(errors){
-            errors.forEach(error => dispatch(setAlert(error.msg , 'red')))
-        }
+  const body = JSON.stringify({ email, password });
+  // console.log(body)
 
-        dispatch({
-            type : REGISTER_FAIL
-        })
-    }
-}
+  try {
+    const res = await axios.post('/api/auth', body, config);
+    console.log(body);
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data,
+    });
 
-//Login User
-export const login = ({email,password}) => async dispatch => {
-    const config = {
-        headers : {
-            'Content-Type' : 'application/json'
-        }
-    }
+    await dispatch(loadUser());
+  } catch (err) {
+    dispatch({
+      type: LOGIN_FAIL,
+    });
 
-    const body = JSON.stringify({email,password})
-    //console.log(body)
+    const { errors } = err.response.data;
 
-    try  {
-        const res = await axios.post('/api/auth', body, config)
-        console.log(body)
-        dispatch({
-            type: LOGIN_SUCCESS,
-            payload: res.data
-        })
-
-        await dispatch(loadUser());
-
-    } catch (err) {
-
-        dispatch({
-            type: LOGIN_FAIL
-        })
-
-        const errors = err.response.data.errors
-
-        if(errors){
-            errors.forEach(error => dispatch(setAlert(error.msg , 'red')))
-        }
-
-        //dispatch(setAlert("Login Failed", 'red'))
-    }
-}
-
-export const regenerate_otp = (email) => async dispatch => {
-    const config = {
-        headers : {
-            'Content-Type' : 'application/json'
-        }
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'red')));
     }
 
-    const body = JSON.stringify({email})
+    // dispatch(setAlert("Login Failed", 'red'))
+  }
+};
 
-    try  {
+export const regenerate_otp = email => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
 
-        dispatch(setAlert('Please wait while we send the email.', 'green'));
-        console.log(body)
-        const res = await axios.post('/api/user/otp', body, config)
+  const body = JSON.stringify({ email });
 
-        dispatch(setAlert('We have sent an email...Check your email for verification','green'))
+  try {
+    dispatch(setAlert('Please wait while we send the email.', 'green'));
+    console.log(body);
+    const res = await axios.post('/api/user/otp', body, config);
 
-        dispatch({
-            type: REGISTER_SUCCESS,
-            payload: res.data
-        })
+    dispatch(setAlert('We have sent an email...Check your email for verification', 'green'));
 
-    } catch (err) {
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: REGISTER_FAIL,
+    });
 
-        dispatch({
-            type: REGISTER_FAIL
-        })
+    const { errors } = err.response.data;
 
-        const errors = err.response.data.errors
-
-        if(errors){
-            errors.forEach(error => dispatch(setAlert(error.msg , 'red')))
-        }
-
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'red')));
     }
-}
+  }
+};
 
-//reset pass
-export const reset_pass = ({email,password}) => async dispatch => {
-    const config = {
-        headers : {
-            'Content-Type' : 'application/json'
-        }
+// reset pass
+export const reset_pass = ({ email, password }) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ email, password });
+
+  try {
+    dispatch(setAlert('Please wait while we send the email.', 'green'));
+    console.log(body);
+    const res = await axios.post('/api/user/forgot', body, config);
+
+    dispatch(setAlert('We have sent an email...Check your email to confirm password change', 'green'));
+
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: REGISTER_FAIL,
+    });
+
+    const { errors } = err.response.data;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'red')));
     }
+  }
+};
 
-    const body = JSON.stringify({email,password})
+// LogOUt
 
-    try  {
-
-        dispatch(setAlert('Please wait while we send the email.', 'green'));
-        console.log(body)
-        const res = await axios.post('/api/user/forgot', body, config)
-
-        dispatch(setAlert('We have sent an email...Check your email to confirm password change','green'))
-
-        dispatch({
-            type: REGISTER_SUCCESS,
-            payload: res.data
-        })
-
-    } catch (err) {
-
-        dispatch({
-            type: REGISTER_FAIL
-        })
-
-        const errors = err.response.data.errors
-
-        if(errors){
-            errors.forEach(error => dispatch(setAlert(error.msg , 'red')))
-        }
-
-    }
-}
-
-//LogOUt
-
-export const logout = () => dispatch => {
-    dispatch({type : LOG_OUT})
-    dispatch({type : CLEAR_PROFILE})
-}
+export const logout = () => (dispatch) => {
+  dispatch({ type: LOG_OUT });
+  dispatch({ type: CLEAR_PROFILE });
+};

@@ -174,9 +174,9 @@
   height: auto;
   margin-top: 30px;
 }
-.portfolioContainerFull2 .portfolioCardTitle{
-  /* background-color: red; */
-}
+/* .portfolioContainerFull2 .portfolioCardTitle{
+  background-color: red;
+} */
 .portfolioContainerFull2 .portfolioCardTitleMain{
   font-size:20px;
   text-transform: uppercase;
@@ -400,8 +400,8 @@
 
 
 /* --------------------------------------------- */
-.portfolioContainerFull2 .contactPage{
-}
+/* .portfolioContainerFull2 .contactPage{
+} */
 .portfolioContainerFull2 .contactPage .portfolioPageTitle{
   padding-bottom: 20px;
 }

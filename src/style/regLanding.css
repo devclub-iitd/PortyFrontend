@@ -37,9 +37,9 @@
   display: flex;
   flex-direction: column;
 }
-.loginFormCont {
-  /* background-color: red; */
-}
+/* .loginFormCont {
+  background-color: red;
+} */
 .loginFormCont form{
   display: flex;
   flex-direction: column;
@@ -105,9 +105,9 @@ input:hover{
 input:focus{
   border: 2px solid #3d40d8;
 }
-input:hover::placeholder{
-  /* color: rgba(255,255,255,0.8); */
-}
+/* input:hover::placeholder{
+  color: rgba(255,255,255,0.8);
+} */
 .btn{
   width: 200px;
   height: 50px;
