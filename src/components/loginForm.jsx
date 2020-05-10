@@ -22,7 +22,6 @@ class LoginFrom extends React.Component {
     }
   }
 
-
   handleSubmit(event) {
     event.preventDefault();
     //  add checks for all conditions especially dob and all
@@ -34,6 +33,7 @@ class LoginFrom extends React.Component {
       email: emailVal,
       password: passVal,
     };
+    // eslint-disable-next-line react/prop-types, react/destructuring-assignment
     this.props.login(obj);
   }
 

@@ -3,7 +3,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import PropTypes from 'prop-types';
+// import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -19,12 +20,12 @@ const styles = {
 };
 
 class ResetSucc extends React.Component {
-
   constructor(props) {
     super(props);
     this.handleRedirect = this.handleRedirect.bind(this);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   handleRedirect() {
     window.location.href = '../';
   }
@@ -58,8 +59,12 @@ class ResetSucc extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
+
+ResetSucc.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.object()).isRequired,
+};
 
 export default withStyles(styles)(ResetSucc);
