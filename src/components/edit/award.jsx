@@ -1,6 +1,6 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -8,7 +8,6 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AwardDetails from './awardDetailsContainer';
-import {createProfile} from '../../actions/profile'
 
 
 class AwardExpansionPanel extends React.Component {
@@ -57,12 +56,12 @@ class AwardExpansionPanel extends React.Component {
     const exp = expanded;
     const { award } = this.state;
     const awardObj = {
-      title: "",
-      date: "",
-      awarder: "",
-      details: "",
-      hidden: false
-    }
+      title: '',
+      date: '',
+      awarder: '',
+      details: '',
+      hidden: false,
+    };
     tempFieldsTracker.push(key);
     tempFields.push(<AwardDetails data={awardObj} handleChange={this.handleInputChange} key={key} id={id} expanded={exp} action={() => this.handlePanel(`awardPanel${id}`)} moveFieldDown={() => this.moveFieldDown(key, id)} moveFieldUp={() => this.moveFieldUp(key, id)} />);
     const tempaward = award;
@@ -106,12 +105,16 @@ class AwardExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('awards', this.state.award);
+    const { award } = this.state;
+    const { senData } = this.props;
+    senData('awards', award);
   }
 
   handleInputChange(event) {
     const { id } = event.target;
-    const { award, awardFieldTracker, awardDetailsCount, expanded } = this.state;
+    const {
+      award, awardFieldTracker, awardDetailsCount, expanded,
+    } = this.state;
     const type = event.target.name;
     const tempFields = [];
     const tempFieldsTracker = awardFieldTracker;
@@ -129,7 +132,6 @@ class AwardExpansionPanel extends React.Component {
       award: tempaward,
       awardFields: tempFields,
     });
-    console.log(tempaward);
   }
 
   handlePanel(panel) {
@@ -181,7 +183,6 @@ class AwardExpansionPanel extends React.Component {
       tempFieldsTracker[i] = storeFieldTracker;
       tempFields[i] = <AwardDetails data={tempaward[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`awardPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
       tempFields[i - 1] = <AwardDetails data={tempaward[i - 1]} handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`awardPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
-
     } else {
       alert('you cant move this field any more');
     }
@@ -211,7 +212,6 @@ class AwardExpansionPanel extends React.Component {
       tempFieldsTracker[i] = storeFieldTracker;
       tempFields[i] = <AwardDetails data={tempaward[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`awardPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
       tempFields[i + 1] = <AwardDetails data={tempaward[i + 1]} handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`awardPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
-
     } else {
       alert('you cant move this field any more');
     }
@@ -288,6 +288,8 @@ class AwardExpansionPanel extends React.Component {
 AwardExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
+  existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default AwardExpansionPanel
+export default AwardExpansionPanel;

@@ -1,6 +1,6 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -8,7 +8,6 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import InterestDetails from './interestDetailsContainer';
-import {createProfile} from '../../actions/profile'
 
 
 class InterestExpansionPanel extends React.Component {
@@ -57,9 +56,9 @@ class InterestExpansionPanel extends React.Component {
     const exp = expanded;
     const { interest } = this.state;
     const interestObj = {
-      name: "",
-      keywords: "",
-      hidden: false
+      name: '',
+      keywords: '',
+      hidden: false,
     };
     tempFieldsTracker.push(key);
     tempFields.push(<InterestDetails data={interestObj} handleChange={this.handleInputChange} key={key} id={id} expanded={exp} action={() => this.handlePanel(`interestPanel${id}`)} moveFieldDown={() => this.moveFieldDown(key, id)} moveFieldUp={() => this.moveFieldUp(key, id)} />);
@@ -104,12 +103,16 @@ class InterestExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('interests', this.state.interest);
+    const { interest } = this.state;
+    const { senData } = this.props;
+    senData('interests', interest);
   }
 
   handleInputChange(event) {
     const { id } = event.target;
-    const { interest, interestFieldTracker, interestDetailsCount, expanded } = this.state;
+    const {
+      interest, interestFieldTracker, interestDetailsCount, expanded,
+    } = this.state;
     const type = event.target.name;
     const tempFields = [];
     const tempFieldsTracker = interestFieldTracker;
@@ -127,7 +130,6 @@ class InterestExpansionPanel extends React.Component {
       interest: tempinterest,
       interestFields: tempFields,
     });
-    console.log(tempinterest);
   }
 
   handlePanel(panel) {
@@ -179,7 +181,6 @@ class InterestExpansionPanel extends React.Component {
       tempFieldsTracker[i] = storeFieldTracker;
       tempFields[i] = <InterestDetails data={tempinterest[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`interestPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
       tempFields[i - 1] = <InterestDetails data={tempinterest[i - 1]} handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`interestPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
-
     } else {
       alert('you cant move this field any more');
     }
@@ -209,7 +210,6 @@ class InterestExpansionPanel extends React.Component {
       tempFieldsTracker[i] = storeFieldTracker;
       tempFields[i] = <InterestDetails data={tempinterest[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`interestPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
       tempFields[i + 1] = <InterestDetails data={tempinterest[i + 1]} handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`interestPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
-
     } else {
       alert('you cant move this field any more');
     }
@@ -286,6 +286,8 @@ class InterestExpansionPanel extends React.Component {
 InterestExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
+  existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default InterestExpansionPanel
+export default InterestExpansionPanel;

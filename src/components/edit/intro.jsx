@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Intro = (props) => {
   const {
-    name, caption, img
+    name,
   } = props;
   return (
     <div className="introContainer introContainerEdit">
@@ -18,7 +18,6 @@ const Intro = (props) => {
 
 Intro.propTypes = {
   name: PropTypes.string.isRequired,
-  caption: PropTypes.string.isRequired,
 };
 
 export default Intro;
