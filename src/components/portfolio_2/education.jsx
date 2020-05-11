@@ -7,27 +7,21 @@ const Education = (props) => {
 
   return (
     <div className="portfolioPage portfolioEducationPage">
-      <div className="portfolioPageTitle">
-        Education
-      </div>
+      <div className="portfolioPageTitle">Education</div>
       <div className="miniLine pageMiniLine" />
       <div className="portfolioFlatContainer">
-        {
-          education.map(
-            educationPlace => (
-              <PaperCard
-                company={educationPlace.institution}
-                position={educationPlace.area}
-                grade={educationPlace.gpa}
-                startDate={educationPlace.startdate}
-                endDate={educationPlace.enddate}
-                degree={educationPlace.qualification}
-              >
-                {educationPlace.details}
-              </PaperCard>
-            ),
-          )
-        }
+        {education.map((educationPlace) => (
+          <PaperCard
+            company={educationPlace.institution}
+            position={educationPlace.area}
+            grade={educationPlace.gpa}
+            startDate={educationPlace.startdate}
+            endDate={educationPlace.enddate}
+            degree={educationPlace.qualification}
+          >
+            {educationPlace.details}
+          </PaperCard>
+        ))}
       </div>
     </div>
   );
@@ -44,6 +38,5 @@ Education.propTypes = {
 //   startDate={educationPlace.startdate}
 //   endDate={educationPlace.enddate}
 // >
-
 
 export default Education;

@@ -23,35 +23,57 @@ const LanguageField = (props) => {
     hidden: false,
   });
 
-  const handleCheckBoxChange = name => (event) => {
+  const handleCheckBoxChange = (name) => (event) => {
     setState({ ...state, [name]: event.target.checked });
     handleChange(event);
   };
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <ExpansionPanel expanded={expanded === `languagePanel${id}`} onChange={action} style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}>
+      <ExpansionPanel
+        expanded={expanded === `languagePanel${id}`}
+        onChange={action}
+        style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
+      >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography style={{ fontWeight: 700 }}>
-            Language
-            {' '}
-            {id + 1}
-          </Typography>
+          <Typography style={{ fontWeight: 700 }}>Language {id + 1}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
             <div className="row rowtwo">
-              <input id={id} onChange={handleChange} name="language" className="left" type="text" required placeholder="Language Name:" />
-              <input id={id} onChange={handleChange} name="fluency" className="right" type="text" required placeholder="Fluency: Option1 | Option2 | Option3" />
+              <input
+                id={id}
+                onChange={handleChange}
+                name="language"
+                className="left"
+                type="text"
+                required
+                placeholder="Language Name:"
+              />
+              <input
+                id={id}
+                onChange={handleChange}
+                name="fluency"
+                className="right"
+                type="text"
+                required
+                placeholder="Fluency: Option1 | Option2 | Option3"
+              />
             </div>
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={
-                  <Checkbox id={id} name="hidden" checked={state.hidden} onChange={handleCheckBoxChange('hidden')} value="hidden" />
+                  <Checkbox
+                    id={id}
+                    name="hidden"
+                    checked={state.hidden}
+                    onChange={handleCheckBoxChange('hidden')}
+                    value="hidden"
+                  />
                 }
                 label="Hidden"
               />
@@ -60,11 +82,23 @@ const LanguageField = (props) => {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <div className="sideBtnCont">
-        <ButtonGroup color="secondary" aria-label="Outlined primary button group" size="small">
-          <IconButton color="primary" aria-label="Move Field Up" onClick={moveFieldUp}>
+        <ButtonGroup
+          color="secondary"
+          aria-label="Outlined primary button group"
+          size="small"
+        >
+          <IconButton
+            color="primary"
+            aria-label="Move Field Up"
+            onClick={moveFieldUp}
+          >
             <ArrowUp />
           </IconButton>
-          <IconButton color="primary" aria-label="Move Field Down" onClick={moveFieldDown}>
+          <IconButton
+            color="primary"
+            aria-label="Move Field Down"
+            onClick={moveFieldDown}
+          >
             <ArrowDown />
           </IconButton>
         </ButtonGroup>

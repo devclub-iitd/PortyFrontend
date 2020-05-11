@@ -8,12 +8,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
-const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
+const Transition = React.forwardRef((props, ref) => (
+  <Slide direction="up" ref={ref} {...props} />
+));
 
 export default function AlertDialogSlide(props) {
-  const {
-    open, handleDialogClose, title, children, date, awarder,
-  } = props;
+  const { open, handleDialogClose, title, children, date, awarder } = props;
   return (
     <div>
       <Dialog
@@ -27,29 +27,24 @@ export default function AlertDialogSlide(props) {
         aria-describedby="alert-dialog-slide-description"
         style={{ padding: '50px' }}
       >
-        <DialogTitle id="alert-dialog-slide-title">{ title }</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description" style={{ overflowWrap: 'normal' }}>
+          <DialogContentText
+            id="alert-dialog-slide-description"
+            style={{ overflowWrap: 'normal' }}
+          >
             <div className="portfolioAwardCompany">
-              <span>Awarded By -</span>
-              {' '}
-              {awarder}
+              <span>Awarded By -</span> {awarder}
             </div>
             <div className="portfolioAwardDate">
-              <span>On -</span>
-              {' '}
-              {date}
+              <span>On -</span> {date}
             </div>
             <br />
-            <div className="portfolioAwardSummary">
-              {children}
-            </div>
+            <div className="portfolioAwardSummary">{children}</div>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleDialogClose({ title })}>
-            Close
-          </Button>
+          <Button onClick={() => handleDialogClose({ title })}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>

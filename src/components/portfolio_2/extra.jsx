@@ -9,9 +9,7 @@ import DialogAward from './cards/dialogAward';
 class Extra extends React.Component {
   constructor(props) {
     super(props);
-    const {
-      awards, publications, languages, skills,
-    } = this.props;
+    const { awards, publications, languages, skills } = this.props;
     this.state = {
       openPublishDialog: false,
       openAwardDialog: false,
@@ -59,15 +57,37 @@ class Extra extends React.Component {
 
   render() {
     const {
-      title, openPublishDialog, openAwardDialog, company, date, website, text, userAwards, userLanguages, userSkills, userPublication,
+      title,
+      openPublishDialog,
+      openAwardDialog,
+      company,
+      date,
+      website,
+      text,
+      userAwards,
+      userLanguages,
+      userSkills,
+      userPublication,
     } = this.state;
     let AwardDisp, PublicDisp, SkillDisp;
     console.log(userAwards);
     if (userAwards.length > 0 && userAwards[0].title !== '') {
-      AwardDisp = <AwardCard title="awards" items={userAwards} handleDialogOpen={this.handleDialogOpen} />;
+      AwardDisp = (
+        <AwardCard
+          title="awards"
+          items={userAwards}
+          handleDialogOpen={this.handleDialogOpen}
+        />
+      );
     }
     if (userPublication.length > 0 && userPublication[0].name !== '') {
-      PublicDisp = <PublicationCard title="publications" items={userPublication} handleDialogOpen={this.handleDialogOpen} />;
+      PublicDisp = (
+        <PublicationCard
+          title="publications"
+          items={userPublication}
+          handleDialogOpen={this.handleDialogOpen}
+        />
+      );
     }
     if (userSkills.length > 0 && userSkills[0].name !== '') {
       SkillDisp = <SkillCard title="skills" items={userSkills} />;
@@ -77,14 +97,17 @@ class Extra extends React.Component {
       <div className="portfolioPage extrasPage">
         <div className="portfolioPageTitle floodFill">
           Extra
-          {"'"}
-          s
+          {"'"}s
         </div>
         <div className="portfolioFlatContainer">
           {AwardDisp}
           {PublicDisp}
           {SkillDisp}
-          <LanguageCard title="languages" items={userLanguages} handleDialogOpen={this.handleDialogOpen} />
+          <LanguageCard
+            title="languages"
+            items={userLanguages}
+            handleDialogOpen={this.handleDialogOpen}
+          />
         </div>
         <DialogPublication
           title={title}
@@ -94,7 +117,7 @@ class Extra extends React.Component {
           date={date}
           website={website}
         >
-          { text }
+          {text}
         </DialogPublication>
         <DialogAward
           title={title}
@@ -103,7 +126,7 @@ class Extra extends React.Component {
           awarder={company}
           date={date}
         >
-          { text }
+          {text}
         </DialogAward>
         <div className="miniLine" />
       </div>

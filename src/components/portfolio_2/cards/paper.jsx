@@ -4,38 +4,29 @@ import Paper from '@material-ui/core/Paper';
 
 const PaperCard = (props) => {
   const {
-    company, position, children, grade, startDate, endDate, degree
+    company,
+    position,
+    children,
+    grade,
+    startDate,
+    endDate,
+    degree,
   } = props;
   return (
     <Paper className="portfolioCard portfolioWorkCard">
       <div className="portfolioCardTitle">
-        <span className="portfolioCardTitleMain">{company}</span>
-        {' '}
-        <span className="portfolioCardTitleSub">
-          |
-          {' '}
-          {position}
-        </span>
-        <div className="portfolioFlatSubTitle">
-          {degree}
-        </div>
+        <span className="portfolioCardTitleMain">{company}</span>{' '}
+        <span className="portfolioCardTitleSub">| {position}</span>
+        <div className="portfolioFlatSubTitle">{degree}</div>
       </div>
       <div className="miniLine miniCardLine" />
-      <div className="portfolioCardContent">
-        {children}
-      </div>
+      <div className="portfolioCardContent">{children}</div>
       <div className="miniLine miniCardLine" />
       <div className="portfolioCardWebsite">
-        <span>Grade |</span>
-        {' '}
-        {grade}
+        <span>Grade |</span> {grade}
       </div>
       <div className="portfolioCardDateContainer">
-        {startDate}
-        {' '}
-        -
-        {' '}
-        {endDate}
+        {startDate} - {endDate}
       </div>
     </Paper>
   );

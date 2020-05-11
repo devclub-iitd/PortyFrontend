@@ -5,7 +5,6 @@ const Image = (props) => (
     <div className="userImgContainer">
       <img className="userImg" src={props.img} />
     </div>
-
   </div>
 );
 

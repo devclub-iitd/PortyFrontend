@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 import '../style/notFound.css';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
     width: '200px',
@@ -29,17 +29,16 @@ const NotFound = () => {
       <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
         <Toolbar>
           <Typography>
-            <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
-            {' '}
+            <span style={{ fontWeight: 700, fontSize: '20px' }}>
+              Portfolio Creator
+            </span>{' '}
             <span style={{ color: '#3d40d8' }}>| Error 404</span>
           </Typography>
         </Toolbar>
       </AppBar>
       <div className="fullScreen">
         <div className="notFoundTextContainer">
-          <Typography variant="h2">
-            : (
-          </Typography>
+          <Typography variant="h2">: (</Typography>
           <Typography variant="h3" style={{ marginTop: '50px' }}>
             Whoops!!
           </Typography>
@@ -47,7 +46,11 @@ const NotFound = () => {
             The page you are looking for is not available.
           </Typography>
         </div>
-        <Button variant="contained" color="secondary" className={classes.button}>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.button}
+        >
           Home
         </Button>
       </div>

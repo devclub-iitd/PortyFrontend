@@ -1,34 +1,34 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { createMuiTheme } from "@material-ui/core/styles";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { createMuiTheme } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 class LocationExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addressline1: "",
-      addressline2: "",
-      city: "",
-      pincode: "",
-      country: ""
+      addressline1: '',
+      addressline2: '',
+      city: '',
+      pincode: '',
+      country: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   callApiRequest() {
-    this.props.senData("location", this.state);
+    this.props.senData('location', this.state);
   }
 
   handleInputChange(event) {
     const type = event.target.name;
     this.setState({
-      [type]: event.target.value
+      [type]: event.target.value,
     });
   }
 
@@ -38,30 +38,30 @@ class LocationExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -69,7 +69,7 @@ class LocationExpansionPanel extends React.Component {
     return (
       <div style={useStyles.root}>
         <ExpansionPanel
-          expanded={expanded === "locationPanel"}
+          expanded={expanded === 'locationPanel'}
           onChange={action}
         >
           <ExpansionPanelSummary
@@ -139,7 +139,7 @@ class LocationExpansionPanel extends React.Component {
 
 LocationExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
-  action: PropTypes.func.isRequired
+  action: PropTypes.func.isRequired,
 };
 
 export default LocationExpansionPanel;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -8,8 +8,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SkillDetails from './skillDetailsContainer';
-import {createProfile} from '../../actions/profile'
-
+import { createProfile } from '../../actions/profile';
 
 class SkillExpansionPanel extends React.Component {
   constructor(props) {
@@ -34,7 +33,18 @@ class SkillExpansionPanel extends React.Component {
     };
     const { expanded } = this.state;
     for (let i = 0; i < existingData.length; i += 1) {
-      tempFields.push(<SkillDetails data={existingData[i]} handleChange={this.handleInputChange} key={i} id={i} expanded={expanded} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
+      tempFields.push(
+        <SkillDetails
+          data={existingData[i]}
+          handleChange={this.handleInputChange}
+          key={i}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`skillPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(i, i)}
+          moveFieldUp={() => this.moveFieldUp(i, i)}
+        />
+      );
       tempFieldsTracker.push(i);
     }
     this.onAddChild = this.onAddChild.bind(this);
@@ -57,16 +67,27 @@ class SkillExpansionPanel extends React.Component {
     const exp = expanded;
     const { skill } = this.state;
     const skillObj = {
-      name: "",
-      level: "",
-      keywords: "",
-      hidden: false
-    }
+      name: '',
+      level: '',
+      keywords: '',
+      hidden: false,
+    };
     tempFieldsTracker.push(key);
-    tempFields.push(<SkillDetails data={skillObj} handleChange={this.handleInputChange} key={key} id={id} expanded={exp} action={() => this.handlePanel(`skillPanel${id}`)} moveFieldDown={() => this.moveFieldDown(key, id)} moveFieldUp={() => this.moveFieldUp(key, id)} />);
+    tempFields.push(
+      <SkillDetails
+        data={skillObj}
+        handleChange={this.handleInputChange}
+        key={key}
+        id={id}
+        expanded={exp}
+        action={() => this.handlePanel(`skillPanel${id}`)}
+        moveFieldDown={() => this.moveFieldDown(key, id)}
+        moveFieldUp={() => this.moveFieldUp(key, id)}
+      />
+    );
     const tempskill = skill;
     tempskill.push(skillObj);
-    this.setState(state => ({
+    this.setState((state) => ({
       skillDetailsCount: state.skillDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
@@ -89,7 +110,7 @@ class SkillExpansionPanel extends React.Component {
     const { skill } = this.state;
     const tempskill = skill;
     tempskill.pop();
-    this.setState(state => ({
+    this.setState((state) => ({
       skillDetailsCount: state.skillDetailsCount - 1,
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
@@ -110,7 +131,12 @@ class SkillExpansionPanel extends React.Component {
 
   handleInputChange(event) {
     const { id } = event.target;
-    const { skill, skillFieldTracker, skillDetailsCount, expanded } = this.state;
+    const {
+      skill,
+      skillFieldTracker,
+      skillDetailsCount,
+      expanded,
+    } = this.state;
     const type = event.target.name;
     const tempFields = [];
     const tempFieldsTracker = skillFieldTracker;
@@ -122,7 +148,18 @@ class SkillExpansionPanel extends React.Component {
     }
     for (let i = 0; i < skillDetailsCount; i += 1) {
       const k = tempFieldsTracker[i];
-      tempFields.push(<SkillDetails data={tempskill[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={expanded} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+      tempFields.push(
+        <SkillDetails
+          data={tempskill[i]}
+          handleChange={this.handleInputChange}
+          key={k}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`skillPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(k, i)}
+          moveFieldUp={() => this.moveFieldUp(k, i)}
+        />
+      );
     }
     this.setState({
       skill: tempskill,
@@ -141,7 +178,18 @@ class SkillExpansionPanel extends React.Component {
       const tempFieldsTracker = skillFieldTracker;
       for (let i = 0; i < skillDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<SkillDetails data={skill[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={false} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(
+          <SkillDetails
+            data={skill[i]}
+            handleChange={this.handleInputChange}
+            key={k}
+            id={i}
+            expanded={false}
+            action={() => this.handlePanel(`skillPanel${i}`)}
+            moveFieldDown={() => this.moveFieldDown(k, i)}
+            moveFieldUp={() => this.moveFieldUp(k, i)}
+          />
+        );
       }
       this.setState({
         expanded: false,
@@ -152,7 +200,18 @@ class SkillExpansionPanel extends React.Component {
       const tempFieldsTracker = skillFieldTracker;
       for (let i = 0; i < skillDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<SkillDetails data={skill[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={panel} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(
+          <SkillDetails
+            data={skill[i]}
+            handleChange={this.handleInputChange}
+            key={k}
+            id={i}
+            expanded={panel}
+            action={() => this.handlePanel(`skillPanel${i}`)}
+            moveFieldDown={() => this.moveFieldDown(k, i)}
+            moveFieldUp={() => this.moveFieldUp(k, i)}
+          />
+        );
       }
       this.setState({
         expanded: panel,
@@ -178,9 +237,30 @@ class SkillExpansionPanel extends React.Component {
       const storeFieldTracker = tempFieldsTracker[i - 1];
       tempFieldsTracker[i - 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <SkillDetails data={tempskill[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i - 1] = <SkillDetails data={tempskill[i - 1]} handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`skillPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
-
+      tempFields[i] = (
+        <SkillDetails
+          data={tempskill[i]}
+          handleChange={this.handleInputChange}
+          key={storeFieldTracker}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`skillPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
+          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
+        />
+      );
+      tempFields[i - 1] = (
+        <SkillDetails
+          data={tempskill[i - 1]}
+          handleChange={this.handleInputChange}
+          key={k}
+          id={i - 1}
+          expanded={expanded}
+          action={() => this.handlePanel(`skillPanel${i - 1}`)}
+          moveFieldDown={() => this.moveFieldDown(k, i - 1)}
+          moveFieldUp={() => this.moveFieldUp(k, i - 1)}
+        />
+      );
     } else {
       alert('you cant move this field any more');
     }
@@ -208,9 +288,30 @@ class SkillExpansionPanel extends React.Component {
       const storeFieldTracker = tempFieldsTracker[i + 1];
       tempFieldsTracker[i + 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <SkillDetails data={tempskill[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`skillPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i + 1] = <SkillDetails data={tempskill[i + 1]} handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`skillPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
-
+      tempFields[i] = (
+        <SkillDetails
+          data={tempskill[i]}
+          handleChange={this.handleInputChange}
+          key={storeFieldTracker}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`skillPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
+          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
+        />
+      );
+      tempFields[i + 1] = (
+        <SkillDetails
+          data={tempskill[i + 1]}
+          handleChange={this.handleInputChange}
+          key={k}
+          id={i + 1}
+          expanded={expanded}
+          action={() => this.handlePanel(`skillPanel${i + 1}`)}
+          moveFieldDown={() => this.moveFieldDown(k, i + 1)}
+          moveFieldUp={() => this.moveFieldUp(k, i + 1)}
+        />
+      );
     } else {
       alert('you cant move this field any more');
     }
@@ -269,12 +370,23 @@ class SkillExpansionPanel extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div className="customDetailContainer">
-              <div>
-                {skillFields}
-              </div>
+              <div>{skillFields}</div>
               <div className="btnRow">
-                <div className="addBtn" onClick={this.onSubChild} style={btnStyle} role="presentation">-</div>
-                <div className="addBtn" onClick={this.onAddChild} role="presentation">+</div>
+                <div
+                  className="addBtn"
+                  onClick={this.onSubChild}
+                  style={btnStyle}
+                  role="presentation"
+                >
+                  -
+                </div>
+                <div
+                  className="addBtn"
+                  onClick={this.onAddChild}
+                  role="presentation"
+                >
+                  +
+                </div>
               </div>
             </div>
           </ExpansionPanelDetails>
@@ -289,4 +401,4 @@ SkillExpansionPanel.propTypes = {
   action: PropTypes.func.isRequired,
 };
 
-export default SkillExpansionPanel
+export default SkillExpansionPanel;

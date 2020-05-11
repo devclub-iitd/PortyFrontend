@@ -11,27 +11,26 @@ class AboutExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name : this.props.existingContactData.name,
-      number : this.props.existingData.number,
-      label : this.props.existingData.label,
-      summary : this.props.existingData.summary,
-      imgUrl: this.props.existingData.imgUrl
+      name: this.props.existingContactData.name,
+      number: this.props.existingData.number,
+      label: this.props.existingData.label,
+      summary: this.props.existingData.summary,
+      imgUrl: this.props.existingData.imgUrl,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   callApiRequest() {
-    console.log(this.state)
-    this.props.senData("about", this.state);
+    console.log(this.state);
+    this.props.senData('about', this.state);
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   handleInputChange(event) {
     const type = event.target.name;
     this.setState({
-      [type]: event.target.value
+      [type]: event.target.value,
     });
     console.log(this.state);
   }
@@ -40,36 +39,34 @@ class AboutExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
-    const {
-      label, summary, name, number, imgUrl
-    } = this.state;
+    const { label, summary, name, number, imgUrl } = this.state;
     return (
       <div style={useStyles.root}>
         <ExpansionPanel expanded={expanded === 'aboutPanel'} onChange={action}>

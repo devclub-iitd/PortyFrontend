@@ -13,17 +13,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const Alert = (props) => {
-
-  const {
-    open, title, handleRedirect, children,
-  } = props;
+  const { open, title, handleRedirect, children } = props;
 
   return (
     <Dialog
       open={open}
       TransitionComponent={Transition}
       fullWidth={true}
-      maxWidth= "sm"
+      maxWidth="sm"
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
     >

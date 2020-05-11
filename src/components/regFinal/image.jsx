@@ -6,7 +6,6 @@ const Image = () => (
       <div className="userImg" />
       <div className="userImgOverlay">Edit</div>
     </div>
-
   </div>
 );
 

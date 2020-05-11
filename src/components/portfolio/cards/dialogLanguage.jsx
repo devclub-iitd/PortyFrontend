@@ -8,12 +8,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
-const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
+const Transition = React.forwardRef((props, ref) => (
+  <Slide direction="up" ref={ref} {...props} />
+));
 
 export default function AlertDialogSlide(props) {
-  const {
-    open, handleDialogClose, title, fluency,
-  } = props;
+  const { open, handleDialogClose, title, fluency } = props;
   return (
     <div>
       <Dialog
@@ -27,18 +27,17 @@ export default function AlertDialogSlide(props) {
         aria-describedby="alert-dialog-slide-description"
         style={{ minWidth: '460px', padding: '50px' }}
       >
-        <DialogTitle id="alert-dialog-slide-title">{ title }</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            I am a
-            {' '}
-            { fluency }
-            {' '}
-            of this language
+            I am a {fluency} of this language
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleDialogClose({ title })} color="secondary">
+          <Button
+            onClick={() => handleDialogClose({ title })}
+            color="secondary"
+          >
             close
           </Button>
         </DialogActions>

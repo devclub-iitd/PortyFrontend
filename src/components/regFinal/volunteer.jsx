@@ -17,22 +17,22 @@ class VolunteerExpansionPanel extends React.Component {
       volunteerDetailsCount: 1,
       maxCount: 1,
       btnStyle: {
-        display: "none"
+        display: 'none',
       },
       expanded: false,
       volunteerFields: tempFields,
       volunteerFieldTracker: tempFieldsTracker,
       volunteer: [
         {
-          organisation: "",
-          position: "",
-          website: "",
-          startdate: "",
-          enddate: "",
-          summary: "",
-          hidden: false
-        }
-      ]
+          organisation: '',
+          position: '',
+          website: '',
+          startdate: '',
+          enddate: '',
+          summary: '',
+          hidden: false,
+        },
+      ],
     };
     const { expanded } = this.state;
     tempFields.push(
@@ -78,25 +78,25 @@ class VolunteerExpansionPanel extends React.Component {
     );
     const { volunteer } = this.state;
     const volunteerObj = {
-      organisation: "",
-      position: "",
-      website: "",
-      startdate: "",
-      enddate: "",
-      summary: "",
-      hidden: false
+      organisation: '',
+      position: '',
+      website: '',
+      startdate: '',
+      enddate: '',
+      summary: '',
+      hidden: false,
     };
     const tempvolunteer = volunteer;
     tempvolunteer.push(volunteerObj);
-    this.setState(state => ({
+    this.setState((state) => ({
       volunteerDetailsCount: state.volunteerDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: "block"
+        display: 'block',
       },
       volunteerFields: tempFields,
       volunteerFieldTracker: tempFieldsTracker,
-      volunteer: tempvolunteer
+      volunteer: tempvolunteer,
     }));
   }
 
@@ -111,23 +111,23 @@ class VolunteerExpansionPanel extends React.Component {
     const { volunteer } = this.state;
     const tempvolunteer = volunteer;
     tempvolunteer.pop();
-    this.setState(state => ({
+    this.setState((state) => ({
       volunteerDetailsCount: state.volunteerDetailsCount - 1,
       volunteerFields: tempFields,
       volunteerFieldTracker: tempFieldsTracker,
-      volunteer: tempvolunteer
+      volunteer: tempvolunteer,
     }));
     if (volunteerDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: "none"
-        }
+          display: 'none',
+        },
       });
     }
   }
 
   callApiRequest() {
-    this.props.senData("volunteer", this.state.volunteer);
+    this.props.senData('volunteer', this.state.volunteer);
   }
 
   handleInputChange(event) {
@@ -135,13 +135,13 @@ class VolunteerExpansionPanel extends React.Component {
     const { volunteer } = this.state;
     const type = event.target.name;
     const tempvolunteer = volunteer;
-    if (type === "hidden") {
+    if (type === 'hidden') {
       tempvolunteer[id][type] = event.target.checked;
     } else {
       tempvolunteer[id][type] = event.target.value;
     }
     this.setState({
-      volunteer: tempvolunteer
+      volunteer: tempvolunteer,
     });
   }
 
@@ -168,7 +168,7 @@ class VolunteerExpansionPanel extends React.Component {
       }
       this.setState({
         expanded: false,
-        volunteerFields: tempFields
+        volunteerFields: tempFields,
       });
     } else {
       const tempFields = [];
@@ -189,7 +189,7 @@ class VolunteerExpansionPanel extends React.Component {
       }
       this.setState({
         expanded: panel,
-        volunteerFields: tempFields
+        volunteerFields: tempFields,
       });
     }
   }
@@ -234,12 +234,12 @@ class VolunteerExpansionPanel extends React.Component {
       tempvolunteer[i] = tempvolunteer[i - 1];
       tempvolunteer[i - 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       volunteerFields: tempFields,
       volunteerFieldTracker: tempFieldsTracker,
-      volunteer: tempvolunteer
+      volunteer: tempvolunteer,
     });
   }
 
@@ -284,12 +284,12 @@ class VolunteerExpansionPanel extends React.Component {
       tempvolunteer[i] = tempvolunteer[i + 1];
       tempvolunteer[i + 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       volunteerFields: tempFields,
       volunteerFieldTracker: tempFieldsTracker,
-      volunteer: tempvolunteer
+      volunteer: tempvolunteer,
     });
   }
 
@@ -297,30 +297,30 @@ class VolunteerExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -329,7 +329,7 @@ class VolunteerExpansionPanel extends React.Component {
     return (
       <div style={useStyles.root}>
         <ExpansionPanel
-          expanded={expanded === "volunteerPanel"}
+          expanded={expanded === 'volunteerPanel'}
           onChange={action}
         >
           <ExpansionPanelSummary

@@ -23,37 +23,69 @@ const AwardField = (props) => {
     hidden: false,
   });
 
-  const handleCheckBoxChange = name => (event) => {
+  const handleCheckBoxChange = (name) => (event) => {
     setState({ ...state, [name]: event.target.checked });
     handleChange(event);
   };
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <ExpansionPanel expanded={expanded === `awardPanel${id}`} onChange={action} style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}>
+      <ExpansionPanel
+        expanded={expanded === `awardPanel${id}`}
+        onChange={action}
+        style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
+      >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography style={{ fontWeight: 700 }}>
-            AWARD
-            {' '}
-            {id + 1}
-          </Typography>
+          <Typography style={{ fontWeight: 700 }}>AWARD {id + 1}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input id={id} onChange={handleChange} name="title" type="text" placeholder="Title:" />
+            <input
+              id={id}
+              onChange={handleChange}
+              name="title"
+              type="text"
+              placeholder="Title:"
+            />
             <div className="row rowtwo">
-              <input id={id} onChange={handleChange} name="date" className="left" type="text" placeholder="Date Awarded: DD/MM/YYYY" />
-              <input id={id} onChange={handleChange} name="awarder" className="right" type="text" placeholder="Awarded By:" />
+              <input
+                id={id}
+                onChange={handleChange}
+                name="date"
+                className="left"
+                type="text"
+                placeholder="Date Awarded: DD/MM/YYYY"
+              />
+              <input
+                id={id}
+                onChange={handleChange}
+                name="awarder"
+                className="right"
+                type="text"
+                placeholder="Awarded By:"
+              />
             </div>
-            <textarea id={id} onChange={handleChange} name="details" resize="none" placeholder="Details: " />
+            <textarea
+              id={id}
+              onChange={handleChange}
+              name="details"
+              resize="none"
+              placeholder="Details: "
+            />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={
-                  <Checkbox id={id} name="hidden" checked={state.hidden} onChange={handleCheckBoxChange('hidden')} value="hidden" />
+                  <Checkbox
+                    id={id}
+                    name="hidden"
+                    checked={state.hidden}
+                    onChange={handleCheckBoxChange('hidden')}
+                    value="hidden"
+                  />
                 }
                 label="Hidden"
               />
@@ -62,11 +94,23 @@ const AwardField = (props) => {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <div className="sideBtnCont">
-        <ButtonGroup color="secondary" aria-label="Outlined primary button group" size="small">
-          <IconButton color="primary" aria-label="Move Field Up" onClick={moveFieldUp}>
+        <ButtonGroup
+          color="secondary"
+          aria-label="Outlined primary button group"
+          size="small"
+        >
+          <IconButton
+            color="primary"
+            aria-label="Move Field Up"
+            onClick={moveFieldUp}
+          >
             <ArrowUp />
           </IconButton>
-          <IconButton color="primary" aria-label="Move Field Down" onClick={moveFieldDown}>
+          <IconButton
+            color="primary"
+            aria-label="Move Field Down"
+            onClick={moveFieldDown}
+          >
             <ArrowDown />
           </IconButton>
         </ButtonGroup>

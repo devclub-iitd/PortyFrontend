@@ -34,7 +34,6 @@ if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-
 const App = () => {
   // useeffect hook
   useEffect(() => {

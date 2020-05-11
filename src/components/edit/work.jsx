@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -8,8 +8,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import WorkDetails from './workDetailsContainer';
-import {createProfile} from '../../actions/profile'
-
+import { createProfile } from '../../actions/profile';
 
 class WorkExpansionPanel extends React.Component {
   constructor(props) {
@@ -34,7 +33,18 @@ class WorkExpansionPanel extends React.Component {
     };
     const { expanded } = this.state;
     for (let i = 0; i < existingData.length; i += 1) {
-      tempFields.push(<WorkDetails data={existingData[i]} handleChange={this.handleInputChange} key={i} id={i} expanded={expanded} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(i, i)} moveFieldUp={() => this.moveFieldUp(i, i)} />);
+      tempFields.push(
+        <WorkDetails
+          data={existingData[i]}
+          handleChange={this.handleInputChange}
+          key={i}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`workPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(i, i)}
+          moveFieldUp={() => this.moveFieldUp(i, i)}
+        />
+      );
       tempFieldsTracker.push(i);
     }
     this.onAddChild = this.onAddChild.bind(this);
@@ -66,10 +76,21 @@ class WorkExpansionPanel extends React.Component {
       hidden: false,
     };
     tempFieldsTracker.push(key);
-    tempFields.push(<WorkDetails data={workObj} handleChange={this.handleInputChange} key={key} id={id} expanded={exp} action={() => this.handlePanel(`workPanel${id}`)} moveFieldDown={() => this.moveFieldDown(key, id)} moveFieldUp={() => this.moveFieldUp(key, id)} />);
+    tempFields.push(
+      <WorkDetails
+        data={workObj}
+        handleChange={this.handleInputChange}
+        key={key}
+        id={id}
+        expanded={exp}
+        action={() => this.handlePanel(`workPanel${id}`)}
+        moveFieldDown={() => this.moveFieldDown(key, id)}
+        moveFieldUp={() => this.moveFieldUp(key, id)}
+      />
+    );
     const tempwork = work;
     tempwork.push(workObj);
-    this.setState(state => ({
+    this.setState((state) => ({
       workDetailsCount: state.workDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
@@ -92,7 +113,7 @@ class WorkExpansionPanel extends React.Component {
     const { work } = this.state;
     const tempwork = work;
     tempwork.pop();
-    this.setState(state => ({
+    this.setState((state) => ({
       workDetailsCount: state.workDetailsCount - 1,
       workFields: tempFields,
       workFieldTracker: tempFieldsTracker,
@@ -125,7 +146,18 @@ class WorkExpansionPanel extends React.Component {
     }
     for (let i = 0; i < workDetailsCount; i += 1) {
       const k = tempFieldsTracker[i];
-      tempFields.push(<WorkDetails data={tempwork[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={expanded} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+      tempFields.push(
+        <WorkDetails
+          data={tempwork[i]}
+          handleChange={this.handleInputChange}
+          key={k}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`workPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(k, i)}
+          moveFieldUp={() => this.moveFieldUp(k, i)}
+        />
+      );
     }
     this.setState({
       work: tempwork,
@@ -144,7 +176,18 @@ class WorkExpansionPanel extends React.Component {
       const tempFieldsTracker = workFieldTracker;
       for (let i = 0; i < workDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<WorkDetails data={work[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={false} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(
+          <WorkDetails
+            data={work[i]}
+            handleChange={this.handleInputChange}
+            key={k}
+            id={i}
+            expanded={false}
+            action={() => this.handlePanel(`workPanel${i}`)}
+            moveFieldDown={() => this.moveFieldDown(k, i)}
+            moveFieldUp={() => this.moveFieldUp(k, i)}
+          />
+        );
       }
       this.setState({
         expanded: false,
@@ -155,7 +198,18 @@ class WorkExpansionPanel extends React.Component {
       const tempFieldsTracker = workFieldTracker;
       for (let i = 0; i < workDetailsCount; i += 1) {
         const k = tempFieldsTracker[i];
-        tempFields.push(<WorkDetails data={work[i]} handleChange={this.handleInputChange} key={k} id={i} expanded={panel} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(k, i)} moveFieldUp={() => this.moveFieldUp(k, i)} />);
+        tempFields.push(
+          <WorkDetails
+            data={work[i]}
+            handleChange={this.handleInputChange}
+            key={k}
+            id={i}
+            expanded={panel}
+            action={() => this.handlePanel(`workPanel${i}`)}
+            moveFieldDown={() => this.moveFieldDown(k, i)}
+            moveFieldUp={() => this.moveFieldUp(k, i)}
+          />
+        );
       }
       this.setState({
         expanded: panel,
@@ -181,9 +235,30 @@ class WorkExpansionPanel extends React.Component {
       const storeFieldTracker = tempFieldsTracker[i - 1];
       tempFieldsTracker[i - 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <WorkDetails data={tempwork[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i - 1] = <WorkDetails data={tempwork[i - 1]} handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`workPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
-
+      tempFields[i] = (
+        <WorkDetails
+          data={tempwork[i]}
+          handleChange={this.handleInputChange}
+          key={storeFieldTracker}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`workPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
+          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
+        />
+      );
+      tempFields[i - 1] = (
+        <WorkDetails
+          data={tempwork[i - 1]}
+          handleChange={this.handleInputChange}
+          key={k}
+          id={i - 1}
+          expanded={expanded}
+          action={() => this.handlePanel(`workPanel${i - 1}`)}
+          moveFieldDown={() => this.moveFieldDown(k, i - 1)}
+          moveFieldUp={() => this.moveFieldUp(k, i - 1)}
+        />
+      );
     } else {
       alert('you cant move this field any more');
     }
@@ -211,9 +286,30 @@ class WorkExpansionPanel extends React.Component {
       const storeFieldTracker = tempFieldsTracker[i + 1];
       tempFieldsTracker[i + 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = <WorkDetails data={tempwork[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`workPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
-      tempFields[i + 1] = <WorkDetails data={tempwork[i + 1]} handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`workPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
-
+      tempFields[i] = (
+        <WorkDetails
+          data={tempwork[i]}
+          handleChange={this.handleInputChange}
+          key={storeFieldTracker}
+          id={i}
+          expanded={expanded}
+          action={() => this.handlePanel(`workPanel${i}`)}
+          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
+          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
+        />
+      );
+      tempFields[i + 1] = (
+        <WorkDetails
+          data={tempwork[i + 1]}
+          handleChange={this.handleInputChange}
+          key={k}
+          id={i + 1}
+          expanded={expanded}
+          action={() => this.handlePanel(`workPanel${i + 1}`)}
+          moveFieldDown={() => this.moveFieldDown(k, i + 1)}
+          moveFieldUp={() => this.moveFieldUp(k, i + 1)}
+        />
+      );
     } else {
       alert('you cant move this field any more');
     }
@@ -272,12 +368,23 @@ class WorkExpansionPanel extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div className="customDetailContainer">
-              <div>
-                {workFields}
-              </div>
+              <div>{workFields}</div>
               <div className="btnRow">
-                <div className="addBtn" onClick={this.onSubChild} style={btnStyle} role="presentation">-</div>
-                <div className="addBtn" onClick={this.onAddChild} role="presentation">+</div>
+                <div
+                  className="addBtn"
+                  onClick={this.onSubChild}
+                  style={btnStyle}
+                  role="presentation"
+                >
+                  -
+                </div>
+                <div
+                  className="addBtn"
+                  onClick={this.onAddChild}
+                  role="presentation"
+                >
+                  +
+                </div>
               </div>
             </div>
           </ExpansionPanelDetails>
@@ -292,4 +399,4 @@ WorkExpansionPanel.propTypes = {
   action: PropTypes.func.isRequired,
 };
 
-export default WorkExpansionPanel
+export default WorkExpansionPanel;

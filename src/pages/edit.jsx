@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import { MuiThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  makeStyles,
+} from '@material-ui/core/styles';
 import InfoIcon from '@material-ui/icons/Info';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -89,14 +93,14 @@ class Edit extends React.Component {
   }
 
   retrieveChildData(type, data) {
-      obj[type] = data;
+    obj[type] = data;
   }
 
   async handleSumbit(event) {
     event.preventDefault();
     this.setState({
-      message: 'Please wait while we update your profile'
-    })
+      message: 'Please wait while we update your profile',
+    });
     this.about.current.callApiRequest();
     this.location.current.callApiRequest();
     this.work.current.callApiRequest();
@@ -108,21 +112,22 @@ class Edit extends React.Component {
     this.language.current.callApiRequest();
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
-    await this.props.createProfile(obj,true)
+    await this.props.createProfile(obj, true);
     var len = this.props.alert.length;
     if (this.props.alert[len - 1].alertType != 'blue') {
       this.setState({
         open: true,
         openMini: false,
         alertTitle: 'Whoops!!',
-        alertContent: this.props.alert[len - 1].msg
-      })
+        alertContent: this.props.alert[len - 1].msg,
+      });
     } else if (this.props.alert[len - 1].alertType == 'blue') {
       this.setState({
         open: true,
         openMini: false,
         alertTitle: 'Profile updated successfully!',
-        alertContent: 'Kindly check the home page to view your updated portfolio',
+        alertContent:
+          'Kindly check the home page to view your updated portfolio',
       });
     }
   }
@@ -148,12 +153,14 @@ class Edit extends React.Component {
 
   render() {
     const { loading, profile } = this.props.profile;
-    const {
-      expanded, open, alertTitle, alertContent,
-    } = this.state;
+    const { expanded, open, alertTitle, alertContent } = this.state;
 
     if (loading) {
-      return <div><Loader /></div>;
+      return (
+        <div>
+          <Loader />
+        </div>
+      );
     }
 
     if (!loading && profile !== null) {
@@ -212,9 +219,7 @@ class Edit extends React.Component {
                 existingData={profile.languages}
                 senData={this.retrieveChildData}
               />
-              <div className="regSubTitle">
-                Optionals -
-              </div>
+              <div className="regSubTitle">Optionals -</div>
               <Award
                 ref={this.award}
                 expanded={expanded}
@@ -262,7 +267,11 @@ class Edit extends React.Component {
                 </Button>
               </div>
             </form>
-            <Alert open={open} handleClose={this.handleClose} title={alertTitle}>
+            <Alert
+              open={open}
+              handleClose={this.handleClose}
+              title={alertTitle}
+            >
               {alertContent}
             </Alert>
             <Snackbar
@@ -276,12 +285,20 @@ class Edit extends React.Component {
               ContentProps={{
                 'aria-describedby': 'message-id',
               }}
-              message={(
-                <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+              message={
+                <span
+                  id="message-id"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
                   <InfoIcon style={{ marginRight: '10px' }} />
                   {this.state.message}
                 </span>
-              )}
+              }
               action={[
                 <IconButton
                   key="close"
@@ -301,9 +318,7 @@ class Edit extends React.Component {
     if (!loading && profile == null) {
       return (
         <div className="noProf noProfLarge">
-          Please create a profile first
-          {' '}
-          ...
+          Please create a profile first ...
           <br />
         </div>
       );
@@ -314,17 +329,16 @@ class Edit extends React.Component {
 Edit.propTypes = {
   getFullProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
   user: state.auth.user,
-  alert: state.alert
+  alert: state.alert,
 });
 
-export default connect(
-  mapStateToProps,
-  { createProfile, getFullProfile}
-)(Edit);
+export default connect(mapStateToProps, { createProfile, getFullProfile })(
+  Edit
+);

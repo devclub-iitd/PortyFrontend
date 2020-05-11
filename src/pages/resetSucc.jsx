@@ -19,7 +19,6 @@ const styles = {
 };
 
 class ResetSucc extends React.Component {
-
   constructor(props) {
     super(props);
     this.handleRedirect = this.handleRedirect.bind(this);
@@ -36,8 +35,9 @@ class ResetSucc extends React.Component {
         <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
           <Toolbar>
             <Typography>
-              <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
-              {' '}
+              <span style={{ fontWeight: 700, fontSize: '20px' }}>
+                Portfolio Creator
+              </span>{' '}
               <span style={{ color: '#3d40d8' }}>| Reset Successful</span>
             </Typography>
           </Toolbar>
@@ -45,20 +45,34 @@ class ResetSucc extends React.Component {
         <div className="fullScreen">
           <div className="overlay">
             <div className="notFoundTextContainer">
-              <Typography variant="h3" style={{ marginTop: '0px', fontWeight: '600' }}>
+              <Typography
+                variant="h3"
+                style={{ marginTop: '0px', fontWeight: '600' }}
+              >
                 Your Password has been changed Successfully
               </Typography>
-              <Typography style={{ marginTop: '25px', fontSize: '18px', fontWeight: '300' }}>
+              <Typography
+                style={{
+                  marginTop: '25px',
+                  fontSize: '18px',
+                  fontWeight: '300',
+                }}
+              >
                 Kindly login with your newly created password
               </Typography>
             </div>
-            <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleRedirect}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              onClick={this.handleRedirect}
+            >
               Login
             </Button>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

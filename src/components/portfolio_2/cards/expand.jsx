@@ -8,36 +8,45 @@ import Typography from '@material-ui/core/Typography';
 
 const ExpansionCard = (props) => {
   const {
-    organisation, position, children, website, startDate, endDate, handlePanelChange, expanded, id,
+    organisation,
+    position,
+    children,
+    website,
+    startDate,
+    endDate,
+    handlePanelChange,
+    expanded,
+    id,
   } = props;
 
   return (
-    <ExpansionPanel expanded={expanded === `panel${id}`} onChange={() => handlePanelChange(`panel${id}`)} className="portfolioVolunteerExpansionPanel">
+    <ExpansionPanel
+      expanded={expanded === `panel${id}`}
+      onChange={() => handlePanelChange(`panel${id}`)}
+      className="portfolioVolunteerExpansionPanel"
+    >
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1bh-content"
         id="panel1bh-header"
       >
         <div className="portfolioExpansionPanelTitle">{organisation}</div>
-        <Typography className="portfolioExpansionPanelSubTitle">{position}</Typography>
+        <Typography className="portfolioExpansionPanelSubTitle">
+          {position}
+        </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <div className="portfolioExpansionPanelDetails">
-          <Typography>
-            {children}
-          </Typography>
+          <Typography>{children}</Typography>
           <div className="miniLine miniCardLine" />
           <div className="portfolioExpansionPanelWebsite">
-            <span>Website |</span>
-            {' '}
-            <a href={website} target="_blank">{website}</a>
+            <span>Website |</span>{' '}
+            <a href={website} target="_blank">
+              {website}
+            </a>
           </div>
           <div className="portfolioCardDateContainer">
-            {startDate}
-            {' '}
-            |
-            {' '}
-            {endDate}
+            {startDate} | {endDate}
           </div>
         </div>
       </ExpansionPanelDetails>

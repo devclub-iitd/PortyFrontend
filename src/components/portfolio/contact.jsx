@@ -2,37 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Contact = (props) => {
-  const {
-    email, phone, location,
-  } = props;
+  const { email, phone, location } = props;
 
   return (
     <div className="portfolioPage contactPage">
-      <div className="portfolioPageTitle">
-        Contact Me
-      </div>
+      <div className="portfolioPageTitle">Contact Me</div>
       <div className="portfolioContactCard">
         <div className="miniLine" />
         <li>
           <span className="portfolioContactCardInfo">
-            <span className="portfolioContactCardInfoTitle">
-              Email ID -
-            </span>
-            {' '}
-            <span className="portfolioContactCardInfoDetails">
-              {email}
-            </span>
+            <span className="portfolioContactCardInfoTitle">Email ID -</span>{' '}
+            <span className="portfolioContactCardInfoDetails">{email}</span>
           </span>
         </li>
         <li>
           <span className="portfolioContactCardInfo">
-            <span className="portfolioContactCardInfoTitle">
-              Contact No -
-            </span>
-            {' '}
-            <span className="portfolioContactCardInfoDetails">
-              {phone}
-            </span>
+            <span className="portfolioContactCardInfoTitle">Contact No -</span>{' '}
+            <span className="portfolioContactCardInfoDetails">{phone}</span>
           </span>
         </li>
         <div className="miniLine" />
@@ -46,11 +32,7 @@ const Contact = (props) => {
           <br />
           {location.city}
           <br />
-          {location.country}
-          {' '}
-          |
-          {' '}
-          {location.pincode}
+          {location.country} | {location.pincode}
         </div>
         <div className="miniLine" />
       </div>

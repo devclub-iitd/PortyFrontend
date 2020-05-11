@@ -7,27 +7,21 @@ const Education = (props) => {
 
   return (
     <div className="portfolioPage portfolioEducationPage">
-      <div className="portfolioPageTitle">
-        Education
-      </div>
+      <div className="portfolioPageTitle">Education</div>
       <div className="miniLine" />
       <div className="portfolioFlatContainer">
-        {
-          education.map(
-            educationPlace => (
-              <FlatCard
-                institution={educationPlace.institution}
-                degree={educationPlace.qualification}
-                area={educationPlace.area}
-                grade={educationPlace.gpa}
-                startDate={educationPlace.startdate}
-                endDate={educationPlace.enddate}
-              >
-                {educationPlace.details}
-              </FlatCard>
-            ),
-          )
-        }
+        {education.map((educationPlace) => (
+          <FlatCard
+            institution={educationPlace.institution}
+            degree={educationPlace.qualification}
+            area={educationPlace.area}
+            grade={educationPlace.gpa}
+            startDate={educationPlace.startdate}
+            endDate={educationPlace.enddate}
+          >
+            {educationPlace.details}
+          </FlatCard>
+        ))}
       </div>
     </div>
   );
@@ -36,6 +30,5 @@ const Education = (props) => {
 Education.propTypes = {
   education: PropTypes.objectOf(PropTypes.object).isRequired,
 };
-
 
 export default Education;

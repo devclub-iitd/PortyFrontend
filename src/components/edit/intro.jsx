@@ -2,16 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Intro = (props) => {
-  const {
-    name, caption, img
-  } = props;
+  const { name, caption, img } = props;
   return (
     <div className="introContainer introContainerEdit">
-      <div className="pageTitle">
-        Welcome,
-        {' '}
-        {name}
-      </div>
+      <div className="pageTitle">Welcome, {name}</div>
     </div>
   );
 };

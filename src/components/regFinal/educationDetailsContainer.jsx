@@ -23,42 +23,102 @@ const EducationField = (props) => {
     hidden: false,
   });
 
-  const handleCheckBoxChange = name => (event) => {
+  const handleCheckBoxChange = (name) => (event) => {
     setState({ ...state, [name]: event.target.checked });
     handleChange(event);
   };
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <ExpansionPanel expanded={expanded === `educationPanel${id}`} onChange={action} style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}>
+      <ExpansionPanel
+        expanded={expanded === `educationPanel${id}`}
+        onChange={action}
+        style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
+      >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
           <Typography style={{ fontWeight: 700 }}>
-            EDUCATIONPLACE
-            {' '}
-            {id + 1}
+            EDUCATIONPLACE {id + 1}
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input id={id} onChange={handleChange} name="institution" type="text" required placeholder="Institution:" />
+            <input
+              id={id}
+              onChange={handleChange}
+              name="institution"
+              type="text"
+              required
+              placeholder="Institution:"
+            />
             <div className="row rowtwo">
-              <input id={id} onChange={handleChange} name="area" className="left" type="text" required placeholder="Area: Software Development" />
-              <input id={id} onChange={handleChange} name="qualification" className="right" type="text" required placeholder="Qualification: Bachelors | Masters | etc" />
+              <input
+                id={id}
+                onChange={handleChange}
+                name="area"
+                className="left"
+                type="text"
+                required
+                placeholder="Area: Software Development"
+              />
+              <input
+                id={id}
+                onChange={handleChange}
+                name="qualification"
+                className="right"
+                type="text"
+                required
+                placeholder="Qualification: Bachelors | Masters | etc"
+              />
             </div>
             <div className="row rowtwo">
-              <input id={id} onChange={handleChange} name="startdate" className="left" type="text" required placeholder="Start Date: DD/MM/YYYY" />
-              <input id={id} onChange={handleChange} name="enddate" className="right" type="text" required placeholder="End Date: DD/MM/YYYY or Ongoing" />
+              <input
+                id={id}
+                onChange={handleChange}
+                name="startdate"
+                className="left"
+                type="text"
+                required
+                placeholder="Start Date: DD/MM/YYYY"
+              />
+              <input
+                id={id}
+                onChange={handleChange}
+                name="enddate"
+                className="right"
+                type="text"
+                required
+                placeholder="End Date: DD/MM/YYYY or Ongoing"
+              />
             </div>
-            <input id={id} onChange={handleChange} name="gpa" type="text" required placeholder="GPA: xx/10" />
-            <textarea id={id} onChange={handleChange} name="details" resize="none" placeholder="Details | Courses : " />
+            <input
+              id={id}
+              onChange={handleChange}
+              name="gpa"
+              type="text"
+              required
+              placeholder="GPA: xx/10"
+            />
+            <textarea
+              id={id}
+              onChange={handleChange}
+              name="details"
+              resize="none"
+              placeholder="Details | Courses : "
+            />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={
-                  <Checkbox id={id} name="hidden" checked={state.hidden} onChange={handleCheckBoxChange('hidden')} value="hidden" />
+                  <Checkbox
+                    id={id}
+                    name="hidden"
+                    checked={state.hidden}
+                    onChange={handleCheckBoxChange('hidden')}
+                    value="hidden"
+                  />
                 }
                 label="Hidden"
               />
@@ -67,11 +127,23 @@ const EducationField = (props) => {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <div className="sideBtnCont">
-        <ButtonGroup color="secondary" aria-label="Outlined primary button group" size="small">
-          <IconButton color="primary" aria-label="Move Field Up" onClick={moveFieldUp}>
+        <ButtonGroup
+          color="secondary"
+          aria-label="Outlined primary button group"
+          size="small"
+        >
+          <IconButton
+            color="primary"
+            aria-label="Move Field Up"
+            onClick={moveFieldUp}
+          >
             <ArrowUp />
           </IconButton>
-          <IconButton color="primary" aria-label="Move Field Down" onClick={moveFieldDown}>
+          <IconButton
+            color="primary"
+            aria-label="Move Field Down"
+            onClick={moveFieldDown}
+          >
             <ArrowDown />
           </IconButton>
         </ButtonGroup>

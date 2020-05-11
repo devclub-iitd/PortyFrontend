@@ -7,25 +7,19 @@ const Work = (props) => {
 
   return (
     <div className="portfolioPage workPage">
-      <div className="portfolioPageTitle">
-        Work
-      </div>
+      <div className="portfolioPageTitle">Work</div>
       <div className="portfolioCardContainer portfolioWorkCardContainer">
-        {
-          work.map(
-            workPlace => (
-              <PaperCard
-                company={workPlace.company}
-                position={workPlace.position}
-                website={workPlace.website}
-                startDate={workPlace.startdate}
-                endDate={workPlace.enddate}
-              >
-                {workPlace.summary}
-              </PaperCard>
-            ),
-          )
-        }
+        {work.map((workPlace) => (
+          <PaperCard
+            company={workPlace.company}
+            position={workPlace.position}
+            website={workPlace.website}
+            startDate={workPlace.startdate}
+            endDate={workPlace.enddate}
+          >
+            {workPlace.summary}
+          </PaperCard>
+        ))}
       </div>
     </div>
   );

@@ -22,14 +22,11 @@ class LoginFrom extends React.Component {
     }
   }
 
-
   handleSubmit(event) {
     event.preventDefault();
     //  add checks for all conditions especially dob and all
     //  alert('form is now being submitted');
-    const {
-      emailVal, passVal,
-    } = this.state;
+    const { emailVal, passVal } = this.state;
     const obj = {
       email: emailVal,
       password: passVal,
@@ -38,14 +35,28 @@ class LoginFrom extends React.Component {
   }
 
   render() {
-    const {
-      emailVal, passVal,
-    } = this.state;
+    const { emailVal, passVal } = this.state;
     return (
       <div className="loginFormCont">
         <form id="loginform" onSubmit={this.handleSubmit}>
-          <input required style={{ width: '95.3%' }} type="email" name="email" placeholder="Email Adress: " value={emailVal} onChange={this.handleChange} />
-          <input required style={{ width: '95.3%' }} type="password" name="password" placeholder="Password: " value={passVal} onChange={this.handleChange} />
+          <input
+            required
+            style={{ width: '95.3%' }}
+            type="email"
+            name="email"
+            placeholder="Email Adress: "
+            value={emailVal}
+            onChange={this.handleChange}
+          />
+          <input
+            required
+            style={{ width: '95.3%' }}
+            type="password"
+            name="password"
+            placeholder="Password: "
+            value={passVal}
+            onChange={this.handleChange}
+          />
         </form>
       </div>
     );

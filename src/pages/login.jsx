@@ -63,58 +63,72 @@ class IconLabelTabs extends React.Component {
 
   componentDidUpdate(oldProps) {
     let index = 0;
-    if (oldProps.alerts.length !== this.props.alerts.length ) {
+    if (oldProps.alerts.length !== this.props.alerts.length) {
       index = this.props.alerts.length - 1;
       this.openDial(this.props.alerts[index].msg);
     }
   }
 
-
   render() {
     const { classes } = this.props;
     return (
-      <div className="loginPageContainer" style={{ textAlign: 'center', marginTop: '0px' }}>
+      <div
+        className="loginPageContainer"
+        style={{ textAlign: 'center', marginTop: '0px' }}
+      >
         <div className="pageOverlay">
-        <div className="title">
-            Account Login
-        </div>
-        <Paper className={classes.rootRegPage}>
-          <LoginForm handleDial={this.openDial} />
-        </Paper>
-        <div className="lgnBtnCont">
-        <Button variant="contained" color="secondary" className={classes.button} type="submit" form="loginform">
-          Sign-In
-        </Button>
-        </div>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={this.state.openDial}
-          autoHideDuration={6000}
-          onClose={this.handleClose}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={(
-            <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-              <InfoIcon style={{ marginRight: '10px' }} />
-              {this.state.message}
-            </span>
-          )}
-          action={[
-            <IconButton
-              key="close"
-              aria-label="close"
-              color="inherit"
-              className={classes.close}
-              onClick={this.handleClose}
+          <div className="title">Account Login</div>
+          <Paper className={classes.rootRegPage}>
+            <LoginForm handleDial={this.openDial} />
+          </Paper>
+          <div className="lgnBtnCont">
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              type="submit"
+              form="loginform"
             >
-              <CloseIcon />
-            </IconButton>,
-          ]}
-        />
+              Sign-In
+            </Button>
+          </div>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.state.openDial}
+            autoHideDuration={6000}
+            onClose={this.handleClose}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={
+              <span
+                id="message-id"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <InfoIcon style={{ marginRight: '10px' }} />
+                {this.state.message}
+              </span>
+            }
+            action={[
+              <IconButton
+                key="close"
+                aria-label="close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleClose}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
         </div>
       </div>
     );
@@ -125,7 +139,7 @@ IconLabelTabs.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   alerts: state.alert,
 });
 

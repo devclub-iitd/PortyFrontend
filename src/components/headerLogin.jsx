@@ -1,5 +1,9 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  withStyles,
+} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -20,7 +24,6 @@ const theme = createMuiTheme({
     },
   },
 });
-
 
 function TabContainer(props) {
   const { children } = props;
@@ -76,17 +79,16 @@ const styles = () => ({
   tcalign: {
     backgroundColor: 'red',
   },
-
 });
 
 class SimpleTabs extends React.Component {
   state = {
     value: 0,
-  }
+  };
 
   handleChange = (event, value) => {
     this.setState({ value });
-  }
+  };
 
   render() {
     const { classes } = this.props;
@@ -97,15 +99,32 @@ class SimpleTabs extends React.Component {
         <div className={classes.root}>
           <AppBar position="static" className={classes.headercontainer}>
             <div className="headerDetails">
-              <div className="headerTitle" style={{ fontWeight: '600', fontSize: '20px' }}>Portfolio Creator</div>
+              <div
+                className="headerTitle"
+                style={{ fontWeight: '600', fontSize: '20px' }}
+              >
+                Portfolio Creator
+              </div>
             </div>
-            <Tabs value={value} onChange={this.handleChange} className={classes.navbarContainer}>
+            <Tabs
+              value={value}
+              onChange={this.handleChange}
+              className={classes.navbarContainer}
+            >
               <Tab className={classes.navbarItem} label="Login" />
               <Tab className={classes.navbarItem} label="Register" />
             </Tabs>
           </AppBar>
-          {value === 0 && <TabContainer className={classes.tcalign}><Login /></TabContainer>}
-          {value === 1 && <TabContainer><Register /></TabContainer>}
+          {value === 0 && (
+            <TabContainer className={classes.tcalign}>
+              <Login />
+            </TabContainer>
+          )}
+          {value === 1 && (
+            <TabContainer>
+              <Register />
+            </TabContainer>
+          )}
         </div>
       </MuiThemeProvider>
     );

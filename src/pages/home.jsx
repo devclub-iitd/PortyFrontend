@@ -12,7 +12,7 @@ import '../style/home.css';
 
 import { getProfile } from '../actions/profile';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   fab: {
     margin: theme.spacing(1),
     marginRight: '10px',
@@ -31,7 +31,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-
 const download = () => {
   window.location.href = 'http://localhost:5000/api/profile/download';
 };
@@ -46,37 +45,47 @@ const Home = ({ logout, getProfile }) => {
   const classes = useStyles();
   return (
     <div className="homeCont">
-      <div className="homePageTitle">
-        Your Portfolio is
-        {' '}
-        ...
-      </div>
+      <div className="homePageTitle">Your Portfolio is ...</div>
       <Portfolio />
       <div className="btnRowHome">
-        <Fab variant="extended" color="primary" aria-label="delete" className={`${classes.fab} ${classes.redBtn}`} onClick={logout}>
+        <Fab
+          variant="extended"
+          color="primary"
+          aria-label="delete"
+          className={`${classes.fab} ${classes.redBtn}`}
+          onClick={logout}
+        >
           <PowerSettingsNewIcon className={classes.extendedIcon} />
           Logout
         </Fab>
-        <Fab variant="extended" color="primary" aria-label="delete" className={classes.fab} onClick={portfolio}>
+        <Fab
+          variant="extended"
+          color="primary"
+          aria-label="delete"
+          className={classes.fab}
+          onClick={portfolio}
+        >
           <NavigationIcon className={classes.extendedIcon} />
           <div className="remDec">Portfolio</div>
         </Fab>
-        <Fab variant="extended" color="secondary" aria-label="delete" className={classes.fab} onClick={download}>
+        <Fab
+          variant="extended"
+          color="secondary"
+          aria-label="delete"
+          className={classes.fab}
+          onClick={download}
+        >
           <GetAppIcon className={classes.extendedIcon} />
           Download
         </Fab>
       </div>
     </div>
-
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { logout, getProfile },
-)(Home);
+export default connect(mapStateToProps, { logout, getProfile })(Home);

@@ -39,12 +39,12 @@ var obj = {};
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "rgba(255,255,255,1)"
+      main: 'rgba(255,255,255,1)',
     },
     secondary: {
-      main: "#3d40d8"
-    }
-  }
+      main: '#3d40d8',
+    },
+  },
 });
 
 class RegFinal extends React.Component {
@@ -90,7 +90,7 @@ class RegFinal extends React.Component {
   }
 
   retrieveChildData(type, data) {
-      obj[type] = data;
+    obj[type] = data;
   }
 
   async handleSumbit(event) {
@@ -110,22 +110,23 @@ class RegFinal extends React.Component {
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
     //console.log(obj)
-    await this.props.createProfile(obj,false); 
+    await this.props.createProfile(obj, false);
     var len = this.props.alert.length;
     if (this.props.alert[len - 1].alertType != 'blue') {
       this.setState({
         openDial: false,
         open: true,
         alertTitle: 'Whoops!!',
-        alertContent: this.props.alert[len - 1].msg
-      })
-    } else if (this.props.alert[len - 1].alertType == 'blue'){
+        alertContent: this.props.alert[len - 1].msg,
+      });
+    } else if (this.props.alert[len - 1].alertType == 'blue') {
       this.setState({
         openDial: false,
         openStatic: true,
         alertTitle: 'Profile has been created!',
-        alertContent: 'You will be redirected to the Home page...Please click done to continue',
-      })
+        alertContent:
+          'You will be redirected to the Home page...Please click done to continue',
+      });
     }
   }
 
@@ -136,7 +137,9 @@ class RegFinal extends React.Component {
   }
 
   handleOpen() {
-    this.openDial('Whoops...Please check you have filled all your details and try again');
+    this.openDial(
+      'Whoops...Please check you have filled all your details and try again'
+    );
   }
 
   openDial(mess) {
@@ -157,9 +160,7 @@ class RegFinal extends React.Component {
   }
 
   render() {
-    const {
-      expanded, open, alertTitle, alertContent, openStatic
-    } = this.state;
+    const { expanded, open, alertTitle, alertContent, openStatic } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ paddingBottom: 100 }}>
@@ -169,76 +170,74 @@ class RegFinal extends React.Component {
             <About
               ref={this.about}
               expanded={expanded}
-              action={() => this.handlePanel("aboutPanel")}
+              action={() => this.handlePanel('aboutPanel')}
               senData={this.retrieveChildData}
             />
             <Location
               ref={this.location}
               expanded={expanded}
-              action={() => this.handlePanel("locationPanel")}
+              action={() => this.handlePanel('locationPanel')}
               senData={this.retrieveChildData}
             />
             <Education
               ref={this.education}
               expanded={expanded}
-              action={() => this.handlePanel("educationPanel")}
+              action={() => this.handlePanel('educationPanel')}
               senData={this.retrieveChildData}
             />
             <Work
               ref={this.work}
               expanded={expanded}
-              action={() => this.handlePanel("workPanel")}
+              action={() => this.handlePanel('workPanel')}
               senData={this.retrieveChildData}
             />
             <Volunteer
               ref={this.volunteer}
               expanded={expanded}
-              action={() => this.handlePanel("volunteerPanel")}
+              action={() => this.handlePanel('volunteerPanel')}
               senData={this.retrieveChildData}
             />
             <Language
               ref={this.language}
               expanded={expanded}
-              action={() => this.handlePanel("languagePanel")}
+              action={() => this.handlePanel('languagePanel')}
               senData={this.retrieveChildData}
             />
-            <div className="regSubTitle">
-              Optionals -
-            </div>
+            <div className="regSubTitle">Optionals -</div>
             <Award
               ref={this.award}
               expanded={expanded}
-              action={() => this.handlePanel("awardPanel")}
+              action={() => this.handlePanel('awardPanel')}
               senData={this.retrieveChildData}
             />
             <Publication
               ref={this.publication}
               expanded={expanded}
-              action={() => this.handlePanel("publicationPanel")}
+              action={() => this.handlePanel('publicationPanel')}
               senData={this.retrieveChildData}
             />
             <Skill
               ref={this.skill}
               expanded={expanded}
-              action={() => this.handlePanel("skillPanel")}
+              action={() => this.handlePanel('skillPanel')}
               senData={this.retrieveChildData}
             />
             <Interest
               ref={this.interest}
               expanded={expanded}
-              action={() => this.handlePanel("interestPanel")}
+              action={() => this.handlePanel('interestPanel')}
               senData={this.retrieveChildData}
             />
             <Reference
               ref={this.reference}
               expanded={expanded}
-              action={() => this.handlePanel("referencePanel")}
+              action={() => this.handlePanel('referencePanel')}
               senData={this.retrieveChildData}
             />
             <div className="btnContainer">
               <Button
                 variant="contained"
-                style={{ padding: "12px 50px" }}
+                style={{ padding: '12px 50px' }}
                 color="secondary"
                 type="submit"
                 onClick={this.handleOpen}
@@ -247,7 +246,11 @@ class RegFinal extends React.Component {
               </Button>
             </div>
           </form>
-          <AlertStatic handleRedirect={this.redirectHome} open={openStatic} title={alertTitle}>
+          <AlertStatic
+            handleRedirect={this.redirectHome}
+            open={openStatic}
+            title={alertTitle}
+          >
             {alertContent}
           </AlertStatic>
           <Alert open={open} handleClose={this.handleClose} title={alertTitle}>
@@ -264,12 +267,20 @@ class RegFinal extends React.Component {
             ContentProps={{
               'aria-describedby': 'message-id',
             }}
-            message={(
-              <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            message={
+              <span
+                id="message-id"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
                 <InfoIcon style={{ marginRight: '10px' }} />
                 {this.state.message}
               </span>
-            )}
+            }
             action={[
               <IconButton
                 key="close"
@@ -284,8 +295,9 @@ class RegFinal extends React.Component {
           <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
             <Toolbar>
               <Typography>
-                <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
-                {' '}
+                <span style={{ fontWeight: 700, fontSize: '20px' }}>
+                  Portfolio Creator
+                </span>{' '}
                 <span style={{ color: '#3d40d8' }}>| Register</span>
               </Typography>
             </Toolbar>
@@ -296,17 +308,15 @@ class RegFinal extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
-  alert: state.alert
+  alert: state.alert,
 });
 
-export default connect(
-  mapStateToProps,
-  { createProfile, getCurrentProfile },
-)(withRouter(RegFinal));
-
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(RegFinal)
+);
 
 // <div className="headerSimple">
 //   <div className="headerSimpleTitle">

@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
 import { connect } from 'react-redux';
-import {reset_pass} from '../actions/auth'
+import { reset_pass } from '../actions/auth';
 
 import '../style/validation.css';
 import { withRouter } from 'react-router-dom';
@@ -31,39 +31,39 @@ class Reset extends React.Component {
     super(props);
     this.state = {
       open: false,
-      mess: ''
+      mess: '',
     };
     this.openDial = this.openDial.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-   handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-    this.props.reset_pass({email,password});
-    // insert the bloody function here 
-  };
+    this.props.reset_pass({ email, password });
+    // insert the bloody function here
+  }
 
   handleClose() {
     this.setState({
       open: false,
-    })
+    });
   }
 
   openDial(mess) {
     this.setState({
       open: false,
-    })
+    });
     this.setState({
       open: true,
-      mess: mess
-    })
+      mess: mess,
+    });
   }
 
   componentDidUpdate(oldProps) {
     let index = 0;
-    if (oldProps.alert.length !== this.props.alert.length ) {
+    if (oldProps.alert.length !== this.props.alert.length) {
       index = this.props.alert.length - 1;
       this.openDial(this.props.alert[index].msg);
     }
@@ -77,8 +77,9 @@ class Reset extends React.Component {
         <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
           <Toolbar>
             <Typography>
-              <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
-              {' '}
+              <span style={{ fontWeight: 700, fontSize: '20px' }}>
+                Portfolio Creator
+              </span>{' '}
               <span style={{ color: '#3d40d8' }}>| Password Reset</span>
             </Typography>
           </Toolbar>
@@ -86,19 +87,48 @@ class Reset extends React.Component {
         <div className="fullScreen">
           <div className="overlay">
             <div className="notFoundTextContainer">
-              <Typography variant="h3" style={{ marginTop: '0px', fontWeight: '600' }}>
+              <Typography
+                variant="h3"
+                style={{ marginTop: '0px', fontWeight: '600' }}
+              >
                 Reset Password -
               </Typography>
-              <Typography style={{ marginTop: '25px', fontSize: '18px', fontWeight: '300' }}>
-                <form id="regenerateForm" name="regenerateForm" onSubmit={this.handleSubmit}>
-                  <input required type="email" name="email" placeholder="Email Adress: " />
+              <Typography
+                style={{
+                  marginTop: '25px',
+                  fontSize: '18px',
+                  fontWeight: '300',
+                }}
+              >
+                <form
+                  id="regenerateForm"
+                  name="regenerateForm"
+                  onSubmit={this.handleSubmit}
+                >
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    placeholder="Email Adress: "
+                  />
                   <br />
                   <br />
-                  <input required type="password" name="password" placeholder="Enter New Password: " />
+                  <input
+                    required
+                    type="password"
+                    name="password"
+                    placeholder="Enter New Password: "
+                  />
                 </form>
               </Typography>
             </div>
-            <Button variant="contained" type="submit" color="secondary" className={classes.button} form="regenerateForm">
+            <Button
+              variant="contained"
+              type="submit"
+              color="secondary"
+              className={classes.button}
+              form="regenerateForm"
+            >
               Reset
             </Button>
           </div>
@@ -114,12 +144,20 @@ class Reset extends React.Component {
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={(
-            <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          message={
+            <span
+              id="message-id"
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <InfoIcon style={{ marginRight: '10px' }} />
               {mess}
             </span>
-          )}
+          }
           action={[
             <IconButton
               key="close"
@@ -137,11 +175,10 @@ class Reset extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  alert: state.alert
+const mapStateToProps = (state) => ({
+  alert: state.alert,
 });
 
-export default connect(
-  mapStateToProps,
-  {reset_pass}
-)(withStyles(styles)(withRouter(Reset)));
+export default connect(mapStateToProps, { reset_pass })(
+  withStyles(styles)(withRouter(Reset))
+);

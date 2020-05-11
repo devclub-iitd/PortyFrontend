@@ -1,5 +1,9 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  withStyles,
+} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -27,7 +31,6 @@ const theme = createMuiTheme({
     },
   },
 });
-
 
 function TabContainer(props) {
   const { children } = props;
@@ -76,13 +79,12 @@ const styles = () => ({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
-
 });
 
 class SimpleTabs extends React.Component {
   state = {
     value: 0,
-  }
+  };
 
   componentDidMount() {
     //this.props.getCurrentProfile();
@@ -90,13 +92,17 @@ class SimpleTabs extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
-  }
+  };
 
   render() {
     const { classes, loading, user } = this.props;
     const { value } = this.state;
     if (loading) {
-      return (<div><Loader /></div>);
+      return (
+        <div>
+          <Loader />
+        </div>
+      );
     }
     // if (loading === false) {
     return (
@@ -105,24 +111,39 @@ class SimpleTabs extends React.Component {
           <AppBar position="static" className={classes.headercontainer}>
             <div className="headerDetails">
               <div className="headerTitle">
-                <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
-                {' '}
+                <span style={{ fontWeight: 700, fontSize: '20px' }}>
+                  Portfolio Creator
+                </span>{' '}
                 <span style={{ color: '#3d40d8', fontSize: '16px' }}>
-                  |
-                  {' '}
-                  {user.name}
+                  | {user.name}
                 </span>
               </div>
             </div>
-            <Tabs value={value} onChange={this.handleChange} className={classes.navbarContainer}>
+            <Tabs
+              value={value}
+              onChange={this.handleChange}
+              className={classes.navbarContainer}
+            >
               <Tab className={classes.navbarItem} label="Home" />
               <Tab className={classes.navbarItem} label="Edit" />
               <Tab className={classes.navbarItem} label="Deploy" />
             </Tabs>
           </AppBar>
-          {value === 0 && <TabContainer><Home /></TabContainer>}
-          {value === 1 && <TabContainer><Edit /></TabContainer>}
-          {value === 2 && <TabContainer><Deploy /></TabContainer>}
+          {value === 0 && (
+            <TabContainer>
+              <Home />
+            </TabContainer>
+          )}
+          {value === 1 && (
+            <TabContainer>
+              <Edit />
+            </TabContainer>
+          )}
+          {value === 2 && (
+            <TabContainer>
+              <Deploy />
+            </TabContainer>
+          )}
         </div>
       </MuiThemeProvider>
     );
@@ -134,13 +155,12 @@ SimpleTabs.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   loading: state.auth.loading,
   user: state.auth.user,
 });
 
-export default connect(
-  mapStateToProps,
-  { logout, getCurrentProfile },
-)(withStyles(styles)(SimpleTabs));
+export default connect(mapStateToProps, { logout, getCurrentProfile })(
+  withStyles(styles)(SimpleTabs)
+);

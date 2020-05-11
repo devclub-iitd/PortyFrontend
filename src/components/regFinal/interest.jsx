@@ -17,18 +17,18 @@ class InterestExpansionPanel extends React.Component {
       interestDetailsCount: 1,
       maxCount: 1,
       btnStyle: {
-        display: "none"
+        display: 'none',
       },
       expanded: false,
       interestFields: tempFields,
       interestFieldTracker: tempFieldsTracker,
       interest: [
         {
-          name: "",
-          keywords: "",
-          hidden: false
-        }
-      ]
+          name: '',
+          keywords: '',
+          hidden: false,
+        },
+      ],
     };
     const { expanded } = this.state;
     tempFields.push(
@@ -75,21 +75,21 @@ class InterestExpansionPanel extends React.Component {
 
     const { interest } = this.state;
     const interestObj = {
-      name: "",
-      keywords: "",
-      hidden: false
+      name: '',
+      keywords: '',
+      hidden: false,
     };
     const tempinterest = interest;
     tempinterest.push(interestObj);
-    this.setState(state => ({
+    this.setState((state) => ({
       interestDetailsCount: state.interestDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: "block"
+        display: 'block',
       },
       interestFields: tempFields,
       interestFieldTracker: tempFieldsTracker,
-      interest: tempinterest
+      interest: tempinterest,
     }));
   }
 
@@ -104,38 +104,38 @@ class InterestExpansionPanel extends React.Component {
     const { interest } = this.state;
     const tempinterest = interest;
     tempinterest.pop();
-    this.setState(state => ({
+    this.setState((state) => ({
       interestDetailsCount: state.interestDetailsCount - 1,
       interestFields: tempFields,
       interestFieldTracker: tempFieldsTracker,
-      interest: tempinterest
+      interest: tempinterest,
     }));
     if (interestDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: "none"
-        }
+          display: 'none',
+        },
       });
     }
   }
 
   callApiRequest() {
-    this.props.senData("interests", this.state.interest);
+    this.props.senData('interests', this.state.interest);
   }
-  
+
   handleInputChange(event) {
     const { id } = event.target;
     const { interest } = this.state;
     const type = event.target.name;
     const tempinterest = interest;
-    if (type === "hidden") {
+    if (type === 'hidden') {
       tempinterest[id][type] = event.target.checked;
     } else {
       tempinterest[id][type] = event.target.value;
     }
     console.log(tempinterest);
     this.setState({
-      interest: tempinterest
+      interest: tempinterest,
     });
   }
 
@@ -162,7 +162,7 @@ class InterestExpansionPanel extends React.Component {
       }
       this.setState({
         expanded: false,
-        interestFields: tempFields
+        interestFields: tempFields,
       });
     } else {
       const tempFields = [];
@@ -183,7 +183,7 @@ class InterestExpansionPanel extends React.Component {
       }
       this.setState({
         expanded: panel,
-        interestFields: tempFields
+        interestFields: tempFields,
       });
     }
   }
@@ -228,12 +228,12 @@ class InterestExpansionPanel extends React.Component {
       tempinterest[i] = tempinterest[i - 1];
       tempinterest[i - 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       interestFields: tempFields,
       interestFieldTracker: tempFieldsTracker,
-      interest: tempinterest
+      interest: tempinterest,
     });
   }
 
@@ -278,12 +278,12 @@ class InterestExpansionPanel extends React.Component {
       tempinterest[i] = tempinterest[i + 1];
       tempinterest[i + 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       interestFields: tempFields,
       interestFieldTracker: tempFieldsTracker,
-      interest: tempinterest
+      interest: tempinterest,
     });
   }
 
@@ -291,30 +291,30 @@ class InterestExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -323,7 +323,7 @@ class InterestExpansionPanel extends React.Component {
     return (
       <div style={useStyles.root}>
         <ExpansionPanel
-          expanded={expanded === "interestPanel"}
+          expanded={expanded === 'interestPanel'}
           onChange={action}
         >
           <ExpansionPanelSummary

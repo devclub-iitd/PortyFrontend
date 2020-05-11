@@ -23,40 +23,86 @@ const VolunteerField = (props) => {
     hidden: false,
   });
 
-  const handleCheckBoxChange = name => (event) => {
+  const handleCheckBoxChange = (name) => (event) => {
     setState({ ...state, [name]: event.target.checked });
     handleChange(event);
   };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <ExpansionPanel expanded={expanded === `volunteerPanel${id}`} onChange={action} style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}>
+      <ExpansionPanel
+        expanded={expanded === `volunteerPanel${id}`}
+        onChange={action}
+        style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
+      >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
           <Typography style={{ fontWeight: 700 }}>
-            VOLUNTEERING
-            {' '}
-            {id + 1}
+            VOLUNTEERING {id + 1}
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input type="text" onChange={handleChange} id={id} name="organisation" placeholder="Organisation:" />
-            <input type="text" onChange={handleChange} id={id} name="position" placeholder="Position:" />
-            <input type="text" onChange={handleChange} id={id} name="website" placeholder="Website:" />
+            <input
+              type="text"
+              onChange={handleChange}
+              id={id}
+              name="organisation"
+              placeholder="Organisation:"
+            />
+            <input
+              type="text"
+              onChange={handleChange}
+              id={id}
+              name="position"
+              placeholder="Position:"
+            />
+            <input
+              type="text"
+              onChange={handleChange}
+              id={id}
+              name="website"
+              placeholder="Website:"
+            />
             <div className="row rowtwo">
-              <input className="left" type="text" onChange={handleChange} id={id} name="startdate" placeholder="Start Date: DD/MM/YYYY" />
-              <input className="right" type="text" onChange={handleChange} id={id} name="enddate" placeholder="End Date: DD/MM/YYYY or Ongoing" />
+              <input
+                className="left"
+                type="text"
+                onChange={handleChange}
+                id={id}
+                name="startdate"
+                placeholder="Start Date: DD/MM/YYYY"
+              />
+              <input
+                className="right"
+                type="text"
+                onChange={handleChange}
+                id={id}
+                name="enddate"
+                placeholder="End Date: DD/MM/YYYY or Ongoing"
+              />
             </div>
-            <textarea resize="none" onChange={handleChange} id={id} name="summary" placeholder="Summary | Highlights : " />
+            <textarea
+              resize="none"
+              onChange={handleChange}
+              id={id}
+              name="summary"
+              placeholder="Summary | Highlights : "
+            />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={
-                  <Checkbox id={id} name="hidden" checked={state.hidden} onChange={handleCheckBoxChange('hidden')} value="hidden" />
+                  <Checkbox
+                    id={id}
+                    name="hidden"
+                    checked={state.hidden}
+                    onChange={handleCheckBoxChange('hidden')}
+                    value="hidden"
+                  />
                 }
                 label="Hidden"
               />
@@ -65,11 +111,23 @@ const VolunteerField = (props) => {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <div className="sideBtnCont">
-        <ButtonGroup color="secondary" aria-label="Outlined primary button group" size="small">
-          <IconButton color="primary" aria-label="Move Field Up" onClick={moveFieldUp}>
+        <ButtonGroup
+          color="secondary"
+          aria-label="Outlined primary button group"
+          size="small"
+        >
+          <IconButton
+            color="primary"
+            aria-label="Move Field Up"
+            onClick={moveFieldUp}
+          >
             <ArrowUp />
           </IconButton>
-          <IconButton color="primary" aria-label="Move Field Down" onClick={moveFieldDown}>
+          <IconButton
+            color="primary"
+            aria-label="Move Field Down"
+            onClick={moveFieldDown}
+          >
             <ArrowDown />
           </IconButton>
         </ButtonGroup>

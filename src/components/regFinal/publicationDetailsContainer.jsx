@@ -23,38 +23,78 @@ const PublicationField = (props) => {
     hidden: false,
   });
 
-  const handleCheckBoxChange = name => (event) => {
+  const handleCheckBoxChange = (name) => (event) => {
     setState({ ...state, [name]: event.target.checked });
     handleChange(event);
   };
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <ExpansionPanel expanded={expanded === `publicationPanel${id}`} onChange={action} style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}>
+      <ExpansionPanel
+        expanded={expanded === `publicationPanel${id}`}
+        onChange={action}
+        style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
+      >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
           <Typography style={{ fontWeight: 700 }}>
-            PUBLICATION
-            {' '}
-            {id + 1}
+            PUBLICATION {id + 1}
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input name="name" id={id} onChange={handleChange} type="text" placeholder="Name:" />
+            <input
+              name="name"
+              id={id}
+              onChange={handleChange}
+              type="text"
+              placeholder="Name:"
+            />
             <div className="row rowtwo">
-              <input name="releaseDate" id={id} onChange={handleChange} className="left" type="text" placeholder="Release Date: DD/MM/YYYY" />
-              <input name="publisher" id={id} onChange={handleChange} className="right" type="text" placeholder="Publisher:" />
+              <input
+                name="releaseDate"
+                id={id}
+                onChange={handleChange}
+                className="left"
+                type="text"
+                placeholder="Release Date: DD/MM/YYYY"
+              />
+              <input
+                name="publisher"
+                id={id}
+                onChange={handleChange}
+                className="right"
+                type="text"
+                placeholder="Publisher:"
+              />
             </div>
-            <input name="website" id={id} onChange={handleChange} type="text" placeholder="Website:" />
-            <textarea name="summary" id={id} onChange={handleChange} resize="none" placeholder="Summary: " />
+            <input
+              name="website"
+              id={id}
+              onChange={handleChange}
+              type="text"
+              placeholder="Website:"
+            />
+            <textarea
+              name="summary"
+              id={id}
+              onChange={handleChange}
+              resize="none"
+              placeholder="Summary: "
+            />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={
-                  <Checkbox id={id} name="hidden" checked={state.hidden} onChange={handleCheckBoxChange('hidden')} value="hidden" />
+                  <Checkbox
+                    id={id}
+                    name="hidden"
+                    checked={state.hidden}
+                    onChange={handleCheckBoxChange('hidden')}
+                    value="hidden"
+                  />
                 }
                 label="Hidden"
               />
@@ -63,11 +103,23 @@ const PublicationField = (props) => {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <div className="sideBtnCont">
-        <ButtonGroup color="secondary" aria-label="Outlined primary button group" size="small">
-          <IconButton color="primary" aria-label="Move Field Up" onClick={moveFieldUp}>
+        <ButtonGroup
+          color="secondary"
+          aria-label="Outlined primary button group"
+          size="small"
+        >
+          <IconButton
+            color="primary"
+            aria-label="Move Field Up"
+            onClick={moveFieldUp}
+          >
             <ArrowUp />
           </IconButton>
-          <IconButton color="primary" aria-label="Move Field Down" onClick={moveFieldDown}>
+          <IconButton
+            color="primary"
+            aria-label="Move Field Down"
+            onClick={moveFieldDown}
+          >
             <ArrowDown />
           </IconButton>
         </ButtonGroup>

@@ -24,39 +24,97 @@ const WorkField = (props) => {
     hidden: data.hidden,
   });
 
-  const handleCheckBoxChange = name => (event) => {
+  const handleCheckBoxChange = (name) => (event) => {
     setState({ ...state, [name]: event.target.checked });
     handleChange(event);
   };
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <ExpansionPanel expanded={expanded === `workPanel${id}`} onChange={action} style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}>
+      <ExpansionPanel
+        expanded={expanded === `workPanel${id}`}
+        onChange={action}
+        style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
+      >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
           <Typography style={{ fontWeight: 700 }}>
-            WORKPLACE
-            {' '}
-            {id + 1}
+            WORKPLACE {id + 1}
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className="customDetailContainer">
             <div className="sectionSeperator" />
-            <input value={data.company} id={id} onChange={handleChange} type="text" name="company" required placeholder="Company:" />
-            <input value={data.position} id={id} onChange={handleChange} type="text" name="position" required placeholder="Position:" />
-            <input value={data.website} id={id} onChange={handleChange} type="text" name="website" required placeholder="Website:" />
+            <input
+              value={data.company}
+              id={id}
+              onChange={handleChange}
+              type="text"
+              name="company"
+              required
+              placeholder="Company:"
+            />
+            <input
+              value={data.position}
+              id={id}
+              onChange={handleChange}
+              type="text"
+              name="position"
+              required
+              placeholder="Position:"
+            />
+            <input
+              value={data.website}
+              id={id}
+              onChange={handleChange}
+              type="text"
+              name="website"
+              required
+              placeholder="Website:"
+            />
             <div className="row rowtwo">
-              <input value={data.startdate} id={id} onChange={handleChange} className="left" type="text" name="startdate" required placeholder="Start Date: DD/MM/YYYY" />
-              <input value={data.enddate} id={id} onChange={handleChange} className="right" type="text" name="enddate" required placeholder="End Date: DD/MM/YYYY or Ongoing" />
+              <input
+                value={data.startdate}
+                id={id}
+                onChange={handleChange}
+                className="left"
+                type="text"
+                name="startdate"
+                required
+                placeholder="Start Date: DD/MM/YYYY"
+              />
+              <input
+                value={data.enddate}
+                id={id}
+                onChange={handleChange}
+                className="right"
+                type="text"
+                name="enddate"
+                required
+                placeholder="End Date: DD/MM/YYYY or Ongoing"
+              />
             </div>
-            <textarea value={data.summary} required id={id} onChange={handleChange} resize="none" name="summary" placeholder="Summary | Highlights : " />
+            <textarea
+              value={data.summary}
+              required
+              id={id}
+              onChange={handleChange}
+              resize="none"
+              name="summary"
+              placeholder="Summary | Highlights : "
+            />
             <div style={{ marginLeft: '2px', marginTop: '15px' }}>
               <FormControlLabel
                 control={
-                  <Checkbox id={id} name="hidden" checked={state.hidden} onChange={handleCheckBoxChange('hidden')} value="hidden" />
+                  <Checkbox
+                    id={id}
+                    name="hidden"
+                    checked={state.hidden}
+                    onChange={handleCheckBoxChange('hidden')}
+                    value="hidden"
+                  />
                 }
                 label="Hidden"
               />
@@ -65,11 +123,23 @@ const WorkField = (props) => {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <div className="sideBtnCont">
-        <ButtonGroup color="secondary" aria-label="Outlined primary button group" size="small">
-          <IconButton color="primary" aria-label="Move Field Up" onClick={moveFieldUp}>
+        <ButtonGroup
+          color="secondary"
+          aria-label="Outlined primary button group"
+          size="small"
+        >
+          <IconButton
+            color="primary"
+            aria-label="Move Field Up"
+            onClick={moveFieldUp}
+          >
             <ArrowUp />
           </IconButton>
-          <IconButton color="primary" aria-label="Move Field Down" onClick={moveFieldDown}>
+          <IconButton
+            color="primary"
+            aria-label="Move Field Down"
+            onClick={moveFieldDown}
+          >
             <ArrowDown />
           </IconButton>
         </ButtonGroup>

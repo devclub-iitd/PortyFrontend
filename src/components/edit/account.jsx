@@ -60,12 +60,13 @@ class AccountExpansionPanel extends React.Component {
     };
     const { expanded } = this.props;
     const { action } = this.props;
-    const {
-      password, confirmPassword, passwordHint,
-    } = this.state;
+    const { password, confirmPassword, passwordHint } = this.state;
     return (
       <div style={useStyles.root}>
-        <ExpansionPanel expanded={expanded === 'accountPanel'} onChange={action}>
+        <ExpansionPanel
+          expanded={expanded === 'accountPanel'}
+          onChange={action}
+        >
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
@@ -79,10 +80,33 @@ class AccountExpansionPanel extends React.Component {
           <ExpansionPanelDetails>
             <div className="epDetails">
               <div className="row rowtwo">
-                <input value={password} name="password" onChange={this.handleInputChange} className="left" type="password" required placeholder="Password: " />
-                <input value={confirmPassword} name="confirmPassword" onChange={this.handleInputChange} className="right" type="password" required placeholder="Confirm Password: " />
+                <input
+                  value={password}
+                  name="password"
+                  onChange={this.handleInputChange}
+                  className="left"
+                  type="password"
+                  required
+                  placeholder="Password: "
+                />
+                <input
+                  value={confirmPassword}
+                  name="confirmPassword"
+                  onChange={this.handleInputChange}
+                  className="right"
+                  type="password"
+                  required
+                  placeholder="Confirm Password: "
+                />
               </div>
-              <input value={passwordHint} name="passwordHint" onChange={this.handleInputChange} type="text" required placeholder="Password Hint: To help you remember incase you forget" />
+              <input
+                value={passwordHint}
+                name="passwordHint"
+                onChange={this.handleInputChange}
+                type="text"
+                required
+                placeholder="Password Hint: To help you remember incase you forget"
+              />
             </div>
           </ExpansionPanelDetails>
         </ExpansionPanel>

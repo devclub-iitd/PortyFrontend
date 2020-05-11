@@ -3,40 +3,27 @@ import PropTypes from 'prop-types';
 
 const FlatCard = (props) => {
   const {
-    institution, degree, area, children, grade, startDate, endDate,
+    institution,
+    degree,
+    area,
+    children,
+    grade,
+    startDate,
+    endDate,
   } = props;
   return (
     <div className="portfolioFlat">
       <div className="portfolioCardTitle">
-        <span className="portfolioCardTitleMain">
-          {institution}
-          {' '}
-           |
-        </span>
-        {' '}
-        <span className="portfolioCardTitleSub">
-          {degree}
-        </span>
-        <div className="portfolioFlatSubTitle">
-          {area}
-        </div>
+        <span className="portfolioCardTitleMain">{institution} |</span>{' '}
+        <span className="portfolioCardTitleSub">{degree}</span>
+        <div className="portfolioFlatSubTitle">{area}</div>
       </div>
       <div className="portfolioFlatContent">
-        <div className="portfolioFlatContentSummary">
-          {children}
-        </div>
-        <div className="portfolioFlatSubTitle">
-          Grade Pt:
-          {' '}
-          {grade}
-        </div>
+        <div className="portfolioFlatContentSummary">{children}</div>
+        <div className="portfolioFlatSubTitle">Grade Pt: {grade}</div>
       </div>
       <div className="portfolioCardDateContainer">
-        {startDate}
-        {' '}
-         -
-        {' '}
-        {endDate}
+        {startDate} - {endDate}
       </div>
     </div>
   );

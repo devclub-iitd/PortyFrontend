@@ -17,19 +17,19 @@ class SkillExpansionPanel extends React.Component {
       skillDetailsCount: 1,
       maxCount: 1,
       btnStyle: {
-        display: "none"
+        display: 'none',
       },
       expanded: false,
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
       skill: [
         {
-          name: "",
-          level: "",
-          keywords: "",
-          hidden: false
-        }
-      ]
+          name: '',
+          level: '',
+          keywords: '',
+          hidden: false,
+        },
+      ],
     };
     const { expanded } = this.state;
     tempFields.push(
@@ -76,22 +76,22 @@ class SkillExpansionPanel extends React.Component {
 
     const { skill } = this.state;
     const skillObj = {
-      name: "",
-      level: "",
-      keywords: "",
-      hidden: false
+      name: '',
+      level: '',
+      keywords: '',
+      hidden: false,
     };
     const tempskill = skill;
     tempskill.push(skillObj);
-    this.setState(state => ({
+    this.setState((state) => ({
       skillDetailsCount: state.skillDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: "block"
+        display: 'block',
       },
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
-      skill: tempskill
+      skill: tempskill,
     }));
   }
 
@@ -106,23 +106,23 @@ class SkillExpansionPanel extends React.Component {
     const { skill } = this.state;
     const tempskill = skill;
     tempskill.pop();
-    this.setState(state => ({
+    this.setState((state) => ({
       skillDetailsCount: state.skillDetailsCount - 1,
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
-      skill: tempskill
+      skill: tempskill,
     }));
     if (skillDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: "none"
-        }
+          display: 'none',
+        },
       });
     }
   }
 
   callApiRequest() {
-    this.props.senData("skills", this.state.skill);
+    this.props.senData('skills', this.state.skill);
   }
 
   handleInputChange(event) {
@@ -130,13 +130,13 @@ class SkillExpansionPanel extends React.Component {
     const { skill } = this.state;
     const type = event.target.name;
     const tempskill = skill;
-    if (type === "hidden") {
+    if (type === 'hidden') {
       tempskill[id][type] = event.target.checked;
     } else {
       tempskill[id][type] = event.target.value;
     }
     this.setState({
-      skill: tempskill
+      skill: tempskill,
     });
   }
 
@@ -163,7 +163,7 @@ class SkillExpansionPanel extends React.Component {
       }
       this.setState({
         expanded: false,
-        skillFields: tempFields
+        skillFields: tempFields,
       });
     } else {
       const tempFields = [];
@@ -184,7 +184,7 @@ class SkillExpansionPanel extends React.Component {
       }
       this.setState({
         expanded: panel,
-        skillFields: tempFields
+        skillFields: tempFields,
       });
     }
   }
@@ -229,12 +229,12 @@ class SkillExpansionPanel extends React.Component {
       tempskill[i] = tempskill[i - 1];
       tempskill[i - 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
-      skill: tempskill
+      skill: tempskill,
     });
   }
 
@@ -279,12 +279,12 @@ class SkillExpansionPanel extends React.Component {
       tempskill[i] = tempskill[i + 1];
       tempskill[i + 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       skillFields: tempFields,
       skillFieldTracker: tempFieldsTracker,
-      skill: tempskill
+      skill: tempskill,
     });
   }
 
@@ -292,30 +292,30 @@ class SkillExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -323,7 +323,7 @@ class SkillExpansionPanel extends React.Component {
     const { btnStyle } = this.state;
     return (
       <div style={useStyles.root}>
-        <ExpansionPanel expanded={expanded === "skillPanel"} onChange={action}>
+        <ExpansionPanel expanded={expanded === 'skillPanel'} onChange={action}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"

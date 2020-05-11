@@ -52,7 +52,6 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-
 class IconLabelTabs extends React.Component {
   constructor(props) {
     super(props);
@@ -77,7 +76,7 @@ class IconLabelTabs extends React.Component {
   openTemp() {
     this.setState({
       openDial: true,
-      message: "Please wait while we register your profile. Do not click away.",
+      message: 'Please wait while we register your profile. Do not click away.',
     });
   }
 
@@ -88,11 +87,11 @@ class IconLabelTabs extends React.Component {
     });
   }
 
-  navToRegOTP () {
+  navToRegOTP() {
     window.location.href = './regenerate';
   }
 
-  navToResPass () {
+  navToResPass() {
     window.location.href = './reset';
   }
 
@@ -113,56 +112,83 @@ class IconLabelTabs extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className="loginPageContainer" style={{ textAlign: 'center', marginTop: '0px' }}>
+      <div
+        className="loginPageContainer"
+        style={{ textAlign: 'center', marginTop: '0px' }}
+      >
         <div className="pageOverlay">
-        <div className="title">
-            Register
-        </div>
-        <Paper className={classes.rootRegPage}>
-          {value === 0 && (
-            <TabContainer>
-              {' '}
-              <RegForm handleDial={this.openDial} />
-              {' '}
-            </TabContainer>
-          )}
-        </Paper>
-        <Button variant="contained" color="secondary" className={classes.button} type="submit" form="regform" onSubmit={this.openTemp}>
-          Let's Go
-        </Button>
-        <div className="secBtnCont">
-          <Button variant="outlined" color="primary" onClick={this.navToRegOTP}>Regenerate OTP</Button>
-          <Button variant="outlined" color="primary" onClick={this.navToResPass}>Reset Password</Button>
-        </div>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={this.state.openDial}
-          autoHideDuration={6000}
-          onClose={this.handleClose}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={(
-            <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-              <InfoIcon style={{ marginRight: '10px' }} />
-              {this.state.message}
-            </span>
-          )}
-          action={[
-            <IconButton
-              key="close"
-              aria-label="close"
-              color="inherit"
-              className={classes.close}
-              onClick={this.handleClose}
+          <div className="title">Register</div>
+          <Paper className={classes.rootRegPage}>
+            {value === 0 && (
+              <TabContainer>
+                {' '}
+                <RegForm handleDial={this.openDial} />{' '}
+              </TabContainer>
+            )}
+          </Paper>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            type="submit"
+            form="regform"
+            onSubmit={this.openTemp}
+          >
+            Let's Go
+          </Button>
+          <div className="secBtnCont">
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={this.navToRegOTP}
             >
-              <CloseIcon />
-            </IconButton>,
-          ]}
-        />
+              Regenerate OTP
+            </Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={this.navToResPass}
+            >
+              Reset Password
+            </Button>
+          </div>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.state.openDial}
+            autoHideDuration={6000}
+            onClose={this.handleClose}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={
+              <span
+                id="message-id"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <InfoIcon style={{ marginRight: '10px' }} />
+                {this.state.message}
+              </span>
+            }
+            action={[
+              <IconButton
+                key="close"
+                aria-label="close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleClose}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
         </div>
       </div>
     );
@@ -173,7 +199,7 @@ IconLabelTabs.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   alerts: state.alert,
 });
 

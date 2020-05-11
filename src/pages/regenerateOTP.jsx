@@ -8,7 +8,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
-import { regenerate_otp } from '../actions/auth'
+import { regenerate_otp } from '../actions/auth';
 import { connect } from 'react-redux';
 
 import '../style/validation.css';
@@ -31,8 +31,8 @@ class Regenerate extends React.Component {
     super(props);
     this.state = {
       open: false,
-      mess: ''
-    }
+      mess: '',
+    };
     this.openDial = this.openDial.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,26 +42,26 @@ class Regenerate extends React.Component {
     event.preventDefault();
     const email = event.target.email.value;
     this.props.regenerate_otp(email);
-  };
+  }
 
   handleClose() {
     this.setState({
-      open: false
-    })
+      open: false,
+    });
   }
   openDial(mess) {
     this.setState({
-      open: false
-    })
+      open: false,
+    });
     this.setState({
       open: true,
-      mess: mess
-    })
+      mess: mess,
+    });
   }
 
   componentDidUpdate(oldProps) {
     let index = 0;
-    if (oldProps.alert.length !== this.props.alert.length ) {
+    if (oldProps.alert.length !== this.props.alert.length) {
       index = this.props.alert.length - 1;
       this.openDial(this.props.alert[index].msg);
     }
@@ -70,13 +70,14 @@ class Regenerate extends React.Component {
   render() {
     const { classes } = this.props;
     const { open, mess } = this.state;
-    return(
+    return (
       <div>
         <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
           <Toolbar>
             <Typography>
-              <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
-              {' '}
+              <span style={{ fontWeight: 700, fontSize: '20px' }}>
+                Portfolio Creator
+              </span>{' '}
               <span style={{ color: '#3d40d8' }}>| OTP</span>
             </Typography>
           </Toolbar>
@@ -84,16 +85,40 @@ class Regenerate extends React.Component {
         <div className="fullScreen">
           <div className="overlay">
             <div className="notFoundTextContainer">
-              <Typography variant="h3" style={{ marginTop: '0px', fontWeight: '600' }}>
+              <Typography
+                variant="h3"
+                style={{ marginTop: '0px', fontWeight: '600' }}
+              >
                 Regenerate OTP -
               </Typography>
-              <Typography style={{ marginTop: '25px', fontSize: '18px', fontWeight: '300' }}>
-                <form id="regenerateForm" name="regenerateForm" onSubmit={this.handleSubmit}>
-                  <input required type="email" name="email" placeholder="Email Adress: " />
+              <Typography
+                style={{
+                  marginTop: '25px',
+                  fontSize: '18px',
+                  fontWeight: '300',
+                }}
+              >
+                <form
+                  id="regenerateForm"
+                  name="regenerateForm"
+                  onSubmit={this.handleSubmit}
+                >
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    placeholder="Email Adress: "
+                  />
                 </form>
               </Typography>
             </div>
-            <Button variant="contained" type="submit" color="secondary" className={classes.button} form="regenerateForm">
+            <Button
+              variant="contained"
+              type="submit"
+              color="secondary"
+              className={classes.button}
+              form="regenerateForm"
+            >
               Generate
             </Button>
           </div>
@@ -109,12 +134,20 @@ class Regenerate extends React.Component {
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={(
-            <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          message={
+            <span
+              id="message-id"
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <InfoIcon style={{ marginRight: '10px' }} />
               {mess}
             </span>
-          )}
+          }
           action={[
             <IconButton
               key="close"
@@ -128,15 +161,14 @@ class Regenerate extends React.Component {
           ]}
         />
       </div>
-    )
-  };
-};
+    );
+  }
+}
 
-const mapStateToProps = state => ({
-  alert: state.alert
+const mapStateToProps = (state) => ({
+  alert: state.alert,
 });
 
-export default connect(
-  mapStateToProps,
-  {regenerate_otp}
-)(withStyles(styles)(withRouter(Regenerate)));
+export default connect(mapStateToProps, { regenerate_otp })(
+  withStyles(styles)(withRouter(Regenerate))
+);

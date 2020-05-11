@@ -33,24 +33,20 @@ class Volunteer extends React.Component {
           Volunteering | POR
         </div>
         <div className="portfolioPageSplit leftVolunteer">
-          {
-            volunteer.map(
-              (volunteerPlace, index) => (
-                <ExpansionCard
-                  organisation={volunteerPlace.organisation}
-                  position={volunteerPlace.position}
-                  website={volunteerPlace.website}
-                  startDate={volunteerPlace.startdate}
-                  endDate={volunteerPlace.enddate}
-                  handlePanelChange={this.handlePanelChange}
-                  expanded={expanded}
-                  id={index}
-                >
-                  {volunteerPlace.summary}
-                </ExpansionCard>
-              ),
-            )
-          }
+          {volunteer.map((volunteerPlace, index) => (
+            <ExpansionCard
+              organisation={volunteerPlace.organisation}
+              position={volunteerPlace.position}
+              website={volunteerPlace.website}
+              startDate={volunteerPlace.startdate}
+              endDate={volunteerPlace.enddate}
+              handlePanelChange={this.handlePanelChange}
+              expanded={expanded}
+              id={index}
+            >
+              {volunteerPlace.summary}
+            </ExpansionCard>
+          ))}
         </div>
       </div>
     );

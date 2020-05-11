@@ -6,7 +6,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
-import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import {
+  Link,
+  DirectLink,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller,
+} from 'react-scroll';
 import { withRouter } from 'react-router';
 import Landing from '../components/portfolio/landing';
 import About from '../components/portfolio/about';
@@ -33,7 +41,7 @@ const useStyles = makeStyles(() => ({
 
 const scrollToRef = () => {
   scroll.scrollTo(window.innerHeight);
-}
+};
 // const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 
 const navToHome = () => {
@@ -43,7 +51,7 @@ const navToHome = () => {
 const Portfolio = ({
   match,
   getPublicProfile,
-  profile : {loading , profile}
+  profile: { loading, profile },
 }) => {
   useEffect(() => {
     getPublicProfile(match.params.id);
@@ -54,19 +62,26 @@ const Portfolio = ({
   // const { offsetTop } = myRef.current.offsetTop;
 
   if (loading) {
-    return <div><Loader /></div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   if (!loading && profile !== null) {
     return (
-      <div class="portfolioContainerFull">
+      <div className="portfolioContainerFull">
         <Landing
           name={profile.user.name}
           label={profile.about.label}
           img={profile.about.imgUrl}
           initScroll={initScroll}
         />
-        <div class="portfolioBodyCont" style={{ top: window.innerHeight + 'px' }}>
+        <div
+          className="portfolioBodyCont"
+          style={{ top: window.innerHeight + 'px' }}
+        >
           <About summary={profile.about} top={window.innerHeight} />
           <Education education={profile.education} />
           <Work work={profile.work} />
@@ -93,8 +108,9 @@ const Portfolio = ({
         <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
           <Toolbar>
             <Typography>
-              <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
-              {' '}
+              <span style={{ fontWeight: 700, fontSize: '20px' }}>
+                Portfolio Creator
+              </span>{' '}
               <span style={{ color: '#3d40d8' }}>| Error 404</span>
             </Typography>
           </Toolbar>
@@ -107,7 +123,12 @@ const Portfolio = ({
           <br />
           Kindly proceed back to home
           <br />
-          <Button variant="contained" color="secondary" className={classes.button} onClick={navToHome}>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            onClick={navToHome}
+          >
             home
           </Button>
         </div>
@@ -118,14 +139,13 @@ const Portfolio = ({
 
 Portfolio.propTypes = {
   getPublicProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  profile: state.profile
+const mapStateToProps = (state) => ({
+  profile: state.profile,
 });
 
-export default connect(
-  mapStateToProps,
-  { getPublicProfile }
-)(withRouter(Portfolio));
+export default connect(mapStateToProps, { getPublicProfile })(
+  withRouter(Portfolio)
+);

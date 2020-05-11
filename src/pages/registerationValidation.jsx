@@ -30,8 +30,9 @@ const Validation = () => {
       <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
         <Toolbar>
           <Typography>
-            <span style={{ fontWeight: 700, fontSize: '20px' }}>Portfolio Creator</span>
-            {' '}
+            <span style={{ fontWeight: 700, fontSize: '20px' }}>
+              Portfolio Creator
+            </span>{' '}
             <span style={{ color: '#3d40d8' }}>| Verification</span>
           </Typography>
         </Toolbar>
@@ -39,20 +40,27 @@ const Validation = () => {
       <div className="fullScreen">
         <div className="overlay">
           <div className="notFoundTextContainer">
-            <Typography variant="h3" style={{ marginTop: '0px', fontWeight: '600' }}>
+            <Typography
+              variant="h3"
+              style={{ marginTop: '0px', fontWeight: '600' }}
+            >
               Verification Successful :)
             </Typography>
-            <Typography style={{ marginTop: '30px', fontSize: '18px', fontWeight: '300' }}>
+            <Typography
+              style={{ marginTop: '30px', fontSize: '18px', fontWeight: '300' }}
+            >
               Your email has been verified successfully.
-              <br />
-              {' '}
-              Kindly click the button below to proceed to the login page
-              {' '}
+              <br /> Kindly click the button below to proceed to the login page{' '}
               <br />
               <b>And Login with your newly created account.</b>
             </Typography>
           </div>
-          <Button variant="contained" color="secondary" className={classes.button} onClick={navtoLog}>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            onClick={navtoLog}
+          >
             Login
           </Button>
         </div>

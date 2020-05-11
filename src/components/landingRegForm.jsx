@@ -37,7 +37,12 @@ class LandingRegForm extends React.Component {
       dateValPlaceholder: 'Date:',
       dateVal: '',
     });
-    if (event.target.innerText === 'April' || event.target.innerText === 'June' || event.target.innerText === 'September' || event.target.innerText === 'November') {
+    if (
+      event.target.innerText === 'April' ||
+      event.target.innerText === 'June' ||
+      event.target.innerText === 'September' ||
+      event.target.innerText === 'November'
+    ) {
       this.setState({
         specialMonth: { display: 'block' },
         extendMonthDisp: { display: 'none' },
@@ -96,8 +101,15 @@ class LandingRegForm extends React.Component {
     //  add checks for all conditions especially dob and all
     //  alert('form is now being submitted');
     const {
-      nameVal, passVal,
-      monthVal, dateVal, emailVal, numVal, yearVal, webVal, enoVal,
+      nameVal,
+      passVal,
+      monthVal,
+      dateVal,
+      emailVal,
+      numVal,
+      yearVal,
+      webVal,
+      enoVal,
     } = this.state;
     const obj = {
       name: nameVal,
@@ -106,23 +118,57 @@ class LandingRegForm extends React.Component {
       entryno: enoVal,
       phone: numVal,
       dob: `${dateVal}-${monthVal}-${yearVal}`,
-      website: webVal
+      website: webVal,
     };
     this.props.register(obj);
   }
 
   render() {
     const {
-      nameVal, passVal, monthValPlaceholder,
-      monthVal, dateValPlaceholder, dateVal, yeareValPlaceholder, yearVal, emailVal, numVal,
-      webVal, extendMonthDisp, specialMonth, enoVal,
+      nameVal,
+      passVal,
+      monthValPlaceholder,
+      monthVal,
+      dateValPlaceholder,
+      dateVal,
+      yeareValPlaceholder,
+      yearVal,
+      emailVal,
+      numVal,
+      webVal,
+      extendMonthDisp,
+      specialMonth,
+      enoVal,
     } = this.state;
     return (
       <div className="formCont">
-        <form id="regform" action="#" method="POST" onSubmit={this.handleSubmit}>
+        <form
+          id="regform"
+          action="#"
+          method="POST"
+          onSubmit={this.handleSubmit}
+        >
           <div className="row rowTwo">
-            <input required style={{ width: '49%' }} type="text" name="name" className="" placeholder="Full Name: John Doe" value={nameVal} onChange={this.handleChange} />
-            <input required style={{ width: '49%' }} type="password" name="pass" className="" placeholder="Password: XXXX " value={passVal} onChange={this.handleChange} />
+            <input
+              required
+              style={{ width: '49%' }}
+              type="text"
+              name="name"
+              className=""
+              placeholder="Full Name: John Doe"
+              value={nameVal}
+              onChange={this.handleChange}
+            />
+            <input
+              required
+              style={{ width: '49%' }}
+              type="password"
+              name="pass"
+              className=""
+              placeholder="Password: XXXX "
+              value={passVal}
+              onChange={this.handleChange}
+            />
           </div>
           <div className="row dropDownRow">
             <div className="dropdownContainer">
@@ -131,18 +177,90 @@ class LandingRegForm extends React.Component {
                 {monthVal}
               </div>
               <div className="dropdownDrop">
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>January</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>February</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>March</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>April</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>May</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>June</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>July</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>August</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>September</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>October</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>November</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownMonth}>December</div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  January
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  February
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  March
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  April
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  May
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  June
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  July
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  August
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  September
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  October
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  November
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownMonth}
+                >
+                  December
+                </div>
               </div>
             </div>
             <div className="dropdownContainer">
@@ -151,37 +269,226 @@ class LandingRegForm extends React.Component {
                 {dateVal}
               </div>
               <div className="dropdownDrop">
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>1</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>2</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>3</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>4</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>5</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>6</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>7</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>8</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>9</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>10</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>11</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>12</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>13</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>14</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>15</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>16</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>17</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>18</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>19</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>20</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>21</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>22</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>23</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>24</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>25</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>26</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>27</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate}>28</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate} style={specialMonth}>29</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate} style={specialMonth}>30</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownDate} style={extendMonthDisp}>31</div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  1
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  2
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  3
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  4
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  5
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  6
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  7
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  8
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  9
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  10
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  11
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  12
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  13
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  14
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  15
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  16
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  17
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  18
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  19
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  20
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  21
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  22
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  23
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  24
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  25
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  26
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  27
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                >
+                  28
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                  style={specialMonth}
+                >
+                  29
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                  style={specialMonth}
+                >
+                  30
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownDate}
+                  style={extendMonthDisp}
+                >
+                  31
+                </div>
               </div>
             </div>
             <div className="dropdownContainer">
@@ -190,38 +497,217 @@ class LandingRegForm extends React.Component {
                 {yearVal}
               </div>
               <div className="dropdownDrop">
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>2005</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>2004</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>2003</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>2002</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>2001</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>2000</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1999</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1998</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1997</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1996</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1995</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1994</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1993</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1992</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1991</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1990</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1989</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1988</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1987</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1986</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1985</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1984</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1983</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1982</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1981</div>
-                <div className="dropdownElement" role="presentation" onClick={this.handleDropdownYear}>1980</div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  2005
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  2004
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  2003
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  2002
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  2001
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  2000
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1999
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1998
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1997
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1996
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1995
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1994
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1993
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1992
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1991
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1990
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1989
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1988
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1987
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1986
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1985
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1984
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1983
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1982
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1981
+                </div>
+                <div
+                  className="dropdownElement"
+                  role="presentation"
+                  onClick={this.handleDropdownYear}
+                >
+                  1980
+                </div>
               </div>
             </div>
           </div>
-          <input required style={{ width: '95.3%' }} type="text" name="entryno" placeholder="Entry Number: " value={enoVal} onChange={this.handleChange} />
-          <input required style={{ width: '95.3%' }} type="email" name="email" placeholder="Email Adress: " value={emailVal} onChange={this.handleChange} />
-          <input style={{ width: '95.3%' }} type="text" name="website" placeholder="Website: (if any)" value={webVal} onChange={this.handleChange} />
+          <input
+            required
+            style={{ width: '95.3%' }}
+            type="text"
+            name="entryno"
+            placeholder="Entry Number: "
+            value={enoVal}
+            onChange={this.handleChange}
+          />
+          <input
+            required
+            style={{ width: '95.3%' }}
+            type="email"
+            name="email"
+            placeholder="Email Adress: "
+            value={emailVal}
+            onChange={this.handleChange}
+          />
+          <input
+            style={{ width: '95.3%' }}
+            type="text"
+            name="website"
+            placeholder="Website: (if any)"
+            value={webVal}
+            onChange={this.handleChange}
+          />
         </form>
       </div>
     );
