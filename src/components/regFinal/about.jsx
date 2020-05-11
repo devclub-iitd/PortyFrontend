@@ -14,7 +14,7 @@ class AboutExpansionPanel extends React.Component {
       label: '',
       imgUrl: '',
       summary: '',
-      number: ''
+      number: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -63,7 +63,9 @@ class AboutExpansionPanel extends React.Component {
     const {
       expanded, action,
     } = this.props;
-    const { label, summary, imgUrl, number } = this.state;
+    const {
+      label, summary, imgUrl, number,
+    } = this.state;
     return (
       <div style={useStyles.root}>
         <ExpansionPanel expanded={expanded === 'aboutPanel'} onChange={action}>
@@ -122,6 +124,7 @@ class AboutExpansionPanel extends React.Component {
 AboutExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default AboutExpansionPanel;

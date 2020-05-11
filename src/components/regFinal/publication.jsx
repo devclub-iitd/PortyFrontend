@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -17,21 +18,21 @@ class PublicationExpansionPanel extends React.Component {
       publicationDetailsCount: 1,
       maxCount: 1,
       btnStyle: {
-        display: "none"
+        display: 'none',
       },
       expanded: false,
       publicationFields: tempFields,
       publicationFieldTracker: tempFieldsTracker,
       publication: [
         {
-          name: "",
-          publisher: "",
-          releaseDate: "",
-          website: "",
-          summary: "",
-          hidden: false
-        }
-      ]
+          name: '',
+          publisher: '',
+          releaseDate: '',
+          website: '',
+          summary: '',
+          hidden: false,
+        },
+      ],
     };
     const { expanded } = this.state;
     tempFields.push(
@@ -43,7 +44,7 @@ class PublicationExpansionPanel extends React.Component {
         action={() => this.handlePanel(`publicationPanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -73,17 +74,17 @@ class PublicationExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${i}`)}
         moveFieldDown={() => this.moveFieldDown(key, i)}
         moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
+      />,
     );
 
     const { publication } = this.state;
     const publicationObj = {
-      name: "",
-      publisher: "",
-      releaseDate: "",
-      website: "",
-      summary: "",
-      hidden: false
+      name: '',
+      publisher: '',
+      releaseDate: '',
+      website: '',
+      summary: '',
+      hidden: false,
     };
     const temppublication = publication;
     temppublication.push(publicationObj);
@@ -91,11 +92,11 @@ class PublicationExpansionPanel extends React.Component {
       publicationDetailsCount: state.publicationDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: "block"
+        display: 'block',
       },
       publicationFields: tempFields,
       publicationFieldTracker: tempFieldsTracker,
-      publication: temppublication
+      publication: temppublication,
     }));
   }
 
@@ -114,19 +115,21 @@ class PublicationExpansionPanel extends React.Component {
       publicationDetailsCount: state.publicationDetailsCount - 1,
       publicationFields: tempFields,
       publicationFieldTracker: tempFieldsTracker,
-      publication: temppublication
+      publication: temppublication,
     }));
     if (publicationDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: "none"
-        }
+          display: 'none',
+        },
       });
     }
   }
 
   callApiRequest() {
-    this.props.senData("publications", this.state.publication);
+    const { publication } = this.state;
+    const { senData } = this.props;
+    senData('publications', publication);
   }
 
   handleInputChange(event) {
@@ -134,13 +137,13 @@ class PublicationExpansionPanel extends React.Component {
     const { publication } = this.state;
     const type = event.target.name;
     const temppublication = publication;
-    if (type === "hidden") {
+    if (type === 'hidden') {
       temppublication[id][type] = event.target.checked;
     } else {
       temppublication[id][type] = event.target.value;
     }
     this.setState({
-      publication: temppublication
+      publication: temppublication,
     });
   }
 
@@ -162,12 +165,12 @@ class PublicationExpansionPanel extends React.Component {
             action={() => this.handlePanel(`publicationPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
         expanded: false,
-        publicationFields: tempFields
+        publicationFields: tempFields,
       });
     } else {
       const tempFields = [];
@@ -183,12 +186,12 @@ class PublicationExpansionPanel extends React.Component {
             action={() => this.handlePanel(`publicationPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
         expanded: panel,
-        publicationFields: tempFields
+        publicationFields: tempFields,
       });
     }
   }
@@ -233,12 +236,12 @@ class PublicationExpansionPanel extends React.Component {
       temppublication[i] = temppublication[i - 1];
       temppublication[i - 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       publicationFields: tempFields,
       publicationFieldTracker: tempFieldsTracker,
-      publication: temppublication
+      publication: temppublication,
     });
   }
 
@@ -283,12 +286,12 @@ class PublicationExpansionPanel extends React.Component {
       temppublication[i] = temppublication[i + 1];
       temppublication[i + 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       publicationFields: tempFields,
       publicationFieldTracker: tempFieldsTracker,
-      publication: temppublication
+      publication: temppublication,
     });
   }
 
@@ -296,30 +299,30 @@ class PublicationExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -328,7 +331,7 @@ class PublicationExpansionPanel extends React.Component {
     return (
       <div style={useStyles.root}>
         <ExpansionPanel
-          expanded={expanded === "publicationPanel"}
+          expanded={expanded === 'publicationPanel'}
           onChange={action}
         >
           <ExpansionPanelSummary
@@ -372,6 +375,7 @@ class PublicationExpansionPanel extends React.Component {
 PublicationExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default PublicationExpansionPanel;

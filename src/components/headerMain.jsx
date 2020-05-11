@@ -84,10 +84,6 @@ class SimpleTabs extends React.Component {
     value: 0,
   }
 
-  componentDidMount() {
-    //this.props.getCurrentProfile();
-  }
-
   handleChange = (event, value) => {
     this.setState({ value });
   }
@@ -131,7 +127,9 @@ class SimpleTabs extends React.Component {
 }
 
 SimpleTabs.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  user: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({

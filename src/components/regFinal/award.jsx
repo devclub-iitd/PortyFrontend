@@ -1,12 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { createMuiTheme } from "@material-ui/core/styles";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import AwardDetails from "./awardDetailsContainer";
+/* eslint-disable no-alert */
+import React from 'react';
+import PropTypes from 'prop-types';
+import { createMuiTheme } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AwardDetails from './awardDetailsContainer';
 
 class AwardExpansionPanel extends React.Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class AwardExpansionPanel extends React.Component {
         action={() => this.handlePanel(`awardPanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -124,7 +125,9 @@ class AwardExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('awards', this.state.award);
+    const { award } = this.state;
+    const { senData } = this.props;
+    senData('awards', award);
   }
 
   handleInputChange(event) {
@@ -160,12 +163,12 @@ class AwardExpansionPanel extends React.Component {
             action={() => this.handlePanel(`awardPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
         expanded: false,
-        awardFields: tempFields
+        awardFields: tempFields,
       });
     } else {
       const tempFields = [];
@@ -181,12 +184,12 @@ class AwardExpansionPanel extends React.Component {
             action={() => this.handlePanel(`awardPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
         expanded: panel,
-        awardFields: tempFields
+        awardFields: tempFields,
       });
     }
   }
@@ -231,12 +234,12 @@ class AwardExpansionPanel extends React.Component {
       tempaward[i] = tempaward[i - 1];
       tempaward[i - 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       awardFields: tempFields,
       awardFieldTracker: tempFieldsTracker,
-      award: tempaward
+      award: tempaward,
     });
   }
 
@@ -281,12 +284,12 @@ class AwardExpansionPanel extends React.Component {
       tempaward[i] = tempaward[i + 1];
       tempaward[i + 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       awardFields: tempFields,
       awardFieldTracker: tempFieldsTracker,
-      award: tempaward
+      award: tempaward,
     });
   }
 
@@ -294,30 +297,30 @@ class AwardExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -325,7 +328,7 @@ class AwardExpansionPanel extends React.Component {
     const { btnStyle } = this.state;
     return (
       <div style={useStyles.root}>
-        <ExpansionPanel expanded={expanded === "awardPanel"} onChange={action}>
+        <ExpansionPanel expanded={expanded === 'awardPanel'} onChange={action}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
@@ -366,7 +369,8 @@ class AwardExpansionPanel extends React.Component {
 
 AwardExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
-  action: PropTypes.func.isRequired
+  action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default AwardExpansionPanel;

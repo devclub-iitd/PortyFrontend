@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -17,23 +18,23 @@ class EducationExpansionPanel extends React.Component {
       educationDetailsCount: 1,
       maxCount: 1,
       btnStyle: {
-        display: "none"
+        display: 'none',
       },
       expanded: false,
       educationFields: tempFields,
       educationFieldTracker: tempFieldsTracker,
       education: [
         {
-          institution: "",
-          area: "",
-          qualification: "",
-          startdate: "",
-          enddate: "",
-          gpa: "",
-          details: "",
-          hidden: false
-        }
-      ]
+          institution: '',
+          area: '',
+          qualification: '',
+          startdate: '',
+          enddate: '',
+          gpa: '',
+          details: '',
+          hidden: false,
+        },
+      ],
     };
     const { expanded } = this.state;
     tempFields.push(
@@ -45,7 +46,7 @@ class EducationExpansionPanel extends React.Component {
         action={() => this.handlePanel(`educationPanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -75,19 +76,19 @@ class EducationExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${i}`)}
         moveFieldDown={() => this.moveFieldDown(key, i)}
         moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
+      />,
     );
 
     const { education } = this.state;
     const educationObj = {
-      institution: "",
-      area: "",
-      qualification: "",
-      startdate: "",
-      enddate: "",
-      gpa: "",
-      details: "",
-      hidden: false
+      institution: '',
+      area: '',
+      qualification: '',
+      startdate: '',
+      enddate: '',
+      gpa: '',
+      details: '',
+      hidden: false,
     };
     const tempeducation = education;
     tempeducation.push(educationObj);
@@ -95,11 +96,11 @@ class EducationExpansionPanel extends React.Component {
       educationDetailsCount: state.educationDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: "block"
+        display: 'block',
       },
       educationFields: tempFields,
       educationFieldTracker: tempFieldsTracker,
-      education: tempeducation
+      education: tempeducation,
     }));
   }
 
@@ -118,19 +119,21 @@ class EducationExpansionPanel extends React.Component {
       educationDetailsCount: state.educationDetailsCount - 1,
       educationFields: tempFields,
       educationFieldTracker: tempFieldsTracker,
-      education: tempeducation
+      education: tempeducation,
     }));
     if (educationDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: "none"
-        }
+          display: 'none',
+        },
       });
     }
   }
 
   callApiRequest() {
-    this.props.senData("education", this.state.education);
+    const { education } = this.state;
+    const { senData } = this.props;
+    senData('education', education);
   }
 
   handleInputChange(event) {
@@ -138,13 +141,13 @@ class EducationExpansionPanel extends React.Component {
     const { education } = this.state;
     const type = event.target.name;
     const tempeducation = education;
-    if (type === "hidden") {
+    if (type === 'hidden') {
       tempeducation[id][type] = event.target.checked;
     } else {
       tempeducation[id][type] = event.target.value;
     }
     this.setState({
-      education: tempeducation
+      education: tempeducation,
     });
   }
 
@@ -166,12 +169,12 @@ class EducationExpansionPanel extends React.Component {
             action={() => this.handlePanel(`educationPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
         expanded: false,
-        educationFields: tempFields
+        educationFields: tempFields,
       });
     } else {
       const tempFields = [];
@@ -187,12 +190,12 @@ class EducationExpansionPanel extends React.Component {
             action={() => this.handlePanel(`educationPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
         expanded: panel,
-        educationFields: tempFields
+        educationFields: tempFields,
       });
     }
   }
@@ -237,12 +240,12 @@ class EducationExpansionPanel extends React.Component {
       tempeducation[i] = tempeducation[i - 1];
       tempeducation[i - 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       educationFields: tempFields,
       educationFieldTracker: tempFieldsTracker,
-      education: tempeducation
+      education: tempeducation,
     });
   }
 
@@ -287,12 +290,12 @@ class EducationExpansionPanel extends React.Component {
       tempeducation[i] = tempeducation[i + 1];
       tempeducation[i + 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       educationFields: tempFields,
       educationFieldTracker: tempFieldsTracker,
-      education: tempeducation
+      education: tempeducation,
     });
   }
 
@@ -300,30 +303,30 @@ class EducationExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -332,7 +335,7 @@ class EducationExpansionPanel extends React.Component {
     return (
       <div style={useStyles.root}>
         <ExpansionPanel
-          expanded={expanded === "educationPanel"}
+          expanded={expanded === 'educationPanel'}
           onChange={action}
         >
           <ExpansionPanelSummary
@@ -376,6 +379,7 @@ class EducationExpansionPanel extends React.Component {
 EducationExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default EducationExpansionPanel;

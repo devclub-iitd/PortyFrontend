@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -17,18 +18,18 @@ class LanguageExpansionPanel extends React.Component {
       languageDetailsCount: 1,
       maxCount: 1,
       btnStyle: {
-        display: "none"
+        display: 'none',
       },
       expanded: false,
       languageFields: tempFields,
       languageFieldTracker: tempFieldsTracker,
       language: [
         {
-          language: "",
-          fluency: "",
-          hidden: false
-        }
-      ]
+          language: '',
+          fluency: '',
+          hidden: false,
+        },
+      ],
     };
     const { expanded } = this.state;
     tempFields.push(
@@ -40,7 +41,7 @@ class LanguageExpansionPanel extends React.Component {
         action={() => this.handlePanel(`languagePanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -70,14 +71,14 @@ class LanguageExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${i}`)}
         moveFieldDown={() => this.moveFieldDown(key, i)}
         moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
+      />,
     );
 
     const { language } = this.state;
     const languageObj = {
-      language: "",
-      fluency: "",
-      hidden: false
+      language: '',
+      fluency: '',
+      hidden: false,
     };
     const templanguage = language;
     templanguage.push(languageObj);
@@ -85,11 +86,11 @@ class LanguageExpansionPanel extends React.Component {
       languageDetailsCount: state.languageDetailsCount + 1,
       maxCount: state.maxCount + 1,
       btnStyle: {
-        display: "block"
+        display: 'block',
       },
       languageFields: tempFields,
       languageFieldTracker: tempFieldsTracker,
-      language: templanguage
+      language: templanguage,
     }));
   }
 
@@ -108,34 +109,35 @@ class LanguageExpansionPanel extends React.Component {
       languageDetailsCount: state.languageDetailsCount - 1,
       languageFields: tempFields,
       languageFieldTracker: tempFieldsTracker,
-      language: templanguage
+      language: templanguage,
     }));
     if (languageDetailsCount === 2) {
       this.setState({
         btnStyle: {
-          display: "none"
-        }
+          display: 'none',
+        },
       });
     }
   }
 
   callApiRequest() {
-    this.props.senData("languages", this.state.language);
+    const { language } = this.state;
+    const { senData } = this.props;
+    senData('languages', language);
   }
-  
+
   handleInputChange(event) {
     const { id } = event.target;
     const { language } = this.state;
     const type = event.target.name;
     const templanguage = language;
-    if (type === "hidden") {
+    if (type === 'hidden') {
       templanguage[id][type] = event.target.checked;
     } else {
       templanguage[id][type] = event.target.value;
     }
-    console.log(templanguage);
     this.setState({
-      language: templanguage
+      language: templanguage,
     });
   }
 
@@ -157,12 +159,12 @@ class LanguageExpansionPanel extends React.Component {
             action={() => this.handlePanel(`languagePanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
         expanded: false,
-        languageFields: tempFields
+        languageFields: tempFields,
       });
     } else {
       const tempFields = [];
@@ -178,12 +180,12 @@ class LanguageExpansionPanel extends React.Component {
             action={() => this.handlePanel(`languagePanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
         expanded: panel,
-        languageFields: tempFields
+        languageFields: tempFields,
       });
     }
   }
@@ -228,12 +230,12 @@ class LanguageExpansionPanel extends React.Component {
       templanguage[i] = templanguage[i - 1];
       templanguage[i - 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       languageFields: tempFields,
       languageFieldTracker: tempFieldsTracker,
-      language: templanguage
+      language: templanguage,
     });
   }
 
@@ -278,12 +280,12 @@ class LanguageExpansionPanel extends React.Component {
       templanguage[i] = templanguage[i + 1];
       templanguage[i + 1] = tempstore;
     } else {
-      alert("you cant move this field any more");
+      alert('you cant move this field any more');
     }
     this.setState({
       languageFields: tempFields,
       languageFieldTracker: tempFieldsTracker,
-      language: templanguage
+      language: templanguage,
     });
   }
 
@@ -291,30 +293,30 @@ class LanguageExpansionPanel extends React.Component {
     const theme = createMuiTheme({
       palette: {
         primary: {
-          main: "rgba(255,255,255,1)"
+          main: 'rgba(255,255,255,1)',
         },
         secondary: {
-          main: "#3d40d8"
-        }
-      }
+          main: '#3d40d8',
+        },
+      },
     });
     const useStyles = {
       root: {
-        width: "75%",
-        margin: "auto",
-        marginTop: "15px"
+        width: '75%',
+        margin: 'auto',
+        marginTop: '15px',
       },
       heading: {
         fontSize: theme.typography.pxToRem(18),
-        flexBasis: "33.33%",
-        textTransform: "uppercase",
+        flexBasis: '33.33%',
+        textTransform: 'uppercase',
         flexShrink: 0,
-        fontWeight: 700
+        fontWeight: 700,
       },
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.secondary.main
-      }
+        color: theme.palette.secondary.main,
+      },
     };
     const { expanded } = this.props;
     const { action } = this.props;
@@ -323,7 +325,7 @@ class LanguageExpansionPanel extends React.Component {
     return (
       <div style={useStyles.root}>
         <ExpansionPanel
-          expanded={expanded === "languagePanel"}
+          expanded={expanded === 'languagePanel'}
           onChange={action}
         >
           <ExpansionPanelSummary
@@ -367,6 +369,7 @@ class LanguageExpansionPanel extends React.Component {
 LanguageExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default LanguageExpansionPanel;

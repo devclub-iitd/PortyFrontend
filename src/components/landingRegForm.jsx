@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setAlert } from '../actions/alert';
 import { register } from '../actions/auth';
@@ -18,7 +19,6 @@ class LandingRegForm extends React.Component {
       yearVal: '',
       enoVal: '',
       emailVal: '',
-      numVal: '',
       webVal: '',
       extendMonthDisp: { display: 'block' },
       specialMonth: { display: 'block' },
@@ -58,6 +58,7 @@ class LandingRegForm extends React.Component {
   handleDropdownDate(event) {
     const { monthVal } = this.state;
     if (monthVal === '') {
+      // eslint-disable-next-line no-alert
       alert('Please select the month first');
     } else {
       this.setState({
@@ -77,13 +78,10 @@ class LandingRegForm extends React.Component {
   handleChange(event) {
     if (event.target.name === 'name') {
       this.setState({ nameVal: event.target.value });
-      //this.props.setAlert("Name Changes","Info")
     } else if (event.target.name === 'pass') {
       this.setState({ passVal: event.target.value });
     } else if (event.target.name === 'email') {
       this.setState({ emailVal: event.target.value });
-    } else if (event.target.name === 'phone') {
-      this.setState({ numVal: event.target.value });
     } else if (event.target.name === 'website') {
       this.setState({ webVal: event.target.value });
     } else if (event.target.name === 'entryno') {
@@ -93,28 +91,27 @@ class LandingRegForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    //  add checks for all conditions especially dob and all
-    //  alert('form is now being submitted');
+    //  TODO - add checks for all conditions especially dob and all
     const {
       nameVal, passVal,
-      monthVal, dateVal, emailVal, numVal, yearVal, webVal, enoVal,
+      monthVal, dateVal, emailVal, yearVal, webVal, enoVal,
     } = this.state;
     const obj = {
       name: nameVal,
       email: emailVal,
       password: passVal,
       entryno: enoVal,
-      phone: numVal,
       dob: `${dateVal}-${monthVal}-${yearVal}`,
-      website: webVal
+      website: webVal,
     };
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.register(obj);
   }
 
   render() {
     const {
       nameVal, passVal, monthValPlaceholder,
-      monthVal, dateValPlaceholder, dateVal, yeareValPlaceholder, yearVal, emailVal, numVal,
+      monthVal, dateValPlaceholder, dateVal, yeareValPlaceholder, yearVal, emailVal,
       webVal, extendMonthDisp, specialMonth, enoVal,
     } = this.state;
     return (
@@ -227,5 +224,9 @@ class LandingRegForm extends React.Component {
     );
   }
 }
+
+LandingRegForm.propTypes = {
+  register: PropTypes.func.isRequired,
+};
 
 export default connect(null, { register, setAlert })(LandingRegForm);

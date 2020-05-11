@@ -1,6 +1,6 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -8,8 +8,6 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import WorkDetails from './workDetailsContainer';
-import {createProfile} from '../../actions/profile'
-
 
 class WorkExpansionPanel extends React.Component {
   constructor(props) {
@@ -44,7 +42,7 @@ class WorkExpansionPanel extends React.Component {
     this.moveFieldUp = this.moveFieldUp.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-  
+
   onAddChild() {
     const { workFields } = this.state;
     const { workFieldTracker } = this.state;
@@ -109,8 +107,9 @@ class WorkExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    console.log(this.state)
-    this.props.senData('work', this.state.work);
+    const { work } = this.state;
+    const { senData } = this.props;
+    senData('work', work);
   }
 
   handleInputChange(event) {
@@ -282,6 +281,7 @@ class WorkExpansionPanel extends React.Component {
 WorkExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
-export default WorkExpansionPanel
+export default WorkExpansionPanel;

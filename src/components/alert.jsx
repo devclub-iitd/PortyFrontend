@@ -1,22 +1,23 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import '../style/alert.css';
 
+// eslint-disable-next-line no-shadow
 const alert = ({ alerts }) => alerts !== null && alerts.length > 0 && alerts.map(alert => (
-    <span key={alert.id} id={alert.id} className={`alert alert-${alert.alertType}`}>
-        {alert.msg}
-        {' '}
+  <span key={alert.id} id={alert.id} className={`alert alert-${alert.alertType}`}>
+    {alert.msg}
+    {' '}
         hello
-    </span>
+  </span>
 ));
 
 alert.propTypes = {
-    alerts : PropTypes.array.isRequired,
-}
+  alerts: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 
 const mapStateToProps = state => ({
-    alerts : state.alert
-})
+  alerts: state.alert,
+});
 
-export default connect(mapStateToProps)(alert)
+export default connect(mapStateToProps)(alert);
