@@ -28,7 +28,7 @@ const FlatCard = (props) => {
         <div className="portfolioFlatSubTitle portfolioCardWebsite">
           Website:
           {' '}
-          <a href={website} target="_blank">{website}</a>
+          <a href={website} target="_blank" rel="noopener noreferrer">{website}</a>
         </div>
       </div>
       <div className="portfolioCardDateContainer">
@@ -47,7 +47,7 @@ FlatCard.propTypes = {
   degree: PropTypes.string.isRequired,
   area: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
-  grade: PropTypes.number.isRequired,
+  website: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
 };

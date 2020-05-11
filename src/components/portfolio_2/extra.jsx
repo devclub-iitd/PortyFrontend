@@ -1,8 +1,9 @@
 import React from 'react';
-import AwardCard from './cards/mini/award.jsx';
-import LanguageCard from './cards/mini/language.jsx';
-import PublicationCard from './cards/mini/publication.jsx';
-import SkillCard from './cards/mini/skills.jsx';
+import PropTypes from 'prop-types';
+import AwardCard from './cards/mini/award';
+import LanguageCard from './cards/mini/language';
+import PublicationCard from './cards/mini/publication';
+import SkillCard from './cards/mini/skills';
 import DialogPublication from './cards/dialogPublication';
 import DialogAward from './cards/dialogAward';
 
@@ -59,10 +60,23 @@ class Extra extends React.Component {
 
   render() {
     const {
-      title, openPublishDialog, openAwardDialog, company, date, website, text, userAwards, userLanguages, userSkills, userPublication,
+      title,
+      openPublishDialog,
+      openAwardDialog,
+      company,
+      date,
+      website,
+      text,
+      userAwards,
+      userLanguages,
+      userSkills,
+      userPublication,
     } = this.state;
-    let AwardDisp, PublicDisp, SkillDisp;
-    console.log(userAwards);
+
+    let AwardDisp;
+    let PublicDisp;
+    let SkillDisp;
+
     if (userAwards.length > 0 && userAwards[0].title !== '') {
       AwardDisp = <AwardCard title="awards" items={userAwards} handleDialogOpen={this.handleDialogOpen} />;
     }
@@ -110,5 +124,12 @@ class Extra extends React.Component {
     );
   }
 }
+
+Extra.propTypes = {
+  awards: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  publications: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  languages: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  skills: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 
 export default Extra;

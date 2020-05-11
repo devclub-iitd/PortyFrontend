@@ -36,14 +36,5 @@ const Education = (props) => {
 Education.propTypes = {
   education: PropTypes.objectOf(PropTypes.object).isRequired,
 };
-// <FlatCard
-//   institution={educationPlace.institution}
-//   degree={educationPlace.qualification}
-//   area={educationPlace.area}
-//   grade={educationPlace.gpa}
-//   startDate={educationPlace.startdate}
-//   endDate={educationPlace.enddate}
-// >
-
 
 export default Education;
