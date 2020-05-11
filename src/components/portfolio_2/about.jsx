@@ -2,24 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const About = (props) => {
-  const { summary } = props;
-  const about = summary.summary;
-  return (
-    <div className="portfolioPage aboutPage">
-      <div className="portfolioPageSplit rightAbout">
-        <div className="portfolioUserSummary">
-          <div className="miniLine" />
-          {about}
-          <div className="miniLine" />
+    const about = props.summary.summary;
+    // console.log("about props below")
+    // console.log(props.summary.summary);
+    return (
+        <div className="portfolioPage aboutPage">
+            <div className="portfolioPageSplit rightAbout">
+                <div className="portfolioUserSummary">
+                    <div className="miniLine" />
+                    {about}
+                    <div className="miniLine" />
+                </div>
+            </div>
+            <div className="portfolioPageSplit leftAbout">About me</div>
         </div>
-      </div>
-      <div className="portfolioPageSplit leftAbout">About me</div>
-    </div>
-  );
+    );
 };
 
 About.propTypes = {
-  summary: PropTypes.string.isRequired,
+    about: PropTypes.string.isRequired,
 };
 
 export default About;

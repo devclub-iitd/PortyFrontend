@@ -1,10 +1,10 @@
 .fullScreen {
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  display: flex;
-  left: 25%;
-  text-align: center;
-  justify-content: center;
-  flex-direction: column;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    left: 25%;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
 }

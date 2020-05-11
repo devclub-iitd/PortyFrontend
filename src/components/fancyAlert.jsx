@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 
 import Dialog from '@material-ui/core/Dialog';
@@ -9,44 +8,36 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
-const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
+const Transition = React.forwardRef((props, ref) => (
+    <Slide direction="up" ref={ref} {...props} />
+));
 
 const Alert = (props) => {
-  const {
-    open, title, handleClose, children,
-  } = props;
+    const { open, title, handleClose, children } = props;
 
-  return (
-    <Dialog
-      open={open}
-      TransitionComponent={Transition}
-      fullWidth
-      maxWidth="sm"
-      onClose={handleClose}
-      aria-labelledby="alert-dialog-slide-title"
-      aria-describedby="alert-dialog-slide-description"
-    >
-      <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description">
-          {children}
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="secondary">
-          Done!
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
+    return (
+        <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            fullWidth
+            maxWidth="sm"
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
+        >
+            <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
+            <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                    {children}
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={handleClose} color="secondary">
+                    Done!
+                </Button>
+            </DialogActions>
+        </Dialog>
+    );
 };
-
-Alert.propTypes = {
-  open: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
-};
-
 
 export default Alert;

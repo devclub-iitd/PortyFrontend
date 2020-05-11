@@ -1,66 +1,66 @@
 .fullScreen {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  background-image: url('http://wallpapercrafter.com/uploads/posts/100625-typewriter_book_notebook_paper_writing_write.jpg');
-  background-size: cover;
-  background-position: right;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-image: url('http://wallpapercrafter.com/uploads/posts/100625-typewriter_book_notebook_paper_writing_write.jpg');
+    background-size: cover;
+    background-position: right;
 }
 .overlay {
-  background-color: rgba(0,0,0,0.7);
-  position: absolute;
-  top: 15px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  color: white;
-  padding-left: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 15px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    color: white;
+    padding-left: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.validationTitleContainer{
-  margin-top: 120px;
-  text-align: center;
-  padding: 20px;
+.validationTitleContainer {
+    margin-top: 120px;
+    text-align: center;
+    padding: 20px;
 }
-.validationTitle{
-  font-size: 40px;
-  font-weight: 300;
+.validationTitle {
+    font-size: 40px;
+    font-weight: 300;
 }
-.validationSubtitle{
-  margin-top: 30px;
-  font-weight: 600;
-  color: #3d40d8;
-  font-size: 20px;
+.validationSubtitle {
+    margin-top: 30px;
+    font-weight: 600;
+    color: #3d40d8;
+    font-size: 20px;
 }
-.validationFormContainer{
-  padding: 40px;
-  text-align: center;
-  width: 500px;;
-  margin: auto;
-  margin-top: 30px;
+.validationFormContainer {
+    padding: 40px;
+    text-align: center;
+    width: 500px;
+    margin: auto;
+    margin-top: 30px;
 }
-.validationFormContainer input{
-  margin-bottom: 30px;
+.validationFormContainer input {
+    margin-bottom: 30px;
 }
 
 #regenerateForm input {
-  padding: 10px;
-  margin: 0px;
-  height: 25px;
-  width: 600px;
-  border-radius: 10px;
-  color: white;
-  font-size: 15px;
-  border: 2px solid rgba(255,255, 255, 0.7);
-  background-color: rgba(255,255,255,0);
+    padding: 10px;
+    margin: 0px;
+    height: 25px;
+    width: 600px;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0);
 }
-#regenerateForm input:hover{
-  border: 2px solid rgba(230,230,230,0.3);
+#regenerateForm input:hover {
+    border: 2px solid rgba(230, 230, 230, 0.3);
 }
-#regenerateForm input:focus{
-  border: 2px solid rgba(230,230,230,0.3);
+#regenerateForm input:focus {
+    border: 2px solid rgba(230, 230, 230, 0.3);
 }
