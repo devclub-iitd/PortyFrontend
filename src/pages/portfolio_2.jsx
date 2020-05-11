@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import { animateScroll as scroll } from 'react-scroll';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -34,23 +34,23 @@ const useStyles = makeStyles(() => ({
 
 const scrollToRef = () => {
   scroll.scrollTo(window.innerHeight);
-}
+};
 
 const navToReg = () => {
   window.location.href = '../register';
 };
 const Portfolio = ({
+  // eslint-disable-next-line no-shadow
   getCurrentProfile,
   isAuthenticated,
   auth,
-  profile: { profile, loading }
+  profile: { profile, loading },
 }) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
 
   const classes = useStyles();
-  const myRef = React.useRef(null);
   const initScroll = () => scrollToRef();
 
   if (loading) {
@@ -59,14 +59,14 @@ const Portfolio = ({
 
   if (!loading && profile !== null && !auth.loading && auth.isAuthenticated) {
     return (
-      <div class="portfolioContainerFull2">
+      <div className="portfolioContainerFull2">
         <Landing
           name={profile.user.name}
           label={profile.about.label}
           img={profile.about.imgUrl}
           initScroll={initScroll}
         />
-        <div class="portfolioBodyCont" style={{ top: window.innerHeight + 'px' }}>
+        <div className="portfolioBodyCont" style={{ top: `${window.innerHeight}px` }}>
           <About summary={profile.about} top={window.innerHeight} />
           <Education education={profile.education} />
           <Work work={profile.work} />
@@ -121,17 +121,17 @@ const Portfolio = ({
 
 Portfolio.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool
+  auth: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  profile: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getCurrentProfile },
 )(Portfolio);

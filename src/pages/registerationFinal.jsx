@@ -1,8 +1,9 @@
+/* eslint-disable class-methods-use-this */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { createProfile } from '../actions/profile';
 import { withRouter } from 'react-router-dom';
 
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,13 +14,14 @@ import InfoIcon from '@material-ui/icons/Info';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { createProfile, getCurrentProfile } from '../actions/profile';
 
 import AlertStatic from '../components/fancyAlertStatic';
 import Alert from '../components/fancyAlert';
 
 import Intro from '../components/regFinal/intro';
-import Image from '../components/regFinal/image';
-import Account from '../components/regFinal/account';
+// import Image from '../components/regFinal/image';
+// import Account from '../components/regFinal/account';
 import About from '../components/regFinal/about';
 import Location from '../components/regFinal/location';
 import Work from '../components/regFinal/work';
@@ -32,19 +34,19 @@ import Skill from '../components/regFinal/skill';
 import Interest from '../components/regFinal/interest';
 import Reference from '../components/regFinal/reference';
 import '../style/regFinal.css';
-import { getCurrentProfile } from '../actions/profile';
 
-var obj = {};
+
+const obj = {};
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "rgba(255,255,255,1)"
+      main: 'rgba(255,255,255,1)',
     },
     secondary: {
-      main: "#3d40d8"
-    }
-  }
+      main: '#3d40d8',
+    },
+  },
 });
 
 class RegFinal extends React.Component {
@@ -76,6 +78,7 @@ class RegFinal extends React.Component {
     this.handleCloseMini = this.handleCloseMini.bind(this);
     this.redirectHome = this.redirectHome.bind(this);
   }
+
   handlePanel(panel) {
     const { expanded } = this.state;
     if (expanded === panel) {
@@ -90,14 +93,12 @@ class RegFinal extends React.Component {
   }
 
   retrieveChildData(type, data) {
-      obj[type] = data;
+    obj[type] = data;
   }
 
   async handleSumbit(event) {
     event.preventDefault();
     this.openDial('Please wait while we create your profile...');
-    // this.openDial('Please wait for a few seconds while we register your details, do not click on anything');
-    // this.account.current.callApiRequest();
     this.about.current.callApiRequest();
     this.location.current.callApiRequest();
     this.work.current.callApiRequest();
@@ -109,23 +110,25 @@ class RegFinal extends React.Component {
     this.language.current.callApiRequest();
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
-    //console.log(obj)
-    await this.props.createProfile(obj,false); 
-    var len = this.props.alert.length;
-    if (this.props.alert[len - 1].alertType != 'blue') {
+    const { alert } = this.props;
+
+    // eslint-disable-next-line react/destructuring-assignment
+    await this.props.createProfile(obj, false);
+    const len = alert.length;
+    if (alert[len - 1].alertType !== 'blue') {
       this.setState({
         openDial: false,
         open: true,
         alertTitle: 'Whoops!!',
-        alertContent: this.props.alert[len - 1].msg
-      })
-    } else if (this.props.alert[len - 1].alertType == 'blue'){
+        alertContent: alert[len - 1].msg,
+      });
+    } else if (alert[len - 1].alertType === 'blue') {
       this.setState({
         openDial: false,
         openStatic: true,
         alertTitle: 'Profile has been created!',
         alertContent: 'You will be redirected to the Home page...Please click done to continue',
-      })
+      });
     }
   }
 
@@ -158,48 +161,55 @@ class RegFinal extends React.Component {
 
   render() {
     const {
-      expanded, open, alertTitle, alertContent, openStatic
+      expanded, open, alertTitle, alertContent, openStatic, openDial, message,
     } = this.state;
+    const {
+      user,
+    } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ paddingBottom: 100 }}>
-          <Intro name={this.props.user.name} caption="block" />
+          <Intro name={user.name} caption="block" />
           <form onSubmit={this.handleSumbit}>
-            {/* <Account ref={this.account} expanded={expanded} action={() => this.handlePanel('accountPanel')} />  */}
+            {/* <Account
+              ref={this.account}
+              expanded={expanded}
+              action={() => this.handlePanel('accountPanel')}
+            />  */}
             <About
               ref={this.about}
               expanded={expanded}
-              action={() => this.handlePanel("aboutPanel")}
+              action={() => this.handlePanel('aboutPanel')}
               senData={this.retrieveChildData}
             />
             <Location
               ref={this.location}
               expanded={expanded}
-              action={() => this.handlePanel("locationPanel")}
+              action={() => this.handlePanel('locationPanel')}
               senData={this.retrieveChildData}
             />
             <Education
               ref={this.education}
               expanded={expanded}
-              action={() => this.handlePanel("educationPanel")}
+              action={() => this.handlePanel('educationPanel')}
               senData={this.retrieveChildData}
             />
             <Work
               ref={this.work}
               expanded={expanded}
-              action={() => this.handlePanel("workPanel")}
+              action={() => this.handlePanel('workPanel')}
               senData={this.retrieveChildData}
             />
             <Volunteer
               ref={this.volunteer}
               expanded={expanded}
-              action={() => this.handlePanel("volunteerPanel")}
+              action={() => this.handlePanel('volunteerPanel')}
               senData={this.retrieveChildData}
             />
             <Language
               ref={this.language}
               expanded={expanded}
-              action={() => this.handlePanel("languagePanel")}
+              action={() => this.handlePanel('languagePanel')}
               senData={this.retrieveChildData}
             />
             <div className="regSubTitle">
@@ -208,37 +218,37 @@ class RegFinal extends React.Component {
             <Award
               ref={this.award}
               expanded={expanded}
-              action={() => this.handlePanel("awardPanel")}
+              action={() => this.handlePanel('awardPanel')}
               senData={this.retrieveChildData}
             />
             <Publication
               ref={this.publication}
               expanded={expanded}
-              action={() => this.handlePanel("publicationPanel")}
+              action={() => this.handlePanel('publicationPanel')}
               senData={this.retrieveChildData}
             />
             <Skill
               ref={this.skill}
               expanded={expanded}
-              action={() => this.handlePanel("skillPanel")}
+              action={() => this.handlePanel('skillPanel')}
               senData={this.retrieveChildData}
             />
             <Interest
               ref={this.interest}
               expanded={expanded}
-              action={() => this.handlePanel("interestPanel")}
+              action={() => this.handlePanel('interestPanel')}
               senData={this.retrieveChildData}
             />
             <Reference
               ref={this.reference}
               expanded={expanded}
-              action={() => this.handlePanel("referencePanel")}
+              action={() => this.handlePanel('referencePanel')}
               senData={this.retrieveChildData}
             />
             <div className="btnContainer">
               <Button
                 variant="contained"
-                style={{ padding: "12px 50px" }}
+                style={{ padding: '12px 50px' }}
                 color="secondary"
                 type="submit"
                 onClick={this.handleOpen}
@@ -258,16 +268,21 @@ class RegFinal extends React.Component {
               vertical: 'bottom',
               horizontal: 'left',
             }}
-            open={this.state.openDial}
+            open={openDial}
             autoHideDuration={6000}
             onClose={this.handleCloseMini}
             ContentProps={{
               'aria-describedby': 'message-id',
             }}
             message={(
-              <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+              <span
+                id="message-id"
+                style={{
+                  display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
+                }}
+              >
                 <InfoIcon style={{ marginRight: '10px' }} />
-                {this.state.message}
+                {message}
               </span>
             )}
             action={[
@@ -296,22 +311,19 @@ class RegFinal extends React.Component {
   }
 }
 
+RegFinal.propTypes = {
+  user: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  alert: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  createProfile: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
-  alert: state.alert
+  alert: state.alert,
 });
 
 export default connect(
   mapStateToProps,
   { createProfile, getCurrentProfile },
 )(withRouter(RegFinal));
-
-
-// <div className="headerSimple">
-//   <div className="headerSimpleTitle">
-//     Portfolio Creator|
-//     {' '}
-//     <span>Register</span>
-//   </div>
-// </div>

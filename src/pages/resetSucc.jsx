@@ -4,7 +4,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-// import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -64,7 +63,7 @@ class ResetSucc extends React.Component {
 }
 
 ResetSucc.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.object()).isRequired,
+  classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default withStyles(styles)(ResetSucc);

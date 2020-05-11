@@ -1,18 +1,20 @@
-import React, { useEffect, useRef } from 'react';
+/* eslint-disable camelcase */
+import React from 'react';
+import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
-import { regenerate_otp } from '../actions/auth'
 import { connect } from 'react-redux';
+import { regenerate_otp } from '../actions/auth';
 
 import '../style/validation.css';
-import { withRouter } from 'react-router-dom';
 
 const styles = {
   button: {
@@ -31,46 +33,49 @@ class Regenerate extends React.Component {
     super(props);
     this.state = {
       open: false,
-      mess: ''
-    }
+      mess: '',
+    };
     this.openDial = this.openDial.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidUpdate(oldProps) {
+    let index = 0;
+    const { alert } = this.props;
+    if (oldProps.alert.length !== alert.length) {
+      index = alert.length - 1;
+      this.openDial(alert[index].msg);
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     const email = event.target.email.value;
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.regenerate_otp(email);
-  };
+  }
 
   handleClose() {
     this.setState({
-      open: false
-    })
-  }
-  openDial(mess) {
-    this.setState({
-      open: false
-    })
-    this.setState({
-      open: true,
-      mess: mess
-    })
+      open: false,
+    });
   }
 
-  componentDidUpdate(oldProps) {
-    let index = 0;
-    if (oldProps.alert.length !== this.props.alert.length ) {
-      index = this.props.alert.length - 1;
-      this.openDial(this.props.alert[index].msg);
-    }
+  openDial(mess) {
+    this.setState({
+      open: false,
+    });
+    this.setState({
+      open: true,
+      mess,
+    });
   }
 
   render() {
     const { classes } = this.props;
     const { open, mess } = this.state;
-    return(
+    return (
       <div>
         <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
           <Toolbar>
@@ -110,7 +115,12 @@ class Regenerate extends React.Component {
             'aria-describedby': 'message-id',
           }}
           message={(
-            <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <span
+              id="message-id"
+              style={{
+                display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
+              }}
+            >
               <InfoIcon style={{ marginRight: '10px' }} />
               {mess}
             </span>
@@ -128,15 +138,21 @@ class Regenerate extends React.Component {
           ]}
         />
       </div>
-    )
-  };
+    );
+  }
+}
+
+Regenerate.propTypes = {
+  regenerate_otp: PropTypes.func.isRequired,
+  classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  alert: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = state => ({
-  alert: state.alert
+  alert: state.alert,
 });
 
 export default connect(
   mapStateToProps,
-  {regenerate_otp}
+  { regenerate_otp },
 )(withStyles(styles)(withRouter(Regenerate)));

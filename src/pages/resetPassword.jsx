@@ -156,7 +156,7 @@ const mapStateToProps = state => ({
 });
 
 Reset.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.object()).isRequired,
+  classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default connect(

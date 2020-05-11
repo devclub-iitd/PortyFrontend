@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import { MuiThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import InfoIcon from '@material-ui/icons/Info';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,7 +12,6 @@ import { createProfile, getFullProfile } from '../actions/profile';
 
 import Intro from '../components/edit/intro';
 import Image from '../components/edit/image';
-// import Account from '../components/edit/account';
 import About from '../components/edit/about';
 import Location from '../components/edit/location';
 import Work from '../components/edit/work';
@@ -27,7 +26,7 @@ import Reference from '../components/edit/reference';
 import '../style/regFinal.css';
 import Loader from '../components/loader';
 
-var obj = {};
+const obj = {};
 
 const theme = createMuiTheme({
   palette: {
@@ -72,6 +71,7 @@ class Edit extends React.Component {
   }
 
   componentDidMount() {
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.getFullProfile();
   }
 
@@ -88,15 +88,16 @@ class Edit extends React.Component {
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
   retrieveChildData(type, data) {
-      obj[type] = data;
+    obj[type] = data;
   }
 
   async handleSumbit(event) {
     event.preventDefault();
     this.setState({
-      message: 'Please wait while we update your profile'
-    })
+      message: 'Please wait while we update your profile',
+    });
     this.about.current.callApiRequest();
     this.location.current.callApiRequest();
     this.work.current.callApiRequest();
@@ -108,16 +109,18 @@ class Edit extends React.Component {
     this.language.current.callApiRequest();
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
-    await this.props.createProfile(obj,true)
-    var len = this.props.alert.length;
-    if (this.props.alert[len - 1].alertType != 'blue') {
+    // eslint-disable-next-line react/destructuring-assignment
+    await this.props.createProfile(obj, true);
+    const { alert } = this.props;
+    const len = alert.length;
+    if (alert[len - 1].alertType !== 'blue') {
       this.setState({
         open: true,
         openMini: false,
         alertTitle: 'Whoops!!',
-        alertContent: this.props.alert[len - 1].msg
-      })
-    } else if (this.props.alert[len - 1].alertType == 'blue') {
+        alertContent: alert[len - 1].msg,
+      });
+    } else if (alert[len - 1].alertType === 'blue') {
       this.setState({
         open: true,
         openMini: false,
@@ -147,7 +150,9 @@ class Edit extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line react/destructuring-assignment
     const { loading, profile } = this.props.profile;
+    const { user } = this.props;
     const {
       expanded, open, alertTitle, alertContent,
     } = this.state;
@@ -161,7 +166,7 @@ class Edit extends React.Component {
         <MuiThemeProvider theme={theme}>
           <div style={{ paddingBottom: 100 }}>
             <Image img={profile.about.imgUrl} />
-            <Intro name={this.props.user.name} caption="none" />
+            <Intro name={user.name} caption="none" />
             <form onSubmit={this.handleSumbit}>
               {/* <Account
                   ref={this.}
@@ -277,7 +282,12 @@ class Edit extends React.Component {
                 'aria-describedby': 'message-id',
               }}
               message={(
-                <span id="message-id" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                <span
+                  id="message-id"
+                  style={{
+                    display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
+                  }}
+                >
                   <InfoIcon style={{ marginRight: '10px' }} />
                   {this.state.message}
                 </span>
@@ -308,23 +318,34 @@ class Edit extends React.Component {
         </div>
       );
     }
+
+    return (
+      <div className="noProf noProfLarge">
+          Whoop!! An error occurred
+        {' '}
+          ...
+        <br />
+      </div>
+    );
   }
 }
 
 Edit.propTypes = {
   getFullProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  createProfile: PropTypes.func.isRequired,
+  user: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  profile: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  alert: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
   user: state.auth.user,
-  alert: state.alert
+  alert: state.alert,
 });
 
 export default connect(
   mapStateToProps,
-  { createProfile, getFullProfile}
+  { createProfile, getFullProfile },
 )(Edit);

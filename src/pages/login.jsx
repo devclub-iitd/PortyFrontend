@@ -9,8 +9,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import { connect } from 'react-redux';
 import InfoIcon from '@material-ui/icons/Info';
 
-// import MySnackbarContentWrapper from '../components/snackbar';
-
 import LoginForm from '../components/loginForm';
 
 import '../style/regLanding.css';
@@ -50,13 +48,9 @@ class IconLabelTabs extends React.Component {
 
   componentDidUpdate(oldProps) {
     let index = 0;
-    // eslint-disable-next-line react/prop-types
     const { alerts } = this.props;
-    // eslint-disable-next-line react/prop-types
     if (oldProps.alerts.length !== alerts.length) {
-      // eslint-disable-next-line react/prop-types
       index = alerts.length - 1;
-      // eslint-disable-next-line react/prop-types
       this.openDial(alerts[index].msg);
     }
   }
@@ -132,7 +126,8 @@ class IconLabelTabs extends React.Component {
 }
 
 IconLabelTabs.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  alerts: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = state => ({
