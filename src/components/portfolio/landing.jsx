@@ -1,15 +1,17 @@
+// TODO: FIX ESLINT ERRORS MANUALLY
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 
 const Landing = (props) => {
   const {
-    name, label, img
+    name, label, img, initScroll,
   } = props;
   return (
     <div className="portfolioPage1">
       <div className="portfolioPage1Details">
-        <img className="portfolioUserImage" src={img} />
+        <img className="portfolioUserImage" src={img} alt="user profile representation" />
         <div className="portfolioUserDetails">
           <span className="portfolioUserName">{name}</span>
           {' '}
@@ -22,7 +24,8 @@ const Landing = (props) => {
         </div>
       </div>
       <div className="portfolioPage1SocialHolder">
-        <div className="portfolioBtn" onClick={props.initScroll}>Learn More</div>
+        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+        <div className="portfolioBtn" onClick={initScroll}>Learn More</div>
       </div>
     </div>
   );
@@ -31,6 +34,8 @@ const Landing = (props) => {
 Landing.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  initScroll: PropTypes.func.isRequired,
 };
 
 export default Landing;
