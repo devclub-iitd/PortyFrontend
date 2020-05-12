@@ -41,7 +41,7 @@ const design2 = () => {
 };
 
 const navToTutorial = () => {
-    window.location.href = 'https://youtu.be/BMEjPExaS_A';
+    window.location.href = 'https://youtu.be/nJmQA7kpay4';
 };
 
 const Deploy = () => {
