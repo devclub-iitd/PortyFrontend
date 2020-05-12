@@ -39,9 +39,6 @@ const design1 = () => {
 const design2 = () => {
     window.location.href = './portfolio2';
 };
-const design3 = () => {
-    window.location.href = './portfolio3';
-};
 
 const navToTutorial = () => {
     window.location.href = 'https://youtu.be/BMEjPExaS_A';
@@ -118,26 +115,6 @@ const Deploy = () => {
                     </a>
                     <br />
                     <Button variant="outlined" onClick={design2}>
-                        View
-                    </Button>
-                </div>
-                <div className="buttonColumn">
-                    <a
-                        href="https://drive.google.com/open?id=136g5dZ4kcHDYm3BPJTDn7smO5Db6HZJ8"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            style={{ textDecoration: 'none' }}
-                            className={classes.button}
-                        >
-                            Design 3
-                        </Button>
-                    </a>
-                    <br />
-                    <Button variant="outlined" onClick={design3}>
                         View
                     </Button>
                 </div>
