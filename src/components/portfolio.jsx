@@ -19,6 +19,7 @@ const navToReg = () => {
     window.location.href = '../register';
 };
 
+// eslint-disable-next-line no-shadow
 const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
     useEffect(() => {
         getProfile();
