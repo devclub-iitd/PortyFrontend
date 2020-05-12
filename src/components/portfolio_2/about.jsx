@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const About = (props) => {
-  const about = props.summary.summary;
-  // console.log("about props below")
-  // console.log(props.summary.summary);
+  const { summary } = props;
+  const about = summary.summary;
   return (
     <div className="portfolioPage aboutPage">
       <div className="portfolioPageSplit rightAbout">
@@ -20,7 +19,7 @@ const About = (props) => {
 };
 
 About.propTypes = {
-  about: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
 };
 
 export default About;

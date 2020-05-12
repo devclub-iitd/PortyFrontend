@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -40,7 +41,7 @@ class ReferenceExpansionPanel extends React.Component {
         action={() => this.handlePanel(`referencePanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -71,7 +72,7 @@ class ReferenceExpansionPanel extends React.Component {
         action={() => this.handlePanel(`referencePanel${id}`)}
         moveFieldDown={() => this.moveFieldDown(key, id)}
         moveFieldUp={() => this.moveFieldUp(key, id)}
-      />
+      />,
     );
     const { reference } = this.state;
     const referenceObj = {
@@ -120,7 +121,9 @@ class ReferenceExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('references', this.state.reference);
+    const { reference } = this.state;
+    const { senData } = this.props;
+    senData('references', reference);
   }
 
   handleInputChange(event) {
@@ -156,7 +159,7 @@ class ReferenceExpansionPanel extends React.Component {
             action={() => this.handlePanel(`referencePanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -177,7 +180,7 @@ class ReferenceExpansionPanel extends React.Component {
             action={() => this.handlePanel(`referencePanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -366,6 +369,7 @@ class ReferenceExpansionPanel extends React.Component {
 ReferenceExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default ReferenceExpansionPanel;

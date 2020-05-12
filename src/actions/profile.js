@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import { setAlert } from './alert';
 import { GET_PROFILE, GETTING_PROFILE, PROFILE_ERROR } from './types';
-import { loadUser } from './auth';
+// import { loadUser } from './auth';
 
 export const getCurrentProfile = () => async (dispatch) => {
   try {
@@ -91,7 +92,7 @@ export const getFullProfile = () => async (dispatch) => {
 //     }
 // }
 
-export const getPublicProfile = (entryno) => async (dispatch) => {
+export const getPublicProfile = entryno => async (dispatch) => {
   try {
     const res = await axios.get(`/api/profile/user/${entryno}`);
 
@@ -109,7 +110,7 @@ export const getPublicProfile = (entryno) => async (dispatch) => {
 };
 export const createProfile = (formData, edit) => async (dispatch) => {
   try {
-    //console.log(formData)
+    // console.log(formData)
 
     const config = {
       headers: {
@@ -117,9 +118,10 @@ export const createProfile = (formData, edit) => async (dispatch) => {
       },
     };
 
+    // eslint-disable-next-line no-unused-vars
     const res = await axios.post('/api/profile', formData, config);
 
-    //dispatch(loadUser())   used in edit only previously
+    // dispatch(loadUser())   used in edit only previously
 
     // dispatch({     used in both previously
     //   type: GET_PROFILE,
@@ -127,14 +129,10 @@ export const createProfile = (formData, edit) => async (dispatch) => {
     // });
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'blue'));
   } catch (err) {
-    const errors = err.response.data.errors;
-    dispatch(
-      setAlert(
-        'An error occurred...Profile could not be created. Please try again.'
-      )
-    );
+    const { errors } = err.response.data;
+    dispatch(setAlert('An error occurred...Profile could not be created. Please try again.'));
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'red')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'red')));
     }
 
     dispatch({

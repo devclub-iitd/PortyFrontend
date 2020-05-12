@@ -31,6 +31,7 @@ class LoginFrom extends React.Component {
       email: emailVal,
       password: passVal,
     };
+    // eslint-disable-next-line react/prop-types, react/destructuring-assignment
     this.props.login(obj);
   }
 

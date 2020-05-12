@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -42,7 +43,7 @@ class AwardExpansionPanel extends React.Component {
         action={() => this.handlePanel(`awardPanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -124,7 +125,9 @@ class AwardExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('awards', this.state.award);
+    const { award } = this.state;
+    const { senData } = this.props;
+    senData('awards', award);
   }
 
   handleInputChange(event) {
@@ -160,7 +163,7 @@ class AwardExpansionPanel extends React.Component {
             action={() => this.handlePanel(`awardPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -181,7 +184,7 @@ class AwardExpansionPanel extends React.Component {
             action={() => this.handlePanel(`awardPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -367,6 +370,7 @@ class AwardExpansionPanel extends React.Component {
 AwardExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default AwardExpansionPanel;

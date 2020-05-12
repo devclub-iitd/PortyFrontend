@@ -1,8 +1,5 @@
 import {
-  GET_PROFILE,
-  GETTING_PROFILE,
-  PROFILE_ERROR,
-  CLEAR_PROFILE,
+  GET_PROFILE, GETTING_PROFILE, PROFILE_ERROR, CLEAR_PROFILE,
 } from '../actions/types';
 
 const intialState = {
@@ -43,7 +40,6 @@ export default function (state = intialState, action) {
         loading: false,
       };
     }
-    default:
-      return state;
+    default: return state;
   }
 }

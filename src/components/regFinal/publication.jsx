@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -43,7 +44,7 @@ class PublicationExpansionPanel extends React.Component {
         action={() => this.handlePanel(`publicationPanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -73,7 +74,7 @@ class PublicationExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${i}`)}
         moveFieldDown={() => this.moveFieldDown(key, i)}
         moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
+      />,
     );
 
     const { publication } = this.state;
@@ -126,7 +127,9 @@ class PublicationExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('publications', this.state.publication);
+    const { publication } = this.state;
+    const { senData } = this.props;
+    senData('publications', publication);
   }
 
   handleInputChange(event) {
@@ -162,7 +165,7 @@ class PublicationExpansionPanel extends React.Component {
             action={() => this.handlePanel(`publicationPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -183,7 +186,7 @@ class PublicationExpansionPanel extends React.Component {
             action={() => this.handlePanel(`publicationPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -372,6 +375,7 @@ class PublicationExpansionPanel extends React.Component {
 PublicationExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default PublicationExpansionPanel;

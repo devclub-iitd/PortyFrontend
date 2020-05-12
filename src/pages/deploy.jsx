@@ -63,30 +63,20 @@ const Deploy = () => {
           <br />
           4) Choose a design template from below, download it and unzip it.
           <br />
-          5) Place your file.json in the foldernamed &quot;data&quot; inside the
-          unzipped content. If prompted, replace the existing file.
+          5) Place your file.json in the foldernamed &quot;data&quot;
+          inside the unzipped content. If prompted, replace the existing file.
           <br />
-          6) On your github repository, click &quot;add existing files&quot; and
-          drag the entire content in the unzipped folder to the browser in order
-          to upload them.
+          6) On your github repository, click &quot;add existing files&quot;
+          and drag the entire content in the unzipped folder to the browser in order to upload them.
           <br />
-          7) Click on done, and wait for the files to upload. In a couple of
-          minutes your website should become live on the url -
-          username.github.io
+          7) Click on done, and wait for the files to upload.
+          In a couple of minutes your website should become live on the url - username.github.io
         </Typography>
       </div>
       <div className="buttonRow">
         <div className="buttonColumn">
-          <a
-            href="https://drive.google.com/open?id=136g5dZ4kcHDYm3BPJTDn7smO5Db6HZJ8"
-            target="_blank"
-          >
-            <Button
-              variant="contained"
-              color="secondary"
-              style={{ textDecoration: 'none' }}
-              className={classes.button}
-            >
+          <a href="https://drive.google.com/open?id=136g5dZ4kcHDYm3BPJTDn7smO5Db6HZJ8" target="_blank" rel="noopener noreferrer">
+            <Button variant="contained" color="secondary" style={{ textDecoration: 'none' }} className={classes.button}>
               Design 1
             </Button>
           </a>
@@ -96,16 +86,8 @@ const Deploy = () => {
           </Button>
         </div>
         <div className="buttonColumn">
-          <a
-            href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
-            target="_blank"
-          >
-            <Button
-              variant="contained"
-              color="secondary"
-              style={{ textDecoration: 'none' }}
-              className={classes.button}
-            >
+          <a href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse" target="_blank" rel="noopener noreferrer">
+            <Button variant="contained" color="secondary" style={{ textDecoration: 'none' }} className={classes.button}>
               Design 2
             </Button>
           </a>

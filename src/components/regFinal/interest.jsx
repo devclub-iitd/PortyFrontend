@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -40,7 +41,7 @@ class InterestExpansionPanel extends React.Component {
         action={() => this.handlePanel(`interestPanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -70,7 +71,7 @@ class InterestExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${i}`)}
         moveFieldDown={() => this.moveFieldDown(key, i)}
         moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
+      />,
     );
 
     const { interest } = this.state;
@@ -120,7 +121,9 @@ class InterestExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('interests', this.state.interest);
+    const { interest } = this.state;
+    const { senData } = this.props;
+    senData('interests', interest);
   }
 
   handleInputChange(event) {
@@ -133,7 +136,6 @@ class InterestExpansionPanel extends React.Component {
     } else {
       tempinterest[id][type] = event.target.value;
     }
-    console.log(tempinterest);
     this.setState({
       interest: tempinterest,
     });
@@ -157,7 +159,7 @@ class InterestExpansionPanel extends React.Component {
             action={() => this.handlePanel(`interestPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -178,7 +180,7 @@ class InterestExpansionPanel extends React.Component {
             action={() => this.handlePanel(`interestPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -367,6 +369,7 @@ class InterestExpansionPanel extends React.Component {
 InterestExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default InterestExpansionPanel;

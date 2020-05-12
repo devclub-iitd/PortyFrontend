@@ -40,10 +40,9 @@ const ExpansionCard = (props) => {
           <Typography>{children}</Typography>
           <div className="miniLine miniCardLine" />
           <div className="portfolioExpansionPanelWebsite">
-            <span>Website |</span>{' '}
-            <a href={website} target="_blank">
-              {website}
-            </a>
+            <span>Website |</span>
+            {' '}
+            <a href={website} target="_blank" rel="noopener noreferrer">{website}</a>
           </div>
           <div className="portfolioCardDateContainer">
             {startDate} | {endDate}

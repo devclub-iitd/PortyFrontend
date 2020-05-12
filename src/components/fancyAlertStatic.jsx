@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 
 import Dialog from '@material-ui/core/Dialog';
@@ -8,18 +9,18 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 
 const Alert = (props) => {
-  const { open, title, handleRedirect, children } = props;
+  const {
+    open, title, handleRedirect, children,
+  } = props;
 
   return (
     <Dialog
       open={open}
       TransitionComponent={Transition}
-      fullWidth={true}
+      fullWidth
       maxWidth="sm"
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
@@ -37,6 +38,13 @@ const Alert = (props) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+Alert.propTypes = {
+  open: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  handleRedirect: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default Alert;

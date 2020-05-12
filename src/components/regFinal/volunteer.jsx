@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -44,7 +45,7 @@ class VolunteerExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -74,7 +75,7 @@ class VolunteerExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${i}`)}
         moveFieldDown={() => this.moveFieldDown(key, i)}
         moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
+      />,
     );
     const { volunteer } = this.state;
     const volunteerObj = {
@@ -127,7 +128,9 @@ class VolunteerExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('volunteer', this.state.volunteer);
+    const { volunteer } = this.state;
+    const { senData } = this.props;
+    senData('volunteer', volunteer);
   }
 
   handleInputChange(event) {
@@ -163,7 +166,7 @@ class VolunteerExpansionPanel extends React.Component {
             action={() => this.handlePanel(`volunteerPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -184,7 +187,7 @@ class VolunteerExpansionPanel extends React.Component {
             action={() => this.handlePanel(`volunteerPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -373,6 +376,7 @@ class VolunteerExpansionPanel extends React.Component {
 VolunteerExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default VolunteerExpansionPanel;

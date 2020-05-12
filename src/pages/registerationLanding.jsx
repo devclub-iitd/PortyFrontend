@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
@@ -67,6 +68,19 @@ class IconLabelTabs extends React.Component {
     this.navToResPass = this.navToResPass.bind(this);
   }
 
+  componentDidUpdate(oldProps) {
+    let index = 0;
+    const { alerts } = this.props;
+    if (oldProps.alerts.length !== alerts.length) {
+      index = alerts.length - 1;
+      this.openDial(alerts[index].msg);
+    }
+  }
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
   handleClose() {
     this.setState({
       openDial: false,
@@ -95,21 +109,9 @@ class IconLabelTabs extends React.Component {
     window.location.href = './reset';
   }
 
-  componentDidUpdate(oldProps) {
-    let index = 0;
-    if (oldProps.alerts.length !== this.props.alerts.length) {
-      index = this.props.alerts.length - 1;
-      this.openDial(this.props.alerts[index].msg);
-    }
-  }
-
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
   render() {
     const { classes } = this.props;
-    const { value } = this.state;
+    const { value, openDial, message } = this.state;
 
     return (
       <div
@@ -117,66 +119,47 @@ class IconLabelTabs extends React.Component {
         style={{ textAlign: 'center', marginTop: '0px' }}
       >
         <div className="pageOverlay">
-          <div className="title">Register</div>
+          <div className="title">
+            Register
+          </div>
           <Paper className={classes.rootRegPage}>
             {value === 0 && (
-              <TabContainer>
-                {' '}
-                <RegForm handleDial={this.openDial} />{' '}
-              </TabContainer>
+            <TabContainer>
+              {' '}
+              <RegForm handleDial={this.openDial} />
+              {' '}
+            </TabContainer>
             )}
           </Paper>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            type="submit"
-            form="regform"
-            onSubmit={this.openTemp}
-          >
-            Let's Go
+          <Button variant="contained" color="secondary" className={classes.button} type="submit" form="regform" onSubmit={this.openTemp}>
+            Let&apos;s Go
           </Button>
           <div className="secBtnCont">
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={this.navToRegOTP}
-            >
-              Regenerate OTP
-            </Button>
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={this.navToResPass}
-            >
-              Reset Password
-            </Button>
+            <Button variant="outlined" color="primary" onClick={this.navToRegOTP}>Regenerate OTP</Button>
+            <Button variant="outlined" color="primary" onClick={this.navToResPass}>Reset Password</Button>
           </div>
           <Snackbar
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'left',
             }}
-            open={this.state.openDial}
+            open={openDial}
             autoHideDuration={6000}
             onClose={this.handleClose}
             ContentProps={{
               'aria-describedby': 'message-id',
             }}
-            message={
+            message={(
               <span
                 id="message-id"
                 style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
                 }}
               >
                 <InfoIcon style={{ marginRight: '10px' }} />
-                {this.state.message}
+                {message}
               </span>
-            }
+          )}
             action={[
               <IconButton
                 key="close"
@@ -196,7 +179,8 @@ class IconLabelTabs extends React.Component {
 }
 
 IconLabelTabs.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  alerts: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 const mapStateToProps = (state) => ({

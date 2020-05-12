@@ -155,6 +155,7 @@ WorkField.propTypes = {
   moveFieldUp: PropTypes.func.isRequired,
   moveFieldDown: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default WorkField;

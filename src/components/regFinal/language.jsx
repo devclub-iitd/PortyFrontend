@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -40,7 +41,7 @@ class LanguageExpansionPanel extends React.Component {
         action={() => this.handlePanel(`languagePanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -70,7 +71,7 @@ class LanguageExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${i}`)}
         moveFieldDown={() => this.moveFieldDown(key, i)}
         moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
+      />,
     );
 
     const { language } = this.state;
@@ -120,7 +121,9 @@ class LanguageExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('languages', this.state.language);
+    const { language } = this.state;
+    const { senData } = this.props;
+    senData('languages', language);
   }
 
   handleInputChange(event) {
@@ -133,7 +136,6 @@ class LanguageExpansionPanel extends React.Component {
     } else {
       templanguage[id][type] = event.target.value;
     }
-    console.log(templanguage);
     this.setState({
       language: templanguage,
     });
@@ -157,7 +159,7 @@ class LanguageExpansionPanel extends React.Component {
             action={() => this.handlePanel(`languagePanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -178,7 +180,7 @@ class LanguageExpansionPanel extends React.Component {
             action={() => this.handlePanel(`languagePanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -367,6 +369,7 @@ class LanguageExpansionPanel extends React.Component {
 LanguageExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default LanguageExpansionPanel;

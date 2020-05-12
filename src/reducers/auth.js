@@ -1,11 +1,5 @@
 import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  USER_LOADED,
-  AUTH_ERROR,
-  LOGIN_FAIL,
-  LOGIN_SUCCESS,
-  LOG_OUT,
+  REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOG_OUT,
 } from '../actions/types';
 
 const initialState = {
@@ -71,7 +65,6 @@ export default function (state = initialState, action) {
         user: null,
       };
     }
-    default:
-      return state;
+    default: return state;
   }
 }

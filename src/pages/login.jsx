@@ -9,8 +9,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import { connect } from 'react-redux';
 import InfoIcon from '@material-ui/icons/Info';
 
-import MySnackbarContentWrapper from '../components/snackbar';
-
 import LoginForm from '../components/loginForm';
 
 import '../style/regLanding.css';
@@ -48,6 +46,15 @@ class IconLabelTabs extends React.Component {
     this.openDial = this.openDial.bind(this);
   }
 
+  componentDidUpdate(oldProps) {
+    let index = 0;
+    const { alerts } = this.props;
+    if (oldProps.alerts.length !== alerts.length) {
+      index = alerts.length - 1;
+      this.openDial(alerts[index].msg);
+    }
+  }
+
   handleClose() {
     this.setState({
       openDial: false,
@@ -61,35 +68,24 @@ class IconLabelTabs extends React.Component {
     });
   }
 
-  componentDidUpdate(oldProps) {
-    let index = 0;
-    if (oldProps.alerts.length !== this.props.alerts.length) {
-      index = this.props.alerts.length - 1;
-      this.openDial(this.props.alerts[index].msg);
-    }
-  }
-
   render() {
     const { classes } = this.props;
+    const { openDial, message } = this.state;
     return (
       <div
         className="loginPageContainer"
         style={{ textAlign: 'center', marginTop: '0px' }}
       >
         <div className="pageOverlay">
-          <div className="title">Account Login</div>
+          <div className="title">
+            Account Login
+          </div>
           <Paper className={classes.rootRegPage}>
             <LoginForm handleDial={this.openDial} />
           </Paper>
           <div className="lgnBtnCont">
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              type="submit"
-              form="loginform"
-            >
-              Sign-In
+            <Button variant="contained" color="secondary" className={classes.button} type="submit" form="loginform">
+          Sign-In
             </Button>
           </div>
           <Snackbar
@@ -97,26 +93,23 @@ class IconLabelTabs extends React.Component {
               vertical: 'bottom',
               horizontal: 'left',
             }}
-            open={this.state.openDial}
+            open={openDial}
             autoHideDuration={6000}
             onClose={this.handleClose}
             ContentProps={{
               'aria-describedby': 'message-id',
             }}
-            message={
+            message={(
               <span
                 id="message-id"
                 style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
                 }}
               >
                 <InfoIcon style={{ marginRight: '10px' }} />
-                {this.state.message}
+                {message}
               </span>
-            }
+          )}
             action={[
               <IconButton
                 key="close"
@@ -136,7 +129,8 @@ class IconLabelTabs extends React.Component {
 }
 
 IconLabelTabs.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  alerts: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = (state) => ({

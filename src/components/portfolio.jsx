@@ -1,8 +1,10 @@
+// TODO - LINT ERRORS FOR THIS FILE
+// TODO REACT USEEFFECT HOOK CONSOLE WARNING FIX
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Landing from './portfolio/landing';
 import About from './portfolio/about';
 import Education from './portfolio/education';
@@ -18,30 +20,19 @@ const navToReg = () => {
   window.location.href = '../register';
 };
 
+// eslint-disable-next-line no-shadow
 const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
   useEffect(() => {
     getProfile();
   }, []);
 
   if (loading) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
-  }
-  if (!loading && profile !== null) {
+    return <div><Loader /></div>;
+  } if (!loading && profile !== null) {
     return (
       <Paper className="portfolioContainer" elavation={4}>
-        <Landing
-          name={profile.user.name}
-          label={profile.about.label}
-          img={profile.about.imgUrl}
-        />
-        <div
-          className="portfolioBodyCont"
-          style={{ top: window.innerHeight - 54 + 'px' }}
-        >
+        <Landing name={profile.user.name} label={profile.about.label} img={profile.about.imgUrl} />
+        <div className="portfolioBodyCont" style={{ top: `${window.innerHeight - 54}px` }}>
           <About summary={profile.about} top={window.innerHeight} />
           <Education education={profile.education} />
           <Work work={profile.work} />
@@ -60,24 +51,25 @@ const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
         </div>
       </Paper>
     );
-  }
-  if (!loading && profile === null) {
+  } if (!loading && profile === null) {
     return (
       <div className="noProf">
         No profile found
         <br />
-        please make one by clicking <span onClick={navToReg}>here</span>
+        please make one by clicking
+        {' '}
+        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+        <span onClick={navToReg}>here</span>
       </div>
     );
   }
 
-  //return (<div>Hello</div>)
+  return (<div>AN ERROR OCCURED</div>);
 };
 
 Portfolio.propTypes = {
   getProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -86,4 +78,7 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { getProfile })(Portfolio);
+export default connect(
+  mapStateToProps,
+  { getProfile },
+)(Portfolio);

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -45,7 +46,7 @@ class EducationExpansionPanel extends React.Component {
         action={() => this.handlePanel(`educationPanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -75,7 +76,7 @@ class EducationExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${i}`)}
         moveFieldDown={() => this.moveFieldDown(key, i)}
         moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
+      />,
     );
 
     const { education } = this.state;
@@ -130,7 +131,9 @@ class EducationExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('education', this.state.education);
+    const { education } = this.state;
+    const { senData } = this.props;
+    senData('education', education);
   }
 
   handleInputChange(event) {
@@ -166,7 +169,7 @@ class EducationExpansionPanel extends React.Component {
             action={() => this.handlePanel(`educationPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -187,7 +190,7 @@ class EducationExpansionPanel extends React.Component {
             action={() => this.handlePanel(`educationPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -376,6 +379,7 @@ class EducationExpansionPanel extends React.Component {
 EducationExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default EducationExpansionPanel;

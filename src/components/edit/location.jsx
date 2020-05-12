@@ -10,21 +10,23 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 class LocationExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
+    const {
+      existingData,
+    } = this.props;
     this.state = {
-      addressline1: this.props.existingData.addressline1,
-      addressline2: this.props.existingData.addressline2,
-      city: this.props.existingData.city,
-      pincode: this.props.existingData.pincode,
-      country: this.props.existingData.country,
+      addressline1: existingData.addressline1,
+      addressline2: existingData.addressline2,
+      city: existingData.city,
+      pincode: existingData.pincode,
+      country: existingData.country,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   callApiRequest() {
-    // console.log("below is the props location data");
-    // console.log(this.state);
-    this.props.senData('location', this.state);
+    const { senData } = this.props;
+    senData('location', this.state);
   }
 
   handleInputChange(event) {
@@ -32,12 +34,9 @@ class LocationExpansionPanel extends React.Component {
     this.setState({
       [type]: event.target.value,
     });
-    console.log(this.state);
   }
 
   render() {
-    //console.log(this.props);
-    //console.log(this.props.profile.profile.location);
     const theme = createMuiTheme({
       palette: {
         primary: {
@@ -68,7 +67,9 @@ class LocationExpansionPanel extends React.Component {
     };
     const { expanded } = this.props;
     const { action } = this.props;
-    const { addressline1, addressline2, city, pincode, country } = this.state;
+    const {
+      addressline1, addressline2, city, pincode, country,
+    } = this.state;
     return (
       <div style={useStyles.root}>
         <ExpansionPanel
@@ -143,6 +144,8 @@ class LocationExpansionPanel extends React.Component {
 LocationExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
+  existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default LocationExpansionPanel;

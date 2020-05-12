@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -41,7 +42,7 @@ class SkillExpansionPanel extends React.Component {
         action={() => this.handlePanel(`skillPanel${0}`)}
         moveFieldDown={() => this.moveFieldDown(0, 0)}
         moveFieldUp={() => this.moveFieldUp(0, 0)}
-      />
+      />,
     );
     tempFieldsTracker.push(0);
     this.onAddChild = this.onAddChild.bind(this);
@@ -71,7 +72,7 @@ class SkillExpansionPanel extends React.Component {
         action={() => this.handlePanel(`volunteerPanel${i}`)}
         moveFieldDown={() => this.moveFieldDown(key, i)}
         moveFieldUp={() => this.moveFieldUp(key, i)}
-      />
+      />,
     );
 
     const { skill } = this.state;
@@ -122,7 +123,9 @@ class SkillExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('skills', this.state.skill);
+    const { skill } = this.state;
+    const { senData } = this.props;
+    senData('skills', skill);
   }
 
   handleInputChange(event) {
@@ -158,7 +161,7 @@ class SkillExpansionPanel extends React.Component {
             action={() => this.handlePanel(`skillPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -179,7 +182,7 @@ class SkillExpansionPanel extends React.Component {
             action={() => this.handlePanel(`skillPanel${i}`)}
             moveFieldDown={() => this.moveFieldDown(k, i)}
             moveFieldUp={() => this.moveFieldUp(k, i)}
-          />
+          />,
         );
       }
       this.setState({
@@ -365,6 +368,7 @@ class SkillExpansionPanel extends React.Component {
 SkillExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default SkillExpansionPanel;

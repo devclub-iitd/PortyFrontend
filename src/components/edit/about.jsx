@@ -10,29 +10,30 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 class AboutExpansionPanel extends React.Component {
   constructor(props) {
     super(props);
+    const {
+      existingContactData,
+      existingData,
+    } = this.props;
     this.state = {
-      name: this.props.existingContactData.name,
-      number: this.props.existingData.number,
-      label: this.props.existingData.label,
-      summary: this.props.existingData.summary,
-      imgUrl: this.props.existingData.imgUrl,
+      name: existingContactData.name,
+      number: existingData.number,
+      label: existingData.label,
+      summary: existingData.summary,
+      imgUrl: existingData.imgUrl,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   callApiRequest() {
-    console.log(this.state);
-    this.props.senData('about', this.state);
+    const { senData } = this.props;
+    senData('about', this.state);
   }
-
-  componentDidMount() {}
 
   handleInputChange(event) {
     const type = event.target.name;
     this.setState({
       [type]: event.target.value,
     });
-    console.log(this.state);
   }
 
   render() {
@@ -66,7 +67,9 @@ class AboutExpansionPanel extends React.Component {
     };
     const { expanded } = this.props;
     const { action } = this.props;
-    const { label, summary, name, number, imgUrl } = this.state;
+    const {
+      label, summary, number, imgUrl,
+    } = this.state;
     return (
       <div style={useStyles.root}>
         <ExpansionPanel expanded={expanded === 'aboutPanel'} onChange={action}>
@@ -125,6 +128,9 @@ class AboutExpansionPanel extends React.Component {
 AboutExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
+  existingContactData: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default AboutExpansionPanel;

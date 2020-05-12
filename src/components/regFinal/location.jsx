@@ -22,7 +22,8 @@ class LocationExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('location', this.state);
+    const { senData } = this.props;
+    senData('location', this.state);
   }
 
   handleInputChange(event) {
@@ -33,8 +34,8 @@ class LocationExpansionPanel extends React.Component {
   }
 
   render() {
-    //console.log(this.props);
-    //console.log(this.props.profile.profile.location);
+    // console.log(this.props);
+    // console.log(this.props.profile.profile.location);
     const theme = createMuiTheme({
       palette: {
         primary: {
@@ -65,7 +66,9 @@ class LocationExpansionPanel extends React.Component {
     };
     const { expanded } = this.props;
     const { action } = this.props;
-    const { addressline1, addressline2, city, pincode, country } = this.state;
+    const {
+      addressline1, addressline2, city, pincode, country,
+    } = this.state;
     return (
       <div style={useStyles.root}>
         <ExpansionPanel
@@ -140,6 +143,7 @@ class LocationExpansionPanel extends React.Component {
 LocationExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
 };
 
 export default LocationExpansionPanel;

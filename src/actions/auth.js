@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-console */
 import axios from 'axios';
 import {
   REGISTER_SUCCESS,
@@ -34,13 +36,7 @@ export const loadUser = () => async (dispatch) => {
 // Register User
 
 export const register = ({
-  name,
-  email,
-  password,
-  entryno,
-  phone,
-  dob,
-  website,
+  name, email, password, entryno, phone, dob, website,
 }) => async (dispatch) => {
   const config = {
     headers: {
@@ -49,30 +45,22 @@ export const register = ({
   };
 
   const body = JSON.stringify({
-    name,
-    email,
-    password,
-    entryno,
-    phone,
-    dob,
-    website,
+    name, email, password, entryno, phone, dob, website,
   });
 
   try {
     dispatch(setAlert('Please wait while we create your account', 'green'));
     const res = await axios.post('api/user', body, config);
-    dispatch(
-      setAlert('Register Success...Check your email for verification', 'green')
-    );
+    dispatch(setAlert('Register Success...Check your email for verification', 'green'));
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.data.errors;
+    const { errors } = err.response.data;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'red')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'red')));
     }
 
     dispatch({
@@ -81,7 +69,7 @@ export const register = ({
   }
 };
 
-//Login User
+// Login User
 export const login = ({ email, password }) => async (dispatch) => {
   const config = {
     headers: {
@@ -90,7 +78,7 @@ export const login = ({ email, password }) => async (dispatch) => {
   };
 
   const body = JSON.stringify({ email, password });
-  //console.log(body)
+  // console.log(body)
 
   try {
     const res = await axios.post('/api/auth', body, config);
@@ -106,17 +94,17 @@ export const login = ({ email, password }) => async (dispatch) => {
       type: LOGIN_FAIL,
     });
 
-    const errors = err.response.data.errors;
+    const { errors } = err.response.data;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'red')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'red')));
     }
 
-    //dispatch(setAlert("Login Failed", 'red'))
+    // dispatch(setAlert("Login Failed", 'red'))
   }
 };
 
-export const regenerate_otp = (email) => async (dispatch) => {
+export const regenerate_otp = email => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -130,12 +118,7 @@ export const regenerate_otp = (email) => async (dispatch) => {
     console.log(body);
     const res = await axios.post('/api/user/otp', body, config);
 
-    dispatch(
-      setAlert(
-        'We have sent an email...Check your email for verification',
-        'green'
-      )
-    );
+    dispatch(setAlert('We have sent an email...Check your email for verification', 'green'));
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -146,15 +129,15 @@ export const regenerate_otp = (email) => async (dispatch) => {
       type: REGISTER_FAIL,
     });
 
-    const errors = err.response.data.errors;
+    const { errors } = err.response.data;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'red')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'red')));
     }
   }
 };
 
-//reset pass
+// reset pass
 export const reset_pass = ({ email, password }) => async (dispatch) => {
   const config = {
     headers: {
@@ -169,12 +152,7 @@ export const reset_pass = ({ email, password }) => async (dispatch) => {
     console.log(body);
     const res = await axios.post('/api/user/forgot', body, config);
 
-    dispatch(
-      setAlert(
-        'We have sent an email...Check your email to confirm password change',
-        'green'
-      )
-    );
+    dispatch(setAlert('We have sent an email...Check your email to confirm password change', 'green'));
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -185,15 +163,15 @@ export const reset_pass = ({ email, password }) => async (dispatch) => {
       type: REGISTER_FAIL,
     });
 
-    const errors = err.response.data.errors;
+    const { errors } = err.response.data;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'red')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'red')));
     }
   }
 };
 
-//LogOUt
+// LogOUt
 
 export const logout = () => (dispatch) => {
   dispatch({ type: LOG_OUT });

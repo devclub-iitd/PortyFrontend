@@ -1,8 +1,9 @@
+/* eslint-disable class-methods-use-this */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { createProfile } from '../actions/profile';
 import { withRouter } from 'react-router-dom';
 
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,13 +14,14 @@ import InfoIcon from '@material-ui/icons/Info';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { createProfile, getCurrentProfile } from '../actions/profile';
 
 import AlertStatic from '../components/fancyAlertStatic';
 import Alert from '../components/fancyAlert';
 
 import Intro from '../components/regFinal/intro';
-import Image from '../components/regFinal/image';
-import Account from '../components/regFinal/account';
+// import Image from '../components/regFinal/image';
+// import Account from '../components/regFinal/account';
 import About from '../components/regFinal/about';
 import Location from '../components/regFinal/location';
 import Work from '../components/regFinal/work';
@@ -32,9 +34,9 @@ import Skill from '../components/regFinal/skill';
 import Interest from '../components/regFinal/interest';
 import Reference from '../components/regFinal/reference';
 import '../style/regFinal.css';
-import { getCurrentProfile } from '../actions/profile';
 
-var obj = {};
+
+const obj = {};
 
 const theme = createMuiTheme({
   palette: {
@@ -76,6 +78,7 @@ class RegFinal extends React.Component {
     this.handleCloseMini = this.handleCloseMini.bind(this);
     this.redirectHome = this.redirectHome.bind(this);
   }
+
   handlePanel(panel) {
     const { expanded } = this.state;
     if (expanded === panel) {
@@ -96,8 +99,6 @@ class RegFinal extends React.Component {
   async handleSumbit(event) {
     event.preventDefault();
     this.openDial('Please wait while we create your profile...');
-    // this.openDial('Please wait for a few seconds while we register your details, do not click on anything');
-    // this.account.current.callApiRequest();
     this.about.current.callApiRequest();
     this.location.current.callApiRequest();
     this.work.current.callApiRequest();
@@ -109,23 +110,24 @@ class RegFinal extends React.Component {
     this.language.current.callApiRequest();
     this.interest.current.callApiRequest();
     this.reference.current.callApiRequest();
-    //console.log(obj)
+    const { alert } = this.props;
+
+    // eslint-disable-next-line react/destructuring-assignment
     await this.props.createProfile(obj, false);
-    var len = this.props.alert.length;
-    if (this.props.alert[len - 1].alertType != 'blue') {
+    const len = alert.length;
+    if (alert[len - 1].alertType !== 'blue') {
       this.setState({
         openDial: false,
         open: true,
         alertTitle: 'Whoops!!',
-        alertContent: this.props.alert[len - 1].msg,
+        alertContent: alert[len - 1].msg,
       });
-    } else if (this.props.alert[len - 1].alertType == 'blue') {
+    } else if (alert[len - 1].alertType === 'blue') {
       this.setState({
         openDial: false,
         openStatic: true,
         alertTitle: 'Profile has been created!',
-        alertContent:
-          'You will be redirected to the Home page...Please click done to continue',
+        alertContent: 'You will be redirected to the Home page...Please click done to continue',
       });
     }
   }
@@ -160,13 +162,22 @@ class RegFinal extends React.Component {
   }
 
   render() {
-    const { expanded, open, alertTitle, alertContent, openStatic } = this.state;
+    const {
+      expanded, open, alertTitle, alertContent, openStatic, openDial, message,
+    } = this.state;
+    const {
+      user,
+    } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ paddingBottom: 100 }}>
-          <Intro name={this.props.user.name} caption="block" />
+          <Intro name={user.name} caption="block" />
           <form onSubmit={this.handleSumbit}>
-            {/* <Account ref={this.account} expanded={expanded} action={() => this.handlePanel('accountPanel')} />  */}
+            {/* <Account
+              ref={this.account}
+              expanded={expanded}
+              action={() => this.handlePanel('accountPanel')}
+            />  */}
             <About
               ref={this.about}
               expanded={expanded}
@@ -261,24 +272,21 @@ class RegFinal extends React.Component {
               vertical: 'bottom',
               horizontal: 'left',
             }}
-            open={this.state.openDial}
+            open={openDial}
             autoHideDuration={6000}
             onClose={this.handleCloseMini}
             ContentProps={{
               'aria-describedby': 'message-id',
             }}
-            message={
+            message={(
               <span
                 id="message-id"
                 style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
                 }}
               >
                 <InfoIcon style={{ marginRight: '10px' }} />
-                {this.state.message}
+                {message}
               </span>
             }
             action={[
@@ -308,20 +316,19 @@ class RegFinal extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+RegFinal.propTypes = {
+  user: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  alert: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  createProfile: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
   alert: state.alert,
 });
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
-  withRouter(RegFinal)
-);
-
-// <div className="headerSimple">
-//   <div className="headerSimpleTitle">
-//     Portfolio Creator|
-//     {' '}
-//     <span>Register</span>
-//   </div>
-// </div>
+export default connect(
+  mapStateToProps,
+  { createProfile, getCurrentProfile },
+)(withRouter(RegFinal));

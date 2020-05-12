@@ -1,3 +1,4 @@
+// TODO REACT USEEFFECT HOOK CONSOLE WARNING FIX
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -6,15 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
-import {
-  Link,
-  DirectLink,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller,
-} from 'react-scroll';
+import { animateScroll as scroll } from 'react-scroll';
 import { withRouter } from 'react-router';
 import Landing from '../components/portfolio/landing';
 import About from '../components/portfolio/about';
@@ -42,7 +35,6 @@ const useStyles = makeStyles(() => ({
 const scrollToRef = () => {
   scroll.scrollTo(window.innerHeight);
 };
-// const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 
 const navToHome = () => {
   window.location.href = '../../home';
@@ -50,8 +42,10 @@ const navToHome = () => {
 
 const Portfolio = ({
   match,
+  // eslint-disable-next-line no-shadow
   getPublicProfile,
   profile: { loading, profile },
+// eslint-disable-next-line consistent-return
 }) => {
   useEffect(() => {
     getPublicProfile(match.params.id);
@@ -78,10 +72,7 @@ const Portfolio = ({
           img={profile.about.imgUrl}
           initScroll={initScroll}
         />
-        <div
-          className="portfolioBodyCont"
-          style={{ top: window.innerHeight + 'px' }}
-        >
+        <div className="portfolioBodyCont" style={{ top: `${window.innerHeight}px` }}>
           <About summary={profile.about} top={window.innerHeight} />
           <Education education={profile.education} />
           <Work work={profile.work} />
@@ -139,13 +130,14 @@ const Portfolio = ({
 
 Portfolio.propTypes = {
   getPublicProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getPublicProfile })(
-  withRouter(Portfolio)
-);
+export default connect(
+  mapStateToProps,
+  { getPublicProfile },
+)(withRouter(Portfolio));

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { logout } from '../actions/auth';
 import Portfolio from '../components/portfolio';
 import '../style/home.css';
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// TODO - FIX THE HARD CODED URL
 const download = () => {
   window.location.href = 'http://localhost:5000/api/profile/download';
 };
@@ -38,9 +39,10 @@ const portfolio = () => {
   window.location.href = './portfolio';
 };
 
+// eslint-disable-next-line no-unused-vars, no-shadow
 const Home = ({ logout, getProfile }) => {
   useEffect(() => {
-    //getProfile();
+    // getProfile();
   }, []);
   const classes = useStyles();
   return (
@@ -83,7 +85,12 @@ const Home = ({ logout, getProfile }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+Home.propTypes = {
+  logout: PropTypes.func.isRequired,
+  getProfile: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   auth: state.auth,
 });

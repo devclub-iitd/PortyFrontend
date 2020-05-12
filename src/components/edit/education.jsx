@@ -1,6 +1,6 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { createMuiTheme } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -8,7 +8,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EducationDetails from './educationDetailsContainer';
-import { createProfile } from '../../actions/profile';
+
 
 class EducationExpansionPanel extends React.Component {
   constructor(props) {
@@ -130,16 +130,15 @@ class EducationExpansionPanel extends React.Component {
   }
 
   callApiRequest() {
-    this.props.senData('education', this.state.education);
+    const { education } = this.state;
+    const { senData } = this.props;
+    senData('education', education);
   }
 
   handleInputChange(event) {
     const { id } = event.target;
     const {
-      education,
-      educationFieldTracker,
-      educationDetailsCount,
-      expanded,
+      education, educationFieldTracker, educationDetailsCount, expanded,
     } = this.state;
     const type = event.target.name;
     const tempFields = [];
@@ -169,7 +168,6 @@ class EducationExpansionPanel extends React.Component {
       education: tempeducation,
       educationFields: tempFields,
     });
-    console.log(tempeducation);
   }
 
   handlePanel(panel) {
@@ -241,30 +239,8 @@ class EducationExpansionPanel extends React.Component {
       const storeFieldTracker = tempFieldsTracker[i - 1];
       tempFieldsTracker[i - 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = (
-        <EducationDetails
-          data={tempeducation[i]}
-          handleChange={this.handleInputChange}
-          key={storeFieldTracker}
-          id={i}
-          expanded={expanded}
-          action={() => this.handlePanel(`educationPanel${i}`)}
-          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
-          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
-        />
-      );
-      tempFields[i - 1] = (
-        <EducationDetails
-          data={tempeducation[i - 1]}
-          handleChange={this.handleInputChange}
-          key={k}
-          id={i - 1}
-          expanded={expanded}
-          action={() => this.handlePanel(`educationPanel${i - 1}`)}
-          moveFieldDown={() => this.moveFieldDown(k, i - 1)}
-          moveFieldUp={() => this.moveFieldUp(k, i - 1)}
-        />
-      );
+      tempFields[i] = <EducationDetails data={tempeducation[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i - 1] = <EducationDetails data={tempeducation[i - 1]} handleChange={this.handleInputChange} key={k} id={i - 1} expanded={expanded} action={() => this.handlePanel(`educationPanel${i - 1}`)} moveFieldDown={() => this.moveFieldDown(k, i - 1)} moveFieldUp={() => this.moveFieldUp(k, i - 1)} />;
     } else {
       alert('you cant move this field any more');
     }
@@ -292,30 +268,8 @@ class EducationExpansionPanel extends React.Component {
       const storeFieldTracker = tempFieldsTracker[i + 1];
       tempFieldsTracker[i + 1] = tempFieldsTracker[i];
       tempFieldsTracker[i] = storeFieldTracker;
-      tempFields[i] = (
-        <EducationDetails
-          data={tempeducation[i]}
-          handleChange={this.handleInputChange}
-          key={storeFieldTracker}
-          id={i}
-          expanded={expanded}
-          action={() => this.handlePanel(`educationPanel${i}`)}
-          moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)}
-          moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)}
-        />
-      );
-      tempFields[i + 1] = (
-        <EducationDetails
-          data={tempeducation[i + 1]}
-          handleChange={this.handleInputChange}
-          key={k}
-          id={i + 1}
-          expanded={expanded}
-          action={() => this.handlePanel(`educationPanel${i + 1}`)}
-          moveFieldDown={() => this.moveFieldDown(k, i + 1)}
-          moveFieldUp={() => this.moveFieldUp(k, i + 1)}
-        />
-      );
+      tempFields[i] = <EducationDetails data={tempeducation[i]} handleChange={this.handleInputChange} key={storeFieldTracker} id={i} expanded={expanded} action={() => this.handlePanel(`educationPanel${i}`)} moveFieldDown={() => this.moveFieldDown(storeFieldTracker, i)} moveFieldUp={() => this.moveFieldUp(storeFieldTracker, i)} />;
+      tempFields[i + 1] = <EducationDetails data={tempeducation[i + 1]} handleChange={this.handleInputChange} key={k} id={i + 1} expanded={expanded} action={() => this.handlePanel(`educationPanel${i + 1}`)} moveFieldDown={() => this.moveFieldDown(k, i + 1)} moveFieldUp={() => this.moveFieldUp(k, i + 1)} />;
     } else {
       alert('you cant move this field any more');
     }
@@ -406,6 +360,8 @@ class EducationExpansionPanel extends React.Component {
 EducationExpansionPanel.propTypes = {
   expanded: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
+  senData: PropTypes.func.isRequired,
+  existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default EducationExpansionPanel;

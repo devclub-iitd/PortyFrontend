@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import HeaderLogin from '../components/headerLogin';
 import Loader from '../components/loader';
 
@@ -20,7 +20,12 @@ const Landing = ({ isAuthenticated, auth: { loading } }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+Landing.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  auth: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
+
+const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   auth: state.auth,
 });

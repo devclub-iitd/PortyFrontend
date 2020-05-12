@@ -46,19 +46,21 @@ const useStyles1 = makeStyles((theme) => ({
 
 function MySnackbarContentWrapper(props) {
   const classes = useStyles1();
-  const { className, message, onClose, variant, ...other } = props;
+  const {
+    className, message, onClose, variant, ...other
+  } = props;
   const Icon = variantIcon[variant];
 
   return (
     <SnackbarContent
       className={clsx(classes[variant], className)}
       aria-describedby="client-snackbar"
-      message={
+      message={(
         <span id="client-snackbar" className={classes.message}>
           <Icon className={clsx(classes.icon, classes.iconVariant)} />
           {message}
         </span>
-      }
+)}
       action={[
         <IconButton
           key="close"
@@ -77,8 +79,8 @@ function MySnackbarContentWrapper(props) {
 export default withStyles(useStyles1)(MySnackbarContentWrapper);
 
 MySnackbarContentWrapper.propTypes = {
-  className: PropTypes.string,
-  message: PropTypes.string,
-  onClose: PropTypes.func,
+  className: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
   variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
 };

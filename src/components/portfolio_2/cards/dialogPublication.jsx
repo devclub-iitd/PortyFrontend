@@ -27,7 +27,7 @@ export default function AlertDialogSlide(props) {
       <Dialog
         open={open}
         TransitionComponent={Transition}
-        fullWidth={true}
+        fullWidth
         maxWidth="sm"
         keepMounted
         onClose={() => handleDialogClose({ title })}
