@@ -154,7 +154,14 @@ class Edit extends React.Component {
         // eslint-disable-next-line react/destructuring-assignment
         const { loading, profile } = this.props.profile;
         const { user } = this.props;
-        const { expanded, open, alertTitle, alertContent } = this.state;
+        const {
+            expanded,
+            open,
+            alertTitle,
+            alertContent,
+            openMini,
+            message,
+        } = this.state;
 
         if (loading) {
             return (
@@ -288,7 +295,7 @@ class Edit extends React.Component {
                                 vertical: 'bottom',
                                 horizontal: 'left',
                             }}
-                            open={this.state.openMini}
+                            open={openMini}
                             autoHideDuration={6000}
                             onClose={this.handleCloseMini}
                             ContentProps={{
@@ -305,7 +312,7 @@ class Edit extends React.Component {
                                     }}
                                 >
                                     <InfoIcon style={{ marginRight: '10px' }} />
-                                    {this.state.message}
+                                    {message}
                                 </span>
                             }
                             action={[

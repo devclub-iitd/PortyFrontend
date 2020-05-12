@@ -99,7 +99,7 @@ class Extra extends React.Component {
 
         return (
             <div className="portfolioPage extrasPage">
-                <div className="portfolioPageTitle floodFill">Extra 's</div>
+                <div className="portfolioPageTitle floodFill">Extra&apos;s</div>
                 <div className="portfolioFlatContainer">
                     {AwardDisp}
                     {PublicDisp}

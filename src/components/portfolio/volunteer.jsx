@@ -40,7 +40,6 @@ class Volunteer extends React.Component {
                             handlePanelChange={this.handlePanelChange}
                             expanded={expanded}
                             id={index}
-                            key={index}
                         >
                             {volunteerPlace.summary}
                         </ExpansionCard>

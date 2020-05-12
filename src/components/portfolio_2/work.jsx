@@ -9,14 +9,13 @@ const Work = (props) => {
         <div className="portfolioPage workPage">
             <div className="portfolioPageTitle">Work</div>
             <div className="portfolioCardContainer portfolioWorkCardContainer">
-                {work.map((workPlace, i) => (
+                {work.map((workPlace) => (
                     <FlatCard
                         institution={workPlace.company}
                         degree={workPlace.position}
                         website={workPlace.website}
                         startDate={workPlace.startdate}
                         endDate={workPlace.enddate}
-                        key={i}
                     >
                         {workPlace.summary}
                     </FlatCard>

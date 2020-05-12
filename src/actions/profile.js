@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import axios from 'axios';
-import { setAlert } from './alert';
+import setAlert from './alert';
 import { GET_PROFILE, GETTING_PROFILE, PROFILE_ERROR } from './types';
 // import { loadUser } from './auth';
 

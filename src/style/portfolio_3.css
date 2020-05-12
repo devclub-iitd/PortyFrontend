@@ -249,7 +249,7 @@
 .portfolioContainerFull3 .portfolioEducationPage .pageMiniLine {
     background-color: white;
 }
-.portfolioFlatContainer {
+.portfolioContainerFull3 .portfolioFlatContainer {
     background-color: #fff;
     border-radius: 80px 0px 80px 0px;
 }
@@ -280,9 +280,6 @@
     min-height: 400px;
     height: auto;
     margin-top: 30px;
-}
-.portfolioContainerFull3 .portfolioCardTitle {
-    /* background-color: red; */
 }
 .portfolioContainerFull3 .portfolioCardTitleMain {
     font-size: 20px;

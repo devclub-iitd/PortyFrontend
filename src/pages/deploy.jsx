@@ -85,6 +85,7 @@ const Deploy = () => {
                     <a
                         href="https://drive.google.com/open?id=136g5dZ4kcHDYm3BPJTDn7smO5Db6HZJ8"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         <Button
                             variant="contained"
@@ -95,11 +96,16 @@ const Deploy = () => {
                             Design 1
                         </Button>
                     </a>
+                    <br />
+                    <Button variant="outlined" onClick={design1}>
+                        View
+                    </Button>
                 </div>
                 <div className="buttonColumn">
                     <a
                         href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         <Button
                             variant="contained"
@@ -119,6 +125,7 @@ const Deploy = () => {
                     <a
                         href="https://drive.google.com/open?id=136g5dZ4kcHDYm3BPJTDn7smO5Db6HZJ8"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         <Button
                             variant="contained"
