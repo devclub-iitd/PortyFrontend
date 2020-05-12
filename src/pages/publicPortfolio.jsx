@@ -24,120 +24,126 @@ import '../style/portfolio.css';
 import { getPublicProfile } from '../actions/profile';
 
 const useStyles = makeStyles(() => ({
-  button: {
-    width: '150px',
-    height: '40px',
-    marginTop: '30px',
-    borderRadius: '5px',
-  },
+    button: {
+        width: '150px',
+        height: '40px',
+        marginTop: '30px',
+        borderRadius: '5px',
+    },
 }));
 
 const scrollToRef = () => {
-  scroll.scrollTo(window.innerHeight);
+    scroll.scrollTo(window.innerHeight);
 };
 
 const navToHome = () => {
-  window.location.href = '../../home';
+    window.location.href = '../../home';
 };
 
 const Portfolio = ({
-  match,
-  // eslint-disable-next-line no-shadow
-  getPublicProfile,
-  profile: { loading, profile },
-// eslint-disable-next-line consistent-return
+    match,
+    // eslint-disable-next-line no-shadow
+    getPublicProfile,
+    profile: { loading, profile },
+    // eslint-disable-next-line consistent-return
 }) => {
-  useEffect(() => {
-    getPublicProfile(match.params.id);
-  }, []);
-  const myRef = React.useRef(null);
-  const initScroll = () => scrollToRef(myRef);
-  const classes = useStyles();
-  // const { offsetTop } = myRef.current.offsetTop;
+    useEffect(() => {
+        getPublicProfile(match.params.id);
+    }, []);
+    const myRef = React.useRef(null);
+    const initScroll = () => scrollToRef(myRef);
+    const classes = useStyles();
+    // const { offsetTop } = myRef.current.offsetTop;
 
-  if (loading) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
-  }
+    if (loading) {
+        return (
+            <div>
+                <Loader />
+            </div>
+        );
+    }
 
-  if (!loading && profile !== null) {
-    return (
-      <div className="portfolioContainerFull">
-        <Landing
-          name={profile.user.name}
-          label={profile.about.label}
-          img={profile.about.imgUrl}
-          initScroll={initScroll}
-        />
-        <div className="portfolioBodyCont" style={{ top: `${window.innerHeight}px` }}>
-          <About summary={profile.about} top={window.innerHeight} />
-          <Education education={profile.education} />
-          <Work work={profile.work} />
-          <Volunteer volunteer={profile.volunteer} />
-          <Extra
-            awards={profile.awards}
-            publications={profile.publications}
-            languages={profile.languages}
-            skills={profile.skills}
-          />
-          <Contact
-            email={profile.user.email}
-            phone={profile.about.number}
-            location={profile.location}
-          />
-        </div>
-      </div>
-    );
-  }
+    if (!loading && profile !== null) {
+        return (
+            <div className="portfolioContainerFull">
+                <Landing
+                    name={profile.user.name}
+                    label={profile.about.label}
+                    img={profile.about.imgUrl}
+                    initScroll={initScroll}
+                />
+                <div
+                    className="portfolioBodyCont"
+                    style={{ top: `${window.innerHeight}px` }}
+                >
+                    <About summary={profile.about} top={window.innerHeight} />
+                    <Education education={profile.education} />
+                    <Work work={profile.work} />
+                    <Volunteer volunteer={profile.volunteer} />
+                    <Extra
+                        awards={profile.awards}
+                        publications={profile.publications}
+                        languages={profile.languages}
+                        skills={profile.skills}
+                    />
+                    <Contact
+                        email={profile.user.email}
+                        phone={profile.about.number}
+                        location={profile.location}
+                    />
+                </div>
+            </div>
+        );
+    }
 
-  if (!loading && profile === null) {
-    return (
-      <div>
-        <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
-          <Toolbar>
-            <Typography>
-              <span style={{ fontWeight: 700, fontSize: '20px' }}>
-                Portfolio Creator
-              </span>{' '}
-              <span style={{ color: '#3d40d8' }}>| Error 404</span>
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <div className="noProf">
-          <span style={{ fontSize: '50px' }}>WHOOPS ...</span>
-          <br />
-          <br />
-          <span style={{ fontWeight: '500' }}>No such User profile found</span>
-          <br />
-          Kindly proceed back to home
-          <br />
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            onClick={navToHome}
-          >
-            home
-          </Button>
-        </div>
-      </div>
-    );
-  }
+    if (!loading && profile === null) {
+        return (
+            <div>
+                <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
+                    <Toolbar>
+                        <Typography>
+                            <span style={{ fontWeight: 700, fontSize: '20px' }}>
+                                Portfolio Creator
+                            </span>{' '}
+                            <span style={{ color: '#3d40d8' }}>
+                                | Error 404
+                            </span>
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <div className="noProf">
+                    <span style={{ fontSize: '50px' }}>WHOOPS ...</span>
+                    <br />
+                    <br />
+                    <span style={{ fontWeight: '500' }}>
+                        No such User profile found
+                    </span>
+                    <br />
+                    Kindly proceed back to home
+                    <br />
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        className={classes.button}
+                        onClick={navToHome}
+                    >
+                        home
+                    </Button>
+                </div>
+            </div>
+        );
+    }
 };
 
 Portfolio.propTypes = {
-  getPublicProfile: PropTypes.func.isRequired,
-  profile: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    getPublicProfile: PropTypes.func.isRequired,
+    profile: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-const mapStateToProps = state => ({
-  profile: state.profile,
+const mapStateToProps = (state) => ({
+    profile: state.profile,
 });
 
-export default connect(
-  mapStateToProps,
-  { getPublicProfile },
-)(withRouter(Portfolio));
+export default connect(mapStateToProps, { getPublicProfile })(
+    withRouter(Portfolio)
+);

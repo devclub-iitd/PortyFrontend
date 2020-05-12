@@ -19,47 +19,71 @@ import Reset from './pages/resetPassword';
 import ResetSucc from './pages/resetSucc';
 
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: 'rgba(255,255,255,1)',
+    palette: {
+        primary: {
+            main: 'rgba(255,255,255,1)',
+        },
+        secondary: {
+            main: '#3d40d8',
+        },
     },
-    secondary: {
-      main: '#3d40d8',
-    },
-  },
 });
 // import Portfolio from './components/portfolio';
 
 if (localStorage.token) {
-  setAuthToken(localStorage.token);
+    setAuthToken(localStorage.token);
 }
 
 const App = () => {
-  // useeffect hook
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []); // we want to run only once hence the empty array
+    // useeffect hook
+    useEffect(() => {
+        store.dispatch(loadUser());
+    }, []); // we want to run only once hence the empty array
 
-  return (
-    <Provider store={store}>
-      <div>
-        <MuiThemeProvider theme={theme}>
-          <Router>
-            <PrivateRoute exact path="/register" component={Register} />
-            <PrivateRoute exact path="/home" component={HeaderMain} />
-            <Route exact path="/" component={Landing} />
-            <PrivateRoute exact path="/portfolio" component={Portfolio} />
-            <PrivateRoute exact path="/portfolio2" component={Portfolio2} />
-            <Route exact path="/validate" component={Validation} />
-            <Route exact path="/regenerate" component={Regenerate} />
-            <Route exact path="/reset" component={Reset} />
-            <Route exact path="/resetSucc" component={ResetSucc} />
-            <Route exact path="/portfolio/:id" component={PublicPortfolio} />
-          </Router>
-        </MuiThemeProvider>
-      </div>
-    </Provider>
-  );
+    return (
+        <Provider store={store}>
+            <div>
+                <MuiThemeProvider theme={theme}>
+                    <Router>
+                        <PrivateRoute
+                            exact
+                            path="/register"
+                            component={Register}
+                        />
+                        <PrivateRoute
+                            exact
+                            path="/home"
+                            component={HeaderMain}
+                        />
+                        <Route exact path="/" component={Landing} />
+                        <PrivateRoute
+                            exact
+                            path="/portfolio"
+                            component={Portfolio}
+                        />
+                        <PrivateRoute
+                            exact
+                            path="/portfolio2"
+                            component={Portfolio2}
+                        />
+                        <Route exact path="/validate" component={Validation} />
+                        <Route
+                            exact
+                            path="/regenerate"
+                            component={Regenerate}
+                        />
+                        <Route exact path="/reset" component={Reset} />
+                        <Route exact path="/resetSucc" component={ResetSucc} />
+                        <Route
+                            exact
+                            path="/portfolio/:id"
+                            component={PublicPortfolio}
+                        />
+                    </Router>
+                </MuiThemeProvider>
+            </div>
+        </Provider>
+    );
 };
 
 export default App;

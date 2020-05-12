@@ -17,179 +17,183 @@ import { reset_pass } from '../actions/auth';
 import '../style/validation.css';
 
 const styles = {
-  button: {
-    width: '150px',
-    height: '40px',
-    marginTop: '30px',
-    borderRadius: '5px',
-  },
-  input: {
-    display: 'none',
-  },
+    button: {
+        width: '150px',
+        height: '40px',
+        marginTop: '30px',
+        borderRadius: '5px',
+    },
+    input: {
+        display: 'none',
+    },
 };
 
 class Reset extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      mess: '',
-    };
-    this.openDial = this.openDial.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidUpdate(oldProps) {
-    let index = 0;
-    // eslint-disable-next-line react/prop-types
-    const { alert } = this.props;
-    // eslint-disable-next-line react/prop-types
-    if (oldProps.alert.length !== alert.length) {
-      // eslint-disable-next-line react/prop-types
-      index = alert.length - 1;
-      // eslint-disable-next-line react/prop-types
-      this.openDial(alert[index].msg);
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+            mess: '',
+        };
+        this.openDial = this.openDial.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-  }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    // eslint-disable-next-line react/destructuring-assignment, react/prop-types
-    this.props.reset_pass({ email, password });
-    // insert the bloody function here
-  }
+    componentDidUpdate(oldProps) {
+        let index = 0;
+        // eslint-disable-next-line react/prop-types
+        const { alert } = this.props;
+        // eslint-disable-next-line react/prop-types
+        if (oldProps.alert.length !== alert.length) {
+            // eslint-disable-next-line react/prop-types
+            index = alert.length - 1;
+            // eslint-disable-next-line react/prop-types
+            this.openDial(alert[index].msg);
+        }
+    }
 
-  handleClose() {
-    this.setState({
-      open: false,
-    });
-  }
+    handleSubmit(event) {
+        event.preventDefault();
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        // eslint-disable-next-line react/destructuring-assignment, react/prop-types
+        this.props.reset_pass({ email, password });
+        // insert the bloody function here
+    }
 
-  openDial(mess) {
-    this.setState({
-      open: false,
-    });
-    this.setState({
-      open: true,
-      mess,
-    });
-  }
+    handleClose() {
+        this.setState({
+            open: false,
+        });
+    }
 
-  render() {
-    const { classes } = this.props;
-    const { open, mess } = this.state;
-    return (
-      <div>
-        <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
-          <Toolbar>
-            <Typography>
-              <span style={{ fontWeight: 700, fontSize: '20px' }}>
-                Portfolio Creator
-              </span>{' '}
-              <span style={{ color: '#3d40d8' }}>| Password Reset</span>
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <div className="fullScreen">
-          <div className="overlay">
-            <div className="notFoundTextContainer">
-              <Typography
-                variant="h3"
-                style={{ marginTop: '0px', fontWeight: '600' }}
-              >
-                Reset Password -
-              </Typography>
-              <Typography
-                style={{
-                  marginTop: '25px',
-                  fontSize: '18px',
-                  fontWeight: '300',
-                }}
-              >
-                <form
-                  id="regenerateForm"
-                  name="regenerateForm"
-                  onSubmit={this.handleSubmit}
-                >
-                  <input
-                    required
-                    type="email"
-                    name="email"
-                    placeholder="Email Adress: "
-                  />
-                  <br />
-                  <br />
-                  <input
-                    required
-                    type="password"
-                    name="password"
-                    placeholder="Enter New Password: "
-                  />
-                </form>
-              </Typography>
+    openDial(mess) {
+        this.setState({
+            open: false,
+        });
+        this.setState({
+            open: true,
+            mess,
+        });
+    }
+
+    render() {
+        const { classes } = this.props;
+        const { open, mess } = this.state;
+        return (
+            <div>
+                <AppBar style={{ backgroundColor: 'white', color: 'black' }}>
+                    <Toolbar>
+                        <Typography>
+                            <span style={{ fontWeight: 700, fontSize: '20px' }}>
+                                Portfolio Creator
+                            </span>{' '}
+                            <span style={{ color: '#3d40d8' }}>
+                                | Password Reset
+                            </span>
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <div className="fullScreen">
+                    <div className="overlay">
+                        <div className="notFoundTextContainer">
+                            <Typography
+                                variant="h3"
+                                style={{ marginTop: '0px', fontWeight: '600' }}
+                            >
+                                Reset Password -
+                            </Typography>
+                            <Typography
+                                style={{
+                                    marginTop: '25px',
+                                    fontSize: '18px',
+                                    fontWeight: '300',
+                                }}
+                            >
+                                <form
+                                    id="regenerateForm"
+                                    name="regenerateForm"
+                                    onSubmit={this.handleSubmit}
+                                >
+                                    <input
+                                        required
+                                        type="email"
+                                        name="email"
+                                        placeholder="Email Adress: "
+                                    />
+                                    <br />
+                                    <br />
+                                    <input
+                                        required
+                                        type="password"
+                                        name="password"
+                                        placeholder="Enter New Password: "
+                                    />
+                                </form>
+                            </Typography>
+                        </div>
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            color="secondary"
+                            className={classes.button}
+                            form="regenerateForm"
+                        >
+                            Reset
+                        </Button>
+                    </div>
+                </div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={open}
+                    autoHideDuration={6000}
+                    onClose={this.handleClose}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={
+                        <span
+                            id="message-id"
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <InfoIcon style={{ marginRight: '10px' }} />
+                            {mess}
+                        </span>
+                    }
+                    action={[
+                        <IconButton
+                            key="close"
+                            aria-label="close"
+                            color="inherit"
+                            className={classes.close}
+                            onClick={this.handleClose}
+                        >
+                            <CloseIcon />
+                        </IconButton>,
+                    ]}
+                />
             </div>
-            <Button
-              variant="contained"
-              type="submit"
-              color="secondary"
-              className={classes.button}
-              form="regenerateForm"
-            >
-              Reset
-            </Button>
-          </div>
-        </div>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={open}
-          autoHideDuration={6000}
-          onClose={this.handleClose}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={(
-            <span
-              id="message-id"
-              style={{
-                display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
-              }}
-            >
-              <InfoIcon style={{ marginRight: '10px' }} />
-              {mess}
-            </span>
-          }
-          action={[
-            <IconButton
-              key="close"
-              aria-label="close"
-              color="inherit"
-              className={classes.close}
-              onClick={this.handleClose}
-            >
-              <CloseIcon />
-            </IconButton>,
-          ]}
-        />
-      </div>
-    );
-  }
+        );
+    }
 }
 
-const mapStateToProps = state => ({
-  alert: state.alert,
+const mapStateToProps = (state) => ({
+    alert: state.alert,
 });
 
 Reset.propTypes = {
-  classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default connect(
-  mapStateToProps,
-  { reset_pass },
-)(withStyles(styles)(withRouter(Reset)));
+export default connect(mapStateToProps, { reset_pass })(
+    withStyles(styles)(withRouter(Reset))
+);

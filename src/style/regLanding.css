@@ -1,188 +1,188 @@
 .loginPageContainer {
-  /* background-image: url('https://www.nationalgeographic.com/content/dam/travel/2017-digital/aurora-viewing-destinations/aurora-kirkjufell-iceland.ngsversion.1487284205697.adapt.1900.1.jpg'); */
-  /* background-image: url('https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2018/08/what-not-to-put-in-your-photography-portfolio.jpg'); */
-  background-image: url('http://wallpapercrafter.com/uploads/posts/100625-typewriter_book_notebook_paper_writing_write.jpg');
-  background-size: cover;
-  background-position: right;
-  top: 0px;
-  position: fixed;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
+    /* background-image: url('https://www.nationalgeographic.com/content/dam/travel/2017-digital/aurora-viewing-destinations/aurora-kirkjufell-iceland.ngsversion.1487284205697.adapt.1900.1.jpg'); */
+    /* background-image: url('https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2018/08/what-not-to-put-in-your-photography-portfolio.jpg'); */
+    background-image: url('http://wallpapercrafter.com/uploads/posts/100625-typewriter_book_notebook_paper_writing_write.jpg');
+    background-size: cover;
+    background-position: right;
+    top: 0px;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
 }
 .pageOverlay {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0,0,0,0.6);
-  -webkit-backdrop-filter: blur(15px);
-  /* padding-bottom: 50px; */
-  color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(15px);
+    /* padding-bottom: 50px; */
+    color: white;
 }
 .lgnBtnCont {
-  /* margin-top: 10px; */
-  /* position: absolute; */
-  /* background-color: blue; */
-  padding-top: 0px;
+    /* margin-top: 10px; */
+    /* position: absolute; */
+    /* background-color: blue; */
+    padding-top: 0px;
 }
 .title {
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 4px;
 }
-.formCont form{
-  display: flex;
-  flex-direction: column;
+.formCont form {
+    display: flex;
+    flex-direction: column;
 }
 /* .loginFormCont {
   background-color: red;
 } */
-.loginFormCont form{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 140px;
-  text-indent: 40px;
-  /* background-color: red; */
+.loginFormCont form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 140px;
+    text-indent: 40px;
+    /* background-color: red; */
 }
 .loginFormCont input {
-  padding: 10px;
-  margin: 0px;
-  height: 25px;
-  border-radius: 10px;
+    padding: 10px;
+    margin: 0px;
+    height: 25px;
+    border-radius: 10px;
 }
-.row{
-  display: flex;
-  flex-direction: row;
-  margin-top: 20px;
-  height: 36px;
-  line-height: 36px;
-  justify-content:space-around;
+.row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    height: 36px;
+    line-height: 36px;
+    justify-content: space-around;
 }
-.rowTwo{
-  width: 96%;
-  margin: auto;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.rowTwo {
+    width: 96%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
-.rowTwo input{
-  margin: 0px;
-}
-
-.row input{
-  width: 45%;
-  margin-top: 0px;
+.rowTwo input {
+    margin: 0px;
 }
 
-input{
-  outline: none;
-  width: 95.3%;
-  margin: auto;
-  margin-top: 20px;
-  height: 30px;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 30px;
-  text-indent: 10px;
-  border:2px solid black;
+.row input {
+    width: 45%;
+    margin-top: 0px;
 }
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+
+input {
+    outline: none;
+    width: 95.3%;
+    margin: auto;
+    margin-top: 20px;
+    height: 30px;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 30px;
+    text-indent: 10px;
+    border: 2px solid black;
 }
-input:hover{
-  border: 2px solid #3d40d8;
-  /* background-color: #3d40d8; */
-  /* color: white; */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
-input:focus{
-  border: 2px solid #3d40d8;
+input:hover {
+    border: 2px solid #3d40d8;
+    /* background-color: #3d40d8; */
+    /* color: white; */
+}
+input:focus {
+    border: 2px solid #3d40d8;
 }
 /* input:hover::placeholder{
   color: rgba(255,255,255,0.8);
 } */
-.btn{
-  width: 200px;
-  height: 50px;
-  cursor: pointer;
-  font-weight: 500;
-  margin: auto;
-  margin-top: 40px;
-  border: 2.5px solid #3d40d8;
-  font-size:16px;
-  color:#3d40d8;
-  text-align: center;
-  background-color: transparent;
-  /* line-height: 40px; */
-  transition: 0.2s ease-out;
-  outline: none;
-  display: block;
+.btn {
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    font-weight: 500;
+    margin: auto;
+    margin-top: 40px;
+    border: 2.5px solid #3d40d8;
+    font-size: 16px;
+    color: #3d40d8;
+    text-align: center;
+    background-color: transparent;
+    /* line-height: 40px; */
+    transition: 0.2s ease-out;
+    outline: none;
+    display: block;
 }
-.btn:hover{
-  background-color: #3d40d8;
-  color: white;
-  border-radius: 10px;
+.btn:hover {
+    background-color: #3d40d8;
+    color: white;
+    border-radius: 10px;
 }
-.dropDownRow{
-  width: 96%;
-  margin: auto;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.dropDownRow {
+    width: 96%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
-.dropdownContainer{
-  /* width: 28.75%; */
-  width: 32%;
-  height: 30px;
-  line-height: 30px;
-  text-indent: 10px;
-  cursor: pointer;
-  border: 2px solid black;
+.dropdownContainer {
+    /* width: 28.75%; */
+    width: 32%;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 10px;
+    cursor: pointer;
+    border: 2px solid black;
 }
-.dropdownContainer:hover{
-  border: 2px solid #3d40d8;
+.dropdownContainer:hover {
+    border: 2px solid #3d40d8;
 }
-.dropdownContainer:hover .dropdownDrop{
-  transform: scaleY(1);
+.dropdownContainer:hover .dropdownDrop {
+    transform: scaleY(1);
 }
-.dropdownDisp span{
-  color:#757575;
+.dropdownDisp span {
+    color: #757575;
 }
-.dropdownDisp{
-  font-size: 13px;
+.dropdownDisp {
+    font-size: 13px;
 }
-.dropdownDrop{
-  height: 150px;
-  background-color: rgba(230,230,230,0.93);
-  overflow-y: scroll;
-  font-size: 13px;
-  width: 100%;
-  margin-top: 2px;
-  transform: scaleY(0);
-  text-indent: 10px;
-  transition: 0.09s ease-out;
-  margin-left:-2px;
-  border-right: 2px solid #3d40d8;
-  border-left: 2px solid #3d40d8;
-  border-bottom: 2px solid #3d40d8;
+.dropdownDrop {
+    height: 150px;
+    background-color: rgba(230, 230, 230, 0.93);
+    overflow-y: scroll;
+    font-size: 13px;
+    width: 100%;
+    margin-top: 2px;
+    transform: scaleY(0);
+    text-indent: 10px;
+    transition: 0.09s ease-out;
+    margin-left: -2px;
+    border-right: 2px solid #3d40d8;
+    border-left: 2px solid #3d40d8;
+    border-bottom: 2px solid #3d40d8;
 }
-.dropdownElement:hover{
-  background-color: #3d40d8;
-  color: white;
+.dropdownElement:hover {
+    background-color: #3d40d8;
+    color: white;
 }
 .secBtnCont {
-  margin-top: 25px;
-  width: 400px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+    margin-top: 25px;
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }

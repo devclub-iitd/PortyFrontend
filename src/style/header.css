@@ -1,14 +1,14 @@
-.headerDetails{
-  display: flex;
-  align-items: row;
-  justify-content: center;
-  align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
+.headerDetails {
+    display: flex;
+    align-items: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
 }
-.title{
-  text-align: center;
-  font-size: 40px;
-  font-weight: 500;
-  margin-top: 40px;
+.title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 500;
+    margin-top: 40px;
 }

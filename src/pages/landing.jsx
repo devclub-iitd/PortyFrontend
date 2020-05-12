@@ -6,28 +6,28 @@ import HeaderLogin from '../components/headerLogin';
 import Loader from '../components/loader';
 
 const Landing = ({ isAuthenticated, auth: { loading } }) => {
-  if (loading) {
-    return <Loader />;
-  }
+    if (loading) {
+        return <Loader />;
+    }
 
-  if (!loading && isAuthenticated) {
-    return <Redirect to="/home" />;
-  }
-  return (
-    <div>
-      <HeaderLogin />
-    </div>
-  );
+    if (!loading && isAuthenticated) {
+        return <Redirect to="/home" />;
+    }
+    return (
+        <div>
+            <HeaderLogin />
+        </div>
+    );
 };
 
 Landing.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-  auth: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    auth: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  auth: state.auth,
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    auth: state.auth,
 });
 
 export default connect(mapStateToProps)(Landing);

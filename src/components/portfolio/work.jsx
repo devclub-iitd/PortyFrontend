@@ -3,30 +3,31 @@ import PropTypes from 'prop-types';
 import PaperCard from './cards/paper';
 
 const Work = (props) => {
-  const { work } = props;
+    const { work } = props;
 
-  return (
-    <div className="portfolioPage workPage">
-      <div className="portfolioPageTitle">Work</div>
-      <div className="portfolioCardContainer portfolioWorkCardContainer">
-        {work.map((workPlace) => (
-          <PaperCard
-            company={workPlace.company}
-            position={workPlace.position}
-            website={workPlace.website}
-            startDate={workPlace.startdate}
-            endDate={workPlace.enddate}
-          >
-            {workPlace.summary}
-          </PaperCard>
-        ))}
-      </div>
-    </div>
-  );
+    return (
+        <div className="portfolioPage workPage">
+            <div className="portfolioPageTitle">Work</div>
+            <div className="portfolioCardContainer portfolioWorkCardContainer">
+                {work.map((workPlace, i) => (
+                    <PaperCard
+                        company={workPlace.company}
+                        position={workPlace.position}
+                        website={workPlace.website}
+                        startDate={workPlace.startdate}
+                        endDate={workPlace.enddate}
+                        key={i}
+                    >
+                        {workPlace.summary}
+                    </PaperCard>
+                ))}
+            </div>
+        </div>
+    );
 };
 
 Work.propTypes = {
-  work: PropTypes.objectOf(PropTypes.object).isRequired,
+    work: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default Work;

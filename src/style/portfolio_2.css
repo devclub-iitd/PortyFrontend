@@ -1,456 +1,458 @@
-.portfolioContainer{
-  width: 100%;
-  margin: auto;
-  position: absolute;
-  top: 0;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  margin-top: 50px;
-  overflow-y: scroll;
-  transform: scale(0.6);
-  border-radius: 0px;
-  border: 2px solid black;
+.portfolioContainer {
+    width: 100%;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    margin-top: 50px;
+    overflow-y: scroll;
+    transform: scale(0.6);
+    border-radius: 0px;
+    border: 2px solid black;
 }
-.portfolioContainerFull2{
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  /* position: absolute; */
-  top: 0;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  overflow-y: scroll;
-  background-color: white;
+.portfolioContainerFull2 {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    /* position: absolute; */
+    top: 0;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    overflow-y: scroll;
+    background-color: white;
 }
 .portfolioContainerFull2 .portfolioBodyCont {
-  position: absolute;
-  background-color: white;
-  width: 100%;
+    position: absolute;
+    background-color: white;
+    width: 100%;
 }
-.portfolioContainerFull2 .portfolioPage1{
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  position: absolute;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content:center;
+.portfolioContainerFull2 .portfolioPage1 {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.portfolioContainerFull2 .portfolioPage1Details{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+.portfolioContainerFull2 .portfolioPage1Details {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
-.portfolioContainerFull2 .portfolioPage1SocialHolder{
-  margin-top: 100px;
+.portfolioContainerFull2 .portfolioPage1SocialHolder {
+    margin-top: 100px;
 }
-.portfolioContainerFull2 .portfolioUserImage{
-  width: 200px;
-  height: 200px;
-  border-radius: 100%;
-  margin-right: 40px;
+.portfolioContainerFull2 .portfolioUserImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    margin-right: 40px;
 }
-.portfolioContainerFull2 .portfolioUserDetails{
-  font-size: 35px;
-  margin-left: 40px;
+.portfolioContainerFull2 .portfolioUserDetails {
+    font-size: 35px;
+    margin-left: 40px;
 }
-.portfolioContainerFull2 .portfolioUserName{
-  font-weight: 700;
-  letter-spacing: 1px;
+.portfolioContainerFull2 .portfolioUserName {
+    font-weight: 700;
+    letter-spacing: 1px;
 }
-.portfolioContainerFull2 .portfolioUserLabel{
-  font-weight: 200;
-  letter-spacing: 2px;
+.portfolioContainerFull2 .portfolioUserLabel {
+    font-weight: 200;
+    letter-spacing: 2px;
 }
-.portfolioContainerFull2 .miniLine{
-  width: 20%;
-  height: 2px;
-  background-color: #3498db;
-  margin: auto;
-  margin-top: 15px;
-  margin-bottom: 15px;
+.portfolioContainerFull2 .miniLine {
+    width: 20%;
+    height: 2px;
+    background-color: #3498db;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 /* ------------------------------------------------------- */
-.portfolioContainerFull2 .portfolioBtn{
-  width: 150px;
-  text-align: center;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-weight: 600;
-  height: 45px;
-  border: 2px solid #3498db;
-  transition: 0.2s ease-out;
-  color: #3498db;
-  line-height: 45px;
-  border-radius: 4px;
+.portfolioContainerFull2 .portfolioBtn {
+    width: 150px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    height: 45px;
+    border: 2px solid #3498db;
+    transition: 0.2s ease-out;
+    color: #3498db;
+    line-height: 45px;
+    border-radius: 4px;
 }
-.portfolioContainerFull2 .portfolioBtn:hover{
-  color: black;
-  background-color: #3498db;
+.portfolioContainerFull2 .portfolioBtn:hover {
+    color: black;
+    background-color: #3498db;
 }
-.portfolioContainerFull2 .portfolioPage{
-  width: 100%;
-  height: auto;
-  padding-bottom: 40px;
+.portfolioContainerFull2 .portfolioPage {
+    width: 100%;
+    height: auto;
+    padding-bottom: 40px;
 }
 /* ----------------------------------------------------------- */
-.portfolioContainerFull2 .aboutPage{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 80px;
+.portfolioContainerFull2 .aboutPage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 80px;
 }
-.portfolioContainerFull2 .portfolioPageSplit{
-  width: 50%;
-  min-height: 400px;
-  height: auto;
+.portfolioContainerFull2 .portfolioPageSplit {
+    width: 50%;
+    min-height: 400px;
+    height: auto;
 }
-.portfolioContainerFull2 .leftAbout{
-  background-color: #3498db;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  font-size: 20px;
-  font-weight: 700;
-  border-radius: 0px 0px 0px 150px;
+.portfolioContainerFull2 .leftAbout {
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 0px 0px 0px 150px;
 }
-.portfolioContainerFull2 .rightAbout{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
+.portfolioContainerFull2 .rightAbout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
 }
-.portfolioContainerFull2 .portfolioUserSummary{
-  width: 60%;
-  text-align: justify;
+.portfolioContainerFull2 .portfolioUserSummary {
+    width: 60%;
+    text-align: justify;
 }
 /* ------------------------------------------------------------- */
 .portfolioContainerFull2 .portfolioEducationPage {
-  background-color: #3498db;
-  opacity: 0.9;
-  padding-bottom: 100px;
-  border-radius: 0px 0px 150px 150px;
+    background-color: #3498db;
+    opacity: 0.9;
+    padding-bottom: 100px;
+    border-radius: 0px 0px 150px 150px;
 }
 .portfolioContainerFull2 .portfolioEducationPage .portfolioPageTitle {
-  color: white;
+    color: white;
 }
-.portfolioContainerFull2 .portfolioEducationPage .pageMiniLine{
-  background-color: white;
+.portfolioContainerFull2 .portfolioEducationPage .pageMiniLine {
+    background-color: white;
 }
-  /* ---------------------------------------------------------- */
-.portfolioContainerFull2 .workPage{
-  background-color: white;;
+/* ---------------------------------------------------------- */
+.portfolioContainerFull2 .workPage {
+    background-color: white;
 }
-.portfolioContainerFull2 .portfolioPageTitle{
-  text-align: center;
-  padding-top: 40px;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 26px;
+.portfolioContainerFull2 .portfolioPageTitle {
+    text-align: center;
+    padding-top: 40px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 26px;
 }
-.portfolioContainerFull2 .portfolioCardContainer{
-  width: 80%;
-  height: auto;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+.portfolioContainerFull2 .portfolioCardContainer {
+    width: 80%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }
-.portfolioContainerFull2 .portfolioCard{
-  width: 300px;
-  padding: 20px;
-  min-height: 400px;
-  height: auto;
-  margin-top: 30px;
+.portfolioContainerFull2 .portfolioCard {
+    width: 300px;
+    padding: 20px;
+    min-height: 400px;
+    height: auto;
+    margin-top: 30px;
 }
 /* .portfolioContainerFull2 .portfolioCardTitle{
   background-color: red;
 } */
-.portfolioContainerFull2 .portfolioCardTitleMain{
-  font-size:20px;
-  text-transform: uppercase;
-  font-weight:500;
+.portfolioContainerFull2 .portfolioCardTitleMain {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
 }
-.portfolioContainerFull2 .portfolioCardTitleSub{
-  text-transform: capitalize;
-  font-weight: 300;
-  font-size: 18px;
+.portfolioContainerFull2 .portfolioCardTitleSub {
+    text-transform: capitalize;
+    font-weight: 300;
+    font-size: 18px;
 }
-.portfolioContainerFull2 .miniCardLine{
-  margin-right: auto;
-  margin-left: 0px;
+.portfolioContainerFull2 .miniCardLine {
+    margin-right: auto;
+    margin-left: 0px;
 }
-.portfolioContainerFull2 .portfolioCardContent{
-  width:100%;
-  text-align: justify;
+.portfolioContainerFull2 .portfolioCardContent {
+    width: 100%;
+    text-align: justify;
 }
-.portfolioContainerFull2 .portfolioCardWebsite{
-  margin-top: 20px;
-  font-size: 15px;
+.portfolioContainerFull2 .portfolioCardWebsite {
+    margin-top: 20px;
+    font-size: 15px;
 }
-.portfolioContainerFull2 .portfolioCardWebsite span{
-  font-weight: 600;
-  text-transform: uppercase;
+.portfolioContainerFull2 .portfolioCardWebsite span {
+    font-weight: 600;
+    text-transform: uppercase;
 }
-.portfolioContainerFull2 .portfolioCardWebsite a{
-  color: #3498db;
-  text-decoration: none;
+.portfolioContainerFull2 .portfolioCardWebsite a {
+    color: #3498db;
+    text-decoration: none;
 }
-.portfolioContainerFull2 .portfolioCardDateContainer{
-  width: 100%;
-  height: 50px;
-  border: 2px solid #3498db;
-  line-height: 50px;
-  text-align: center;
-  margin: auto;
-  margin-top: 20px;
-  font-weight: 600;
-  background-color: #3498db;
+.portfolioContainerFull2 .portfolioCardDateContainer {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #3498db;
+    line-height: 50px;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    font-weight: 600;
+    background-color: #3498db;
 }
 /* -------------------------------------------------------------- */
-.portfolioContainerFull2 .volunteerPage{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 50px;
-  padding-top: 50px;
-  background-color: rgba(240, 240, 240,1);
-  border-bottom: 5px solid black;
+.portfolioContainerFull2 .volunteerPage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    background-color: rgba(240, 240, 240, 1);
+    border-bottom: 5px solid black;
 }
-.portfolioContainerFull2 .rightVolunteer{
-  background-color: #3498db;
-  color: white;
-  width: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  font-size: 20px;
-  font-weight: 700;
-  padding-bottom: 40px;
-  padding-top: 40px;
-  text-align: center;
-  border-radius: 0px 100px 100px 0px;
+.portfolioContainerFull2 .rightVolunteer {
+    background-color: #3498db;
+    color: white;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    text-align: center;
+    border-radius: 0px 100px 100px 0px;
 }
-.portfolioContainerFull2 .leftVolunteer{
-  display: flex;
-  width: 70%;
-  flex-direction: column;
-  background-color: rgba(240, 240, 240,1);
-  align-items: center;
-  justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+.portfolioContainerFull2 .leftVolunteer {
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    background-color: rgba(240, 240, 240, 1);
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
-.portfolioContainerFull2 .portfolioVolunteerExpansionPanel{
-  width: 80%;
-  margin: auto;
-  margin-top: 3px;
-  margin-bottom: 3px
+.portfolioContainerFull2 .portfolioVolunteerExpansionPanel {
+    width: 80%;
+    margin: auto;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
-.portfolioContainerFull2 .portfolioExpansionPanelTitle{
-  flex-basis: 60%;
-  flex-shrink: 0;
-  font-size: 16px;
-  font-weight: 600;
-  text-transform: uppercase;
+.portfolioContainerFull2 .portfolioExpansionPanelTitle {
+    flex-basis: 60%;
+    flex-shrink: 0;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
-.portfolioContainerFull2 .portfolioExpansionPanelSubTitle{
-  color: #3498db;
-  font-size: 13px;
-  text-transform: capitalize;
+.portfolioContainerFull2 .portfolioExpansionPanelSubTitle {
+    color: #3498db;
+    font-size: 13px;
+    text-transform: capitalize;
 }
-.portfolioContainerFull2 .portfolioExpansionPanelDetails{
-  display: flex;
-  flex-direction: column;
+.portfolioContainerFull2 .portfolioExpansionPanelDetails {
+    display: flex;
+    flex-direction: column;
 }
-.portfolioContainerFull2 .portfolioExpansionPanelWebsite{
-  margin-top: 0px;
+.portfolioContainerFull2 .portfolioExpansionPanelWebsite {
+    margin-top: 0px;
 }
-.portfolioContainerFull2 .portfolioExpansionPanelWebsite span{
-  font-weight: 600;
-  text-transform: uppercase;
+.portfolioContainerFull2 .portfolioExpansionPanelWebsite span {
+    font-weight: 600;
+    text-transform: uppercase;
 }
-.portfolioContainerFull2 .portfolioExpansionPanelWebsite a{
-  color: #3498db;
-  text-decoration: none;
+.portfolioContainerFull2 .portfolioExpansionPanelWebsite a {
+    color: #3498db;
+    text-decoration: none;
 }
 /* ------------------------------------------------------------ */
-.portfolioContainerFull2 .portfolioFlatContainer{
-  width: 80%;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding-bottom: 30px;
+.portfolioContainerFull2 .portfolioFlatContainer {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 30px;
 }
-.portfolioContainerFull2 .portfolioFlat{
-  width: 300px;
-  min-height: 380px;
-  height: auto;
-  padding: 40px;
-  border-radius: 20px;
-  border: 1px solid #3498db;
-  margin-top: 40px;
-  transition: 0.2s ease-out;
+.portfolioContainerFull2 .portfolioFlat {
+    width: 300px;
+    min-height: 380px;
+    height: auto;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #3498db;
+    margin-top: 40px;
+    transition: 0.2s ease-out;
 }
-.portfolioContainerFull2 .portfolioFlat:hover{
-  background-color: #3498db;
-  color: white;
+.portfolioContainerFull2 .portfolioFlat:hover {
+    background-color: #3498db;
+    color: white;
 }
-.portfolioContainerFull2 .portfolioFlat:hover a{
-  color: white;
+.portfolioContainerFull2 .portfolioFlat:hover a {
+    color: white;
 }
-.portfolioContainerFull2 .portfolioFlat:hover .portfolioFlatSubTitle{
-  color: black;
+.portfolioContainerFull2 .portfolioFlat:hover .portfolioFlatSubTitle {
+    color: black;
 }
-.portfolioContainerFull2 .portfolioFlat:hover .portfolioCardDateContainer{
-  background-color: black;
+.portfolioContainerFull2 .portfolioFlat:hover .portfolioCardDateContainer {
+    background-color: black;
 }
-.portfolioContainerFull2 .portfolioFlatSubTitle{
-  transition: 0.2s ease-out;
-  color: #3498db;
-  text-transform: capitalize;
-  font-weight: 400;
-  margin-top: 10px;
+.portfolioContainerFull2 .portfolioFlatSubTitle {
+    transition: 0.2s ease-out;
+    color: #3498db;
+    text-transform: capitalize;
+    font-weight: 400;
+    margin-top: 10px;
 }
-.portfolioContainerFull2 .portfolioFlatContentSummary{
-  margin-top: 10px;
+.portfolioContainerFull2 .portfolioFlatContentSummary {
+    margin-top: 10px;
 }
 /* ---------------------------------------------------- */
-.portfolioContainerFull2 .extrasPage{
-  background-color: rgba(238, 238, 238, 0.5);
-  padding-bottom: 20px;
+.portfolioContainerFull2 .extrasPage {
+    background-color: rgba(238, 238, 238, 0.5);
+    padding-bottom: 20px;
 }
-.portfolioContainerFull2 .extrasPage .miniLine{
-  margin-top: 30px;
+.portfolioContainerFull2 .extrasPage .miniLine {
+    margin-top: 30px;
 }
-.portfolioContainerFull2 .floodFill{
-  background-color: black;;
-  color: white;
-  height: 50px;
-  line-height: 50px;
-  padding-bottom: 40px;
+.portfolioContainerFull2 .floodFill {
+    background-color: black;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    padding-bottom: 40px;
 }
-.portfolioContainerFull2 .portfolioExtraCard{
-  display: flex;
-  margin-top: 50px;
-  width: 500px;
-  flex-direction: row;
-  height: auto;
-  margin-left: 20px;
-  margin-right: 20px;
-  /* background-color: #e6e6e6; */
-  background-color: white;
+.portfolioContainerFull2 .portfolioExtraCard {
+    display: flex;
+    margin-top: 50px;
+    width: 500px;
+    flex-direction: row;
+    height: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* background-color: #e6e6e6; */
+    background-color: white;
 }
-.portfolioContainerFull2 .portfolioExtraDetails{
-  display: flex;
-  flex-direction: column;
-  width: 300px;
+.portfolioContainerFull2 .portfolioExtraDetails {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
 }
-.portfolioContainerFull2 .portfolioExtraContent{
-  display: flex;
-  flex-direction: column;
+.portfolioContainerFull2 .portfolioExtraContent {
+    display: flex;
+    flex-direction: column;
 }
-.portfolioContainerFull2 .chip{
-  margin-top: 10px;
+.portfolioContainerFull2 .chip {
+    margin-top: 10px;
 }
-.portfolioContainerFull2 .portfolioExtraImage{
-  height: auto;
-  width: 200px;
-  background-size: cover;;
-  background-repeat: no-repeat;
-  background-position: center;
+.portfolioContainerFull2 .portfolioExtraImage {
+    height: auto;
+    width: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .portfolioContainerFull2 .miniAwardImage {
-  background-image: url('../images/award.jpg');
+    background-image: url('../images/award.jpg');
 }
 .portfolioContainerFull2 .miniPublicationImage {
-  background-image: url('../images/publish.jpg');
+    background-image: url('../images/publish.jpg');
 }
 .portfolioContainerFull2 .miniLanguageImage {
-  background-image: url('../images/language.png');
+    background-image: url('../images/language.png');
 }
 .portfolioContainerFull2 .miniSkillImage {
-  background-image: url('../images/skill.jpg');
+    background-image: url('../images/skill.jpg');
 }
-.portfolioContainerFull2 .portfolioAwardCompany span,.portfolioAwardDate span{
-  font-weight: 600;
+.portfolioContainerFull2 .portfolioAwardCompany span,
+.portfolioAwardDate span {
+    font-weight: 600;
 }
-.portfolioContainerFull2 .portfolioPublishCompany span,.portfolioPublishDate span, .portfolioPublishWebsite span{
-  font-weight: 600;
+.portfolioContainerFull2 .portfolioPublishCompany span,
+.portfolioPublishDate span,
+.portfolioPublishWebsite span {
+    font-weight: 600;
 }
-.portfolioContainerFull2 .portfolioPublishWebsite a{
-  color: #3498db;
-  text-decoration: none;
+.portfolioContainerFull2 .portfolioPublishWebsite a {
+    color: #3498db;
+    text-decoration: none;
 }
-
 
 /* --------------------------------------------- */
 /* .portfolioContainerFull2 .contactPage{
 } */
-.portfolioContainerFull2 .contactPage .portfolioPageTitle{
-  padding-bottom: 20px;
+.portfolioContainerFull2 .contactPage .portfolioPageTitle {
+    padding-bottom: 20px;
 }
-.portfolioContainerFull2 .portfolioContactCard{
-  width: 360px;
-  border-radius: 15px;
-  margin: auto;
-  margin-top: 20px;
-  border: 2px solid black;
-  height: auto;
-  padding: 30px;
+.portfolioContainerFull2 .portfolioContactCard {
+    width: 360px;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 20px;
+    border: 2px solid black;
+    height: auto;
+    padding: 30px;
 }
-.portfolioContainerFull2 .portfolioContactCardAddress{
-  text-align: center;;
-  text-transform: capitalize;
-  line-height: 24px;
+.portfolioContainerFull2 .portfolioContactCardAddress {
+    text-align: center;
+    text-transform: capitalize;
+    line-height: 24px;
 }
-.portfolioContainerFull2 .portfolioContactCardAddress span{
-  color: #3498db;
+.portfolioContainerFull2 .portfolioContactCardAddress span {
+    color: #3498db;
 }
-.portfolioContainerFull2 .portfolioContactCard li{
-  margin-top: 10px;
+.portfolioContainerFull2 .portfolioContactCard li {
+    margin-top: 10px;
 }
-.portfolioContainerFull2 .portfolioContactCardInfoTitle{
-  font-weight: 600;
-  color: #3498db;
+.portfolioContainerFull2 .portfolioContactCardInfoTitle {
+    font-weight: 600;
+    color: #3498db;
 }
-.portfolioContainerFull2 .portfolioContactSocialCard{
-  text-align: center;
-  color: #3498db;
-  background-color: black;
+.portfolioContainerFull2 .portfolioContactSocialCard {
+    text-align: center;
+    color: #3498db;
+    background-color: black;
 }
 .portfolioContainerFull2 .noProf {
-  text-align: center;
-  text-transform: capitalize;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
-  font-weight: 300;
+    text-align: center;
+    text-transform: capitalize;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: 300;
 }
 .portfolioContainerFull2 .noProfLarge {
-  font-size: 30px;
-  font-weight: 600;
+    font-size: 30px;
+    font-weight: 600;
 }
 .portfolioContainerFull2 .noProf span {
-  font-weight: 700;
-  text-transform: uppercase;
-  /* font-style: italic; */
-  cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    /* font-style: italic; */
+    cursor: pointer;
 }

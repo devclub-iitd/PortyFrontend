@@ -1,185 +1,186 @@
-*{
-  margin: 0px;
-  border: 0px;
-  padding: 0px;
+* {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
 }
-.headerSimple{
-  width: 100%;
-  height: 55px;
-  line-height: 55px;
-  background-color: white;
-  text-indent: 20px;
-  box-shadow: 2px 0px 10px 0px rgba(0,0,0,0.4);
-  position: fixed;
-  top: 0px;
-  left: 0px;
+.headerSimple {
+    width: 100%;
+    height: 55px;
+    line-height: 55px;
+    background-color: white;
+    text-indent: 20px;
+    box-shadow: 2px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0px;
+    left: 0px;
 }
-.headerSimpleTitle{
-  font-size: 23px;
-  font-weight: 700;
+.headerSimpleTitle {
+    font-size: 23px;
+    font-weight: 700;
 }
-.headerSimpleTitle span{
-  font-weight: normal;
-  font-size: 17px;
-  letter-spacing: 1.6px;
+.headerSimpleTitle span {
+    font-weight: normal;
+    font-size: 17px;
+    letter-spacing: 1.6px;
 }
-.imageContainer{
-  margin-top: 100px;
+.imageContainer {
+    margin-top: 100px;
 }
 .imageContainerEdit {
-  margin-top: 20px;
+    margin-top: 20px;
 }
-.userImgContainer{
-  width: 170px;
-  height: 170px;
-  border-radius: 100%;
-  margin: auto;
+.userImgContainer {
+    width: 170px;
+    height: 170px;
+    border-radius: 100%;
+    margin: auto;
 }
-.userImg,.userImgOverlay{
-  width: 170px;
-  height: 170px;
-  border-radius: 100%;
-  position: relative;
+.userImg,
+.userImgOverlay {
+    width: 170px;
+    height: 170px;
+    border-radius: 100%;
+    position: relative;
 }
-.userImg{
-  background-color: rgba(255,255,255,0.5);
+.userImg {
+    background-color: rgba(255, 255, 255, 0.5);
 }
-.userImgOverlay{
-  background-color: rgba(0,0,0,0.7);
-  opacity: 0;
-  transition: 0.1s ease-in;
-  bottom: 170px;
-  text-align: center;
-  line-height: 170px;
-  color: white;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+.userImgOverlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: 0.1s ease-in;
+    bottom: 170px;
+    text-align: center;
+    line-height: 170px;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
-.userImgContainer:hover .userImgOverlay{
-  opacity: 1;
+.userImgContainer:hover .userImgOverlay {
+    opacity: 1;
 }
-.introContainer{
-  margin-top: 100px;
-  text-align: center;
+.introContainer {
+    margin-top: 100px;
+    text-align: center;
 }
 .introContainerEdit {
-  margin-top: 20px;
+    margin-top: 20px;
 }
-.pageTitle{
-  text-transform: capitalize;
-  font-weight: 600;
-  font-size: 40px;
+.pageTitle {
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 40px;
 }
-.pageTagline{
-  margin-top: 10px;
-  font-weight: 200;
-  font-size: 16px;
-  font-style: italic;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
+.pageTagline {
+    margin-top: 10px;
+    font-weight: 200;
+    font-size: 16px;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
 }
-.customDetailContainer{
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
+.customDetailContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
 }
-.sectionSeperator{
-  width: 100%;
-  height: 3px;
-  background-color: #3d40d8;
+.sectionSeperator {
+    width: 100%;
+    height: 3px;
+    background-color: #3d40d8;
 }
-form{
-  width: 100%;
+form {
+    width: 100%;
 }
-input{
-  width: 100%;
+input {
+    width: 100%;
 }
-textarea{
-  resize: none;
-  width: calc(100% - 10px);
-  outline: none;
-  margin-top: 20px;
-  padding-top: 4px;
-  line-height: 20px;
-  padding-left: 10px;
-  font-size: 13px;
-  min-height: 120px;
-  border:2px solid black;
+textarea {
+    resize: none;
+    width: calc(100% - 10px);
+    outline: none;
+    margin-top: 20px;
+    padding-top: 4px;
+    line-height: 20px;
+    padding-left: 10px;
+    font-size: 13px;
+    min-height: 120px;
+    border: 2px solid black;
 }
-textarea:hover{
-  border: 2px solid #3d40d8;
+textarea:hover {
+    border: 2px solid #3d40d8;
 }
-textarea:focus{
-  border: 2px solid #3d40d8;
+textarea:focus {
+    border: 2px solid #3d40d8;
 }
-.row input{
-  width: 30%;
+.row input {
+    width: 30%;
 }
-.rowtwo{
-  width:calc(100% + 4px);
+.rowtwo {
+    width: calc(100% + 4px);
 }
-.rowtwo input{
-  width: 50%;
+.rowtwo input {
+    width: 50%;
 }
-.rowtwo .left{
-  margin-right: 4px;
+.rowtwo .left {
+    margin-right: 4px;
 }
-.rowtwo .right{
-  margin-left: 4px;
+.rowtwo .right {
+    margin-left: 4px;
 }
-.epDetails{
-  width: 100%;
+.epDetails {
+    width: 100%;
 }
-.addBtn{
-  width: 50px;
-  height: 50px;
-  /* background-color: rgba(61,64,141,1); */
-  background-color: #3d40d8;
-  border-radius: 100%;
-  /* margin-top: 20px; */
-  cursor: pointer;
-  box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
-  text-align: center;
-  color: white;
-  line-height:40px;
-  font-size: 50px;
-  font-weight: 700;
-  margin-left: 10px;
-  margin-right: 10px;
-  transition: 0.2s ease-out;
+.addBtn {
+    width: 50px;
+    height: 50px;
+    /* background-color: rgba(61,64,141,1); */
+    background-color: #3d40d8;
+    border-radius: 100%;
+    /* margin-top: 20px; */
+    cursor: pointer;
+    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    color: white;
+    line-height: 40px;
+    font-size: 50px;
+    font-weight: 700;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: 0.2s ease-out;
 }
-.addBtn:hover{
-  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3  );
+.addBtn:hover {
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3);
 }
-.btnRow{
-  display: flex;
-  margin-top: 35px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+.btnRow {
+    display: flex;
+    margin-top: 35px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
-.sideBtnCont{
-  /* background-color: red; */
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.sideBtnCont {
+    /* background-color: red; */
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.btnContainer{
-  width: 100%;
-  text-align: center;
-  margin-top: 40px;
+.btnContainer {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
 }
 .regSubTitle {
-  font-weight: 600;
-  font-size: 24px;
-  text-transform: capitalize;
-  width: 75%;
-  padding: 10px;
-  text-indent: 5px;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 24px;
+    text-transform: capitalize;
+    width: 75%;
+    padding: 10px;
+    text-indent: 5px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 5px;
 }

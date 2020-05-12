@@ -8,36 +8,30 @@ import PropTypes from 'prop-types';
 import Loader from './loader';
 
 const PrivateRoute = ({
-  // eslint-disable-next-line react/prop-types, no-shadow
-  component: Component,
-  auth: { isAuthenticated, loading },
-  ...rest
+    // eslint-disable-next-line react/prop-types, no-shadow
+    component: Component,
+    auth: { isAuthenticated, loading },
+    ...rest
 }) => (
-  <Route
-    {...rest}
-    render={(props) => {
-      if (loading) {
-        return (
-          <Loader />
-        );
-      }
-      if (!loading && !isAuthenticated) {
-        return <Redirect to="/" />;
-      }
-      return <Component {...props} />;
-    }
-
-
-        }
-  />
+    <Route
+        {...rest}
+        render={(props) => {
+            if (loading) {
+                return <Loader />;
+            }
+            if (!loading && !isAuthenticated) {
+                return <Redirect to="/" />;
+            }
+            return <Component {...props} />;
+        }}
+    />
 );
 PrivateRoute.propTypes = {
-  auth: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    auth: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth,
+const mapStateToProps = (state) => ({
+    auth: state.auth,
 });
-
 
 export default connect(mapStateToProps)(PrivateRoute);
