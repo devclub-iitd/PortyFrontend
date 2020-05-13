@@ -10,7 +10,7 @@ const Education = (props) => {
             <div className="portfolioPageTitle">Education</div>
             <div className="miniLine" />
             <div className="portfolioFlatContainer">
-                {education.map((educationPlace, i) => (
+                {education.map((educationPlace) => (
                     <FlatCard
                         institution={educationPlace.institution}
                         degree={educationPlace.qualification}
@@ -18,7 +18,6 @@ const Education = (props) => {
                         grade={educationPlace.gpa}
                         startDate={educationPlace.startdate}
                         endDate={educationPlace.enddate}
-                        key={i}
                     >
                         {educationPlace.details}
                     </FlatCard>

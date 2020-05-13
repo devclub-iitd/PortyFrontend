@@ -19,12 +19,11 @@ const MiniCard = (props) => {
                     >
                         {title}
                     </Typography>
-                    {items.map((item, i) => (
+                    {items.map((item) => (
                         <Chip
                             className="chip"
                             variant="outlined"
                             label={item.name}
-                            key={i}
                         />
                     ))}
                 </CardContent>

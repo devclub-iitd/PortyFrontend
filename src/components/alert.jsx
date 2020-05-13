@@ -7,13 +7,13 @@ import '../style/alert.css';
 const alert = ({ alerts }) =>
     alerts !== null &&
     alerts.length > 0 &&
-    alerts.map((alert) => (
+    alerts.map((alertItem) => (
         <span
-            key={alert.id}
-            id={alert.id}
-            className={`alert alert-${alert.alertType}`}
+            key={alertItem.id}
+            id={alertItem.id}
+            className={`alert alert-${alertItem.alertType}`}
         >
-            {alert.msg} hello
+            {alertItem.msg} hello
         </span>
     ));
 

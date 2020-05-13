@@ -82,9 +82,12 @@ const styles = () => ({
 });
 
 class SimpleTabs extends React.Component {
-    state = {
-        value: 0,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: 0,
+        };
+    }
 
     handleChange = (event, value) => {
         this.setState({ value });

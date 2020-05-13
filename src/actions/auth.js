@@ -11,7 +11,7 @@ import {
     LOG_OUT,
     CLEAR_PROFILE,
 } from './types';
-import { setAlert } from './alert';
+import setAlert from './alert';
 import setAuthToken from '../utility/setauthtoken';
 
 // Load User

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setAlert } from '../actions/alert';
+import setAlert from '../actions/alert';
 import { register } from '../actions/auth';
 import '../style/regLanding.css';
 

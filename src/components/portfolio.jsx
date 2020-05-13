@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react-hooks/exhaustive-deps */
 // TODO - LINT ERRORS FOR THIS FILE
 // TODO REACT USEEFFECT HOOK CONSOLE WARNING FIX
 import React, { useEffect } from 'react';

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // TODO REACT USEEFFECT HOOK CONSOLE WARNING FIX
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
