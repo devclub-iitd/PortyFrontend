@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// TODO - FIX THE HARD CODED URL
+// TODO - FIX THE HARD CODED URL (JATIN FIX)
 const download = () => {
     window.location.href = 'http://localhost:5000/api/profile/download';
 };
@@ -39,6 +39,7 @@ const portfolio = () => {
     window.location.href = './portfolio';
 };
 
+// TODO: JATIN FIX
 // eslint-disable-next-line no-unused-vars, no-shadow
 const Home = ({ logout, getProfile }) => {
     useEffect(() => {

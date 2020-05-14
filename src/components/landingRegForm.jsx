@@ -115,6 +115,7 @@ class LandingRegForm extends React.Component {
             dob: `${dateVal}-${monthVal}-${yearVal}`,
             website: webVal,
         };
+        // TODO: JATIN FIX
         // eslint-disable-next-line react/destructuring-assignment
         this.props.register(obj);
     }

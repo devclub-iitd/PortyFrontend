@@ -1,3 +1,4 @@
+// TODO: JATIN FIX
 /* eslint-disable camelcase */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
@@ -42,13 +43,9 @@ class Reset extends React.Component {
 
     componentDidUpdate(oldProps) {
         let index = 0;
-        // eslint-disable-next-line react/prop-types
         const { alert } = this.props;
-        // eslint-disable-next-line react/prop-types
         if (oldProps.alert.length !== alert.length) {
-            // eslint-disable-next-line react/prop-types
             index = alert.length - 1;
-            // eslint-disable-next-line react/prop-types
             this.openDial(alert[index].msg);
         }
     }
@@ -57,9 +54,9 @@ class Reset extends React.Component {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
-        // eslint-disable-next-line react/destructuring-assignment, react/prop-types
+        // TODO: JATIN FIX
+        // eslint-disable-next-line react/destructuring-assignment
         this.props.reset_pass({ email, password });
-        // insert the bloody function here
     }
 
     handleClose() {
@@ -192,6 +189,8 @@ const mapStateToProps = (state) => ({
 
 Reset.propTypes = {
     classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    alert: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    reset_pass: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { reset_pass })(

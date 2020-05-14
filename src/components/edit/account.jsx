@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -17,11 +16,6 @@ class AccountExpansionPanel extends React.Component {
             passwordHint: '',
         };
         this.handleInputChange = this.handleInputChange.bind(this);
-    }
-
-    // eslint-disable-next-line class-methods-use-this
-    callApiRequest() {
-        alert('account');
     }
 
     handleInputChange(event) {

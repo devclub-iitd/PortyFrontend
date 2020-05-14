@@ -1,7 +1,5 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react-hooks/exhaustive-deps */
-// TODO - LINT ERRORS FOR THIS FILE
+// TODO - JATIN FIX
 // TODO REACT USEEFFECT HOOK CONSOLE WARNING FIX
 import React, { useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
@@ -21,7 +19,7 @@ import { getProfile } from '../actions/profile';
 const navToReg = () => {
     window.location.href = '../register';
 };
-
+// TODO: JATIN FIX
 // eslint-disable-next-line no-shadow
 const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
     useEffect(() => {
@@ -71,7 +69,15 @@ const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
             <div className="noProf">
                 No profile found
                 <br />
-                please make one by clicking <span onClick={navToReg}>here</span>
+                please make one by clicking{' '}
+                <span
+                    onClick={navToReg}
+                    onKeyPress={navToReg}
+                    role="button"
+                    tabIndex={0}
+                >
+                    here
+                </span>
             </div>
         );
     }

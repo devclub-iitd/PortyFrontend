@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
@@ -40,6 +39,14 @@ const styles = {
         paddingBottom: '30px',
     },
 };
+
+const navToRegOTP = () => {
+    window.location.href = './regenerate';
+};
+
+const navToResPass = () => {
+    window.location.href = './reset';
+};
 function TabContainer(props) {
     const { children } = props;
     return (
@@ -64,8 +71,6 @@ class IconLabelTabs extends React.Component {
         this.handleClose = this.handleClose.bind(this);
         this.openDial = this.openDial.bind(this);
         this.openTemp = this.openTemp.bind(this);
-        this.navToRegOTP = this.navToRegOTP.bind(this);
-        this.navToResPass = this.navToResPass.bind(this);
     }
 
     componentDidUpdate(oldProps) {
@@ -102,14 +107,6 @@ class IconLabelTabs extends React.Component {
         });
     }
 
-    navToRegOTP() {
-        window.location.href = './regenerate';
-    }
-
-    navToResPass() {
-        window.location.href = './reset';
-    }
-
     render() {
         const { classes } = this.props;
         const { value, openDial, message } = this.state;
@@ -143,14 +140,14 @@ class IconLabelTabs extends React.Component {
                         <Button
                             variant="outlined"
                             color="primary"
-                            onClick={this.navToRegOTP}
+                            onClick={navToRegOTP}
                         >
                             Regenerate OTP
                         </Button>
                         <Button
                             variant="outlined"
                             color="primary"
-                            onClick={this.navToResPass}
+                            onClick={navToResPass}
                         >
                             Reset Password
                         </Button>

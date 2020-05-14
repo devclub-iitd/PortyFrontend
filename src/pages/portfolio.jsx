@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // TODO REACT USEEFFECT HOOK CONSOLE WARNING FIX
+// TODO: JATIN FIX ENTIRE FILE
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';

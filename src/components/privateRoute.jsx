@@ -1,4 +1,4 @@
-// TODO - LINT FIXES FOR THIS BY FILE BY JATIN
+// TODO: JATIN FIX
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import Loader from './loader';
 
 const PrivateRoute = ({
+    // TODO: JATIN FIX
     // eslint-disable-next-line react/prop-types, no-shadow
     component: Component,
     auth: { isAuthenticated, loading },

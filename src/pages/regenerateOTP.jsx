@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+// TODO: JATIN FIX
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -52,6 +53,7 @@ class Regenerate extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const email = event.target.email.value;
+        // TODO: JATIN FIX
         // eslint-disable-next-line react/destructuring-assignment
         this.props.regenerate_otp(email);
     }

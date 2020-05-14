@@ -28,6 +28,10 @@ import Loader from '../components/loader';
 
 const obj = {};
 
+const retrieveChildData = (type, data) => {
+    obj[type] = data;
+};
+
 const theme = createMuiTheme({
     palette: {
         primary: {
@@ -64,13 +68,14 @@ class Edit extends React.Component {
         this.reference = React.createRef();
         this.handlePanel = this.handlePanel.bind(this);
         this.handleSumbit = this.handleSumbit.bind(this);
-        this.retrieveChildData = this.retrieveChildData.bind(this);
+        // this.retrieveChildData = this.retrieveChildData.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleCloseMini = this.handleCloseMini.bind(this);
     }
 
     componentDidMount() {
+        // TODO: JATIN FIX
         // eslint-disable-next-line react/destructuring-assignment
         this.props.getFullProfile();
     }
@@ -86,11 +91,6 @@ class Edit extends React.Component {
                 expanded: panel,
             });
         }
-    }
-
-    // eslint-disable-next-line class-methods-use-this
-    retrieveChildData(type, data) {
-        obj[type] = data;
     }
 
     async handleSumbit(event) {
@@ -109,6 +109,7 @@ class Edit extends React.Component {
         this.language.current.callApiRequest();
         this.interest.current.callApiRequest();
         this.reference.current.callApiRequest();
+        // TODO: JATIN FIX
         // eslint-disable-next-line react/destructuring-assignment
         await this.props.createProfile(obj, true);
         const { alert } = this.props;
@@ -151,6 +152,7 @@ class Edit extends React.Component {
     }
 
     render() {
+        // TODO: JATIN FIX
         // eslint-disable-next-line react/destructuring-assignment
         const { loading, profile } = this.props.profile;
         const { user } = this.props;
@@ -178,26 +180,20 @@ class Edit extends React.Component {
                         <Image img={profile.about.imgUrl} />
                         <Intro name={user.name} caption="none" />
                         <form onSubmit={this.handleSumbit}>
-                            {/* <Account
-                  ref={this.}
-                expanded={expanded}
-                action={() => this.handlePanel("accountPanel")}
-                existingData={profile.account}
-              /> */}
                             <About
                                 ref={this.about}
                                 expanded={expanded}
                                 action={() => this.handlePanel('aboutPanel')}
                                 existingData={profile.about}
                                 existingContactData={profile.user}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <Location
                                 ref={this.location}
                                 expanded={expanded}
                                 action={() => this.handlePanel('locationPanel')}
                                 existingData={profile.location}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <Education
                                 ref={this.education}
@@ -206,14 +202,14 @@ class Edit extends React.Component {
                                     this.handlePanel('educationPanel')
                                 }
                                 existingData={profile.education}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <Work
                                 ref={this.work}
                                 expanded={expanded}
                                 action={() => this.handlePanel('workPanel')}
                                 existingData={profile.work}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <Volunteer
                                 ref={this.volunteer}
@@ -222,14 +218,14 @@ class Edit extends React.Component {
                                     this.handlePanel('volunteerPanel')
                                 }
                                 existingData={profile.volunteer}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <Language
                                 ref={this.language}
                                 expanded={expanded}
                                 action={() => this.handlePanel('languagePanel')}
                                 existingData={profile.languages}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <div className="regSubTitle">Optionals -</div>
                             <Award
@@ -237,7 +233,7 @@ class Edit extends React.Component {
                                 expanded={expanded}
                                 action={() => this.handlePanel('awardPanel')}
                                 existingData={profile.awards}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <Publication
                                 ref={this.publication}
@@ -246,21 +242,21 @@ class Edit extends React.Component {
                                     this.handlePanel('publicationPanel')
                                 }
                                 existingData={profile.publications}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <Skill
                                 ref={this.skill}
                                 expanded={expanded}
                                 action={() => this.handlePanel('skillPanel')}
                                 existingData={profile.skills}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <Interest
                                 ref={this.interest}
                                 expanded={expanded}
                                 action={() => this.handlePanel('interestPanel')}
                                 existingData={profile.interests}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <Reference
                                 ref={this.reference}
@@ -269,7 +265,7 @@ class Edit extends React.Component {
                                     this.handlePanel('referencePanel')
                                 }
                                 existingData={profile.references}
-                                senData={this.retrieveChildData}
+                                senData={retrieveChildData}
                             />
                             <div className="btnContainer">
                                 <Button
