@@ -8,7 +8,6 @@ fetch('./Data/file.json')
     .then((r) => r.json())
     .then((data) => {
         ReactDOM.render(
-            // eslint-disable-next-line react/jsx-filename-extension
             <App appData={data} />,
             document.getElementById('root')
         );

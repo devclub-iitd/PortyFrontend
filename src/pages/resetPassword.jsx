@@ -1,6 +1,3 @@
-// TODO Fix Prop types
-/* eslint-disable react/prop-types */
-
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
@@ -191,6 +188,8 @@ const mapStateToProps = (state) => ({
 
 Reset.propTypes = {
     classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    alert: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    resetPass: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { resetPass })(

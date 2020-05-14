@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../style/regLanding.css';
 import { connect } from 'react-redux';
 import { login } from '../actions/auth';
@@ -25,13 +26,11 @@ class LoginFrom extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         //  add checks for all conditions especially dob and all
-        //  alert('form is now being submitted');
         const { emailVal, passVal } = this.state;
         const obj = {
             email: emailVal,
             password: passVal,
         };
-        // eslint-disable-next-line react/prop-types
         const { login: login_ } = this.props;
         login_(obj);
     }
@@ -64,5 +63,9 @@ class LoginFrom extends React.Component {
         );
     }
 }
+
+LoginFrom.propTypes = {
+    login: PropTypes.func.isRequired,
+};
 
 export default connect(null, { login })(LoginFrom);

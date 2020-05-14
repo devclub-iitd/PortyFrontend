@@ -35,6 +35,13 @@ import Reference from '../components/regFinal/reference';
 import '../style/regFinal.css';
 
 const obj = {};
+const retrieveChildData = (type, data) => {
+    obj[type] = data;
+};
+
+const redirectHome = () => {
+    window.location.href = '../home';
+};
 
 const theme = createMuiTheme({
     palette: {
@@ -46,14 +53,6 @@ const theme = createMuiTheme({
         },
     },
 });
-
-function retrieveChildData(type, data) {
-    obj[type] = data;
-}
-
-function redirectHome() {
-    window.location.href = '../home';
-}
 
 class RegFinal extends React.Component {
     constructor(props) {
@@ -185,68 +184,68 @@ class RegFinal extends React.Component {
                             ref={this.about}
                             expanded={expanded}
                             action={() => this.handlePanel('aboutPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Location
                             ref={this.location}
                             expanded={expanded}
                             action={() => this.handlePanel('locationPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Education
                             ref={this.education}
                             expanded={expanded}
                             action={() => this.handlePanel('educationPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Work
                             ref={this.work}
                             expanded={expanded}
                             action={() => this.handlePanel('workPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Volunteer
                             ref={this.volunteer}
                             expanded={expanded}
                             action={() => this.handlePanel('volunteerPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Language
                             ref={this.language}
                             expanded={expanded}
                             action={() => this.handlePanel('languagePanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <div className="regSubTitle">Optionals -</div>
                         <Award
                             ref={this.award}
                             expanded={expanded}
                             action={() => this.handlePanel('awardPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Publication
                             ref={this.publication}
                             expanded={expanded}
                             action={() => this.handlePanel('publicationPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Skill
                             ref={this.skill}
                             expanded={expanded}
                             action={() => this.handlePanel('skillPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Interest
                             ref={this.interest}
                             expanded={expanded}
                             action={() => this.handlePanel('interestPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Reference
                             ref={this.reference}
                             expanded={expanded}
                             action={() => this.handlePanel('referencePanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <div className="btnContainer">
                             <Button
@@ -261,7 +260,7 @@ class RegFinal extends React.Component {
                         </div>
                     </form>
                     <AlertStatic
-                        handleRedirect={this.redirectHome}
+                        handleRedirect={redirectHome}
                         open={openStatic}
                         title={alertTitle}
                     >

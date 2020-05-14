@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import Loader from './loader';
 
 const PrivateRoute = ({
+    // TODO: JATIN FIX
     // eslint-disable-next-line react/prop-types
     component: Component,
     auth: { isAuthenticated, loading },

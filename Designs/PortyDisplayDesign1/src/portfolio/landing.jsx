@@ -18,7 +18,13 @@ const Landing = (props) => {
                 </div>
             </div>
             <div className="portfolioPage1SocialHolder">
-                <div className="portfolioBtn" onClick={initScroll}>
+                <div
+                    className="portfolioBtn"
+                    onClick={initScroll}
+                    onKeyPress={initScroll}
+                    role="button"
+                    tabIndex={0}
+                >
                     Learn More
                 </div>
             </div>

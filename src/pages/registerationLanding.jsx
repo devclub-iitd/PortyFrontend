@@ -143,14 +143,14 @@ class IconLabelTabs extends React.Component {
                         <Button
                             variant="outlined"
                             color="primary"
-                            onClick={this.navToRegOTP}
+                            onClick={navToRegOTP}
                         >
                             Regenerate OTP
                         </Button>
                         <Button
                             variant="outlined"
                             color="primary"
-                            onClick={this.navToResPass}
+                            onClick={navToResPass}
                         >
                             Reset Password
                         </Button>
