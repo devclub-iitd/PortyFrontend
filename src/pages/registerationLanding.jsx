@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
@@ -40,6 +39,7 @@ const styles = {
         paddingBottom: '30px',
     },
 };
+
 function TabContainer(props) {
     const { children } = props;
     return (
@@ -53,6 +53,14 @@ TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
+function navToRegOTP() {
+    window.location.href = './regenerate';
+}
+
+function navToResPass() {
+    window.location.href = './reset';
+}
+
 class IconLabelTabs extends React.Component {
     constructor(props) {
         super(props);
@@ -64,8 +72,8 @@ class IconLabelTabs extends React.Component {
         this.handleClose = this.handleClose.bind(this);
         this.openDial = this.openDial.bind(this);
         this.openTemp = this.openTemp.bind(this);
-        this.navToRegOTP = this.navToRegOTP.bind(this);
-        this.navToResPass = this.navToResPass.bind(this);
+        this.navToRegOTP = navToRegOTP.bind(this);
+        this.navToResPass = navToResPass.bind(this);
     }
 
     componentDidUpdate(oldProps) {
@@ -100,14 +108,6 @@ class IconLabelTabs extends React.Component {
             openDial: true,
             message: mess,
         });
-    }
-
-    navToRegOTP() {
-        window.location.href = './regenerate';
-    }
-
-    navToResPass() {
-        window.location.href = './reset';
     }
 
     render() {

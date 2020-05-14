@@ -1,6 +1,7 @@
 // TODO - LINT FIXES FOR THIS BY FILE BY JATIN
-// eslint-disable-next-line no-unused-vars
-import React, { Component } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+
+import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -8,7 +9,7 @@ import PropTypes from 'prop-types';
 import Loader from './loader';
 
 const PrivateRoute = ({
-    // eslint-disable-next-line react/prop-types, no-shadow
+    // eslint-disable-next-line react/prop-types
     component: Component,
     auth: { isAuthenticated, loading },
     ...rest

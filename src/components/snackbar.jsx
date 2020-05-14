@@ -69,6 +69,7 @@ function MySnackbarContentWrapper(props) {
                     <CloseIcon className={classes.icon} />
                 </IconButton>,
             ]}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...other}
         />
     );

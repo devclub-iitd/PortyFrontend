@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
 import { connect } from 'react-redux';
-import { regenerate_otp } from '../actions/auth';
+import { regenerateOtp } from '../actions/auth';
 
 import '../style/validation.css';
 
@@ -52,8 +51,9 @@ class Regenerate extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const email = event.target.email.value;
-        // eslint-disable-next-line react/destructuring-assignment
-        this.props.regenerate_otp(email);
+
+        const { regenerateOtp: regenerateOtp_ } = this.props;
+        regenerateOtp_(email);
     }
 
     handleClose() {
@@ -171,7 +171,7 @@ class Regenerate extends React.Component {
 }
 
 Regenerate.propTypes = {
-    regenerate_otp: PropTypes.func.isRequired,
+    regenerateOtp: PropTypes.func.isRequired,
     classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
     alert: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
@@ -180,6 +180,6 @@ const mapStateToProps = (state) => ({
     alert: state.alert,
 });
 
-export default connect(mapStateToProps, { regenerate_otp })(
+export default connect(mapStateToProps, { regenerateOtp })(
     withStyles(styles)(withRouter(Regenerate))
 );

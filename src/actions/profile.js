@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import axios from 'axios';
 import setAlert from './alert';
 import { GET_PROFILE, GETTING_PROFILE, PROFILE_ERROR } from './types';
@@ -101,7 +100,7 @@ export const getPublicProfile = (entryno) => async (dispatch) => {
             payload: res.data,
         });
     } catch (err) {
-        console.log('Error caught in front');
+        // console.log('Error caught in front');
         dispatch({
             type: PROFILE_ERROR,
         });
@@ -118,8 +117,8 @@ export const createProfile = (formData, edit) => async (dispatch) => {
             },
         };
 
-        // eslint-disable-next-line no-unused-vars
-        const res = await axios.post('/api/profile', formData, config);
+        await axios.post('/api/profile', formData, config);
+        // const res = await axios.post('/api/profile', formData, config);
 
         // dispatch(loadUser())   used in edit only previously
 

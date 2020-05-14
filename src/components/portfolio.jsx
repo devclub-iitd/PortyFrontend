@@ -1,8 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react-hooks/exhaustive-deps */
-// TODO - LINT ERRORS FOR THIS FILE
-// TODO REACT USEEFFECT HOOK CONSOLE WARNING FIX
 import React, { useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
@@ -16,17 +11,16 @@ import Extra from './portfolio/extra';
 import Contact from './portfolio/contact';
 import '../style/portfolio.css';
 import Loader from './loader';
-import { getProfile } from '../actions/profile';
+import { getProfile as getProfile_ } from '../actions/profile';
 
 const navToReg = () => {
     window.location.href = '../register';
 };
 
-// eslint-disable-next-line no-shadow
 const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
     useEffect(() => {
         getProfile();
-    }, []);
+    });
 
     if (loading) {
         return (
@@ -71,7 +65,15 @@ const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
             <div className="noProf">
                 No profile found
                 <br />
-                please make one by clicking <span onClick={navToReg}>here</span>
+                please make one by clicking{' '}
+                <span
+                    onClick={navToReg}
+                    onKeyPress={navToReg}
+                    role="button"
+                    tabIndex={0}
+                >
+                    here
+                </span>
             </div>
         );
     }
@@ -90,4 +92,4 @@ const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { getProfile })(Portfolio);
+export default connect(mapStateToProps, { getProfile_ })(Portfolio);

@@ -18,15 +18,14 @@ const styles = {
     },
 };
 
+function handleRedirect() {
+    window.location.href = '../';
+}
+
 class ResetSucc extends React.Component {
     constructor(props) {
         super(props);
-        this.handleRedirect = this.handleRedirect.bind(this);
-    }
-
-    // eslint-disable-next-line class-methods-use-this
-    handleRedirect() {
-        window.location.href = '../';
+        this.handleRedirect = handleRedirect.bind(this);
     }
 
     render() {

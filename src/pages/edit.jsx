@@ -71,8 +71,8 @@ class Edit extends React.Component {
     }
 
     componentDidMount() {
-        // eslint-disable-next-line react/destructuring-assignment
-        this.props.getFullProfile();
+        const { getFullProfile: getFullProfile_ } = this.props;
+        getFullProfile_();
     }
 
     handlePanel(panel) {
@@ -88,10 +88,9 @@ class Edit extends React.Component {
         }
     }
 
-    // eslint-disable-next-line class-methods-use-this
-    retrieveChildData(type, data) {
-        obj[type] = data;
-    }
+    // retrieveChildData(type, data) {
+    //     obj[type] = data;
+    // }
 
     async handleSumbit(event) {
         event.preventDefault();
@@ -109,8 +108,10 @@ class Edit extends React.Component {
         this.language.current.callApiRequest();
         this.interest.current.callApiRequest();
         this.reference.current.callApiRequest();
-        // eslint-disable-next-line react/destructuring-assignment
-        await this.props.createProfile(obj, true);
+
+        const { createProfile: createProfile_ } = this.props;
+        await createProfile_(obj, true);
+
         const { alert } = this.props;
         const len = alert.length;
         if (alert[len - 1].alertType !== 'blue') {
@@ -151,9 +152,8 @@ class Edit extends React.Component {
     }
 
     render() {
-        // eslint-disable-next-line react/destructuring-assignment
-        const { loading, profile } = this.props.profile;
-        const { user } = this.props;
+        const { profile: overallProfile, user } = this.props;
+        const { loading, profile } = overallProfile;
         const {
             expanded,
             open,

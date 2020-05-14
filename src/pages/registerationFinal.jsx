@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -48,6 +47,14 @@ const theme = createMuiTheme({
     },
 });
 
+function retrieveChildData(type, data) {
+    obj[type] = data;
+}
+
+function redirectHome() {
+    window.location.href = '../home';
+}
+
 class RegFinal extends React.Component {
     constructor(props) {
         super(props);
@@ -70,12 +77,12 @@ class RegFinal extends React.Component {
         this.reference = React.createRef();
         this.handlePanel = this.handlePanel.bind(this);
         this.handleSumbit = this.handleSumbit.bind(this);
-        this.retrieveChildData = this.retrieveChildData.bind(this);
+        this.retrieveChildData = retrieveChildData.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.openDial = this.openDial.bind(this);
         this.handleCloseMini = this.handleCloseMini.bind(this);
-        this.redirectHome = this.redirectHome.bind(this);
+        this.redirectHome = redirectHome.bind(this);
     }
 
     handlePanel(panel) {
@@ -89,10 +96,6 @@ class RegFinal extends React.Component {
                 expanded: panel,
             });
         }
-    }
-
-    retrieveChildData(type, data) {
-        obj[type] = data;
     }
 
     async handleSumbit(event) {
@@ -111,8 +114,8 @@ class RegFinal extends React.Component {
         this.reference.current.callApiRequest();
         const { alert } = this.props;
 
-        // eslint-disable-next-line react/destructuring-assignment
-        await this.props.createProfile(obj, false);
+        const { createProfile: createProfile_ } = this.props;
+        await createProfile_(obj, false);
         const len = alert.length;
         if (alert[len - 1].alertType !== 'blue') {
             this.setState({
@@ -149,10 +152,6 @@ class RegFinal extends React.Component {
             openDial: true,
             message: mess,
         });
-    }
-
-    redirectHome() {
-        window.location.href = '../home';
     }
 
     handleCloseMini() {

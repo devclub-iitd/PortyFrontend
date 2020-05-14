@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-// TODO: LINT ERROR FIXES FOR THIS FILE
 import React from 'react';
 import PropTypes from 'prop-types';
 

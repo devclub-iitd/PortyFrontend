@@ -1,4 +1,6 @@
-/* eslint-disable camelcase */
+// TODO Fix Prop types
+/* eslint-disable react/prop-types */
+
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,7 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { reset_pass } from '../actions/auth';
+import { resetPass } from '../actions/auth';
 
 import '../style/validation.css';
 
@@ -42,13 +44,9 @@ class Reset extends React.Component {
 
     componentDidUpdate(oldProps) {
         let index = 0;
-        // eslint-disable-next-line react/prop-types
         const { alert } = this.props;
-        // eslint-disable-next-line react/prop-types
         if (oldProps.alert.length !== alert.length) {
-            // eslint-disable-next-line react/prop-types
             index = alert.length - 1;
-            // eslint-disable-next-line react/prop-types
             this.openDial(alert[index].msg);
         }
     }
@@ -57,8 +55,9 @@ class Reset extends React.Component {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
-        // eslint-disable-next-line react/destructuring-assignment, react/prop-types
-        this.props.reset_pass({ email, password });
+
+        const { resetPass: resetPass_ } = this.props;
+        resetPass_({ email, password });
         // insert the bloody function here
     }
 
@@ -194,6 +193,6 @@ Reset.propTypes = {
     classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default connect(mapStateToProps, { reset_pass })(
+export default connect(mapStateToProps, { resetPass })(
     withStyles(styles)(withRouter(Reset))
 );
