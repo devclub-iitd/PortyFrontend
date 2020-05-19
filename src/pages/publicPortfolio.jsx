@@ -1,5 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-// TODO REACT USEEFFECT HOOK CONSOLE WARNING FIX
+// TODO Fix Prop types error
+/* eslint-disable react/prop-types */
+
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -22,7 +23,7 @@ import Loader from '../components/loader';
 
 import '../style/portfolio.css';
 
-import { getPublicProfile } from '../actions/profile';
+import { getPublicProfile as getPublicProfile_ } from '../actions/profile';
 
 const useStyles = makeStyles(() => ({
     button: {
@@ -43,26 +44,16 @@ const navToHome = () => {
 
 const Portfolio = ({
     match,
-    // eslint-disable-next-line no-shadow
     getPublicProfile,
     profile: { loading, profile },
-    // eslint-disable-next-line consistent-return
 }) => {
     useEffect(() => {
         getPublicProfile(match.params.id);
-    }, []);
+    });
     const myRef = React.useRef(null);
     const initScroll = () => scrollToRef(myRef);
     const classes = useStyles();
     // const { offsetTop } = myRef.current.offsetTop;
-
-    if (loading) {
-        return (
-            <div>
-                <Loader />
-            </div>
-        );
-    }
 
     if (!loading && profile !== null) {
         return (
@@ -96,7 +87,6 @@ const Portfolio = ({
             </div>
         );
     }
-
     if (!loading && profile === null) {
         return (
             <div>
@@ -134,6 +124,12 @@ const Portfolio = ({
             </div>
         );
     }
+
+    return (
+        <div>
+            <Loader />
+        </div>
+    );
 };
 
 Portfolio.propTypes = {
@@ -145,6 +141,6 @@ const mapStateToProps = (state) => ({
     profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getPublicProfile })(
+export default connect(mapStateToProps, { getPublicProfile_ })(
     withRouter(Portfolio)
 );

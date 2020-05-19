@@ -27,11 +27,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "eslint-test": "eslint './**/*.js' './**/*.jsx'",
-    "eslint-fix": "eslint --fix './**/*.js' './**/*.jsx'",
-    "prettier-test": "prettier --check './**/*.js' './**/*.jsx' './**/*.css'",
-    "prettier-fix": "prettier --write './**/*.js' './**/*.jsx' './**/*.css'",
-    "lint-tests": "npm run eslint-test;npm run prettier-test",
+    "eslint-test": "eslint './**/*.{js,jsx}'",
+    "eslint-fix": "eslint --fix './**/*.{js,jsx}'",
+    "prettier-test": "prettier --check './**/*.{js,jsx,css}'",
+    "prettier-fix": "prettier --write './**/*.{js,jsx,css}'",
+    "lint-tests": "npm run eslint-test && npm run prettier-test",
     "lint-fixes": "npm run eslint-fix;npm run prettier-fix"
   },
   "browserslist": {

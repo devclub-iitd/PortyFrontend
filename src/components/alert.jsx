@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import '../style/alert.css';
 
-// eslint-disable-next-line no-shadow
 const alert = ({ alerts }) =>
     alerts !== null &&
     alerts.length > 0 &&

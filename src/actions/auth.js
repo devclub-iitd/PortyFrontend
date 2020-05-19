@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-console */
 import axios from 'axios';
 import {
     REGISTER_SUCCESS,
@@ -99,7 +97,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 
     try {
         const res = await axios.post('/api/auth', body, config);
-        console.log(body);
+        // console.log(body);
         dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data,
@@ -121,7 +119,7 @@ export const login = ({ email, password }) => async (dispatch) => {
     }
 };
 
-export const regenerate_otp = (email) => async (dispatch) => {
+export const regenerateOtp = (email) => async (dispatch) => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -132,7 +130,7 @@ export const regenerate_otp = (email) => async (dispatch) => {
 
     try {
         dispatch(setAlert('Please wait while we send the email.', 'green'));
-        console.log(body);
+        // console.log(body);
         const res = await axios.post('/api/user/otp', body, config);
 
         dispatch(
@@ -160,7 +158,7 @@ export const regenerate_otp = (email) => async (dispatch) => {
 };
 
 // reset pass
-export const reset_pass = ({ email, password }) => async (dispatch) => {
+export const resetPass = ({ email, password }) => async (dispatch) => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -171,7 +169,7 @@ export const reset_pass = ({ email, password }) => async (dispatch) => {
 
     try {
         dispatch(setAlert('Please wait while we send the email.', 'green'));
-        console.log(body);
+        // console.log(body);
         const res = await axios.post('/api/user/forgot', body, config);
 
         dispatch(

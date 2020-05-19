@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-// TODO REACT USEEFFECT HOOK CONSOLE WARNING FIX
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -21,7 +19,7 @@ import Loader from '../components/loader';
 
 import '../style/portfolio_2.css';
 
-import { getCurrentProfile } from '../actions/profile';
+import { getCurrentProfile as getCurrentProfile_ } from '../actions/profile';
 
 const useStyles = makeStyles(() => ({
     button: {
@@ -40,7 +38,6 @@ const navToReg = () => {
     window.location.href = '../register';
 };
 const Portfolio = ({
-    // eslint-disable-next-line no-shadow
     getCurrentProfile,
     isAuthenticated,
     auth,
@@ -48,7 +45,7 @@ const Portfolio = ({
 }) => {
     useEffect(() => {
         getCurrentProfile();
-    }, []);
+    });
 
     const classes = useStyles();
     const initScroll = () => scrollToRef();
@@ -144,4 +141,4 @@ const mapStateToProps = (state) => ({
     profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Portfolio);
+export default connect(mapStateToProps, { getCurrentProfile_ })(Portfolio);

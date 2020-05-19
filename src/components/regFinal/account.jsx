@@ -18,11 +18,9 @@ class AccountExpansionPanel extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    // eslint-disable-next-line class-methods-use-this
-    callApiRequest() {
-        // eslint-disable-next-line no-alert
-        alert('account');
-    }
+    // callApiRequest() {
+    //     alert('account');
+    // }
 
     handleInputChange(event) {
         const type = event.target.name;

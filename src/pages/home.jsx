@@ -6,11 +6,11 @@ import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { logout } from '../actions/auth';
+import { logout as logout_ } from '../actions/auth';
 import Portfolio from '../components/portfolio';
 import '../style/home.css';
 
-import { getProfile } from '../actions/profile';
+// import { getProfile as getProfile_ } from '../actions/profile';
 
 const useStyles = makeStyles((theme) => ({
     fab: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// TODO - FIX THE HARD CODED URL
+// TODO - FIX THE HARD CODED URL (JATIN FIX)
 const download = () => {
     window.location.href = 'http://localhost:5000/api/profile/download';
 };
@@ -39,8 +39,8 @@ const portfolio = () => {
     window.location.href = './portfolio';
 };
 
-// eslint-disable-next-line no-unused-vars, no-shadow
-const Home = ({ logout, getProfile }) => {
+// const Home = ({ logout, getProfile }) => {
+const Home = ({ logout }) => {
     useEffect(() => {
         // getProfile();
     }, []);
@@ -87,7 +87,7 @@ const Home = ({ logout, getProfile }) => {
 
 Home.propTypes = {
     logout: PropTypes.func.isRequired,
-    getProfile: PropTypes.func.isRequired,
+    // getProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -95,4 +95,5 @@ const mapStateToProps = (state) => ({
     auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout, getProfile })(Home);
+// export default connect(mapStateToProps, { logout_, getProfile_ })(Home);
+export default connect(mapStateToProps, { logout_ })(Home);

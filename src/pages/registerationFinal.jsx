@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -36,6 +35,13 @@ import Reference from '../components/regFinal/reference';
 import '../style/regFinal.css';
 
 const obj = {};
+const retrieveChildData = (type, data) => {
+    obj[type] = data;
+};
+
+const redirectHome = () => {
+    window.location.href = '../home';
+};
 
 const theme = createMuiTheme({
     palette: {
@@ -70,12 +76,12 @@ class RegFinal extends React.Component {
         this.reference = React.createRef();
         this.handlePanel = this.handlePanel.bind(this);
         this.handleSumbit = this.handleSumbit.bind(this);
-        this.retrieveChildData = this.retrieveChildData.bind(this);
+        this.retrieveChildData = retrieveChildData.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.openDial = this.openDial.bind(this);
         this.handleCloseMini = this.handleCloseMini.bind(this);
-        this.redirectHome = this.redirectHome.bind(this);
+        this.redirectHome = redirectHome.bind(this);
     }
 
     handlePanel(panel) {
@@ -89,10 +95,6 @@ class RegFinal extends React.Component {
                 expanded: panel,
             });
         }
-    }
-
-    retrieveChildData(type, data) {
-        obj[type] = data;
     }
 
     async handleSumbit(event) {
@@ -111,8 +113,8 @@ class RegFinal extends React.Component {
         this.reference.current.callApiRequest();
         const { alert } = this.props;
 
-        // eslint-disable-next-line react/destructuring-assignment
-        await this.props.createProfile(obj, false);
+        const { createProfile: createProfile_ } = this.props;
+        await createProfile_(obj, false);
         const len = alert.length;
         if (alert[len - 1].alertType !== 'blue') {
             this.setState({
@@ -151,10 +153,6 @@ class RegFinal extends React.Component {
         });
     }
 
-    redirectHome() {
-        window.location.href = '../home';
-    }
-
     handleCloseMini() {
         this.setState({
             openDial: false,
@@ -186,68 +184,68 @@ class RegFinal extends React.Component {
                             ref={this.about}
                             expanded={expanded}
                             action={() => this.handlePanel('aboutPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Location
                             ref={this.location}
                             expanded={expanded}
                             action={() => this.handlePanel('locationPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Education
                             ref={this.education}
                             expanded={expanded}
                             action={() => this.handlePanel('educationPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Work
                             ref={this.work}
                             expanded={expanded}
                             action={() => this.handlePanel('workPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Volunteer
                             ref={this.volunteer}
                             expanded={expanded}
                             action={() => this.handlePanel('volunteerPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Language
                             ref={this.language}
                             expanded={expanded}
                             action={() => this.handlePanel('languagePanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <div className="regSubTitle">Optionals -</div>
                         <Award
                             ref={this.award}
                             expanded={expanded}
                             action={() => this.handlePanel('awardPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Publication
                             ref={this.publication}
                             expanded={expanded}
                             action={() => this.handlePanel('publicationPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Skill
                             ref={this.skill}
                             expanded={expanded}
                             action={() => this.handlePanel('skillPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Interest
                             ref={this.interest}
                             expanded={expanded}
                             action={() => this.handlePanel('interestPanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <Reference
                             ref={this.reference}
                             expanded={expanded}
                             action={() => this.handlePanel('referencePanel')}
-                            senData={this.retrieveChildData}
+                            senData={retrieveChildData}
                         />
                         <div className="btnContainer">
                             <Button
@@ -262,7 +260,7 @@ class RegFinal extends React.Component {
                         </div>
                     </form>
                     <AlertStatic
-                        handleRedirect={this.redirectHome}
+                        handleRedirect={redirectHome}
                         open={openStatic}
                         title={alertTitle}
                     >
