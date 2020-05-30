@@ -1,6 +1,3 @@
-// TODO Fix Prop types error
-/* eslint-disable react/prop-types */
-
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,7 +7,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import { animateScroll as scroll } from 'react-scroll';
-import { withRouter } from 'react-router';
 import Landing from '../components/portfolio/landing';
 import About from '../components/portfolio/about';
 import Education from '../components/portfolio/education';
@@ -135,12 +131,13 @@ const Portfolio = ({
 Portfolio.propTypes = {
     getPublicProfile: PropTypes.func.isRequired,
     profile: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    match: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = (state) => ({
     profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getPublicProfile_ })(
-    withRouter(Portfolio)
-);
+export default connect(mapStateToProps, {
+    getPublicProfile: getPublicProfile_,
+})(Portfolio);

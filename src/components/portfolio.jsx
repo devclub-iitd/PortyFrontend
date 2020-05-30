@@ -92,4 +92,4 @@ const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { getProfile_ })(Portfolio);
+export default connect(mapStateToProps, { getProfile: getProfile_ })(Portfolio);

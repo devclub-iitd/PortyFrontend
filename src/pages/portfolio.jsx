@@ -141,4 +141,6 @@ const mapStateToProps = (state) => ({
     profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile_ })(Portfolio);
+export default connect(mapStateToProps, {
+    getCurrentProfile: getCurrentProfile_,
+})(Portfolio);
