@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const VolunteerField = (props) => {
+const PublicationField = (props) => {
     const { id } = props;
     const { expanded } = props;
     const { action } = props;
@@ -20,19 +20,34 @@ const VolunteerField = (props) => {
     const { moveFieldDown } = props;
     const { handleChange } = props;
     const { data } = props;
+    let { ndata } = [];
+    if (data === undefined) {
+        ndata = [
+            {
+                name: '',
+                publisher: '',
+                releaseDate: '',
+                website: '',
+                summary: '',
+                hidden: false,
+            },
+        ];
+    }
+    if (data !== undefined) {
+        ndata = data;
+    }
     const [state, setState] = React.useState({
-        hidden: data.hidden,
+        hidden: ndata.hidden,
     });
 
     const handleCheckBoxChange = (name) => (event) => {
         setState({ ...state, [name]: event.target.checked });
         handleChange(event);
     };
-
     return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             <ExpansionPanel
-                expanded={expanded === `volunteerPanel${id}`}
+                expanded={expanded === `publicationPanel${id}`}
                 onChange={action}
                 style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
             >
@@ -42,63 +57,55 @@ const VolunteerField = (props) => {
                     id="panel1bh-header"
                 >
                     <Typography style={{ fontWeight: 700 }}>
-                        VOLUNTEERING {id + 1}
+                        PUBLICATION {id + 1}
                     </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <div className="customDetailContainer">
                         <div className="sectionSeperator" />
                         <input
-                            value={data.organisation}
-                            type="text"
-                            onChange={handleChange}
+                            value={ndata.name}
+                            name="name"
                             id={id}
-                            name="organisation"
-                            placeholder="Organisation:"
-                        />
-                        <input
-                            value={data.position}
-                            type="text"
                             onChange={handleChange}
-                            id={id}
-                            name="position"
-                            placeholder="Position:"
-                        />
-                        <input
-                            value={data.website}
                             type="text"
-                            onChange={handleChange}
-                            id={id}
-                            name="website"
-                            placeholder="Website:"
+                            placeholder="Name:"
                         />
                         <div className="row rowtwo">
                             <input
-                                value={data.startdate}
+                                value={ndata.releaseDate}
+                                name="releaseDate"
+                                id={id}
+                                onChange={handleChange}
                                 className="left"
                                 type="text"
-                                onChange={handleChange}
-                                id={id}
-                                name="startdate"
-                                placeholder="Start Date: DD/MM/YYYY"
+                                placeholder="Release Date: DD/MM/YYYY"
                             />
                             <input
-                                value={data.enddate}
+                                value={ndata.publisher}
+                                name="publisher"
+                                id={id}
+                                onChange={handleChange}
                                 className="right"
                                 type="text"
-                                onChange={handleChange}
-                                id={id}
-                                name="enddate"
-                                placeholder="End Date: DD/MM/YYYY or Ongoing"
+                                placeholder="Publisher:"
                             />
                         </div>
-                        <textarea
-                            value={data.summary}
-                            resize="none"
-                            onChange={handleChange}
+                        <input
+                            value={ndata.website}
+                            name="website"
                             id={id}
+                            onChange={handleChange}
+                            type="text"
+                            placeholder="Website:"
+                        />
+                        <textarea
+                            value={ndata.summary}
                             name="summary"
-                            placeholder="Summary | Highlights : "
+                            id={id}
+                            onChange={handleChange}
+                            resize="none"
+                            placeholder="Summary: "
                         />
                         <div style={{ marginLeft: '2px', marginTop: '15px' }}>
                             <FormControlLabel
@@ -145,7 +152,7 @@ const VolunteerField = (props) => {
     );
 };
 
-VolunteerField.propTypes = {
+PublicationField.propTypes = {
     id: PropTypes.number.isRequired,
     expanded: PropTypes.bool.isRequired,
     action: PropTypes.func.isRequired,
@@ -155,4 +162,4 @@ VolunteerField.propTypes = {
     data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default VolunteerField;
+export default PublicationField;

@@ -12,15 +12,29 @@ import IconButton from '@material-ui/core/IconButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const PublicationField = (props) => {
+const LanguageField = (props) => {
     const { id } = props;
     const { expanded } = props;
     const { action } = props;
     const { moveFieldUp } = props;
     const { moveFieldDown } = props;
     const { handleChange } = props;
+    const { data } = props;
+    let { ndata } = [];
+    if (data === undefined) {
+        ndata = [
+            {
+                language: '',
+                fluency: '',
+                hidden: false,
+            },
+        ];
+    }
+    if (data !== undefined) {
+        ndata = data;
+    }
     const [state, setState] = React.useState({
-        hidden: false,
+        hidden: ndata.hidden,
     });
 
     const handleCheckBoxChange = (name) => (event) => {
@@ -30,7 +44,7 @@ const PublicationField = (props) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             <ExpansionPanel
-                expanded={expanded === `publicationPanel${id}`}
+                expanded={expanded === `languagePanel${id}`}
                 onChange={action}
                 style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
             >
@@ -40,51 +54,34 @@ const PublicationField = (props) => {
                     id="panel1bh-header"
                 >
                     <Typography style={{ fontWeight: 700 }}>
-                        PUBLICATION {id + 1}
+                        Language {id + 1}
                     </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <div className="customDetailContainer">
                         <div className="sectionSeperator" />
-                        <input
-                            name="name"
-                            id={id}
-                            onChange={handleChange}
-                            type="text"
-                            placeholder="Name:"
-                        />
                         <div className="row rowtwo">
                             <input
-                                name="releaseDate"
+                                value={ndata.language}
                                 id={id}
                                 onChange={handleChange}
+                                name="language"
                                 className="left"
                                 type="text"
-                                placeholder="Release Date: DD/MM/YYYY"
+                                required
+                                placeholder="Language Name:"
                             />
                             <input
-                                name="publisher"
+                                value={ndata.fluency}
                                 id={id}
                                 onChange={handleChange}
+                                name="fluency"
                                 className="right"
                                 type="text"
-                                placeholder="Publisher:"
+                                required
+                                placeholder="Fluency: Option1 | Option2 | Option3"
                             />
                         </div>
-                        <input
-                            name="website"
-                            id={id}
-                            onChange={handleChange}
-                            type="text"
-                            placeholder="Website:"
-                        />
-                        <textarea
-                            name="summary"
-                            id={id}
-                            onChange={handleChange}
-                            resize="none"
-                            placeholder="Summary: "
-                        />
                         <div style={{ marginLeft: '2px', marginTop: '15px' }}>
                             <FormControlLabel
                                 control={
@@ -130,13 +127,14 @@ const PublicationField = (props) => {
     );
 };
 
-PublicationField.propTypes = {
+LanguageField.propTypes = {
     id: PropTypes.number.isRequired,
     expanded: PropTypes.bool.isRequired,
     action: PropTypes.func.isRequired,
     moveFieldUp: PropTypes.func.isRequired,
     moveFieldDown: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
+    data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default PublicationField;
+export default LanguageField;

@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const AwardField = (props) => {
+const InterestField = (props) => {
     const { id } = props;
     const { expanded } = props;
     const { action } = props;
@@ -20,8 +20,21 @@ const AwardField = (props) => {
     const { moveFieldDown } = props;
     const { handleChange } = props;
     const { data } = props;
+    let { ndata } = [];
+    if (data === undefined) {
+        ndata = [
+            {
+                name: '',
+                keywords: '',
+                hidden: false,
+            },
+        ];
+    }
+    if (data !== undefined) {
+        ndata = data;
+    }
     const [state, setState] = React.useState({
-        hidden: data.hidden,
+        hidden: ndata.hidden,
     });
 
     const handleCheckBoxChange = (name) => (event) => {
@@ -31,7 +44,7 @@ const AwardField = (props) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             <ExpansionPanel
-                expanded={expanded === `awardPanel${id}`}
+                expanded={expanded === `interestPanel${id}`}
                 onChange={action}
                 style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
             >
@@ -41,47 +54,28 @@ const AwardField = (props) => {
                     id="panel1bh-header"
                 >
                     <Typography style={{ fontWeight: 700 }}>
-                        AWARD {id + 1}
+                        Interest {id + 1}
                     </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <div className="customDetailContainer">
                         <div className="sectionSeperator" />
                         <input
-                            value={data.title}
+                            value={ndata.name}
                             id={id}
                             onChange={handleChange}
-                            name="title"
+                            name="name"
+                            className="left"
                             type="text"
-                            placeholder="Title:"
+                            placeholder="Interest Name:"
                         />
-                        <div className="row rowtwo">
-                            <input
-                                value={data.date}
-                                id={id}
-                                onChange={handleChange}
-                                name="date"
-                                className="left"
-                                type="text"
-                                placeholder="Date Awarded: DD/MM/YYYY"
-                            />
-                            <input
-                                value={data.awarder}
-                                id={id}
-                                onChange={handleChange}
-                                name="awarder"
-                                className="right"
-                                type="text"
-                                placeholder="Awarded By:"
-                            />
-                        </div>
                         <textarea
-                            value={data.details}
+                            value={ndata.keywords}
                             id={id}
                             onChange={handleChange}
-                            name="details"
+                            name="keywords"
                             resize="none"
-                            placeholder="Details: "
+                            placeholder="Keywords (seperated by a comma): keyword_1, keyword_2, keyword_3, ... "
                         />
                         <div style={{ marginLeft: '2px', marginTop: '15px' }}>
                             <FormControlLabel
@@ -128,7 +122,7 @@ const AwardField = (props) => {
     );
 };
 
-AwardField.propTypes = {
+InterestField.propTypes = {
     id: PropTypes.number.isRequired,
     expanded: PropTypes.bool.isRequired,
     action: PropTypes.func.isRequired,
@@ -138,4 +132,4 @@ AwardField.propTypes = {
     data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default AwardField;
+export default InterestField;

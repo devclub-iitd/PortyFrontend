@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const EducationField = (props) => {
+const SkillField = (props) => {
     const { id } = props;
     const { expanded } = props;
     const { action } = props;
@@ -20,10 +20,23 @@ const EducationField = (props) => {
     const { moveFieldDown } = props;
     const { handleChange } = props;
     const { data } = props;
+    let { ndata } = [];
+    if (data === undefined) {
+        ndata = [
+            {
+                name: '',
+                level: '',
+                keywords: '',
+                hidden: false,
+            },
+        ];
+    }
+    if (data !== undefined) {
+        ndata = data;
+    }
     const [state, setState] = React.useState({
-        hidden: data.hidden,
+        hidden: ndata.hidden,
     });
-
     const handleCheckBoxChange = (name) => (event) => {
         setState({ ...state, [name]: event.target.checked });
         handleChange(event);
@@ -31,7 +44,7 @@ const EducationField = (props) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             <ExpansionPanel
-                expanded={expanded === `educationPanel${id}`}
+                expanded={expanded === `skillPanel${id}`}
                 onChange={action}
                 style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
             >
@@ -41,81 +54,39 @@ const EducationField = (props) => {
                     id="panel1bh-header"
                 >
                     <Typography style={{ fontWeight: 700 }}>
-                        EDUCATIONPLACE {id + 1}
+                        Skill {id + 1}
                     </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <div className="customDetailContainer">
                         <div className="sectionSeperator" />
-                        <input
-                            value={data.institution}
-                            id={id}
-                            onChange={handleChange}
-                            name="institution"
-                            type="text"
-                            required
-                            placeholder="Institution:"
-                        />
                         <div className="row rowtwo">
                             <input
-                                value={data.area}
+                                value={ndata.name}
                                 id={id}
                                 onChange={handleChange}
-                                name="area"
+                                name="name"
                                 className="left"
                                 type="text"
-                                required
-                                placeholder="Area: Software Development"
+                                placeholder="Skill Name:"
                             />
                             <input
-                                value={data.qualification}
+                                value={ndata.level}
                                 id={id}
                                 onChange={handleChange}
-                                name="qualification"
+                                name="level"
                                 className="right"
                                 type="text"
-                                required
-                                placeholder="Qualification: Bachelors | Masters | etc"
+                                placeholder="Level: Option1 | Option2 | Option3"
                             />
                         </div>
-                        <div className="row rowtwo">
-                            <input
-                                value={data.startdate}
-                                id={id}
-                                onChange={handleChange}
-                                name="startdate"
-                                className="left"
-                                type="text"
-                                required
-                                placeholder="Start Date: DD/MM/YYYY"
-                            />
-                            <input
-                                value={data.enddate}
-                                id={id}
-                                onChange={handleChange}
-                                name="enddate"
-                                className="right"
-                                type="text"
-                                required
-                                placeholder="End Date: DD/MM/YYYY or Ongoing"
-                            />
-                        </div>
-                        <input
-                            value={data.gpa}
-                            id={id}
-                            onChange={handleChange}
-                            name="gpa"
-                            type="text"
-                            required
-                            placeholder="GPA: xx/10"
-                        />
                         <textarea
-                            value={data.details}
+                            value={ndata.keywords}
                             id={id}
                             onChange={handleChange}
-                            name="details"
+                            name="keywords"
                             resize="none"
-                            placeholder="Details | Courses : "
+                            placeholder="Keywords (seperated by ,): keyword_1, keyword_2, keyword_3, ... "
                         />
                         <div style={{ marginLeft: '2px', marginTop: '15px' }}>
                             <FormControlLabel
@@ -162,7 +133,7 @@ const EducationField = (props) => {
     );
 };
 
-EducationField.propTypes = {
+SkillField.propTypes = {
     id: PropTypes.number.isRequired,
     expanded: PropTypes.bool.isRequired,
     action: PropTypes.func.isRequired,
@@ -172,4 +143,4 @@ EducationField.propTypes = {
     data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default EducationField;
+export default SkillField;

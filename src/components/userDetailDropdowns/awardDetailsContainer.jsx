@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const SkillField = (props) => {
+const AwardField = (props) => {
     const { id } = props;
     const { expanded } = props;
     const { action } = props;
@@ -20,9 +20,25 @@ const SkillField = (props) => {
     const { moveFieldDown } = props;
     const { handleChange } = props;
     const { data } = props;
+    let { ndata } = [];
+    if (data === undefined) {
+        ndata = [
+            {
+                title: '',
+                date: '',
+                awarder: '',
+                details: '',
+                hidden: false,
+            },
+        ];
+    }
+    if (data !== undefined) {
+        ndata = data;
+    }
     const [state, setState] = React.useState({
-        hidden: data.hidden,
+        hidden: ndata.hidden,
     });
+
     const handleCheckBoxChange = (name) => (event) => {
         setState({ ...state, [name]: event.target.checked });
         handleChange(event);
@@ -30,7 +46,7 @@ const SkillField = (props) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             <ExpansionPanel
-                expanded={expanded === `skillPanel${id}`}
+                expanded={expanded === `awardPanel${id}`}
                 onChange={action}
                 style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
             >
@@ -40,39 +56,47 @@ const SkillField = (props) => {
                     id="panel1bh-header"
                 >
                     <Typography style={{ fontWeight: 700 }}>
-                        Skill {id + 1}
+                        AWARD {id + 1}
                     </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <div className="customDetailContainer">
                         <div className="sectionSeperator" />
+                        <input
+                            value={ndata.title}
+                            id={id}
+                            onChange={handleChange}
+                            name="title"
+                            type="text"
+                            placeholder="Title:"
+                        />
                         <div className="row rowtwo">
                             <input
-                                value={data.name}
+                                value={ndata.date}
                                 id={id}
                                 onChange={handleChange}
-                                name="name"
+                                name="date"
                                 className="left"
                                 type="text"
-                                placeholder="Skill Name:"
+                                placeholder="Date Awarded: DD/MM/YYYY"
                             />
                             <input
-                                value={data.level}
+                                value={ndata.awarder}
                                 id={id}
                                 onChange={handleChange}
-                                name="level"
+                                name="awarder"
                                 className="right"
                                 type="text"
-                                placeholder="Level: Option1 | Option2 | Option3"
+                                placeholder="Awarded By:"
                             />
                         </div>
                         <textarea
-                            value={data.keywords}
+                            value={ndata.details}
                             id={id}
                             onChange={handleChange}
-                            name="keywords"
+                            name="details"
                             resize="none"
-                            placeholder="Keywords (seperated by ,): keyword_1, keyword_2, keyword_3, ... "
+                            placeholder="Details: "
                         />
                         <div style={{ marginLeft: '2px', marginTop: '15px' }}>
                             <FormControlLabel
@@ -119,7 +143,7 @@ const SkillField = (props) => {
     );
 };
 
-SkillField.propTypes = {
+AwardField.propTypes = {
     id: PropTypes.number.isRequired,
     expanded: PropTypes.bool.isRequired,
     action: PropTypes.func.isRequired,
@@ -129,4 +153,4 @@ SkillField.propTypes = {
     data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default SkillField;
+export default AwardField;

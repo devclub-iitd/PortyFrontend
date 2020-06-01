@@ -10,14 +10,25 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 class AboutExpansionPanel extends React.Component {
     constructor(props) {
         super(props);
-        const { existingContactData, existingData } = this.props;
-        this.state = {
-            name: existingContactData.name,
-            number: existingData.number,
-            label: existingData.label,
-            summary: existingData.summary,
-            imgUrl: existingData.imgUrl,
-        };
+        const { existingContactData, existingData, mode } = this.props;
+        if (mode === 'edit') {
+            this.state = {
+                name: existingContactData.name,
+                number: existingData.number,
+                label: existingData.label,
+                summary: existingData.summary,
+                imgUrl: existingData.imgUrl,
+            };
+        }
+        if (mode === 'register') {
+            this.state = {
+                label: '',
+                imgUrl: '',
+                summary: '',
+                number: '',
+            };
+        }
+
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
@@ -127,6 +138,7 @@ class AboutExpansionPanel extends React.Component {
 
 AboutExpansionPanel.propTypes = {
     expanded: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
     senData: PropTypes.func.isRequired,
     existingContactData: PropTypes.oneOfType([PropTypes.object]).isRequired,

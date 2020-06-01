@@ -10,19 +10,19 @@ import CloseIcon from '@material-ui/icons/Close';
 import Alert from '../components/fancyAlert';
 import { createProfile, getFullProfile } from '../actions/profile';
 
-import Intro from '../components/edit/intro';
-import Image from '../components/edit/image';
-import About from '../components/edit/about';
-import Location from '../components/edit/location';
-import Work from '../components/edit/work';
-import Volunteer from '../components/edit/volunteer';
-import Education from '../components/edit/education';
-import Award from '../components/edit/award';
-import Publication from '../components/edit/publication';
-import Language from '../components/edit/language';
-import Skill from '../components/edit/skill';
-import Interest from '../components/edit/interest';
-import Reference from '../components/edit/reference';
+import Intro from '../components/userDetailDropdowns/intro';
+import Image from '../components/userDetailDropdowns/image';
+import About from '../components/userDetailDropdowns/about';
+import Location from '../components/userDetailDropdowns/location';
+import Work from '../components/userDetailDropdowns/work';
+import Volunteer from '../components/userDetailDropdowns/volunteer';
+import Education from '../components/userDetailDropdowns/education';
+import Award from '../components/userDetailDropdowns/award';
+import Publication from '../components/userDetailDropdowns/publication';
+import Language from '../components/userDetailDropdowns/language';
+import Skill from '../components/userDetailDropdowns/skill';
+import Interest from '../components/userDetailDropdowns/interest';
+import Reference from '../components/userDetailDropdowns/reference';
 import '../style/regFinal.css';
 import Loader from '../components/loader';
 
@@ -189,6 +189,7 @@ class Edit extends React.Component {
                                 existingData={profile.about}
                                 existingContactData={profile.user}
                                 senData={retrieveChildData}
+                                mode="edit"
                             />
                             <Location
                                 ref={this.location}
@@ -196,6 +197,7 @@ class Edit extends React.Component {
                                 action={() => this.handlePanel('locationPanel')}
                                 existingData={profile.location}
                                 senData={retrieveChildData}
+                                mode="edit"
                             />
                             <Education
                                 ref={this.education}
@@ -204,6 +206,7 @@ class Edit extends React.Component {
                                     this.handlePanel('educationPanel')
                                 }
                                 existingData={profile.education}
+                                mode="edit"
                                 senData={retrieveChildData}
                             />
                             <Work
@@ -211,6 +214,7 @@ class Edit extends React.Component {
                                 expanded={expanded}
                                 action={() => this.handlePanel('workPanel')}
                                 existingData={profile.work}
+                                mode="edit"
                                 senData={retrieveChildData}
                             />
                             <Volunteer
@@ -220,6 +224,7 @@ class Edit extends React.Component {
                                     this.handlePanel('volunteerPanel')
                                 }
                                 existingData={profile.volunteer}
+                                mode="edit"
                                 senData={retrieveChildData}
                             />
                             <Language
@@ -227,6 +232,7 @@ class Edit extends React.Component {
                                 expanded={expanded}
                                 action={() => this.handlePanel('languagePanel')}
                                 existingData={profile.languages}
+                                mode="edit"
                                 senData={retrieveChildData}
                             />
                             <div className="regSubTitle">Optionals -</div>
@@ -235,6 +241,7 @@ class Edit extends React.Component {
                                 expanded={expanded}
                                 action={() => this.handlePanel('awardPanel')}
                                 existingData={profile.awards}
+                                mode="edit"
                                 senData={retrieveChildData}
                             />
                             <Publication
@@ -244,6 +251,7 @@ class Edit extends React.Component {
                                     this.handlePanel('publicationPanel')
                                 }
                                 existingData={profile.publications}
+                                mode="edit"
                                 senData={retrieveChildData}
                             />
                             <Skill
@@ -251,6 +259,7 @@ class Edit extends React.Component {
                                 expanded={expanded}
                                 action={() => this.handlePanel('skillPanel')}
                                 existingData={profile.skills}
+                                mode="edit"
                                 senData={retrieveChildData}
                             />
                             <Interest
@@ -258,6 +267,7 @@ class Edit extends React.Component {
                                 expanded={expanded}
                                 action={() => this.handlePanel('interestPanel')}
                                 existingData={profile.interests}
+                                mode="edit"
                                 senData={retrieveChildData}
                             />
                             <Reference
@@ -267,6 +277,7 @@ class Edit extends React.Component {
                                     this.handlePanel('referencePanel')
                                 }
                                 existingData={profile.references}
+                                mode="edit"
                                 senData={retrieveChildData}
                             />
                             <div className="btnContainer">

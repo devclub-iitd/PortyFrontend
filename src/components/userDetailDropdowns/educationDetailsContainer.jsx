@@ -19,8 +19,27 @@ const EducationField = (props) => {
     const { moveFieldUp } = props;
     const { moveFieldDown } = props;
     const { handleChange } = props;
+    const { data } = props;
+    let { ndata } = [];
+    if (data === undefined) {
+        ndata = [
+            {
+                institution: '',
+                area: '',
+                qualification: '',
+                startdate: '',
+                enddate: '',
+                gpa: '',
+                details: '',
+                hidden: false,
+            },
+        ];
+    }
+    if (data !== undefined) {
+        ndata = data;
+    }
     const [state, setState] = React.useState({
-        hidden: false,
+        hidden: ndata.hidden,
     });
 
     const handleCheckBoxChange = (name) => (event) => {
@@ -47,6 +66,7 @@ const EducationField = (props) => {
                     <div className="customDetailContainer">
                         <div className="sectionSeperator" />
                         <input
+                            value={ndata.institution}
                             id={id}
                             onChange={handleChange}
                             name="institution"
@@ -56,6 +76,7 @@ const EducationField = (props) => {
                         />
                         <div className="row rowtwo">
                             <input
+                                value={ndata.area}
                                 id={id}
                                 onChange={handleChange}
                                 name="area"
@@ -65,6 +86,7 @@ const EducationField = (props) => {
                                 placeholder="Area: Software Development"
                             />
                             <input
+                                value={ndata.qualification}
                                 id={id}
                                 onChange={handleChange}
                                 name="qualification"
@@ -76,6 +98,7 @@ const EducationField = (props) => {
                         </div>
                         <div className="row rowtwo">
                             <input
+                                value={ndata.startdate}
                                 id={id}
                                 onChange={handleChange}
                                 name="startdate"
@@ -85,6 +108,7 @@ const EducationField = (props) => {
                                 placeholder="Start Date: DD/MM/YYYY"
                             />
                             <input
+                                value={ndata.enddate}
                                 id={id}
                                 onChange={handleChange}
                                 name="enddate"
@@ -95,6 +119,7 @@ const EducationField = (props) => {
                             />
                         </div>
                         <input
+                            value={ndata.gpa}
                             id={id}
                             onChange={handleChange}
                             name="gpa"
@@ -103,6 +128,7 @@ const EducationField = (props) => {
                             placeholder="GPA: xx/10"
                         />
                         <textarea
+                            value={ndata.details}
                             id={id}
                             onChange={handleChange}
                             name="details"
@@ -161,6 +187,7 @@ EducationField.propTypes = {
     moveFieldUp: PropTypes.func.isRequired,
     moveFieldDown: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
+    data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default EducationField;

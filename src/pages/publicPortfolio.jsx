@@ -45,7 +45,7 @@ const Portfolio = ({
 }) => {
     useEffect(() => {
         getPublicProfile(match.params.id);
-    });
+    }, [getPublicProfile, match.params.id]);
     const myRef = React.useRef(null);
     const initScroll = () => scrollToRef(myRef);
     const classes = useStyles();

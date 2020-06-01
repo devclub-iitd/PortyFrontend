@@ -9,43 +9,84 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import LanguageDetails from './languageDetailsContainer';
+import InterestDetails from './interestDetailsContainer';
 
-class LanguageExpansionPanel extends React.Component {
+class InterestExpansionPanel extends React.Component {
     constructor(props) {
         super(props);
+        const { existingData, mode } = this.props;
         const tempFields = [];
         const tempFieldsTracker = [];
-        this.state = {
-            languageDetailsCount: 1,
-            maxCount: 1,
-            btnStyle: {
-                display: 'none',
-            },
-            expanded: false,
-            languageFields: tempFields,
-            languageFieldTracker: tempFieldsTracker,
-            language: [
-                {
-                    language: '',
-                    fluency: '',
-                    hidden: false,
+        let btnDisp = 'none';
+        if (mode === 'edit') {
+            if (existingData.length > 1) {
+                btnDisp = 'block';
+            }
+        }
+        if (mode === 'edit') {
+            this.state = {
+                interestDetailsCount: existingData.length,
+                maxCount: existingData.length,
+                btnStyle: {
+                    display: btnDisp,
                 },
-            ],
-        };
+                expanded: false,
+                interestFields: tempFields,
+                interestFieldTracker: tempFieldsTracker,
+                interest: existingData,
+            };
+        }
+        if (mode === 'register') {
+            this.state = {
+                interestDetailsCount: 1,
+                maxCount: 1,
+                btnStyle: {
+                    display: 'none',
+                },
+                expanded: false,
+                interestFields: tempFields,
+                interestFieldTracker: tempFieldsTracker,
+                interest: [
+                    {
+                        name: '',
+                        keywords: '',
+                        hidden: false,
+                    },
+                ],
+            };
+        }
         const { expanded } = this.state;
-        tempFields.push(
-            <LanguageDetails
-                handleChange={this.handleInputChange}
-                key={0}
-                id={0}
-                expanded={expanded}
-                action={() => this.handlePanel(`languagePanel${0}`)}
-                moveFieldDown={() => this.moveFieldDown(0, 0)}
-                moveFieldUp={() => this.moveFieldUp(0, 0)}
-            />
-        );
-        tempFieldsTracker.push(0);
+        if (mode === 'edit') {
+            for (let i = 0; i < existingData.length; i += 1) {
+                tempFields.push(
+                    <InterestDetails
+                        data={existingData[i]}
+                        handleChange={this.handleInputChange}
+                        key={i}
+                        id={i}
+                        expanded={expanded}
+                        action={() => this.handlePanel(`interestPanel${i}`)}
+                        moveFieldDown={() => this.moveFieldDown(i, i)}
+                        moveFieldUp={() => this.moveFieldUp(i, i)}
+                    />
+                );
+                tempFieldsTracker.push(i);
+            }
+        }
+        if (mode === 'register') {
+            tempFields.push(
+                <InterestDetails
+                    handleChange={this.handleInputChange}
+                    key={0}
+                    id={0}
+                    expanded={expanded}
+                    action={() => this.handlePanel(`interestPanel${0}`)}
+                    moveFieldDown={() => this.moveFieldDown(0, 0)}
+                    moveFieldUp={() => this.moveFieldUp(0, 0)}
+                />
+            );
+            tempFieldsTracker.push(0);
+        }
         this.onAddChild = this.onAddChild.bind(this);
         this.onSubChild = this.onSubChild.bind(this);
         this.handlePanel = this.handlePanel.bind(this);
@@ -54,66 +95,67 @@ class LanguageExpansionPanel extends React.Component {
     }
 
     onAddChild() {
-        const { languageFields } = this.state;
-        const { languageFieldTracker } = this.state;
-        const { languageDetailsCount, maxCount } = this.state;
+        const { interestFields } = this.state;
+        const { interestFieldTracker } = this.state;
+        const { interestDetailsCount } = this.state;
+        const { maxCount } = this.state;
         const { expanded } = this.state;
-        const tempFields = languageFields;
-        const tempFieldsTracker = languageFieldTracker;
-        const i = languageDetailsCount;
+        const tempFields = interestFields;
+        const tempFieldsTracker = interestFieldTracker;
+        const id = interestDetailsCount;
         const key = maxCount;
         const exp = expanded;
-        tempFieldsTracker.push(key);
-        tempFields.push(
-            <LanguageDetails
-                handleChange={this.handleInputChange}
-                key={key}
-                id={i}
-                expanded={exp}
-                action={() => this.handlePanel(`volunteerPanel${i}`)}
-                moveFieldDown={() => this.moveFieldDown(key, i)}
-                moveFieldUp={() => this.moveFieldUp(key, i)}
-            />
-        );
-
-        const { language } = this.state;
-        const languageObj = {
-            language: '',
-            fluency: '',
+        const { interest } = this.state;
+        const interestObj = {
+            name: '',
+            keywords: '',
             hidden: false,
         };
-        const templanguage = language;
-        templanguage.push(languageObj);
+        tempFieldsTracker.push(key);
+        tempFields.push(
+            <InterestDetails
+                data={interestObj}
+                handleChange={this.handleInputChange}
+                key={key}
+                id={id}
+                expanded={exp}
+                action={() => this.handlePanel(`interestPanel${id}`)}
+                moveFieldDown={() => this.moveFieldDown(key, id)}
+                moveFieldUp={() => this.moveFieldUp(key, id)}
+            />
+        );
+        const tempinterest = interest;
+        tempinterest.push(interestObj);
         this.setState((state) => ({
-            languageDetailsCount: state.languageDetailsCount + 1,
+            interestDetailsCount: state.interestDetailsCount + 1,
             maxCount: state.maxCount + 1,
             btnStyle: {
                 display: 'block',
             },
-            languageFields: tempFields,
-            languageFieldTracker: tempFieldsTracker,
-            language: templanguage,
+            interestFields: tempFields,
+            interestFieldTracker: tempFieldsTracker,
+            interest: tempinterest,
         }));
     }
 
     onSubChild() {
-        const { languageFields } = this.state;
-        const { languageFieldTracker } = this.state;
-        const { languageDetailsCount } = this.state;
-        const tempFields = languageFields;
-        const tempFieldsTracker = languageFieldTracker;
+        const { interestFields } = this.state;
+        const { interestFieldTracker } = this.state;
+        const { interestDetailsCount } = this.state;
+        const tempFields = interestFields;
+        const tempFieldsTracker = interestFieldTracker;
         tempFieldsTracker.pop();
         tempFields.pop();
-        const { language } = this.state;
-        const templanguage = language;
-        templanguage.pop();
+        const { interest } = this.state;
+        const tempinterest = interest;
+        tempinterest.pop();
         this.setState((state) => ({
-            languageDetailsCount: state.languageDetailsCount - 1,
-            languageFields: tempFields,
-            languageFieldTracker: tempFieldsTracker,
-            language: templanguage,
+            interestDetailsCount: state.interestDetailsCount - 1,
+            interestFields: tempFields,
+            interestFieldTracker: tempFieldsTracker,
+            interest: tempinterest,
         }));
-        if (languageDetailsCount === 2) {
+        if (interestDetailsCount === 2) {
             this.setState({
                 btnStyle: {
                     display: 'none',
@@ -123,42 +165,67 @@ class LanguageExpansionPanel extends React.Component {
     }
 
     callApiRequest() {
-        const { language } = this.state;
+        const { interest } = this.state;
         const { senData } = this.props;
-        senData('languages', language);
+        senData('interests', interest);
     }
 
     handleInputChange(event) {
         const { id } = event.target;
-        const { language } = this.state;
+        const {
+            interest,
+            interestFieldTracker,
+            interestDetailsCount,
+            expanded,
+        } = this.state;
         const type = event.target.name;
-        const templanguage = language;
+        const tempFields = [];
+        const tempFieldsTracker = interestFieldTracker;
+        const tempinterest = interest;
         if (type === 'hidden') {
-            templanguage[id][type] = event.target.checked;
+            tempinterest[id][type] = event.target.checked;
         } else {
-            templanguage[id][type] = event.target.value;
+            tempinterest[id][type] = event.target.value;
+        }
+        for (let i = 0; i < interestDetailsCount; i += 1) {
+            const k = tempFieldsTracker[i];
+            tempFields.push(
+                <InterestDetails
+                    data={tempinterest[i]}
+                    handleChange={this.handleInputChange}
+                    key={k}
+                    id={i}
+                    expanded={expanded}
+                    action={() => this.handlePanel(`interestPanel${i}`)}
+                    moveFieldDown={() => this.moveFieldDown(k, i)}
+                    moveFieldUp={() => this.moveFieldUp(k, i)}
+                />
+            );
         }
         this.setState({
-            language: templanguage,
+            interest: tempinterest,
+            interestFields: tempFields,
         });
     }
 
     handlePanel(panel) {
         const { expanded } = this.state;
-        const { languageFieldTracker } = this.state;
-        const { languageDetailsCount } = this.state;
+        const { interestFieldTracker } = this.state;
+        const { interestDetailsCount } = this.state;
+        const { interest } = this.state;
         if (expanded === panel) {
             const tempFields = [];
-            const tempFieldsTracker = languageFieldTracker;
-            for (let i = 0; i < languageDetailsCount; i += 1) {
+            const tempFieldsTracker = interestFieldTracker;
+            for (let i = 0; i < interestDetailsCount; i += 1) {
                 const k = tempFieldsTracker[i];
                 tempFields.push(
-                    <LanguageDetails
+                    <InterestDetails
+                        data={interest[i]}
                         handleChange={this.handleInputChange}
                         key={k}
                         id={i}
                         expanded={false}
-                        action={() => this.handlePanel(`languagePanel${i}`)}
+                        action={() => this.handlePanel(`interestPanel${i}`)}
                         moveFieldDown={() => this.moveFieldDown(k, i)}
                         moveFieldUp={() => this.moveFieldUp(k, i)}
                     />
@@ -166,20 +233,21 @@ class LanguageExpansionPanel extends React.Component {
             }
             this.setState({
                 expanded: false,
-                languageFields: tempFields,
+                interestFields: tempFields,
             });
         } else {
             const tempFields = [];
-            const tempFieldsTracker = languageFieldTracker;
-            for (let i = 0; i < languageDetailsCount; i += 1) {
+            const tempFieldsTracker = interestFieldTracker;
+            for (let i = 0; i < interestDetailsCount; i += 1) {
                 const k = tempFieldsTracker[i];
                 tempFields.push(
-                    <LanguageDetails
+                    <InterestDetails
+                        data={interest[i]}
                         handleChange={this.handleInputChange}
                         key={k}
                         id={i}
                         expanded={panel}
-                        action={() => this.handlePanel(`languagePanel${i}`)}
+                        action={() => this.handlePanel(`interestPanel${i}`)}
                         moveFieldDown={() => this.moveFieldDown(k, i)}
                         moveFieldUp={() => this.moveFieldUp(k, i)}
                     />
@@ -187,7 +255,7 @@ class LanguageExpansionPanel extends React.Component {
             }
             this.setState({
                 expanded: panel,
-                languageFields: tempFields,
+                interestFields: tempFields,
             });
         }
     }
@@ -195,23 +263,28 @@ class LanguageExpansionPanel extends React.Component {
     moveFieldUp(k, i) {
         // alert(k);
         const { expanded } = this.state;
-        const { languageFieldTracker } = this.state;
-        const { languageFields } = this.state;
-        const tempFields = languageFields;
-        const tempFieldsTracker = languageFieldTracker;
-        const { language } = this.state;
-        const templanguage = language;
+        const { interestFieldTracker } = this.state;
+        const { interestFields } = this.state;
+        const tempFields = interestFields;
+        const tempFieldsTracker = interestFieldTracker;
+        const { interest } = this.state;
+        const tempinterest = interest;
         if (i !== 0) {
+            const tempstore = tempinterest[i];
+            tempinterest[i] = tempinterest[i - 1];
+            tempinterest[i - 1] = tempstore;
+
             const storeFieldTracker = tempFieldsTracker[i - 1];
             tempFieldsTracker[i - 1] = tempFieldsTracker[i];
             tempFieldsTracker[i] = storeFieldTracker;
             tempFields[i] = (
-                <LanguageDetails
+                <InterestDetails
+                    data={tempinterest[i]}
                     handleChange={this.handleInputChange}
                     key={storeFieldTracker}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`languagePanel${i}`)}
+                    action={() => this.handlePanel(`interestPanel${i}`)}
                     moveFieldDown={() =>
                         this.moveFieldDown(storeFieldTracker, i)
                     }
@@ -219,51 +292,52 @@ class LanguageExpansionPanel extends React.Component {
                 />
             );
             tempFields[i - 1] = (
-                <LanguageDetails
+                <InterestDetails
+                    data={tempinterest[i - 1]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i - 1}
                     expanded={expanded}
-                    action={() => this.handlePanel(`languagePanel${i - 1}`)}
+                    action={() => this.handlePanel(`interestPanel${i - 1}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i - 1)}
                     moveFieldUp={() => this.moveFieldUp(k, i - 1)}
                 />
             );
-
-            const tempstore = templanguage[i];
-            templanguage[i] = templanguage[i - 1];
-            templanguage[i - 1] = tempstore;
         } else {
             alert('you cant move this field any more');
         }
         this.setState({
-            languageFields: tempFields,
-            languageFieldTracker: tempFieldsTracker,
-            language: templanguage,
+            interestFields: tempFields,
+            interestFieldTracker: tempFieldsTracker,
+            interest: tempinterest,
         });
     }
 
     moveFieldDown(k, i) {
         // alert(k);
         const { expanded } = this.state;
-        const { languageFieldTracker } = this.state;
-        const { languageFields } = this.state;
-        const { languageDetailsCount } = this.state;
-        const tempFields = languageFields;
-        const tempFieldsTracker = languageFieldTracker;
-        const { language } = this.state;
-        const templanguage = language;
-        if (i !== languageDetailsCount - 1) {
+        const { interestFieldTracker } = this.state;
+        const { interestFields } = this.state;
+        const { interestDetailsCount } = this.state;
+        const tempFields = interestFields;
+        const tempFieldsTracker = interestFieldTracker;
+        const { interest } = this.state;
+        const tempinterest = interest;
+        if (i !== interestDetailsCount - 1) {
+            const tempstore = tempinterest[i];
+            tempinterest[i] = tempinterest[i + 1];
+            tempinterest[i + 1] = tempstore;
             const storeFieldTracker = tempFieldsTracker[i + 1];
             tempFieldsTracker[i + 1] = tempFieldsTracker[i];
             tempFieldsTracker[i] = storeFieldTracker;
             tempFields[i] = (
-                <LanguageDetails
+                <InterestDetails
+                    data={tempinterest[i]}
                     handleChange={this.handleInputChange}
                     key={storeFieldTracker}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`languagePanel${i}`)}
+                    action={() => this.handlePanel(`interestPanel${i}`)}
                     moveFieldDown={() =>
                         this.moveFieldDown(storeFieldTracker, i)
                     }
@@ -271,27 +345,24 @@ class LanguageExpansionPanel extends React.Component {
                 />
             );
             tempFields[i + 1] = (
-                <LanguageDetails
+                <InterestDetails
+                    data={tempinterest[i + 1]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i + 1}
                     expanded={expanded}
-                    action={() => this.handlePanel(`languagePanel${i + 1}`)}
+                    action={() => this.handlePanel(`interestPanel${i + 1}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i + 1)}
                     moveFieldUp={() => this.moveFieldUp(k, i + 1)}
                 />
             );
-
-            const tempstore = templanguage[i];
-            templanguage[i] = templanguage[i + 1];
-            templanguage[i + 1] = tempstore;
         } else {
             alert('you cant move this field any more');
         }
         this.setState({
-            languageFields: tempFields,
-            languageFieldTracker: tempFieldsTracker,
-            language: templanguage,
+            interestFields: tempFields,
+            interestFieldTracker: tempFieldsTracker,
+            interest: tempinterest,
         });
     }
 
@@ -326,12 +397,12 @@ class LanguageExpansionPanel extends React.Component {
         };
         const { expanded } = this.props;
         const { action } = this.props;
-        const { languageFields } = this.state;
+        const { interestFields } = this.state;
         const { btnStyle } = this.state;
         return (
             <div style={useStyles.root}>
                 <ExpansionPanel
-                    expanded={expanded === 'languagePanel'}
+                    expanded={expanded === 'interestPanel'}
                     onChange={action}
                 >
                     <ExpansionPanelSummary
@@ -340,18 +411,15 @@ class LanguageExpansionPanel extends React.Component {
                         id="panel1bh-header"
                     >
                         <Typography style={useStyles.heading}>
-                            Languages
+                            Interest
                         </Typography>
                         <Typography style={useStyles.secondaryHeading}>
-                            <i>
-                                What languages do you speak (or coding
-                                languages)
-                            </i>
+                            <i>Share your interests</i>
                         </Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="customDetailContainer">
-                            <div>{languageFields}</div>
+                            <div>{interestFields}</div>
                             <div className="btnRow">
                                 <div
                                     className="addBtn"
@@ -377,10 +445,12 @@ class LanguageExpansionPanel extends React.Component {
     }
 }
 
-LanguageExpansionPanel.propTypes = {
+InterestExpansionPanel.propTypes = {
     expanded: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
     senData: PropTypes.func.isRequired,
+    existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default LanguageExpansionPanel;
+export default InterestExpansionPanel;

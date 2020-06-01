@@ -45,7 +45,7 @@ const Portfolio = ({
 }) => {
     useEffect(() => {
         getCurrentProfile();
-    });
+    }, [getCurrentProfile]);
 
     const classes = useStyles();
     const initScroll = () => scrollToRef();

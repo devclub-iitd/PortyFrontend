@@ -9,44 +9,85 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import EducationDetails from './educationDetailsContainer';
+import AwardDetails from './awardDetailsContainer';
 
-class EducationExpansionPanel extends React.Component {
+class AwardExpansionPanel extends React.Component {
     constructor(props) {
         super(props);
-        const { existingData } = this.props;
+        const { existingData, mode } = this.props;
         const tempFields = [];
         const tempFieldsTracker = [];
         let btnDisp = 'none';
-        if (existingData.length > 1) {
-            btnDisp = 'block';
+        if (mode === 'edit') {
+            if (existingData.length > 1) {
+                btnDisp = 'block';
+            }
         }
-        this.state = {
-            educationDetailsCount: existingData.length,
-            maxCount: existingData.length,
-            btnStyle: {
-                display: btnDisp,
-            },
-            expanded: false,
-            educationFields: tempFields,
-            educationFieldTracker: tempFieldsTracker,
-            education: existingData,
-        };
+        if (mode === 'edit') {
+            this.state = {
+                awardDetailsCount: existingData.length,
+                maxCount: existingData.length,
+                btnStyle: {
+                    display: btnDisp,
+                },
+                expanded: false,
+                awardFields: tempFields,
+                awardFieldTracker: tempFieldsTracker,
+                award: existingData,
+            };
+        }
+        if (mode === 'register') {
+            this.state = {
+                awardDetailsCount: 1,
+                maxCount: 1,
+                btnStyle: {
+                    display: 'none',
+                },
+                expanded: false,
+                awardFields: tempFields,
+                awardFieldTracker: tempFieldsTracker,
+                award: [
+                    {
+                        title: '',
+                        date: '',
+                        awarder: '',
+                        details: '',
+                        hidden: false,
+                    },
+                ],
+            };
+        }
         const { expanded } = this.state;
-        for (let i = 0; i < existingData.length; i += 1) {
+        if (mode === 'edit') {
+            for (let i = 0; i < existingData.length; i += 1) {
+                tempFields.push(
+                    <AwardDetails
+                        data={existingData[i]}
+                        handleChange={this.handleInputChange}
+                        key={i}
+                        id={i}
+                        expanded={expanded}
+                        action={() => this.handlePanel(`awardPanel${i}`)}
+                        moveFieldDown={() => this.moveFieldDown(i, i)}
+                        moveFieldUp={() => this.moveFieldUp(i, i)}
+                    />
+                );
+                tempFieldsTracker.push(i);
+            }
+        }
+        if (mode === 'register') {
             tempFields.push(
-                <EducationDetails
-                    data={existingData[i]}
+                <AwardDetails
                     handleChange={this.handleInputChange}
-                    key={i}
-                    id={i}
+                    key={0}
+                    id={0}
                     expanded={expanded}
-                    action={() => this.handlePanel(`educationPanel${i}`)}
-                    moveFieldDown={() => this.moveFieldDown(i, i)}
-                    moveFieldUp={() => this.moveFieldUp(i, i)}
+                    action={() => this.handlePanel(`awardPanel${0}`)}
+                    moveFieldDown={() => this.moveFieldDown(0, 0)}
+                    moveFieldUp={() => this.moveFieldUp(0, 0)}
                 />
             );
-            tempFieldsTracker.push(i);
+            tempFieldsTracker.push(0);
         }
         this.onAddChild = this.onAddChild.bind(this);
         this.onSubChild = this.onSubChild.bind(this);
@@ -56,72 +97,69 @@ class EducationExpansionPanel extends React.Component {
     }
 
     onAddChild() {
-        const { educationFields } = this.state;
-        const { educationFieldTracker } = this.state;
-        const { educationDetailsCount } = this.state;
+        const { awardFields } = this.state;
+        const { awardFieldTracker } = this.state;
+        const { awardDetailsCount } = this.state;
         const { maxCount } = this.state;
         const { expanded } = this.state;
-        const tempFields = educationFields;
-        const tempFieldsTracker = educationFieldTracker;
-        const id = educationDetailsCount;
+        const tempFields = awardFields;
+        const tempFieldsTracker = awardFieldTracker;
+        const id = awardDetailsCount;
         const key = maxCount;
         const exp = expanded;
-        const { education } = this.state;
-        const educationObj = {
-            institution: '',
-            area: '',
-            qualification: '',
-            startdate: '',
-            enddate: '',
-            gpa: '',
+        const { award } = this.state;
+        const awardObj = {
+            title: '',
+            date: '',
+            awarder: '',
             details: '',
             hidden: false,
         };
         tempFieldsTracker.push(key);
         tempFields.push(
-            <EducationDetails
-                data={educationObj}
+            <AwardDetails
+                data={awardObj}
                 handleChange={this.handleInputChange}
                 key={key}
                 id={id}
                 expanded={exp}
-                action={() => this.handlePanel(`educationPanel${id}`)}
+                action={() => this.handlePanel(`awardPanel${id}`)}
                 moveFieldDown={() => this.moveFieldDown(key, id)}
                 moveFieldUp={() => this.moveFieldUp(key, id)}
             />
         );
-        const tempeducation = education;
-        tempeducation.push(educationObj);
+        const tempaward = award;
+        tempaward.push(awardObj);
         this.setState((state) => ({
-            educationDetailsCount: state.educationDetailsCount + 1,
+            awardDetailsCount: state.awardDetailsCount + 1,
             maxCount: state.maxCount + 1,
             btnStyle: {
                 display: 'block',
             },
-            educationFields: tempFields,
-            educationFieldTracker: tempFieldsTracker,
-            education: tempeducation,
+            awardFields: tempFields,
+            awardFieldTracker: tempFieldsTracker,
+            award: tempaward,
         }));
     }
 
     onSubChild() {
-        const { educationFields } = this.state;
-        const { educationFieldTracker } = this.state;
-        const { educationDetailsCount } = this.state;
-        const tempFields = educationFields;
-        const tempFieldsTracker = educationFieldTracker;
+        const { awardFields } = this.state;
+        const { awardFieldTracker } = this.state;
+        const { awardDetailsCount } = this.state;
+        const tempFields = awardFields;
+        const tempFieldsTracker = awardFieldTracker;
         tempFieldsTracker.pop();
         tempFields.pop();
-        const { education } = this.state;
-        const tempeducation = education;
-        tempeducation.pop();
+        const { award } = this.state;
+        const tempaward = award;
+        tempaward.pop();
         this.setState((state) => ({
-            educationDetailsCount: state.educationDetailsCount - 1,
-            educationFields: tempFields,
-            educationFieldTracker: tempFieldsTracker,
-            education: tempeducation,
+            awardDetailsCount: state.awardDetailsCount - 1,
+            awardFields: tempFields,
+            awardFieldTracker: tempFieldsTracker,
+            award: tempaward,
         }));
-        if (educationDetailsCount === 2) {
+        if (awardDetailsCount === 2) {
             this.setState({
                 btnStyle: {
                     display: 'none',
@@ -131,67 +169,67 @@ class EducationExpansionPanel extends React.Component {
     }
 
     callApiRequest() {
-        const { education } = this.state;
+        const { award } = this.state;
         const { senData } = this.props;
-        senData('education', education);
+        senData('awards', award);
     }
 
     handleInputChange(event) {
         const { id } = event.target;
         const {
-            education,
-            educationFieldTracker,
-            educationDetailsCount,
+            award,
+            awardFieldTracker,
+            awardDetailsCount,
             expanded,
         } = this.state;
         const type = event.target.name;
         const tempFields = [];
-        const tempFieldsTracker = educationFieldTracker;
-        const tempeducation = education;
+        const tempFieldsTracker = awardFieldTracker;
+        const tempaward = award;
         if (type === 'hidden') {
-            tempeducation[id][type] = event.target.checked;
+            tempaward[id][type] = event.target.checked;
         } else {
-            tempeducation[id][type] = event.target.value;
+            tempaward[id][type] = event.target.value;
         }
-        for (let i = 0; i < educationDetailsCount; i += 1) {
+        for (let i = 0; i < awardDetailsCount; i += 1) {
             const k = tempFieldsTracker[i];
             tempFields.push(
-                <EducationDetails
-                    data={tempeducation[i]}
+                <AwardDetails
+                    data={tempaward[i]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`educationPanel${i}`)}
+                    action={() => this.handlePanel(`awardPanel${i}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i)}
                     moveFieldUp={() => this.moveFieldUp(k, i)}
                 />
             );
         }
         this.setState({
-            education: tempeducation,
-            educationFields: tempFields,
+            award: tempaward,
+            awardFields: tempFields,
         });
     }
 
     handlePanel(panel) {
         const { expanded } = this.state;
-        const { educationFieldTracker } = this.state;
-        const { educationDetailsCount } = this.state;
-        const { education } = this.state;
+        const { awardFieldTracker } = this.state;
+        const { awardDetailsCount } = this.state;
+        const { award } = this.state;
         if (expanded === panel) {
             const tempFields = [];
-            const tempFieldsTracker = educationFieldTracker;
-            for (let i = 0; i < educationDetailsCount; i += 1) {
+            const tempFieldsTracker = awardFieldTracker;
+            for (let i = 0; i < awardDetailsCount; i += 1) {
                 const k = tempFieldsTracker[i];
                 tempFields.push(
-                    <EducationDetails
-                        data={education[i]}
+                    <AwardDetails
+                        data={award[i]}
                         handleChange={this.handleInputChange}
                         key={k}
                         id={i}
                         expanded={false}
-                        action={() => this.handlePanel(`educationPanel${i}`)}
+                        action={() => this.handlePanel(`awardPanel${i}`)}
                         moveFieldDown={() => this.moveFieldDown(k, i)}
                         moveFieldUp={() => this.moveFieldUp(k, i)}
                     />
@@ -199,21 +237,21 @@ class EducationExpansionPanel extends React.Component {
             }
             this.setState({
                 expanded: false,
-                educationFields: tempFields,
+                awardFields: tempFields,
             });
         } else {
             const tempFields = [];
-            const tempFieldsTracker = educationFieldTracker;
-            for (let i = 0; i < educationDetailsCount; i += 1) {
+            const tempFieldsTracker = awardFieldTracker;
+            for (let i = 0; i < awardDetailsCount; i += 1) {
                 const k = tempFieldsTracker[i];
                 tempFields.push(
-                    <EducationDetails
-                        data={education[i]}
+                    <AwardDetails
+                        data={award[i]}
                         handleChange={this.handleInputChange}
                         key={k}
                         id={i}
                         expanded={panel}
-                        action={() => this.handlePanel(`educationPanel${i}`)}
+                        action={() => this.handlePanel(`awardPanel${i}`)}
                         moveFieldDown={() => this.moveFieldDown(k, i)}
                         moveFieldUp={() => this.moveFieldUp(k, i)}
                     />
@@ -221,7 +259,7 @@ class EducationExpansionPanel extends React.Component {
             }
             this.setState({
                 expanded: panel,
-                educationFields: tempFields,
+                awardFields: tempFields,
             });
         }
     }
@@ -229,28 +267,28 @@ class EducationExpansionPanel extends React.Component {
     moveFieldUp(k, i) {
         // alert(k);
         const { expanded } = this.state;
-        const { educationFieldTracker } = this.state;
-        const { educationFields } = this.state;
-        const tempFields = educationFields;
-        const tempFieldsTracker = educationFieldTracker;
-        const { education } = this.state;
-        const tempeducation = education;
+        const { awardFieldTracker } = this.state;
+        const { awardFields } = this.state;
+        const tempFields = awardFields;
+        const tempFieldsTracker = awardFieldTracker;
+        const { award } = this.state;
+        const tempaward = award;
         if (i !== 0) {
-            const tempstore = tempeducation[i];
-            tempeducation[i] = tempeducation[i - 1];
-            tempeducation[i - 1] = tempstore;
+            const tempstore = tempaward[i];
+            tempaward[i] = tempaward[i - 1];
+            tempaward[i - 1] = tempstore;
 
             const storeFieldTracker = tempFieldsTracker[i - 1];
             tempFieldsTracker[i - 1] = tempFieldsTracker[i];
             tempFieldsTracker[i] = storeFieldTracker;
             tempFields[i] = (
-                <EducationDetails
-                    data={tempeducation[i]}
+                <AwardDetails
+                    data={tempaward[i]}
                     handleChange={this.handleInputChange}
                     key={storeFieldTracker}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`educationPanel${i}`)}
+                    action={() => this.handlePanel(`awardPanel${i}`)}
                     moveFieldDown={() =>
                         this.moveFieldDown(storeFieldTracker, i)
                     }
@@ -258,13 +296,13 @@ class EducationExpansionPanel extends React.Component {
                 />
             );
             tempFields[i - 1] = (
-                <EducationDetails
-                    data={tempeducation[i - 1]}
+                <AwardDetails
+                    data={tempaward[i - 1]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i - 1}
                     expanded={expanded}
-                    action={() => this.handlePanel(`educationPanel${i - 1}`)}
+                    action={() => this.handlePanel(`awardPanel${i - 1}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i - 1)}
                     moveFieldUp={() => this.moveFieldUp(k, i - 1)}
                 />
@@ -273,37 +311,37 @@ class EducationExpansionPanel extends React.Component {
             alert('you cant move this field any more');
         }
         this.setState({
-            educationFields: tempFields,
-            educationFieldTracker: tempFieldsTracker,
-            education: tempeducation,
+            awardFields: tempFields,
+            awardFieldTracker: tempFieldsTracker,
+            award: tempaward,
         });
     }
 
     moveFieldDown(k, i) {
         // alert(k);
         const { expanded } = this.state;
-        const { educationFieldTracker } = this.state;
-        const { educationFields } = this.state;
-        const { educationDetailsCount } = this.state;
-        const tempFields = educationFields;
-        const tempFieldsTracker = educationFieldTracker;
-        const { education } = this.state;
-        const tempeducation = education;
-        if (i !== educationDetailsCount - 1) {
-            const tempstore = tempeducation[i];
-            tempeducation[i] = tempeducation[i + 1];
-            tempeducation[i + 1] = tempstore;
+        const { awardFieldTracker } = this.state;
+        const { awardFields } = this.state;
+        const { awardDetailsCount } = this.state;
+        const tempFields = awardFields;
+        const tempFieldsTracker = awardFieldTracker;
+        const { award } = this.state;
+        const tempaward = award;
+        if (i !== awardDetailsCount - 1) {
+            const tempstore = tempaward[i];
+            tempaward[i] = tempaward[i + 1];
+            tempaward[i + 1] = tempstore;
             const storeFieldTracker = tempFieldsTracker[i + 1];
             tempFieldsTracker[i + 1] = tempFieldsTracker[i];
             tempFieldsTracker[i] = storeFieldTracker;
             tempFields[i] = (
-                <EducationDetails
-                    data={tempeducation[i]}
+                <AwardDetails
+                    data={tempaward[i]}
                     handleChange={this.handleInputChange}
                     key={storeFieldTracker}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`educationPanel${i}`)}
+                    action={() => this.handlePanel(`awardPanel${i}`)}
                     moveFieldDown={() =>
                         this.moveFieldDown(storeFieldTracker, i)
                     }
@@ -311,13 +349,13 @@ class EducationExpansionPanel extends React.Component {
                 />
             );
             tempFields[i + 1] = (
-                <EducationDetails
-                    data={tempeducation[i + 1]}
+                <AwardDetails
+                    data={tempaward[i + 1]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i + 1}
                     expanded={expanded}
-                    action={() => this.handlePanel(`educationPanel${i + 1}`)}
+                    action={() => this.handlePanel(`awardPanel${i + 1}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i + 1)}
                     moveFieldUp={() => this.moveFieldUp(k, i + 1)}
                 />
@@ -326,9 +364,9 @@ class EducationExpansionPanel extends React.Component {
             alert('you cant move this field any more');
         }
         this.setState({
-            educationFields: tempFields,
-            educationFieldTracker: tempFieldsTracker,
-            education: tempeducation,
+            awardFields: tempFields,
+            awardFieldTracker: tempFieldsTracker,
+            award: tempaward,
         });
     }
 
@@ -363,12 +401,12 @@ class EducationExpansionPanel extends React.Component {
         };
         const { expanded } = this.props;
         const { action } = this.props;
-        const { educationFields } = this.state;
+        const { awardFields } = this.state;
         const { btnStyle } = this.state;
         return (
             <div style={useStyles.root}>
                 <ExpansionPanel
-                    expanded={expanded === 'educationPanel'}
+                    expanded={expanded === 'awardPanel'}
                     onChange={action}
                 >
                     <ExpansionPanelSummary
@@ -376,16 +414,14 @@ class EducationExpansionPanel extends React.Component {
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                        <Typography style={useStyles.heading}>
-                            Education
-                        </Typography>
+                        <Typography style={useStyles.heading}>Award</Typography>
                         <Typography style={useStyles.secondaryHeading}>
-                            <i>Educational qualifications</i>
+                            <i>Significant Achievements | Awards Recieved</i>
                         </Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="customDetailContainer">
-                            <div>{educationFields}</div>
+                            <div>{awardFields}</div>
                             <div className="btnRow">
                                 <div
                                     className="addBtn"
@@ -411,11 +447,12 @@ class EducationExpansionPanel extends React.Component {
     }
 }
 
-EducationExpansionPanel.propTypes = {
+AwardExpansionPanel.propTypes = {
     expanded: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
     senData: PropTypes.func.isRequired,
     existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default EducationExpansionPanel;
+export default AwardExpansionPanel;

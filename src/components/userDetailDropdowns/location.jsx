@@ -10,14 +10,25 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 class LocationExpansionPanel extends React.Component {
     constructor(props) {
         super(props);
-        const { existingData } = this.props;
-        this.state = {
-            addressline1: existingData.addressline1,
-            addressline2: existingData.addressline2,
-            city: existingData.city,
-            pincode: existingData.pincode,
-            country: existingData.country,
-        };
+        const { existingData, mode } = this.props;
+        if (mode === 'edit') {
+            this.state = {
+                addressline1: existingData.addressline1,
+                addressline2: existingData.addressline2,
+                city: existingData.city,
+                pincode: existingData.pincode,
+                country: existingData.country,
+            };
+        }
+        if (mode === 'register') {
+            this.state = {
+                addressline1: '',
+                addressline2: '',
+                city: '',
+                pincode: '',
+                country: '',
+            };
+        }
 
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -147,6 +158,7 @@ class LocationExpansionPanel extends React.Component {
 
 LocationExpansionPanel.propTypes = {
     expanded: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
     senData: PropTypes.func.isRequired,
     existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
