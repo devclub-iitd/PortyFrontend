@@ -9,44 +9,83 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import SkillDetails from './skillDetailsContainer';
+import LanguageDetails from './languageDetailsContainer';
 
-class SkillExpansionPanel extends React.Component {
+class LanguageExpansionPanel extends React.Component {
     constructor(props) {
         super(props);
-        const { existingData } = this.props;
+        const { existingData, mode } = this.props;
         const tempFields = [];
         const tempFieldsTracker = [];
         let btnDisp = 'none';
-        if (existingData.length > 1) {
-            btnDisp = 'block';
+        if (mode === 'edit') {
+            if (existingData.length > 1) {
+                btnDisp = 'block';
+            }
         }
-        this.state = {
-            skillDetailsCount: existingData.length,
-            maxCount: existingData.length,
-            btnStyle: {
-                display: btnDisp,
-            },
-            expanded: false,
-            skillFields: tempFields,
-            skillFieldTracker: tempFieldsTracker,
-            skill: existingData,
-        };
+        if (mode === 'edit') {
+            this.state = {
+                languageDetailsCount: existingData.length,
+                maxCount: existingData.length,
+                btnStyle: {
+                    display: btnDisp,
+                },
+                expanded: false,
+                languageFields: tempFields,
+                languageFieldTracker: tempFieldsTracker,
+                language: existingData,
+            };
+        }
+        if (mode === 'register') {
+            this.state = {
+                languageDetailsCount: 1,
+                maxCount: 1,
+                btnStyle: {
+                    display: 'none',
+                },
+                expanded: false,
+                languageFields: tempFields,
+                languageFieldTracker: tempFieldsTracker,
+                language: [
+                    {
+                        language: '',
+                        fluency: '',
+                        hidden: false,
+                    },
+                ],
+            };
+        }
         const { expanded } = this.state;
-        for (let i = 0; i < existingData.length; i += 1) {
+        if (mode === 'edit') {
+            for (let i = 0; i < existingData.length; i += 1) {
+                tempFields.push(
+                    <LanguageDetails
+                        data={existingData[i]}
+                        handleChange={this.handleInputChange}
+                        key={i}
+                        id={i}
+                        expanded={expanded}
+                        action={() => this.handlePanel(`languagePanel${i}`)}
+                        moveFieldDown={() => this.moveFieldDown(i, i)}
+                        moveFieldUp={() => this.moveFieldUp(i, i)}
+                    />
+                );
+                tempFieldsTracker.push(i);
+            }
+        }
+        if (mode === 'register') {
             tempFields.push(
-                <SkillDetails
-                    data={existingData[i]}
+                <LanguageDetails
                     handleChange={this.handleInputChange}
-                    key={i}
-                    id={i}
+                    key={0}
+                    id={0}
                     expanded={expanded}
-                    action={() => this.handlePanel(`skillPanel${i}`)}
-                    moveFieldDown={() => this.moveFieldDown(i, i)}
-                    moveFieldUp={() => this.moveFieldUp(i, i)}
+                    action={() => this.handlePanel(`languagePanel${0}`)}
+                    moveFieldDown={() => this.moveFieldDown(0, 0)}
+                    moveFieldUp={() => this.moveFieldUp(0, 0)}
                 />
             );
-            tempFieldsTracker.push(i);
+            tempFieldsTracker.push(0);
         }
         this.onAddChild = this.onAddChild.bind(this);
         this.onSubChild = this.onSubChild.bind(this);
@@ -56,68 +95,67 @@ class SkillExpansionPanel extends React.Component {
     }
 
     onAddChild() {
-        const { skillFields } = this.state;
-        const { skillFieldTracker } = this.state;
-        const { skillDetailsCount } = this.state;
+        const { languageFields } = this.state;
+        const { languageFieldTracker } = this.state;
+        const { languageDetailsCount } = this.state;
         const { maxCount } = this.state;
         const { expanded } = this.state;
-        const tempFields = skillFields;
-        const tempFieldsTracker = skillFieldTracker;
-        const id = skillDetailsCount;
+        const tempFields = languageFields;
+        const tempFieldsTracker = languageFieldTracker;
+        const id = languageDetailsCount;
         const key = maxCount;
         const exp = expanded;
-        const { skill } = this.state;
-        const skillObj = {
-            name: '',
-            level: '',
-            keywords: '',
+        const { language } = this.state;
+        const languageObj = {
+            language: '',
+            fluency: '',
             hidden: false,
         };
         tempFieldsTracker.push(key);
         tempFields.push(
-            <SkillDetails
-                data={skillObj}
+            <LanguageDetails
+                data={languageObj}
                 handleChange={this.handleInputChange}
                 key={key}
                 id={id}
                 expanded={exp}
-                action={() => this.handlePanel(`skillPanel${id}`)}
+                action={() => this.handlePanel(`languagePanel${id}`)}
                 moveFieldDown={() => this.moveFieldDown(key, id)}
                 moveFieldUp={() => this.moveFieldUp(key, id)}
             />
         );
-        const tempskill = skill;
-        tempskill.push(skillObj);
+        const templanguage = language;
+        templanguage.push(languageObj);
         this.setState((state) => ({
-            skillDetailsCount: state.skillDetailsCount + 1,
+            languageDetailsCount: state.languageDetailsCount + 1,
             maxCount: state.maxCount + 1,
             btnStyle: {
                 display: 'block',
             },
-            skillFields: tempFields,
-            skillFieldTracker: tempFieldsTracker,
-            skill: tempskill,
+            languageFields: tempFields,
+            languageFieldTracker: tempFieldsTracker,
+            language: templanguage,
         }));
     }
 
     onSubChild() {
-        const { skillFields } = this.state;
-        const { skillFieldTracker } = this.state;
-        const { skillDetailsCount } = this.state;
-        const tempFields = skillFields;
-        const tempFieldsTracker = skillFieldTracker;
+        const { languageFields } = this.state;
+        const { languageFieldTracker } = this.state;
+        const { languageDetailsCount } = this.state;
+        const tempFields = languageFields;
+        const tempFieldsTracker = languageFieldTracker;
         tempFieldsTracker.pop();
         tempFields.pop();
-        const { skill } = this.state;
-        const tempskill = skill;
-        tempskill.pop();
+        const { language } = this.state;
+        const templanguage = language;
+        templanguage.pop();
         this.setState((state) => ({
-            skillDetailsCount: state.skillDetailsCount - 1,
-            skillFields: tempFields,
-            skillFieldTracker: tempFieldsTracker,
-            skill: tempskill,
+            languageDetailsCount: state.languageDetailsCount - 1,
+            languageFields: tempFields,
+            languageFieldTracker: tempFieldsTracker,
+            language: templanguage,
         }));
-        if (skillDetailsCount === 2) {
+        if (languageDetailsCount === 2) {
             this.setState({
                 btnStyle: {
                     display: 'none',
@@ -127,67 +165,67 @@ class SkillExpansionPanel extends React.Component {
     }
 
     callApiRequest() {
-        const { skill } = this.state;
+        const { language } = this.state;
         const { senData } = this.props;
-        senData('skills', skill);
+        senData('languages', language);
     }
 
     handleInputChange(event) {
         const { id } = event.target;
         const {
-            skill,
-            skillFieldTracker,
-            skillDetailsCount,
+            language,
+            languageFieldTracker,
+            languageDetailsCount,
             expanded,
         } = this.state;
         const type = event.target.name;
         const tempFields = [];
-        const tempFieldsTracker = skillFieldTracker;
-        const tempskill = skill;
+        const tempFieldsTracker = languageFieldTracker;
+        const templanguage = language;
         if (type === 'hidden') {
-            tempskill[id][type] = event.target.checked;
+            templanguage[id][type] = event.target.checked;
         } else {
-            tempskill[id][type] = event.target.value;
+            templanguage[id][type] = event.target.value;
         }
-        for (let i = 0; i < skillDetailsCount; i += 1) {
+        for (let i = 0; i < languageDetailsCount; i += 1) {
             const k = tempFieldsTracker[i];
             tempFields.push(
-                <SkillDetails
-                    data={tempskill[i]}
+                <LanguageDetails
+                    data={templanguage[i]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`skillPanel${i}`)}
+                    action={() => this.handlePanel(`languagePanel${i}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i)}
                     moveFieldUp={() => this.moveFieldUp(k, i)}
                 />
             );
         }
         this.setState({
-            skill: tempskill,
-            skillFields: tempFields,
+            language: templanguage,
+            languageFields: tempFields,
         });
     }
 
     handlePanel(panel) {
         const { expanded } = this.state;
-        const { skillFieldTracker } = this.state;
-        const { skillDetailsCount } = this.state;
-        const { skill } = this.state;
+        const { languageFieldTracker } = this.state;
+        const { languageDetailsCount } = this.state;
+        const { language } = this.state;
         if (expanded === panel) {
             const tempFields = [];
-            const tempFieldsTracker = skillFieldTracker;
-            for (let i = 0; i < skillDetailsCount; i += 1) {
+            const tempFieldsTracker = languageFieldTracker;
+            for (let i = 0; i < languageDetailsCount; i += 1) {
                 const k = tempFieldsTracker[i];
                 tempFields.push(
-                    <SkillDetails
-                        data={skill[i]}
+                    <LanguageDetails
+                        data={language[i]}
                         handleChange={this.handleInputChange}
                         key={k}
                         id={i}
                         expanded={false}
-                        action={() => this.handlePanel(`skillPanel${i}`)}
+                        action={() => this.handlePanel(`languagePanel${i}`)}
                         moveFieldDown={() => this.moveFieldDown(k, i)}
                         moveFieldUp={() => this.moveFieldUp(k, i)}
                     />
@@ -195,21 +233,21 @@ class SkillExpansionPanel extends React.Component {
             }
             this.setState({
                 expanded: false,
-                skillFields: tempFields,
+                languageFields: tempFields,
             });
         } else {
             const tempFields = [];
-            const tempFieldsTracker = skillFieldTracker;
-            for (let i = 0; i < skillDetailsCount; i += 1) {
+            const tempFieldsTracker = languageFieldTracker;
+            for (let i = 0; i < languageDetailsCount; i += 1) {
                 const k = tempFieldsTracker[i];
                 tempFields.push(
-                    <SkillDetails
-                        data={skill[i]}
+                    <LanguageDetails
+                        data={language[i]}
                         handleChange={this.handleInputChange}
                         key={k}
                         id={i}
                         expanded={panel}
-                        action={() => this.handlePanel(`skillPanel${i}`)}
+                        action={() => this.handlePanel(`languagePanel${i}`)}
                         moveFieldDown={() => this.moveFieldDown(k, i)}
                         moveFieldUp={() => this.moveFieldUp(k, i)}
                     />
@@ -217,7 +255,7 @@ class SkillExpansionPanel extends React.Component {
             }
             this.setState({
                 expanded: panel,
-                skillFields: tempFields,
+                languageFields: tempFields,
             });
         }
     }
@@ -225,28 +263,28 @@ class SkillExpansionPanel extends React.Component {
     moveFieldUp(k, i) {
         // alert(k);
         const { expanded } = this.state;
-        const { skillFieldTracker } = this.state;
-        const { skillFields } = this.state;
-        const tempFields = skillFields;
-        const tempFieldsTracker = skillFieldTracker;
-        const { skill } = this.state;
-        const tempskill = skill;
+        const { languageFieldTracker } = this.state;
+        const { languageFields } = this.state;
+        const tempFields = languageFields;
+        const tempFieldsTracker = languageFieldTracker;
+        const { language } = this.state;
+        const templanguage = language;
         if (i !== 0) {
-            const tempstore = tempskill[i];
-            tempskill[i] = tempskill[i - 1];
-            tempskill[i - 1] = tempstore;
+            const tempstore = templanguage[i];
+            templanguage[i] = templanguage[i - 1];
+            templanguage[i - 1] = tempstore;
 
             const storeFieldTracker = tempFieldsTracker[i - 1];
             tempFieldsTracker[i - 1] = tempFieldsTracker[i];
             tempFieldsTracker[i] = storeFieldTracker;
             tempFields[i] = (
-                <SkillDetails
-                    data={tempskill[i]}
+                <LanguageDetails
+                    data={templanguage[i]}
                     handleChange={this.handleInputChange}
                     key={storeFieldTracker}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`skillPanel${i}`)}
+                    action={() => this.handlePanel(`languagePanel${i}`)}
                     moveFieldDown={() =>
                         this.moveFieldDown(storeFieldTracker, i)
                     }
@@ -254,13 +292,13 @@ class SkillExpansionPanel extends React.Component {
                 />
             );
             tempFields[i - 1] = (
-                <SkillDetails
-                    data={tempskill[i - 1]}
+                <LanguageDetails
+                    data={templanguage[i - 1]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i - 1}
                     expanded={expanded}
-                    action={() => this.handlePanel(`skillPanel${i - 1}`)}
+                    action={() => this.handlePanel(`languagePanel${i - 1}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i - 1)}
                     moveFieldUp={() => this.moveFieldUp(k, i - 1)}
                 />
@@ -269,37 +307,37 @@ class SkillExpansionPanel extends React.Component {
             alert('you cant move this field any more');
         }
         this.setState({
-            skillFields: tempFields,
-            skillFieldTracker: tempFieldsTracker,
-            skill: tempskill,
+            languageFields: tempFields,
+            languageFieldTracker: tempFieldsTracker,
+            language: templanguage,
         });
     }
 
     moveFieldDown(k, i) {
         // alert(k);
         const { expanded } = this.state;
-        const { skillFieldTracker } = this.state;
-        const { skillFields } = this.state;
-        const { skillDetailsCount } = this.state;
-        const tempFields = skillFields;
-        const tempFieldsTracker = skillFieldTracker;
-        const { skill } = this.state;
-        const tempskill = skill;
-        if (i !== skillDetailsCount - 1) {
-            const tempstore = tempskill[i];
-            tempskill[i] = tempskill[i + 1];
-            tempskill[i + 1] = tempstore;
+        const { languageFieldTracker } = this.state;
+        const { languageFields } = this.state;
+        const { languageDetailsCount } = this.state;
+        const tempFields = languageFields;
+        const tempFieldsTracker = languageFieldTracker;
+        const { language } = this.state;
+        const templanguage = language;
+        if (i !== languageDetailsCount - 1) {
+            const tempstore = templanguage[i];
+            templanguage[i] = templanguage[i + 1];
+            templanguage[i + 1] = tempstore;
             const storeFieldTracker = tempFieldsTracker[i + 1];
             tempFieldsTracker[i + 1] = tempFieldsTracker[i];
             tempFieldsTracker[i] = storeFieldTracker;
             tempFields[i] = (
-                <SkillDetails
-                    data={tempskill[i]}
+                <LanguageDetails
+                    data={templanguage[i]}
                     handleChange={this.handleInputChange}
                     key={storeFieldTracker}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`skillPanel${i}`)}
+                    action={() => this.handlePanel(`languagePanel${i}`)}
                     moveFieldDown={() =>
                         this.moveFieldDown(storeFieldTracker, i)
                     }
@@ -307,13 +345,13 @@ class SkillExpansionPanel extends React.Component {
                 />
             );
             tempFields[i + 1] = (
-                <SkillDetails
-                    data={tempskill[i + 1]}
+                <LanguageDetails
+                    data={templanguage[i + 1]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i + 1}
                     expanded={expanded}
-                    action={() => this.handlePanel(`skillPanel${i + 1}`)}
+                    action={() => this.handlePanel(`languagePanel${i + 1}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i + 1)}
                     moveFieldUp={() => this.moveFieldUp(k, i + 1)}
                 />
@@ -322,9 +360,9 @@ class SkillExpansionPanel extends React.Component {
             alert('you cant move this field any more');
         }
         this.setState({
-            skillFields: tempFields,
-            skillFieldTracker: tempFieldsTracker,
-            skill: tempskill,
+            languageFields: tempFields,
+            languageFieldTracker: tempFieldsTracker,
+            language: templanguage,
         });
     }
 
@@ -359,12 +397,12 @@ class SkillExpansionPanel extends React.Component {
         };
         const { expanded } = this.props;
         const { action } = this.props;
-        const { skillFields } = this.state;
+        const { languageFields } = this.state;
         const { btnStyle } = this.state;
         return (
             <div style={useStyles.root}>
                 <ExpansionPanel
-                    expanded={expanded === 'skillPanel'}
+                    expanded={expanded === 'languagePanel'}
                     onChange={action}
                 >
                     <ExpansionPanelSummary
@@ -372,14 +410,19 @@ class SkillExpansionPanel extends React.Component {
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                        <Typography style={useStyles.heading}>Skill</Typography>
+                        <Typography style={useStyles.heading}>
+                            Language
+                        </Typography>
                         <Typography style={useStyles.secondaryHeading}>
-                            <i>Showcase your skills</i>
+                            <i>
+                                What languages do you speak (or coding
+                                languages)
+                            </i>
                         </Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="customDetailContainer">
-                            <div>{skillFields}</div>
+                            <div>{languageFields}</div>
                             <div className="btnRow">
                                 <div
                                     className="addBtn"
@@ -405,11 +448,12 @@ class SkillExpansionPanel extends React.Component {
     }
 }
 
-SkillExpansionPanel.propTypes = {
+LanguageExpansionPanel.propTypes = {
     expanded: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
     senData: PropTypes.func.isRequired,
     existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default SkillExpansionPanel;
+export default LanguageExpansionPanel;

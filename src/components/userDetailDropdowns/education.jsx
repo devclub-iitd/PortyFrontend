@@ -9,44 +9,88 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import LanguageDetails from './languageDetailsContainer';
+import EducationDetails from './educationDetailsContainer';
 
-class LanguageExpansionPanel extends React.Component {
+class EducationExpansionPanel extends React.Component {
     constructor(props) {
         super(props);
-        const { existingData } = this.props;
+        const { existingData, mode } = this.props;
         const tempFields = [];
         const tempFieldsTracker = [];
         let btnDisp = 'none';
-        if (existingData.length > 1) {
-            btnDisp = 'block';
+        if (mode === 'edit') {
+            if (existingData.length > 1) {
+                btnDisp = 'block';
+            }
         }
-        this.state = {
-            languageDetailsCount: existingData.length,
-            maxCount: existingData.length,
-            btnStyle: {
-                display: btnDisp,
-            },
-            expanded: false,
-            languageFields: tempFields,
-            languageFieldTracker: tempFieldsTracker,
-            language: existingData,
-        };
+        if (mode === 'edit') {
+            this.state = {
+                educationDetailsCount: existingData.length,
+                maxCount: existingData.length,
+                btnStyle: {
+                    display: btnDisp,
+                },
+                expanded: false,
+                educationFields: tempFields,
+                educationFieldTracker: tempFieldsTracker,
+                education: existingData,
+            };
+        }
+        if (mode === 'register') {
+            this.state = {
+                educationDetailsCount: 1,
+                maxCount: 1,
+                btnStyle: {
+                    display: 'none',
+                },
+                expanded: false,
+                educationFields: tempFields,
+                educationFieldTracker: tempFieldsTracker,
+                education: [
+                    {
+                        institution: '',
+                        area: '',
+                        qualification: '',
+                        startdate: '',
+                        enddate: '',
+                        gpa: '',
+                        details: '',
+                        hidden: false,
+                    },
+                ],
+            };
+        }
         const { expanded } = this.state;
-        for (let i = 0; i < existingData.length; i += 1) {
+        if (mode === 'edit') {
+            for (let i = 0; i < existingData.length; i += 1) {
+                tempFields.push(
+                    <EducationDetails
+                        data={existingData[i]}
+                        handleChange={this.handleInputChange}
+                        key={i}
+                        id={i}
+                        expanded={expanded}
+                        action={() => this.handlePanel(`educationPanel${i}`)}
+                        moveFieldDown={() => this.moveFieldDown(i, i)}
+                        moveFieldUp={() => this.moveFieldUp(i, i)}
+                    />
+                );
+                tempFieldsTracker.push(i);
+            }
+        }
+        if (mode === 'register') {
             tempFields.push(
-                <LanguageDetails
-                    data={existingData[i]}
+                <EducationDetails
                     handleChange={this.handleInputChange}
-                    key={i}
-                    id={i}
+                    key={0}
+                    id={0}
                     expanded={expanded}
-                    action={() => this.handlePanel(`languagePanel${i}`)}
-                    moveFieldDown={() => this.moveFieldDown(i, i)}
-                    moveFieldUp={() => this.moveFieldUp(i, i)}
+                    action={() => this.handlePanel(`educationPanel${0}`)}
+                    moveFieldDown={() => this.moveFieldDown(0, 0)}
+                    moveFieldUp={() => this.moveFieldUp(0, 0)}
                 />
             );
-            tempFieldsTracker.push(i);
+            tempFieldsTracker.push(0);
         }
         this.onAddChild = this.onAddChild.bind(this);
         this.onSubChild = this.onSubChild.bind(this);
@@ -56,67 +100,72 @@ class LanguageExpansionPanel extends React.Component {
     }
 
     onAddChild() {
-        const { languageFields } = this.state;
-        const { languageFieldTracker } = this.state;
-        const { languageDetailsCount } = this.state;
+        const { educationFields } = this.state;
+        const { educationFieldTracker } = this.state;
+        const { educationDetailsCount } = this.state;
         const { maxCount } = this.state;
         const { expanded } = this.state;
-        const tempFields = languageFields;
-        const tempFieldsTracker = languageFieldTracker;
-        const id = languageDetailsCount;
+        const tempFields = educationFields;
+        const tempFieldsTracker = educationFieldTracker;
+        const id = educationDetailsCount;
         const key = maxCount;
         const exp = expanded;
-        const { language } = this.state;
-        const languageObj = {
-            language: '',
-            fluency: '',
+        const { education } = this.state;
+        const educationObj = {
+            institution: '',
+            area: '',
+            qualification: '',
+            startdate: '',
+            enddate: '',
+            gpa: '',
+            details: '',
             hidden: false,
         };
         tempFieldsTracker.push(key);
         tempFields.push(
-            <LanguageDetails
-                data={languageObj}
+            <EducationDetails
+                data={educationObj}
                 handleChange={this.handleInputChange}
                 key={key}
                 id={id}
                 expanded={exp}
-                action={() => this.handlePanel(`languagePanel${id}`)}
+                action={() => this.handlePanel(`educationPanel${id}`)}
                 moveFieldDown={() => this.moveFieldDown(key, id)}
                 moveFieldUp={() => this.moveFieldUp(key, id)}
             />
         );
-        const templanguage = language;
-        templanguage.push(languageObj);
+        const tempeducation = education;
+        tempeducation.push(educationObj);
         this.setState((state) => ({
-            languageDetailsCount: state.languageDetailsCount + 1,
+            educationDetailsCount: state.educationDetailsCount + 1,
             maxCount: state.maxCount + 1,
             btnStyle: {
                 display: 'block',
             },
-            languageFields: tempFields,
-            languageFieldTracker: tempFieldsTracker,
-            language: templanguage,
+            educationFields: tempFields,
+            educationFieldTracker: tempFieldsTracker,
+            education: tempeducation,
         }));
     }
 
     onSubChild() {
-        const { languageFields } = this.state;
-        const { languageFieldTracker } = this.state;
-        const { languageDetailsCount } = this.state;
-        const tempFields = languageFields;
-        const tempFieldsTracker = languageFieldTracker;
+        const { educationFields } = this.state;
+        const { educationFieldTracker } = this.state;
+        const { educationDetailsCount } = this.state;
+        const tempFields = educationFields;
+        const tempFieldsTracker = educationFieldTracker;
         tempFieldsTracker.pop();
         tempFields.pop();
-        const { language } = this.state;
-        const templanguage = language;
-        templanguage.pop();
+        const { education } = this.state;
+        const tempeducation = education;
+        tempeducation.pop();
         this.setState((state) => ({
-            languageDetailsCount: state.languageDetailsCount - 1,
-            languageFields: tempFields,
-            languageFieldTracker: tempFieldsTracker,
-            language: templanguage,
+            educationDetailsCount: state.educationDetailsCount - 1,
+            educationFields: tempFields,
+            educationFieldTracker: tempFieldsTracker,
+            education: tempeducation,
         }));
-        if (languageDetailsCount === 2) {
+        if (educationDetailsCount === 2) {
             this.setState({
                 btnStyle: {
                     display: 'none',
@@ -126,67 +175,67 @@ class LanguageExpansionPanel extends React.Component {
     }
 
     callApiRequest() {
-        const { language } = this.state;
+        const { education } = this.state;
         const { senData } = this.props;
-        senData('languages', language);
+        senData('education', education);
     }
 
     handleInputChange(event) {
         const { id } = event.target;
         const {
-            language,
-            languageFieldTracker,
-            languageDetailsCount,
+            education,
+            educationFieldTracker,
+            educationDetailsCount,
             expanded,
         } = this.state;
         const type = event.target.name;
         const tempFields = [];
-        const tempFieldsTracker = languageFieldTracker;
-        const templanguage = language;
+        const tempFieldsTracker = educationFieldTracker;
+        const tempeducation = education;
         if (type === 'hidden') {
-            templanguage[id][type] = event.target.checked;
+            tempeducation[id][type] = event.target.checked;
         } else {
-            templanguage[id][type] = event.target.value;
+            tempeducation[id][type] = event.target.value;
         }
-        for (let i = 0; i < languageDetailsCount; i += 1) {
+        for (let i = 0; i < educationDetailsCount; i += 1) {
             const k = tempFieldsTracker[i];
             tempFields.push(
-                <LanguageDetails
-                    data={templanguage[i]}
+                <EducationDetails
+                    data={tempeducation[i]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`languagePanel${i}`)}
+                    action={() => this.handlePanel(`educationPanel${i}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i)}
                     moveFieldUp={() => this.moveFieldUp(k, i)}
                 />
             );
         }
         this.setState({
-            language: templanguage,
-            languageFields: tempFields,
+            education: tempeducation,
+            educationFields: tempFields,
         });
     }
 
     handlePanel(panel) {
         const { expanded } = this.state;
-        const { languageFieldTracker } = this.state;
-        const { languageDetailsCount } = this.state;
-        const { language } = this.state;
+        const { educationFieldTracker } = this.state;
+        const { educationDetailsCount } = this.state;
+        const { education } = this.state;
         if (expanded === panel) {
             const tempFields = [];
-            const tempFieldsTracker = languageFieldTracker;
-            for (let i = 0; i < languageDetailsCount; i += 1) {
+            const tempFieldsTracker = educationFieldTracker;
+            for (let i = 0; i < educationDetailsCount; i += 1) {
                 const k = tempFieldsTracker[i];
                 tempFields.push(
-                    <LanguageDetails
-                        data={language[i]}
+                    <EducationDetails
+                        data={education[i]}
                         handleChange={this.handleInputChange}
                         key={k}
                         id={i}
                         expanded={false}
-                        action={() => this.handlePanel(`languagePanel${i}`)}
+                        action={() => this.handlePanel(`educationPanel${i}`)}
                         moveFieldDown={() => this.moveFieldDown(k, i)}
                         moveFieldUp={() => this.moveFieldUp(k, i)}
                     />
@@ -194,21 +243,21 @@ class LanguageExpansionPanel extends React.Component {
             }
             this.setState({
                 expanded: false,
-                languageFields: tempFields,
+                educationFields: tempFields,
             });
         } else {
             const tempFields = [];
-            const tempFieldsTracker = languageFieldTracker;
-            for (let i = 0; i < languageDetailsCount; i += 1) {
+            const tempFieldsTracker = educationFieldTracker;
+            for (let i = 0; i < educationDetailsCount; i += 1) {
                 const k = tempFieldsTracker[i];
                 tempFields.push(
-                    <LanguageDetails
-                        data={language[i]}
+                    <EducationDetails
+                        data={education[i]}
                         handleChange={this.handleInputChange}
                         key={k}
                         id={i}
                         expanded={panel}
-                        action={() => this.handlePanel(`languagePanel${i}`)}
+                        action={() => this.handlePanel(`educationPanel${i}`)}
                         moveFieldDown={() => this.moveFieldDown(k, i)}
                         moveFieldUp={() => this.moveFieldUp(k, i)}
                     />
@@ -216,7 +265,7 @@ class LanguageExpansionPanel extends React.Component {
             }
             this.setState({
                 expanded: panel,
-                languageFields: tempFields,
+                educationFields: tempFields,
             });
         }
     }
@@ -224,28 +273,28 @@ class LanguageExpansionPanel extends React.Component {
     moveFieldUp(k, i) {
         // alert(k);
         const { expanded } = this.state;
-        const { languageFieldTracker } = this.state;
-        const { languageFields } = this.state;
-        const tempFields = languageFields;
-        const tempFieldsTracker = languageFieldTracker;
-        const { language } = this.state;
-        const templanguage = language;
+        const { educationFieldTracker } = this.state;
+        const { educationFields } = this.state;
+        const tempFields = educationFields;
+        const tempFieldsTracker = educationFieldTracker;
+        const { education } = this.state;
+        const tempeducation = education;
         if (i !== 0) {
-            const tempstore = templanguage[i];
-            templanguage[i] = templanguage[i - 1];
-            templanguage[i - 1] = tempstore;
+            const tempstore = tempeducation[i];
+            tempeducation[i] = tempeducation[i - 1];
+            tempeducation[i - 1] = tempstore;
 
             const storeFieldTracker = tempFieldsTracker[i - 1];
             tempFieldsTracker[i - 1] = tempFieldsTracker[i];
             tempFieldsTracker[i] = storeFieldTracker;
             tempFields[i] = (
-                <LanguageDetails
-                    data={templanguage[i]}
+                <EducationDetails
+                    data={tempeducation[i]}
                     handleChange={this.handleInputChange}
                     key={storeFieldTracker}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`languagePanel${i}`)}
+                    action={() => this.handlePanel(`educationPanel${i}`)}
                     moveFieldDown={() =>
                         this.moveFieldDown(storeFieldTracker, i)
                     }
@@ -253,13 +302,13 @@ class LanguageExpansionPanel extends React.Component {
                 />
             );
             tempFields[i - 1] = (
-                <LanguageDetails
-                    data={templanguage[i - 1]}
+                <EducationDetails
+                    data={tempeducation[i - 1]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i - 1}
                     expanded={expanded}
-                    action={() => this.handlePanel(`languagePanel${i - 1}`)}
+                    action={() => this.handlePanel(`educationPanel${i - 1}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i - 1)}
                     moveFieldUp={() => this.moveFieldUp(k, i - 1)}
                 />
@@ -268,37 +317,37 @@ class LanguageExpansionPanel extends React.Component {
             alert('you cant move this field any more');
         }
         this.setState({
-            languageFields: tempFields,
-            languageFieldTracker: tempFieldsTracker,
-            language: templanguage,
+            educationFields: tempFields,
+            educationFieldTracker: tempFieldsTracker,
+            education: tempeducation,
         });
     }
 
     moveFieldDown(k, i) {
         // alert(k);
         const { expanded } = this.state;
-        const { languageFieldTracker } = this.state;
-        const { languageFields } = this.state;
-        const { languageDetailsCount } = this.state;
-        const tempFields = languageFields;
-        const tempFieldsTracker = languageFieldTracker;
-        const { language } = this.state;
-        const templanguage = language;
-        if (i !== languageDetailsCount - 1) {
-            const tempstore = templanguage[i];
-            templanguage[i] = templanguage[i + 1];
-            templanguage[i + 1] = tempstore;
+        const { educationFieldTracker } = this.state;
+        const { educationFields } = this.state;
+        const { educationDetailsCount } = this.state;
+        const tempFields = educationFields;
+        const tempFieldsTracker = educationFieldTracker;
+        const { education } = this.state;
+        const tempeducation = education;
+        if (i !== educationDetailsCount - 1) {
+            const tempstore = tempeducation[i];
+            tempeducation[i] = tempeducation[i + 1];
+            tempeducation[i + 1] = tempstore;
             const storeFieldTracker = tempFieldsTracker[i + 1];
             tempFieldsTracker[i + 1] = tempFieldsTracker[i];
             tempFieldsTracker[i] = storeFieldTracker;
             tempFields[i] = (
-                <LanguageDetails
-                    data={templanguage[i]}
+                <EducationDetails
+                    data={tempeducation[i]}
                     handleChange={this.handleInputChange}
                     key={storeFieldTracker}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`languagePanel${i}`)}
+                    action={() => this.handlePanel(`educationPanel${i}`)}
                     moveFieldDown={() =>
                         this.moveFieldDown(storeFieldTracker, i)
                     }
@@ -306,13 +355,13 @@ class LanguageExpansionPanel extends React.Component {
                 />
             );
             tempFields[i + 1] = (
-                <LanguageDetails
-                    data={templanguage[i + 1]}
+                <EducationDetails
+                    data={tempeducation[i + 1]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i + 1}
                     expanded={expanded}
-                    action={() => this.handlePanel(`languagePanel${i + 1}`)}
+                    action={() => this.handlePanel(`educationPanel${i + 1}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i + 1)}
                     moveFieldUp={() => this.moveFieldUp(k, i + 1)}
                 />
@@ -321,9 +370,9 @@ class LanguageExpansionPanel extends React.Component {
             alert('you cant move this field any more');
         }
         this.setState({
-            languageFields: tempFields,
-            languageFieldTracker: tempFieldsTracker,
-            language: templanguage,
+            educationFields: tempFields,
+            educationFieldTracker: tempFieldsTracker,
+            education: tempeducation,
         });
     }
 
@@ -358,12 +407,12 @@ class LanguageExpansionPanel extends React.Component {
         };
         const { expanded } = this.props;
         const { action } = this.props;
-        const { languageFields } = this.state;
+        const { educationFields } = this.state;
         const { btnStyle } = this.state;
         return (
             <div style={useStyles.root}>
                 <ExpansionPanel
-                    expanded={expanded === 'languagePanel'}
+                    expanded={expanded === 'educationPanel'}
                     onChange={action}
                 >
                     <ExpansionPanelSummary
@@ -372,18 +421,15 @@ class LanguageExpansionPanel extends React.Component {
                         id="panel1bh-header"
                     >
                         <Typography style={useStyles.heading}>
-                            Language
+                            Education
                         </Typography>
                         <Typography style={useStyles.secondaryHeading}>
-                            <i>
-                                What languages do you speak (or coding
-                                languages)
-                            </i>
+                            <i>Educational qualifications</i>
                         </Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="customDetailContainer">
-                            <div>{languageFields}</div>
+                            <div>{educationFields}</div>
                             <div className="btnRow">
                                 <div
                                     className="addBtn"
@@ -409,11 +455,12 @@ class LanguageExpansionPanel extends React.Component {
     }
 }
 
-LanguageExpansionPanel.propTypes = {
+EducationExpansionPanel.propTypes = {
     expanded: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
     senData: PropTypes.func.isRequired,
     existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default LanguageExpansionPanel;
+export default EducationExpansionPanel;

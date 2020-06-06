@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const LanguageField = (props) => {
+const ReferenceField = (props) => {
     const { id } = props;
     const { expanded } = props;
     const { action } = props;
@@ -20,8 +20,21 @@ const LanguageField = (props) => {
     const { moveFieldDown } = props;
     const { handleChange } = props;
     const { data } = props;
+    let { ndata } = [];
+    if (data === undefined) {
+        ndata = [
+            {
+                name: '',
+                reference: '',
+                hidden: false,
+            },
+        ];
+    }
+    if (data !== undefined) {
+        ndata = data;
+    }
     const [state, setState] = React.useState({
-        hidden: data.hidden,
+        hidden: ndata.hidden,
     });
 
     const handleCheckBoxChange = (name) => (event) => {
@@ -31,7 +44,7 @@ const LanguageField = (props) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             <ExpansionPanel
-                expanded={expanded === `languagePanel${id}`}
+                expanded={expanded === `referencePanel${id}`}
                 onChange={action}
                 style={{ marginTop: '10px', color: '#3d40d8', width: '100%' }}
             >
@@ -41,34 +54,29 @@ const LanguageField = (props) => {
                     id="panel1bh-header"
                 >
                     <Typography style={{ fontWeight: 700 }}>
-                        Language {id + 1}
+                        Reference {id + 1}
                     </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <div className="customDetailContainer">
                         <div className="sectionSeperator" />
-                        <div className="row rowtwo">
-                            <input
-                                value={data.language}
-                                id={id}
-                                onChange={handleChange}
-                                name="language"
-                                className="left"
-                                type="text"
-                                required
-                                placeholder="Language Name:"
-                            />
-                            <input
-                                value={data.fluency}
-                                id={id}
-                                onChange={handleChange}
-                                name="fluency"
-                                className="right"
-                                type="text"
-                                required
-                                placeholder="Fluency: Option1 | Option2 | Option3"
-                            />
-                        </div>
+                        <input
+                            value={ndata.name}
+                            id={id}
+                            onChange={handleChange}
+                            name="name"
+                            className="left"
+                            type="text"
+                            placeholder="Name:"
+                        />
+                        <textarea
+                            value={ndata.reference}
+                            id={id}
+                            onChange={handleChange}
+                            name="reference"
+                            resize="none"
+                            placeholder="Reference:"
+                        />
                         <div style={{ marginLeft: '2px', marginTop: '15px' }}>
                             <FormControlLabel
                                 control={
@@ -114,7 +122,7 @@ const LanguageField = (props) => {
     );
 };
 
-LanguageField.propTypes = {
+ReferenceField.propTypes = {
     id: PropTypes.number.isRequired,
     expanded: PropTypes.bool.isRequired,
     action: PropTypes.func.isRequired,
@@ -124,4 +132,4 @@ LanguageField.propTypes = {
     data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default LanguageField;
+export default ReferenceField;

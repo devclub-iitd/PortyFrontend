@@ -9,43 +9,85 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ReferenceDetails from './referenceDetailsContainer';
+import SkillDetails from './skillDetailsContainer';
 
-class ReferenceExpansionPanel extends React.Component {
+class SkillExpansionPanel extends React.Component {
     constructor(props) {
         super(props);
+        const { existingData, mode } = this.props;
         const tempFields = [];
         const tempFieldsTracker = [];
-        this.state = {
-            referenceDetailsCount: 1,
-            maxCount: 1,
-            btnStyle: {
-                display: 'none',
-            },
-            expanded: false,
-            referenceFields: tempFields,
-            referenceFieldTracker: tempFieldsTracker,
-            reference: [
-                {
-                    name: '',
-                    reference: '',
-                    hidden: false,
+        let btnDisp = 'none';
+        if (mode === 'edit') {
+            if (existingData.length > 1) {
+                btnDisp = 'block';
+            }
+        }
+        if (mode === 'edit') {
+            this.state = {
+                skillDetailsCount: existingData.length,
+                maxCount: existingData.length,
+                btnStyle: {
+                    display: btnDisp,
                 },
-            ],
-        };
+                expanded: false,
+                skillFields: tempFields,
+                skillFieldTracker: tempFieldsTracker,
+                skill: existingData,
+            };
+        }
+        if (mode === 'register') {
+            this.state = {
+                skillDetailsCount: 1,
+                maxCount: 1,
+                btnStyle: {
+                    display: 'none',
+                },
+                expanded: false,
+                skillFields: tempFields,
+                skillFieldTracker: tempFieldsTracker,
+                skill: [
+                    {
+                        name: '',
+                        level: '',
+                        keywords: '',
+                        hidden: false,
+                    },
+                ],
+            };
+        }
         const { expanded } = this.state;
-        tempFields.push(
-            <ReferenceDetails
-                handleChange={this.handleInputChange}
-                key={0}
-                id={0}
-                expanded={expanded}
-                action={() => this.handlePanel(`referencePanel${0}`)}
-                moveFieldDown={() => this.moveFieldDown(0, 0)}
-                moveFieldUp={() => this.moveFieldUp(0, 0)}
-            />
-        );
-        tempFieldsTracker.push(0);
+        if (mode === 'edit') {
+            for (let i = 0; i < existingData.length; i += 1) {
+                tempFields.push(
+                    <SkillDetails
+                        data={existingData[i]}
+                        handleChange={this.handleInputChange}
+                        key={i}
+                        id={i}
+                        expanded={expanded}
+                        action={() => this.handlePanel(`skillPanel${i}`)}
+                        moveFieldDown={() => this.moveFieldDown(i, i)}
+                        moveFieldUp={() => this.moveFieldUp(i, i)}
+                    />
+                );
+                tempFieldsTracker.push(i);
+            }
+        }
+        if (mode === 'register') {
+            tempFields.push(
+                <SkillDetails
+                    handleChange={this.handleInputChange}
+                    key={0}
+                    id={0}
+                    expanded={expanded}
+                    action={() => this.handlePanel(`skillPanel${0}`)}
+                    moveFieldDown={() => this.moveFieldDown(0, 0)}
+                    moveFieldUp={() => this.moveFieldUp(0, 0)}
+                />
+            );
+            tempFieldsTracker.push(0);
+        }
         this.onAddChild = this.onAddChild.bind(this);
         this.onSubChild = this.onSubChild.bind(this);
         this.handlePanel = this.handlePanel.bind(this);
@@ -54,66 +96,68 @@ class ReferenceExpansionPanel extends React.Component {
     }
 
     onAddChild() {
-        const { referenceFields } = this.state;
-        const { referenceFieldTracker } = this.state;
-        const { referenceDetailsCount } = this.state;
+        const { skillFields } = this.state;
+        const { skillFieldTracker } = this.state;
+        const { skillDetailsCount } = this.state;
         const { maxCount } = this.state;
         const { expanded } = this.state;
-        const tempFields = referenceFields;
-        const tempFieldsTracker = referenceFieldTracker;
-        const id = referenceDetailsCount;
+        const tempFields = skillFields;
+        const tempFieldsTracker = skillFieldTracker;
+        const id = skillDetailsCount;
         const key = maxCount;
         const exp = expanded;
+        const { skill } = this.state;
+        const skillObj = {
+            name: '',
+            level: '',
+            keywords: '',
+            hidden: false,
+        };
         tempFieldsTracker.push(key);
         tempFields.push(
-            <ReferenceDetails
+            <SkillDetails
+                data={skillObj}
                 handleChange={this.handleInputChange}
                 key={key}
                 id={id}
                 expanded={exp}
-                action={() => this.handlePanel(`referencePanel${id}`)}
+                action={() => this.handlePanel(`skillPanel${id}`)}
                 moveFieldDown={() => this.moveFieldDown(key, id)}
                 moveFieldUp={() => this.moveFieldUp(key, id)}
             />
         );
-        const { reference } = this.state;
-        const referenceObj = {
-            name: '',
-            reference: '',
-            hidden: false,
-        };
-        const tempreference = reference;
-        tempreference.push(referenceObj);
+        const tempskill = skill;
+        tempskill.push(skillObj);
         this.setState((state) => ({
-            referenceDetailsCount: state.referenceDetailsCount + 1,
+            skillDetailsCount: state.skillDetailsCount + 1,
             maxCount: state.maxCount + 1,
             btnStyle: {
                 display: 'block',
             },
-            referenceFields: tempFields,
-            referenceFieldTracker: tempFieldsTracker,
-            reference: tempreference,
+            skillFields: tempFields,
+            skillFieldTracker: tempFieldsTracker,
+            skill: tempskill,
         }));
     }
 
     onSubChild() {
-        const { referenceFields } = this.state;
-        const { referenceFieldTracker } = this.state;
-        const { referenceDetailsCount } = this.state;
-        const tempFields = referenceFields;
-        const tempFieldsTracker = referenceFieldTracker;
+        const { skillFields } = this.state;
+        const { skillFieldTracker } = this.state;
+        const { skillDetailsCount } = this.state;
+        const tempFields = skillFields;
+        const tempFieldsTracker = skillFieldTracker;
         tempFieldsTracker.pop();
         tempFields.pop();
-        const { reference } = this.state;
-        const tempreference = reference;
-        tempreference.pop();
+        const { skill } = this.state;
+        const tempskill = skill;
+        tempskill.pop();
         this.setState((state) => ({
-            referenceDetailsCount: state.referenceDetailsCount - 1,
-            referenceFields: tempFields,
-            referenceFieldTracker: tempFieldsTracker,
-            reference: tempreference,
+            skillDetailsCount: state.skillDetailsCount - 1,
+            skillFields: tempFields,
+            skillFieldTracker: tempFieldsTracker,
+            skill: tempskill,
         }));
-        if (referenceDetailsCount === 2) {
+        if (skillDetailsCount === 2) {
             this.setState({
                 btnStyle: {
                     display: 'none',
@@ -123,42 +167,67 @@ class ReferenceExpansionPanel extends React.Component {
     }
 
     callApiRequest() {
-        const { reference } = this.state;
+        const { skill } = this.state;
         const { senData } = this.props;
-        senData('references', reference);
+        senData('skills', skill);
     }
 
     handleInputChange(event) {
         const { id } = event.target;
-        const { reference } = this.state;
+        const {
+            skill,
+            skillFieldTracker,
+            skillDetailsCount,
+            expanded,
+        } = this.state;
         const type = event.target.name;
-        const tempreference = reference;
+        const tempFields = [];
+        const tempFieldsTracker = skillFieldTracker;
+        const tempskill = skill;
         if (type === 'hidden') {
-            tempreference[id][type] = event.target.checked;
+            tempskill[id][type] = event.target.checked;
         } else {
-            tempreference[id][type] = event.target.value;
+            tempskill[id][type] = event.target.value;
+        }
+        for (let i = 0; i < skillDetailsCount; i += 1) {
+            const k = tempFieldsTracker[i];
+            tempFields.push(
+                <SkillDetails
+                    data={tempskill[i]}
+                    handleChange={this.handleInputChange}
+                    key={k}
+                    id={i}
+                    expanded={expanded}
+                    action={() => this.handlePanel(`skillPanel${i}`)}
+                    moveFieldDown={() => this.moveFieldDown(k, i)}
+                    moveFieldUp={() => this.moveFieldUp(k, i)}
+                />
+            );
         }
         this.setState({
-            reference: tempreference,
+            skill: tempskill,
+            skillFields: tempFields,
         });
     }
 
     handlePanel(panel) {
         const { expanded } = this.state;
-        const { referenceFieldTracker } = this.state;
-        const { referenceDetailsCount } = this.state;
+        const { skillFieldTracker } = this.state;
+        const { skillDetailsCount } = this.state;
+        const { skill } = this.state;
         if (expanded === panel) {
             const tempFields = [];
-            const tempFieldsTracker = referenceFieldTracker;
-            for (let i = 0; i < referenceDetailsCount; i += 1) {
+            const tempFieldsTracker = skillFieldTracker;
+            for (let i = 0; i < skillDetailsCount; i += 1) {
                 const k = tempFieldsTracker[i];
                 tempFields.push(
-                    <ReferenceDetails
+                    <SkillDetails
+                        data={skill[i]}
                         handleChange={this.handleInputChange}
                         key={k}
                         id={i}
                         expanded={false}
-                        action={() => this.handlePanel(`referencePanel${i}`)}
+                        action={() => this.handlePanel(`skillPanel${i}`)}
                         moveFieldDown={() => this.moveFieldDown(k, i)}
                         moveFieldUp={() => this.moveFieldUp(k, i)}
                     />
@@ -166,20 +235,21 @@ class ReferenceExpansionPanel extends React.Component {
             }
             this.setState({
                 expanded: false,
-                referenceFields: tempFields,
+                skillFields: tempFields,
             });
         } else {
             const tempFields = [];
-            const tempFieldsTracker = referenceFieldTracker;
-            for (let i = 0; i < referenceDetailsCount; i += 1) {
+            const tempFieldsTracker = skillFieldTracker;
+            for (let i = 0; i < skillDetailsCount; i += 1) {
                 const k = tempFieldsTracker[i];
                 tempFields.push(
-                    <ReferenceDetails
+                    <SkillDetails
+                        data={skill[i]}
                         handleChange={this.handleInputChange}
                         key={k}
                         id={i}
                         expanded={panel}
-                        action={() => this.handlePanel(`referencePanel${i}`)}
+                        action={() => this.handlePanel(`skillPanel${i}`)}
                         moveFieldDown={() => this.moveFieldDown(k, i)}
                         moveFieldUp={() => this.moveFieldUp(k, i)}
                     />
@@ -187,7 +257,7 @@ class ReferenceExpansionPanel extends React.Component {
             }
             this.setState({
                 expanded: panel,
-                referenceFields: tempFields,
+                skillFields: tempFields,
             });
         }
     }
@@ -195,23 +265,28 @@ class ReferenceExpansionPanel extends React.Component {
     moveFieldUp(k, i) {
         // alert(k);
         const { expanded } = this.state;
-        const { referenceFieldTracker } = this.state;
-        const { referenceFields } = this.state;
-        const tempFields = referenceFields;
-        const tempFieldsTracker = referenceFieldTracker;
-        const { reference } = this.state;
-        const tempreference = reference;
+        const { skillFieldTracker } = this.state;
+        const { skillFields } = this.state;
+        const tempFields = skillFields;
+        const tempFieldsTracker = skillFieldTracker;
+        const { skill } = this.state;
+        const tempskill = skill;
         if (i !== 0) {
+            const tempstore = tempskill[i];
+            tempskill[i] = tempskill[i - 1];
+            tempskill[i - 1] = tempstore;
+
             const storeFieldTracker = tempFieldsTracker[i - 1];
             tempFieldsTracker[i - 1] = tempFieldsTracker[i];
             tempFieldsTracker[i] = storeFieldTracker;
             tempFields[i] = (
-                <ReferenceDetails
+                <SkillDetails
+                    data={tempskill[i]}
                     handleChange={this.handleInputChange}
                     key={storeFieldTracker}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`referencePanel${i}`)}
+                    action={() => this.handlePanel(`skillPanel${i}`)}
                     moveFieldDown={() =>
                         this.moveFieldDown(storeFieldTracker, i)
                     }
@@ -219,51 +294,52 @@ class ReferenceExpansionPanel extends React.Component {
                 />
             );
             tempFields[i - 1] = (
-                <ReferenceDetails
+                <SkillDetails
+                    data={tempskill[i - 1]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i - 1}
                     expanded={expanded}
-                    action={() => this.handlePanel(`referencePanel${i - 1}`)}
+                    action={() => this.handlePanel(`skillPanel${i - 1}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i - 1)}
                     moveFieldUp={() => this.moveFieldUp(k, i - 1)}
                 />
             );
-
-            const tempstore = tempreference[i];
-            tempreference[i] = tempreference[i - 1];
-            tempreference[i - 1] = tempstore;
         } else {
             alert('you cant move this field any more');
         }
         this.setState({
-            referenceFields: tempFields,
-            referenceFieldTracker: tempFieldsTracker,
-            reference: tempreference,
+            skillFields: tempFields,
+            skillFieldTracker: tempFieldsTracker,
+            skill: tempskill,
         });
     }
 
     moveFieldDown(k, i) {
         // alert(k);
         const { expanded } = this.state;
-        const { referenceFieldTracker } = this.state;
-        const { referenceFields } = this.state;
-        const { referenceDetailsCount } = this.state;
-        const tempFields = referenceFields;
-        const tempFieldsTracker = referenceFieldTracker;
-        const { reference } = this.state;
-        const tempreference = reference;
-        if (i !== referenceDetailsCount - 1) {
+        const { skillFieldTracker } = this.state;
+        const { skillFields } = this.state;
+        const { skillDetailsCount } = this.state;
+        const tempFields = skillFields;
+        const tempFieldsTracker = skillFieldTracker;
+        const { skill } = this.state;
+        const tempskill = skill;
+        if (i !== skillDetailsCount - 1) {
+            const tempstore = tempskill[i];
+            tempskill[i] = tempskill[i + 1];
+            tempskill[i + 1] = tempstore;
             const storeFieldTracker = tempFieldsTracker[i + 1];
             tempFieldsTracker[i + 1] = tempFieldsTracker[i];
             tempFieldsTracker[i] = storeFieldTracker;
             tempFields[i] = (
-                <ReferenceDetails
+                <SkillDetails
+                    data={tempskill[i]}
                     handleChange={this.handleInputChange}
                     key={storeFieldTracker}
                     id={i}
                     expanded={expanded}
-                    action={() => this.handlePanel(`referencePanel${i}`)}
+                    action={() => this.handlePanel(`skillPanel${i}`)}
                     moveFieldDown={() =>
                         this.moveFieldDown(storeFieldTracker, i)
                     }
@@ -271,27 +347,24 @@ class ReferenceExpansionPanel extends React.Component {
                 />
             );
             tempFields[i + 1] = (
-                <ReferenceDetails
+                <SkillDetails
+                    data={tempskill[i + 1]}
                     handleChange={this.handleInputChange}
                     key={k}
                     id={i + 1}
                     expanded={expanded}
-                    action={() => this.handlePanel(`referencePanel${i + 1}`)}
+                    action={() => this.handlePanel(`skillPanel${i + 1}`)}
                     moveFieldDown={() => this.moveFieldDown(k, i + 1)}
                     moveFieldUp={() => this.moveFieldUp(k, i + 1)}
                 />
             );
-
-            const tempstore = tempreference[i];
-            tempreference[i] = tempreference[i + 1];
-            tempreference[i + 1] = tempstore;
         } else {
             alert('you cant move this field any more');
         }
         this.setState({
-            referenceFields: tempFields,
-            referenceFieldTracker: tempFieldsTracker,
-            reference: tempreference,
+            skillFields: tempFields,
+            skillFieldTracker: tempFieldsTracker,
+            skill: tempskill,
         });
     }
 
@@ -326,12 +399,12 @@ class ReferenceExpansionPanel extends React.Component {
         };
         const { expanded } = this.props;
         const { action } = this.props;
-        const { referenceFields } = this.state;
+        const { skillFields } = this.state;
         const { btnStyle } = this.state;
         return (
             <div style={useStyles.root}>
                 <ExpansionPanel
-                    expanded={expanded === 'referencePanel'}
+                    expanded={expanded === 'skillPanel'}
                     onChange={action}
                 >
                     <ExpansionPanelSummary
@@ -339,16 +412,14 @@ class ReferenceExpansionPanel extends React.Component {
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                        <Typography style={useStyles.heading}>
-                            References
-                        </Typography>
+                        <Typography style={useStyles.heading}>Skill</Typography>
                         <Typography style={useStyles.secondaryHeading}>
-                            <i>Any references?</i>
+                            <i>Showcase your skills</i>
                         </Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="customDetailContainer">
-                            <div>{referenceFields}</div>
+                            <div>{skillFields}</div>
                             <div className="btnRow">
                                 <div
                                     className="addBtn"
@@ -374,10 +445,12 @@ class ReferenceExpansionPanel extends React.Component {
     }
 }
 
-ReferenceExpansionPanel.propTypes = {
+SkillExpansionPanel.propTypes = {
     expanded: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
     senData: PropTypes.func.isRequired,
+    existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default ReferenceExpansionPanel;
+export default SkillExpansionPanel;

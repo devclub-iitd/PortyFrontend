@@ -18,20 +18,20 @@ import { createProfile, getCurrentProfile } from '../actions/profile';
 import AlertStatic from '../components/fancyAlertStatic';
 import Alert from '../components/fancyAlert';
 
-import Intro from '../components/regFinal/intro';
+import Intro from '../components/userDetailDropdowns/intro';
 // import Image from '../components/regFinal/image';
 // import Account from '../components/regFinal/account';
-import About from '../components/regFinal/about';
-import Location from '../components/regFinal/location';
-import Work from '../components/regFinal/work';
-import Volunteer from '../components/regFinal/volunteer';
-import Education from '../components/regFinal/education';
-import Award from '../components/regFinal/award';
-import Publication from '../components/regFinal/publication';
-import Language from '../components/regFinal/language';
-import Skill from '../components/regFinal/skill';
-import Interest from '../components/regFinal/interest';
-import Reference from '../components/regFinal/reference';
+import About from '../components/userDetailDropdowns/about';
+import Location from '../components/userDetailDropdowns/location';
+import Work from '../components/userDetailDropdowns/work';
+import Volunteer from '../components/userDetailDropdowns/volunteer';
+import Education from '../components/userDetailDropdowns/education';
+import Award from '../components/userDetailDropdowns/award';
+import Publication from '../components/userDetailDropdowns/publication';
+import Language from '../components/userDetailDropdowns/language';
+import Skill from '../components/userDetailDropdowns/skill';
+import Interest from '../components/userDetailDropdowns/interest';
+import Reference from '../components/userDetailDropdowns/reference';
 import '../style/regFinal.css';
 
 const obj = {};
@@ -184,36 +184,42 @@ class RegFinal extends React.Component {
                             ref={this.about}
                             expanded={expanded}
                             action={() => this.handlePanel('aboutPanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <Location
                             ref={this.location}
                             expanded={expanded}
                             action={() => this.handlePanel('locationPanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <Education
                             ref={this.education}
                             expanded={expanded}
                             action={() => this.handlePanel('educationPanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <Work
                             ref={this.work}
                             expanded={expanded}
                             action={() => this.handlePanel('workPanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <Volunteer
                             ref={this.volunteer}
                             expanded={expanded}
                             action={() => this.handlePanel('volunteerPanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <Language
                             ref={this.language}
                             expanded={expanded}
                             action={() => this.handlePanel('languagePanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <div className="regSubTitle">Optionals -</div>
@@ -221,30 +227,35 @@ class RegFinal extends React.Component {
                             ref={this.award}
                             expanded={expanded}
                             action={() => this.handlePanel('awardPanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <Publication
                             ref={this.publication}
                             expanded={expanded}
                             action={() => this.handlePanel('publicationPanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <Skill
                             ref={this.skill}
                             expanded={expanded}
                             action={() => this.handlePanel('skillPanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <Interest
                             ref={this.interest}
                             expanded={expanded}
                             action={() => this.handlePanel('interestPanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <Reference
                             ref={this.reference}
                             expanded={expanded}
                             action={() => this.handlePanel('referencePanel')}
+                            mode="register"
                             senData={retrieveChildData}
                         />
                         <div className="btnContainer">

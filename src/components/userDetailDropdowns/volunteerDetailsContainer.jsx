@@ -19,8 +19,26 @@ const VolunteerField = (props) => {
     const { moveFieldUp } = props;
     const { moveFieldDown } = props;
     const { handleChange } = props;
+    const { data } = props;
+    let { ndata } = [];
+    if (data === undefined) {
+        ndata = [
+            {
+                organisation: '',
+                position: '',
+                website: '',
+                startdate: '',
+                enddate: '',
+                summary: '',
+                hidden: false,
+            },
+        ];
+    }
+    if (data !== undefined) {
+        ndata = data;
+    }
     const [state, setState] = React.useState({
-        hidden: false,
+        hidden: ndata.hidden,
     });
 
     const handleCheckBoxChange = (name) => (event) => {
@@ -48,6 +66,7 @@ const VolunteerField = (props) => {
                     <div className="customDetailContainer">
                         <div className="sectionSeperator" />
                         <input
+                            value={ndata.organisation}
                             type="text"
                             onChange={handleChange}
                             id={id}
@@ -55,6 +74,7 @@ const VolunteerField = (props) => {
                             placeholder="Organisation:"
                         />
                         <input
+                            value={ndata.position}
                             type="text"
                             onChange={handleChange}
                             id={id}
@@ -62,6 +82,7 @@ const VolunteerField = (props) => {
                             placeholder="Position:"
                         />
                         <input
+                            value={ndata.website}
                             type="text"
                             onChange={handleChange}
                             id={id}
@@ -70,6 +91,7 @@ const VolunteerField = (props) => {
                         />
                         <div className="row rowtwo">
                             <input
+                                value={ndata.startdate}
                                 className="left"
                                 type="text"
                                 onChange={handleChange}
@@ -78,6 +100,7 @@ const VolunteerField = (props) => {
                                 placeholder="Start Date: DD/MM/YYYY"
                             />
                             <input
+                                value={ndata.enddate}
                                 className="right"
                                 type="text"
                                 onChange={handleChange}
@@ -87,6 +110,7 @@ const VolunteerField = (props) => {
                             />
                         </div>
                         <textarea
+                            value={ndata.summary}
                             resize="none"
                             onChange={handleChange}
                             id={id}
@@ -145,6 +169,7 @@ VolunteerField.propTypes = {
     moveFieldUp: PropTypes.func.isRequired,
     moveFieldDown: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
+    data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default VolunteerField;
