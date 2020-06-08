@@ -27,11 +27,11 @@ const Projects = () => {
       <Container>
         <div className="project-wrapper">
           <Title title="Projects" />
-          {projects.map((project, index) => {
+          {projects.map(project => {
             const { title, info, info2, url, repo, img } = project;
 
             return (
-              <Row key={index}>
+              <Row key="1">
                 <Col lg={4} sm={12}>
                   <Fade
                     left={isDesktop}
