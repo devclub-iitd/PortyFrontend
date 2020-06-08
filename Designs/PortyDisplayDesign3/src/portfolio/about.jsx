@@ -7,7 +7,8 @@ const About = (props) => {
     return (
         <div className="portfolioPage aboutPage">
             <div className="portfolioPageSplit leftAbout">
-                <div className="aboutCard">About Me</div></div>
+                <div className="aboutCard">About Me</div>
+            </div>
             <div className="portfolioPageSplit rightAbout">
                 <div className="portfolioUserSummary">
                     <div className="miniLine" />

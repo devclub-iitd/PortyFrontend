@@ -6,7 +6,7 @@ export default function Subscribe() {
       <div className="container">
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto text-center">
-            <i className="far fa-paper-plane fa-2x mb-2 text-white"></i>
+            <i className="far fa-paper-plane fa-2x mb-2 text-white" />
             <h2 className="text-white mb-5">Subscribe to receive updates!</h2>
 
             <form className="form-inline d-flex">

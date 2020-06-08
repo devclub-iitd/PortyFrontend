@@ -19,7 +19,7 @@ class Layout extends Component {
             }
           }
         `}
-        render={data => (
+        render={(data) => (
           <>
             <Helmet
               title={data.site.siteMetadata.title}
@@ -30,7 +30,7 @@ class Layout extends Component {
             >
               <html lang="en" />
             </Helmet>
-            <div className={'page-top'}>{children}</div>
+            <div className="page-top">{children}</div>
           </>
         )}
       />

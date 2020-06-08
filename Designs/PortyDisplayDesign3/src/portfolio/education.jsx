@@ -8,7 +8,8 @@ const Education = (props) => {
     return (
         <div className="portfolioPage portfolioEducationPage">
             <div className="portfolioPageTitle">
-            <div className="titleCard">Education</div></div>
+                <div className="titleCard">Education</div>
+            </div>
             <div className="miniLine" />
             <div className="portfolioFlatContainer">
                 {education.map((educationPlace) => (

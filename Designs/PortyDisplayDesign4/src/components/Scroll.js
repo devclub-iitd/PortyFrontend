@@ -2,7 +2,7 @@ import smoothscroll from 'smoothscroll-polyfill';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Element = props => {
+const Element = (props) => {
   return props.children;
 };
 
@@ -15,13 +15,16 @@ class Scroll extends React.Component {
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func,
   };
+
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
   }
+
   componentDidMount() {
     smoothscroll.polyfill();
   }
+
   handleClick(e) {
     e.preventDefault();
     const { onClick = () => {} } = this.props;
@@ -32,11 +35,11 @@ class Scroll extends React.Component {
       switch (type) {
         case 'class':
           elem = document.getElementsByClassName(element)[0];
-          scroll = elem ? true : false;
+          scroll = !!elem;
           break;
         case 'id':
           elem = document.getElementById(element);
-          scroll = elem ? true : false;
+          scroll = !!elem;
           break;
         default:
       }
@@ -47,6 +50,7 @@ class Scroll extends React.Component {
 
     onClick(e);
   }
+
   scrollTo(element, offSet = 0, timeout = null) {
     const elemPos = element
       ? element.getBoundingClientRect().top + window.pageYOffset
@@ -59,6 +63,7 @@ class Scroll extends React.Component {
       window.scroll({ top: elemPos + offSet, left: 0, behavior: 'smooth' });
     }
   }
+
   render() {
     return (
       <Element>
