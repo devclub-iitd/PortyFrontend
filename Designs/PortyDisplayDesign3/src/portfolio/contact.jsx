@@ -6,7 +6,8 @@ const Contact = (props) => {
 
     return (
         <div className="portfolioPage contactPage">
-            <div className="portfolioPageTitle">Contact Me</div>
+            <div className="portfolioPageTitle">
+            <div className="titleCard">Contact Me</div></div>
             <div className="portfolioContactCard">
                 <div className="miniLine" />
                 <li>

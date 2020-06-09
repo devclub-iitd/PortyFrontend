@@ -7,7 +7,8 @@ const Work = (props) => {
 
     return (
         <div className="portfolioPage workPage">
-            <div className="portfolioPageTitle">Work</div>
+            <div className="portfolioPageTitle">
+            <div className="titleCard">Work</div></div>
             <div className="portfolioCardContainer portfolioWorkCardContainer">
                 {work.map((workPlace) => (
                     <PaperCard

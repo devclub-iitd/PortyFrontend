@@ -165,7 +165,12 @@
 }
 .portfolioUserSummary {
     width: 60%;
-    text-align: justify;
+    border-radius: 20px;
+    padding:20px;
+    border-radius: 20px;
+background: #353c51;
+box-shadow:  20px -20px 60px #2d3345, 
+             -20px 20px 60px #3d455d;
 }
 /* ---------------------------------------------------------- */
 .workPage {
@@ -205,7 +210,29 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    .portfolioCardWorkContainer{
+        border-radius: 20px;
+background: #353c51;
+box-shadow:  20px -20px 60px #2d3345, 
+             -20px 20px 60px #3d455d;   
+
+    }
 }
+.workCard{
+    background-color: #15253f;
+    color: #def2f1;
+    width: 300px;
+    min-height: 380px;
+    height: auto;
+    padding: 40px;
+    border-radius: 20px;
+    border-radius: 20px;
+    background: #152642;
+    box-shadow:  23px -23px 46px #122139, 
+                 -23px 23px 46px #182b4b;
+    transition: 0.2s ease-out;
+}
+
 .portfolioCard {
     width: 300px;
     padding: 20px;
@@ -330,7 +357,7 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding-top: 20px;
+    padding-top: 30px;
     padding-bottom: 30px;
     background-color: #152642;
 }
