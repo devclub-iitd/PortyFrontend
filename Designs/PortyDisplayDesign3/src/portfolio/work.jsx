@@ -17,6 +17,7 @@ const Work = (props) => {
                         website={workPlace.website}
                         startDate={workPlace.startdate}
                         endDate={workPlace.enddate}
+                        className='workCard'
                     >
                         {workPlace.summary}
                     </PaperCard>

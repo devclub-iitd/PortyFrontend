@@ -99,8 +99,8 @@ class Extra extends React.Component {
 
         return (
             <div className="portfolioPage extrasPage">
-                <div className="portfolioPageTitle floodFill">Extra&apos;s</div>
-                <div className="portfolioFlatContainer">
+                <div className="portfolioPageTitle floodFill">Extras</div>
+                <div className="portfolioExtrasContainer">
                     {AwardDisp}
                     {PublicDisp}
                     {SkillDisp}
@@ -129,7 +129,6 @@ class Extra extends React.Component {
                 >
                     {text}
                 </DialogAward>
-                <div className="miniLine" />
             </div>
         );
     }

@@ -26,9 +26,10 @@ const ExpansionCard = (props) => {
             className="portfolioVolunteerExpansionPanel"
         >
             <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className="expandIcon"/>}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
+                className="expansionSummary"
             >
                 <div className="portfolioExpansionPanelTitle">
                     {organisation}
@@ -37,7 +38,7 @@ const ExpansionCard = (props) => {
                     {position}
                 </Typography>
             </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
+            <ExpansionPanelDetails className="expansionExpanded">
                 <div className="portfolioExpansionPanelDetails">
                     <Typography>{children}</Typography>
                     <div className="miniLine miniCardLine" />

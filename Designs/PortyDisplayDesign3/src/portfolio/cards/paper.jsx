@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from '@material-ui/core/Paper';
 
 const PaperCard = (props) => {
     const { company, position, children, website, startDate, endDate } = props;
     return (
-        <Paper className="portfolioCard portfolioWorkCard">
+        <div className="portfolioCard portfolioWorkCard">
             <div className="portfolioCardTitle">
                 <span className="portfolioCardTitleMain">{company}</span>{' '}
                 <span className="portfolioCardTitleSub">| {position}</span>
@@ -22,7 +21,7 @@ const PaperCard = (props) => {
             <div className="portfolioCardDateContainer">
                 {startDate} - {endDate}
             </div>
-        </Paper>
+        </div>
     );
 };
 
