@@ -54,7 +54,7 @@
       justify-content: center;
     }
 
-    & a {
+    & div {
       font-size: 2.4rem;
 
       @include respond(phone) {

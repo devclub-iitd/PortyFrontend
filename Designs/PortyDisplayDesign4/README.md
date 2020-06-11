@@ -1,98 +1,68 @@
-# gatsby-starter-grayscale
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Gatsby.js V2 starter template based on Grayscale by startbootstrap
+## Available Scripts
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
+In the project directory, you can run:
 
-Check online preview [here](https://anubhavsrivastava.github.io/gatsby-starter-grayscale/)
+### `npm start`
 
-## Screenshot
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-![Screenshot](./src/assets/img/demo.png)
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-## Install
+### `npm test`
 
-Make sure that you have the Gatsby CLI program installed:
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```sh
-npm install --global gatsby-cli
-```
+### `npm run build`
 
-And run from your CLI:
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```sh
-gatsby new <site-name> https://github.com/anubhavsrivastava/gatsby-starter-grayscale
-```
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-Then you can run it by:
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-```sh
-cd gatsby-example-site
-npm install
-gatsby develop
-```
+### `npm run eject`
 
-### Personalization
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Edit `config.js` to put up your details
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-```javascript
-module.exports = {
-  siteTitle: 'Gatsby Starter grayscale', // <title>
-  ...
-  heading: 'Anubhav Srivastava',
-  subHeading: 'Full time Web Developer. Part time Open source contributor  ',
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-  // social
-  socialLinks: [
-    {
-      icon: 'fa-github',
-      name: 'Github',
-      url: 'https://github.com/anubhavsrivastava',
-    }
-    ...
-  ],
-};
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-```
+## Learn More
 
-### Deploying using Github page
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-`package.json` has a default script that uses `gh-pages` module to publish on Github pages. Simply running `npm run deploy` would publish the site on github pages.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Additionally, it also has [path-prefix](https://www.gatsbyjs.org/docs/path-prefix/) value set for gatsby config in `config.js`. Change `pathPrefix` to relevant path if your gatsby site is hosted on subpath of a domain, `https://theanubhav.com/somePath/`. If you are hosting it as root site, i.e, `https://theanubhav.com/` , remove the pathPrefix configuration.
+### Code Splitting
 
-### Checkout other similar starters
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-- [gatsby-starter-casual](https://github.com/anubhavsrivastava/gatsby-starter-casual)
-- [gatsby-starter-grayscale](https://github.com/anubhavsrivastava/gatsby-starter-grayscale)
-- [gatsby-starter-resume](https://github.com/anubhavsrivastava/gatsby-starter-resume)
-- [gatsby-starter-spectral](https://github.com/anubhavsrivastava/gatsby-starter-spectral)
-- [gatsby-starter-newage](https://github.com/anubhavsrivastava/gatsby-starter-newage)
-- [gatsby-starter-stylish](https://github.com/anubhavsrivastava/gatsby-starter-stylish)
-- [gatsby-starter-solidstate](https://github.com/anubhavsrivastava/gatsby-starter-solidstate)
-- [gatsby-starter-readonly](https://github.com/anubhavsrivastava/gatsby-starter-readonly)
-- [gatsby-starter-prologue](https://github.com/anubhavsrivastava/gatsby-starter-prologue)
-- [gatsby-starter-phantom](https://github.com/anubhavsrivastava/gatsby-starter-phantom)
-- [gatsby-starter-paradigmshift](https://github.com/anubhavsrivastava/gatsby-starter-paradigmshift)
-- [gatsby-starter-overflow](https://github.com/anubhavsrivastava/gatsby-starter-overflow)
-- [gatsby-starter-multiverse](https://github.com/anubhavsrivastava/gatsby-starter-multiverse)
-- [gatsby-starter-identity](https://github.com/anubhavsrivastava/gatsby-starter-identity)
-- [gatsby-starter-highlights](https://github.com/anubhavsrivastava/gatsby-starter-highlights)
-- [gatsby-starter-fractal](https://github.com/anubhavsrivastava/gatsby-starter-fractal)
-- [gatsby-starter-eventually](https://github.com/anubhavsrivastava/gatsby-starter-eventually)
-- [gatsby-starter-directive](https://github.com/anubhavsrivastava/gatsby-starter-directive)
-- [gatsby-starter-creative](https://github.com/anubhavsrivastava/gatsby-starter-creative)
-- [gatsby-starter-aerial](https://github.com/anubhavsrivastava/gatsby-starter-aerial)
+### Analyzing the Bundle Size
 
-### Contribution
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-Suggestions and PRs are welcome!
+### Making a Progressive Web App
 
-Please create issue or open PR request for contribution.
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### License
+### Advanced Configuration
 
-[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](LICENSE)
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-refer `LICENSE` file in this repository.
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
