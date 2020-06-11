@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Fade from 'react-reveal/Fade';
-import Tilt from 'react-tilt';
 import { Container, Row, Col } from 'react-bootstrap';
 import Title from './Title';
 import PropTypes from 'prop-types';
@@ -25,7 +24,7 @@ useEffect(() => {
       <section id="projects">
       <Container>
         <div className="project-wrapper">
-          <Title title="INFO" />
+          <Title title="Education" />
               <Row key="1">
                 <Col lg={4} sm={12}>
                   <Fade
@@ -35,17 +34,6 @@ useEffect(() => {
                     delay={500}
                     distance="30px"
                   >
-                    <div className="project-wrapper__text">
-                      <h3 className="project-wrapper__text-title">{'EDUCATION'}</h3>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="cta-btn cta-btn--hero"
-                        href={'#!'}
-                      >
-                        See Live
-                      </a>
-                    </div>
                   </Fade>
                 </Col>
                 <Col lg={8} sm={12}>
@@ -56,16 +44,7 @@ useEffect(() => {
                     delay={1000}
                     distance="30px"
                   >
-                    <div className="project-wrapper__image">
-                      <a
-                        href={'#!'}
-                        target="_blank"
-                        aria-label="Project Link"
-                        rel="noopener noreferrer"
-                      >
-
-                      </a>
-                    </div>
+                  <div className="portfolioFlatContainer">
                     {education.map((educationPlace) => (
                                  <FlatCard
                                   institution={educationPlace.institution}
@@ -74,11 +53,11 @@ useEffect(() => {
                                      grade={educationPlace.gpa}
                                      startDate={educationPlace.startdate}
                                      endDate={educationPlace.enddate}
-                                  className="eduCard"
                                 >
                                     {educationPlace.details}
                                 </FlatCard>
                             ))}
+                            </div>
                   </Fade>
                 </Col>
               </Row>

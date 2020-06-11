@@ -33,7 +33,6 @@ const Contact = (props) => {
               {"Call"}
             </a>
             <div className="portfolioContactCard">
-                      <div className="miniLine" />
                       <div className="portfolioContactCardAddress">
                           <span>{location.addressline1}</span>
                           <br />
@@ -43,7 +42,6 @@ const Contact = (props) => {
                           <br />
                           {location.country} | {location.pincode}
                       </div>
-                      <div className="miniLine" />
                   </div>
           </div>
         </Fade>

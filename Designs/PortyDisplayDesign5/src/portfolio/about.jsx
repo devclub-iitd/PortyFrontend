@@ -22,12 +22,12 @@ const About = (props) => {
     return (
       <section id="about">
     <Container>
-      <Title title="About Me" />
+      <Title title="About Me" className="about-ti"/>
       <Row className="about-wrapper">
         <Col md={6} sm={12}>
           <Fade bottom duration={1000} delay={600} distance="30px">
             <div className="about-wrapper__image">
-              <img alt="profile" src={img} />
+              <img alt="profile" src={img} className="img-profile" />
             </div>
           </Fade>
         </Col>

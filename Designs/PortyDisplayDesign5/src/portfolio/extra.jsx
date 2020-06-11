@@ -6,6 +6,7 @@ import PublicationCard from './cards/mini/publication';
 import SkillCard from './cards/mini/skills';
 import DialogPublication from './cards/dialogPublication';
 import DialogAward from './cards/dialogAward';
+import Title from './Title';
 
 class Extra extends React.Component {
     constructor(props) {
@@ -75,6 +76,8 @@ class Extra extends React.Component {
         let PublicDisp;
         let SkillDisp;
 
+        
+
         if (userAwards.length > 0 && userAwards[0].title !== '') {
             AwardDisp = (
                 <AwardCard
@@ -99,7 +102,7 @@ class Extra extends React.Component {
 
         return (
             <div className="portfolioPage extrasPage">
-                <div className="portfolioPageTitle floodFill">Extra&apos;s</div>
+                <div className="portfolioPageTitle floodFill"><Title title="Extras" className="about-title"/></div>
                 <div className="portfolioFlatContainer">
                     {AwardDisp}
                     {PublicDisp}
@@ -129,7 +132,6 @@ class Extra extends React.Component {
                 >
                     {text}
                 </DialogAward>
-                <div className="miniLine" />
             </div>
         );
     }

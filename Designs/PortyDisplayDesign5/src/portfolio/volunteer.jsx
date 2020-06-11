@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ExpansionCard from './cards/expand';
+import Title from './Title';
 
 class Volunteer extends React.Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class Volunteer extends React.Component {
         return (
             <div className="portfolioPage volunteerPage">
                 <div className="portfolioPageSplit rightVolunteer">
-                Volunteering | POR
+                <Title title="Volunteering | POR" className="about-title"/>
                 </div>
                 <div className="portfolioPageSplit leftVolunteer">
                     {volunteer.map((volunteerPlace, index) => (
