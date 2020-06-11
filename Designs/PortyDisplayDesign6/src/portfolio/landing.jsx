@@ -25,7 +25,7 @@ const Landing = (props) => {
                             },
                         },
                         line_linked: {
-                            enable: false,
+                            enable: true,
                         },
                         move: {
                             random: true,
