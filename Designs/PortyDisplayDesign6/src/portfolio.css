@@ -1,0 +1,648 @@
+.body {
+  background-color: #8f8f93; }
+
+.portfolioContainer {
+  width: 100%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  margin-top: 50px;
+  overflow-y: scroll;
+  transform: scale(0.6);
+  border-radius: 0px;
+  border: 2px solid black; }
+
+.portfolioContainerFull {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  /* position: absolute; */
+  top: 0;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  background-color: white; }
+
+.portfolioBodyCont {
+  position: absolute;
+  background-color: white;
+  width: 100%; }
+
+.portfolioPage1 {
+  width: 100%;
+  height: 100%;
+  background-color: none;
+  position: absolute;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.portfolioPage1Details {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.portfolioPage1SocialHolder {
+  margin-top: 100px; }
+
+.portfolioUserImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  margin-right: 40px; }
+
+.portfolioUserDetails {
+  font-size: 35px;
+  margin-left: 40px; }
+
+.portfolioUserName {
+  font-weight: 900;
+  letter-spacing: 1px; }
+
+.portfolioUserLabel {
+  font-weight: 600;
+  letter-spacing: 2px; }
+
+.miniLine {
+  width: 20%;
+  height: 2px;
+  background-color: #b22222;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+/* ------------------------------------------------------- */
+.portfolioBtn {
+  font-family: 'Cereal';
+  font-weight: 600;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  height: 45px;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #99999d, #818184);
+  box-shadow: 23px 23px 58px #7c7c80,  -23px -23px 58px #a2a2a6;
+  transition: 0.2s ease-out;
+  color: #000000;
+  line-height: 45px;
+  border-radius: 15px; }
+
+.portfolioBtn:hover {
+  font-weight: 600;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 400;
+  height: 45px;
+  background: #8f8f93;
+  box-shadow: 23px 23px 58px #7c7c80,  -23px -23px 58px #a2a2a6;
+  transition: 0.2s ease-out;
+  color: #000000;
+  line-height: 45px;
+  border-radius: 15px; }
+
+.portfolioBtn:active {
+  font-weight: 600;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 400;
+  height: 45px;
+  background: linear-gradient(145deg, #818184, #99999d);
+  box-shadow: 23px 23px 58px #7c7c80,  -23px -23px 58px #a2a2a6;
+  transition: 0.2s ease-out;
+  color: #000000;
+  line-height: 45px;
+  border-radius: 15px; }
+
+.portfolioPage {
+  width: 100%;
+  height: auto;
+  padding-bottom: 40px; }
+
+/* ----------------------------------------------------------- */
+.aboutPage {
+  background-color: #081b33;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0px; }
+
+.portfolioPageSplit {
+  width: 50%;
+  min-height: 400px;
+  height: auto; }
+
+.leftAbout {
+  width: 50%;
+  background-color: #aeaeb2;
+  color: #000000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 2em;
+  font-weight: 700;
+  margin-left: auto; }
+
+.aboutCard {
+  opacity: .8;
+  background-color: #081b33;
+  padding: 50px;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #bababe, #9d9da0);
+  box-shadow: 23px -23px 58px #97979b,  -23px 23px 58px #c5c5c9; }
+
+.rightAbout {
+  color: #000000;
+  background-color: #c7c7cc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1; }
+
+.portfolioUserSummary {
+  width: 60%;
+  border-radius: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #d5d5da, #b3b3b8);
+  box-shadow: 14px -14px 52px #adadb1,  -14px 14px 52px #e1e1e7;
+  z-index: 1; }
+
+/* ---------------------------------------------------------- */
+.workPage {
+  background-color: #e6e6e6; }
+
+.portfolioPageTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: #000000;
+  text-align: center;
+  padding-top: 40px;
+  font-weight: 600;
+  font-size: 26px;
+  background-color: #d4d1d6;
+  text-align: center;
+  padding-bottom: 40px; }
+
+.portfolioPage {
+  padding-bottom: 0; }
+
+.portfolioPage .portfolioEducationPage {
+  background-color: #d4d1d6;
+  z-index: 2; }
+
+.titleCard {
+  z-index: 2;
+  padding: 10px;
+  width: 200px;
+  border-radius: 20px;
+  background: #d4d1d6;
+  box-shadow: 14px -14px 52px #b8b6ba,  -14px 14px 52px #f0ecf2; }
+
+.portfolioCardContainer {
+  width: 80%;
+  height: auto;
+  /* background-color: red; */
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center; }
+  .portfolioCardContainer .portfolioCardWorkContainer {
+    border-radius: 20px;
+    background: #e5e5ea;
+    background: linear-gradient(45deg, #f5f5fa, #ceced3);
+    box-shadow: 14px -14px 52px #c7c7cc,  -14px 14px 52px #ffffff; }
+
+.workCard {
+  background-color: #15253f;
+  color: #000000;
+  width: 300px;
+  min-height: 380px;
+  height: auto;
+  padding: 40px;
+  border-radius: 20px;
+  border-radius: 20px;
+  background: #e5e5ea;
+  background: linear-gradient(45deg, #d4d4da, #b2b2b8);
+  box-shadow: 14px -14px 52px #acacb1,  -14px 14px 52px #e0e0e7;
+  transition: 0.2s ease-out; }
+
+.portfolioCard {
+  width: 300px;
+  padding: 20px;
+  min-height: 400px;
+  height: auto;
+  margin-top: 30px; }
+
+/* .portfolioCardTitle{
+  background-color: red;
+} */
+.portfolioCardTitleMain {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 500; }
+
+.portfolioCardTitleSub {
+  text-transform: capitalize;
+  font-weight: 300;
+  font-size: 18px; }
+
+.miniCardLine {
+  margin-right: auto;
+  margin-left: 0px; }
+
+.portfolioCardContent {
+  width: 100%;
+  text-align: justify; }
+
+.portfolioCardWebsite {
+  margin-top: 20px;
+  font-size: 15px; }
+
+.portfolioCardWebsite span {
+  font-weight: 600;
+  text-transform: uppercase; }
+
+.portfolioCardWebsite a {
+  color: #b22222;
+  text-decoration: none; }
+
+.portfolioCard:hover .portfolioCardWebsite a {
+  color: #000000;
+  text-decoration: none; }
+
+.portfolioCardDateContainer {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  font-weight: 600;
+  background-color: #8f8f93; }
+
+/* -------------------------------------------------------------- */
+.volunteerPage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0px;
+  background-color: #d4d1d6; }
+
+.rightVolunteer {
+  text-align: center;
+  background-color: #aeaeb2;
+  color: #000000;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2vw;
+  font-weight: 700;
+  padding-bottom: 40px;
+  padding-top: 40px; }
+
+.leftVolunteer {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  background-color: #d4d1d6;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px; }
+
+.portfolioVolunteerExpansionPanel {
+  width: 80%;
+  margin: auto;
+  margin-top: 3px;
+  margin-bottom: 3px; }
+
+.expansionSummary {
+  background: #c7c7cc !important; }
+
+.expansionExpanded {
+  background-color: #f2f2f7 !important;
+  font-family: 'Cereal' !important;
+  color: #000000; }
+
+.portfolioExpansionPanelTitle {
+  font-family: 'Cereal' !important;
+  color: #000000 !important;
+  flex-basis: 60%;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+.expandIcon {
+  color: #000000 !important; }
+
+.portfolioExpansionPanelSubTitle {
+  font-family: 'Cereal' !important;
+  color: #152642;
+  font-size: 13px;
+  text-transform: capitalize; }
+
+.portfolioExpansionPanelDetails {
+  font-family: 'Cereal' !important;
+  border-radius: 10px !important;
+  display: flex;
+  flex-direction: column; }
+
+.portfolioExpansionPanelWebsite {
+  font-family: 'Cereal' !important;
+  margin-top: 0px; }
+
+.portfolioExpansionPanelWebsite span {
+  font-family: 'Cereal' !important;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+.portfolioExpansionPanelWebsite a {
+  font-family: 'Cereal' !important;
+  color: #152642;
+  text-decoration: none; }
+
+.portfolioWorkCard {
+  background-color: #15253f;
+  color: #000000;
+  width: 300px;
+  min-height: 380px;
+  height: auto;
+  padding: 40px;
+  border-radius: 20px;
+  border-radius: 20px;
+  background: #e5e5ea;
+  background: linear-gradient(45deg, #d4d4da, #b2b2b8);
+  box-shadow: 14px -14px 52px #acacb1,  -14px 14px 52px #e0e0e7;
+  transition: 0.2s ease-out; }
+
+.portfolioCardContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background: #c6c6cc;
+  transition: 0.2s ease-out; }
+
+.portfolioWorkCard:hover {
+  background: #697280;
+  opacity: 1;
+  color: #def2f1;
+  transition: 0.2s ease-out; }
+  .portfolioWorkCard:hover .miniCardLine {
+    background-color: #000000;
+    transition: 0.2s ease-out; }
+
+.portfolioWorkCard:hover .portfolioCardDateContainer {
+  background-color: #4a4a53; }
+
+/* ------------------------------------------------------------ */
+.portfolioFlatContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background: #c6c6cc; }
+
+.portfolioFlat {
+  background-color: #15253f;
+  color: #000000;
+  width: 300px;
+  min-height: 380px;
+  height: auto;
+  padding: 40px;
+  border-radius: 20px;
+  border-radius: 20px;
+  background: #e5e5ea;
+  background: linear-gradient(45deg, #d4d4da, #b2b2b8);
+  box-shadow: 14px -14px 52px #acacb1,  -14px 14px 52px #e0e0e7;
+  transition: 0.2s ease-out; }
+
+.portfolioFlat:hover {
+  background: #697280;
+  opacity: 1;
+  color: #def2f1; }
+
+.portfolioFlat:hover .portfolioFlatSubTitle {
+  color: black; }
+
+.portfolioFlat:hover .portfolioCardDateContainer {
+  background-color: #4a4a53;
+  border: none;
+  color: #e5e5ea; }
+
+.portfolioFlatSubTitle {
+  transition: 0.2s ease-out;
+  color: #152642;
+  text-transform: capitalize;
+  font-weight: 400;
+  margin-top: 10px; }
+
+.portfolioFlatContentSummary {
+  margin-top: 10px; }
+
+/* ---------------------------------------------------- */
+.portfolioExtrasContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #c6c6cc; }
+
+.extrasPage {
+  background-color: #c6c6cc;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center; }
+
+.floodFill {
+  display: flex;
+  width: 200px;
+  height: 30px;
+  border-radius: 50px;
+  background: #c6c6cc;
+  box-shadow: 14px -14px 52px #b4b4ba,  -14px 14px 52px #d8d8de;
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+.portfolioExtraCard {
+  font-family: 'Cereal' !important;
+  color: #b22222 !important;
+  display: flex;
+  margin-top: 50px;
+  width: 500px;
+  flex-direction: row;
+  height: auto;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #000000 !important; }
+  .portfolioExtraCard h5 {
+    font-family: 'Cereal' !important;
+    font-weight: 900;
+    color: #000000 !important; }
+  .portfolioExtraCard .chip {
+    font-family: 'Cereal' !important; }
+
+.portfolioExtraDetails {
+  background-color: #aeaeb2 !important;
+  font-family: 'Cereal' !important;
+  color: #b22222 !important;
+  display: flex;
+  flex-direction: column;
+  width: 300px; }
+
+.portfolioExtraContent {
+  font-family: 'Cereal' !important;
+  color: #b22222 !important;
+  display: flex;
+  flex-direction: column; }
+
+.chip {
+  background: rgba(142, 172, 189, 0.2) !important;
+  border: 2px solid #38576d !important;
+  margin-top: 10px; }
+
+.portfolioExtraImage {
+  height: auto;
+  width: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.miniAwardImage {
+  background-image: url("./images/award.jpg"); }
+
+.miniPublicationImage {
+  background-image: url("./images/publish.jpg"); }
+
+.miniLanguageImage {
+  background-image: url("./images/language.png"); }
+
+.miniSkillImage {
+  background-image: url("./images/skill.jpg"); }
+
+.portfolioAwardCompany span,
+.portfolioAwardDate span {
+  font-weight: 600; }
+
+.portfolioPublishCompany span,
+.portfolioPublishDate span,
+.portfolioPublishWebsite span {
+  font-weight: 600; }
+
+.portfolioPublishWebsite a {
+  color: #152642;
+  text-decoration: none; }
+
+/* --------------------------------------------- */
+.contactPage {
+  background: #c6c6cc;
+  padding-bottom: 40px; }
+
+.portfolioContactCard {
+  background: #e5e5ea;
+  background: linear-gradient(45deg, #d4d4da, #b2b2b8);
+  box-shadow: 14px -14px 52px #acacb1,  -14px 14px 52px #e0e0e7;
+  width: 360px;
+  border-radius: 15px;
+  margin: auto;
+  margin-top: 20px;
+  height: auto;
+  padding: 30px; }
+
+.portfolioContactCardAddress {
+  text-align: center;
+  text-transform: capitalize;
+  line-height: 24px; }
+
+.portfolioContactCardAddress span {
+  color: #152642; }
+
+.portfolioContactCard li {
+  margin-top: 10px; }
+
+.portfolioContactCardInfoTitle {
+  font-weight: 600;
+  color: #152642; }
+
+.portfolioContactSocialCard {
+  text-align: center;
+  color: #152642;
+  background-color: black; }
+
+.noProf {
+  text-align: center;
+  text-transform: capitalize;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: 300; }
+
+.noProfLarge {
+  font-size: 30px;
+  font-weight: 600; }
+
+.noProf span {
+  font-weight: 700;
+  text-transform: uppercase;
+  /* font-style: italic; */
+  cursor: pointer; }
+
+.particles-bg {
+  width: 100%;
+  height: 100%;
+  background-color: #8f8f93;
+  position: absolute;
+  z-index: -1; }
+
+.awardDialog {
+  font-family: 'Cereal' !important; }
+  .awardDialog .awardDialogTitle h2 {
+    font-family: 'Cereal' !important;
+    font-weight: 900 !important;
+    color: #000000; }
+    .awardDialog .awardDialogTitle h2 p .portfolioAwardCompany {
+      font-family: 'Cereal' !important;
+      font-weight: 900 !important;
+      color: #4095bb; }
+    .awardDialog .awardDialogTitle h2 p .portfolioAwardDate {
+      font-family: 'Cereal' !important;
+      font-weight: 900 !important;
+      color: #4095bb; }
+  .awardDialog .awardDialogTitle {
+    font-family: 'Cereal' !important;
+    font-weight: 900; }
