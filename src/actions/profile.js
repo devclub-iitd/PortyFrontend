@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../utility/axios';
 import setAlert from './alert';
 import { GET_PROFILE, GETTING_PROFILE, PROFILE_ERROR } from './types';
 // import { loadUser } from './auth';

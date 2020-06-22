@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../utility/axios';
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
