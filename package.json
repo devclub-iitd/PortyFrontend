@@ -1,62 +1,62 @@
 {
-  "name": "porty-frontend22",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.1.2",
-    "@material-ui/icons": "^4.2.1",
-    "axios": "^0.19.0",
-    "clsx": "^1.0.4",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-redux": "^7.1.0",
-    "react-router": "^5.1.2",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.4.1",
-    "react-scroll": "^1.7.14",
-    "redux": "^4.0.1",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-logger": "^3.0.6",
-    "redux-promise-middleware": "^6.1.1",
-    "redux-thunk": "^2.3.0",
-    "uuid": "^8.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "eslint-test": "eslint './**/*.{js,jsx}'",
-    "eslint-fix": "eslint --fix './**/*.{js,jsx}'",
-    "prettier-test": "prettier --check './**/*.{js,jsx,css}'",
-    "prettier-fix": "prettier --write './**/*.{js,jsx,css}'",
-    "lint-tests": "npm run eslint-test && npm run prettier-test",
-    "lint-fixes": "npm run eslint-fix;npm run prettier-fix"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.1",
-    "minimist": "^1.2.5",
-    "prettier": "^2.0.5"
-  },
-  "proxy": "http://localhost:5000"
+    "name": "porty-frontend22",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@material-ui/core": "^4.1.2",
+        "@material-ui/icons": "^4.2.1",
+        "axios": "^0.19.0",
+        "clsx": "^1.0.4",
+        "prop-types": "^15.7.2",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-redux": "^7.1.0",
+        "react-router": "^5.1.2",
+        "react-router-dom": "^5.0.1",
+        "react-scripts": "^3.4.1",
+        "react-scroll": "^1.7.14",
+        "redux": "^4.0.1",
+        "redux-devtools-extension": "^2.13.8",
+        "redux-logger": "^3.0.6",
+        "redux-promise-middleware": "^6.1.1",
+        "redux-thunk": "^2.3.0",
+        "uuid": "^8.0.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "eslint-test": "eslint './**/*.{js,jsx}'",
+        "eslint-fix": "eslint --fix './**/*.{js,jsx}'",
+        "prettier-test": "prettier --check './**/*.{js,jsx,css}'",
+        "prettier-fix": "prettier --write './**/*.{js,jsx,css}'",
+        "lint-tests": "npm run eslint-test && npm run prettier-test",
+        "lint-fixes": "npm run eslint-fix;npm run prettier-fix"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb": "^18.1.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-prettier": "^3.1.3",
+        "eslint-plugin-react": "^7.19.0",
+        "eslint-plugin-react-hooks": "^2.5.1",
+        "minimist": "^1.2.5",
+        "prettier": "^2.0.5"
+    },
+    "proxy": "https://porty-backend-devclub.herokuapp.com/"
 }

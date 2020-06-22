@@ -33,7 +33,9 @@ const useStyles = makeStyles((theme) => ({
 
 // TODO - FIX THE HARD CODED URL (JATIN FIX)
 const download = () => {
-    window.location.href = 'http://localhost:5000/api/profile/download';
+    window.location.href =
+        'https://porty-backend-devclub.herokuapp.com/api/profile/download';
+    // window.location.href = 'http://localhost:5000/api/profile/download';
 };
 const portfolio = () => {
     window.location.href = './portfolio';
