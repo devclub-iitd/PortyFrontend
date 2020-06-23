@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Landing = (props) => {
-    const { name, label, img} = props;
+    const { name, label, img } = props;
     return (
         <div className="portfolioPage1">
             <div className="portfolioPage1Details">

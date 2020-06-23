@@ -20,7 +20,7 @@ const navToReg = () => {
 const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
     useEffect(() => {
         getProfile();
-    });
+    }, [getProfile]);
 
     if (loading) {
         return (

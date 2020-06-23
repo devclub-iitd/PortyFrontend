@@ -25,10 +25,15 @@ export default function AlertDialogSlide(props) {
                 onClose={() => handleDialogClose({ title })}
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
-                style={{ padding: '50px'}}
+                style={{ padding: '50px' }}
                 className="awardDialog"
             >
-                <DialogTitle className="awardDialogTitle"id="alert-dialog-slide-title">{title}</DialogTitle>
+                <DialogTitle
+                    className="awardDialogTitle"
+                    id="alert-dialog-slide-title"
+                >
+                    {title}
+                </DialogTitle>
                 <DialogContent>
                     <DialogContentText
                         id="alert-dialog-slide-description"

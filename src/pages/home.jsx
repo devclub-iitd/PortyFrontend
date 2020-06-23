@@ -48,7 +48,9 @@ const Home = ({ logout }) => {
     return (
         <div className="homeCont">
             <div className="homePageTitle">Your Portfolio is ...</div>
-            <Portfolio />
+            <div className="portfolioContainerFull">
+                <Portfolio />
+            </div>
             <div className="btnRowHome">
                 <Fab
                     variant="extended"

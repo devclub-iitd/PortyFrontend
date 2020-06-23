@@ -45,7 +45,7 @@ const Portfolio = ({
 }) => {
     useEffect(() => {
         getCurrentProfile();
-    });
+    }, [getCurrentProfile]);
 
     const classes = useStyles();
     const initScroll = () => scrollToRef();
@@ -60,7 +60,7 @@ const Portfolio = ({
 
     if (!loading && profile !== null && !auth.loading && auth.isAuthenticated) {
         return (
-            <div className="portfolioContainerFull">
+            <div className="portfolioContainerFull1">
                 <Landing
                     name={profile.user.name}
                     label={profile.about.label}

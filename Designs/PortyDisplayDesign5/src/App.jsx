@@ -9,7 +9,7 @@ import Volunteer from './portfolio/volunteer';
 import Extra from './portfolio/extra';
 import Contact from './portfolio/contact';
 import './index.css';
-import './portfolio.css'
+import './portfolio.css';
 import './style/main.scss';
 
 function App(props) {
@@ -28,7 +28,11 @@ function App(props) {
                 className="portfolioBodyCont"
                 style={{ top: `${window.innerHeight}px` }}
             >
-                <About summary={profile.about} img={profile.about.imgUrl} top={window.innerHeight} />
+                <About
+                    summary={profile.about}
+                    img={profile.about.imgUrl}
+                    top={window.innerHeight}
+                />
                 <Education education={profile.education} />
                 <Work work={profile.work} />
                 <Volunteer volunteer={profile.volunteer} />
