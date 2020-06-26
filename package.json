@@ -7,19 +7,28 @@
         "@material-ui/icons": "^4.2.1",
         "axios": "^0.19.0",
         "clsx": "^1.0.4",
+        "node-sass": "^4.14.1",
+        "particlesjs": "^2.2.3",
         "prop-types": "^15.7.2",
         "react": "^16.8.6",
+        "react-bootstrap": "^1.0.1",
         "react-dom": "^16.8.6",
+        "react-particles-js": "^3.2.1",
         "react-redux": "^7.1.0",
+        "react-reveal": "^1.2.2",
         "react-router": "^5.1.2",
         "react-router-dom": "^5.0.1",
         "react-scripts": "^3.4.1",
         "react-scroll": "^1.7.14",
+        "react-spring": "^8.0.27",
         "redux": "^4.0.1",
         "redux-devtools-extension": "^2.13.8",
         "redux-logger": "^3.0.6",
         "redux-promise-middleware": "^6.1.1",
         "redux-thunk": "^2.3.0",
+        "rellax": "^1.12.1",
+        "styled-components": "^5.1.1",
+        "typescript": "^3.9.5",
         "uuid": "^8.0.0"
     },
     "scripts": {
@@ -32,7 +41,8 @@
         "prettier-test": "prettier --check './**/*.{js,jsx,css}'",
         "prettier-fix": "prettier --write './**/*.{js,jsx,css}'",
         "lint-tests": "npm run eslint-test && npm run prettier-test",
-        "lint-fixes": "npm run eslint-fix;npm run prettier-fix"
+        "lint-fixes": "npm run eslint-fix;npm run prettier-fix",
+        "css-build": "node-sass --omit-source-map-url src/style/portfolio_3.scss src/style/portfolio_3.css"
     },
     "browserslist": {
         "production": [
@@ -47,6 +57,7 @@
         ]
     },
     "devDependencies": {
+        "babel-eslint": "^10.0.3",
         "eslint": "^6.8.0",
         "eslint-config-airbnb": "^18.1.0",
         "eslint-config-prettier": "^6.11.0",
