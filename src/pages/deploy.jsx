@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     steps: {
         fontSize: '18px',
         paddingLeft: '20px',
-        lineHeight: '34px',
+        lineHeight: '20px',
         marginTop: '14px',
     },
     bold: {
@@ -38,6 +38,21 @@ const design1 = () => {
 
 const design2 = () => {
     window.location.href = './portfolio2';
+};
+const design3 = () => {
+    window.location.href = './portfolio3';
+};
+const design4 = () => {
+    window.location.href = './portfolio4';
+};
+const design5 = () => {
+    window.location.href = './portfolio5';
+};
+const design6 = () => {
+    window.location.href = './portfolio6';
+};
+const design7 = () => {
+    window.location.href = './portfolio7';
 };
 
 const navToTutorial = () => {
@@ -115,6 +130,106 @@ const Deploy = () => {
                     </a>
                     <br />
                     <Button variant="outlined" onClick={design2}>
+                        View
+                    </Button>
+                </div>
+                <div className="buttonColumn">
+                    <a
+                        href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            style={{ textDecoration: 'none' }}
+                            className={classes.button}
+                        >
+                            Design 3
+                        </Button>
+                    </a>
+                    <br />
+                    <Button variant="outlined" onClick={design3}>
+                        View
+                    </Button>
+                </div>
+                <div className="buttonColumn">
+                    <a
+                        href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            style={{ textDecoration: 'none' }}
+                            className={classes.button}
+                        >
+                            Design 4
+                        </Button>
+                    </a>
+                    <br />
+                    <Button variant="outlined" onClick={design4}>
+                        View
+                    </Button>
+                </div>
+                <div className="buttonColumn">
+                    <a
+                        href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            style={{ textDecoration: 'none' }}
+                            className={classes.button}
+                        >
+                            Design 5
+                        </Button>
+                    </a>
+                    <br />
+                    <Button variant="outlined" onClick={design5}>
+                        View
+                    </Button>
+                </div>
+                <div className="buttonColumn">
+                    <a
+                        href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            style={{ textDecoration: 'none' }}
+                            className={classes.button}
+                        >
+                            Design 6
+                        </Button>
+                    </a>
+                    <br />
+                    <Button variant="outlined" onClick={design6}>
+                        View
+                    </Button>
+                </div>
+                <div className="buttonColumn">
+                    <a
+                        href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            style={{ textDecoration: 'none' }}
+                            className={classes.button}
+                        >
+                            Design 7
+                        </Button>
+                    </a>
+                    <br />
+                    <Button variant="outlined" onClick={design7}>
                         View
                     </Button>
                 </div>
