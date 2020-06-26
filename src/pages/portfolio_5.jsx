@@ -16,7 +16,7 @@ import Extra from '../components/portfolio_5/extra';
 import Contact from '../components/portfolio_5/contact';
 import Loader from '../components/loader';
 import '../style/style/main.scss';
-import '../style/portfolio_5.css';
+// import '../style/portfolio_5.css';
 
 import { getCurrentProfile as getCurrentProfile_ } from '../actions/profile';
 

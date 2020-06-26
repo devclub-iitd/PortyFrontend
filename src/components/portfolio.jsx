@@ -31,7 +31,7 @@ const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
     }
     if (!loading && profile !== null) {
         return (
-            <Paper className="portfolioContainer" elavation={4}>
+            <Paper className="portfolioContainer1" elavation={4}>
                 <Landing
                     name={profile.user.name}
                     label={profile.about.label}
