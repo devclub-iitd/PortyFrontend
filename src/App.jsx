@@ -10,7 +10,6 @@ import Portfolio2 from './pages/portfolio_2';
 import Portfolio3 from './pages/portfolio_3';
 import Portfolio4 from './pages/portfolio_4';
 import Portfolio5 from './pages/portfolio_5';
-import Portfolio6 from './pages/portfolio_6';
 import Register from './pages/registerationFinal';
 import Validation from './pages/registerationValidation';
 import HeaderMain from './components/headerMain';
@@ -84,11 +83,6 @@ const App = () => {
                             exact
                             path="/portfolio5"
                             component={Portfolio5}
-                        />
-                        <PrivateRoute
-                            exact
-                            path="/portfolio6"
-                            component={Portfolio6}
                         />
                         <Route exact path="/validate" component={Validation} />
                         <Route
