@@ -10,6 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
 const Transition = React.forwardRef(function TransitionComponent(props, ref) {
+    // eslint-disable-next-line react/jsx-props-no-spreading
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
