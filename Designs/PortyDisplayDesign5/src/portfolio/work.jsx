@@ -43,14 +43,6 @@ const Work = (props) => {
                                 delay={1000}
                                 distance="30px"
                             >
-                                <div className="project-wrapper__image">
-                                    <a
-                                        href={'#!'}
-                                        target="_blank"
-                                        aria-label="Project Link"
-                                        rel="noopener noreferrer"
-                                    ></a>
-                                </div>
                                 <div className="portfolioFlatContainer">
                                     {work.map((workPlace) => (
                                         <PaperCard

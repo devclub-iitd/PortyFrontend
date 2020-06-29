@@ -72,10 +72,7 @@ const Portfolio = ({
                         top={window.innerHeight}
                     />
                     <Education education={profile.education} />
-                    <div id="#work">
-                        <br />
-                        <Work work={profile.work} />
-                    </div>
+                    <Work work={profile.work} />
                     <Volunteer volunteer={profile.volunteer} />
                     <Extra
                         awards={profile.awards}

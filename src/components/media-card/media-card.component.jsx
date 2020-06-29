@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -37,9 +38,8 @@ export default function MediaCard({ imageUrl, title, info, link }) {
         const { current } = refLike;
 
         const handleClick = () => {
-            current.style.color !== 'red'
-                ? (current.style.color = 'red')
-                : (current.style.color = 'rgba(0, 0, 0, 0.54)');
+            current.style.color =
+                current.style.color !== 'red' ? 'red' : 'rgba(0, 0, 0, 0.54)';
         };
         current.addEventListener('click', handleClick);
 
@@ -76,3 +76,10 @@ export default function MediaCard({ imageUrl, title, info, link }) {
         </CardContainer>
     );
 }
+
+MediaCard.propTypes = {
+    imageUrl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    info: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+};
