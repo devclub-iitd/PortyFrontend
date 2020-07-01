@@ -88,7 +88,7 @@ const Deploy = () => {
             <div className="buttonRow">
                 <div className="buttonColumn">
                     <a
-                        href="https://drive.google.com/open?id=136g5dZ4kcHDYm3BPJTDn7smO5Db6HZJ8"
+                        href="https://drive.google.com/file/d/136g5dZ4kcHDYm3BPJTDn7smO5Db6HZJ8/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -108,7 +108,7 @@ const Deploy = () => {
                 </div>
                 <div className="buttonColumn">
                     <a
-                        href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
+                        href="https://drive.google.com/file/d/1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -128,7 +128,7 @@ const Deploy = () => {
                 </div>
                 <div className="buttonColumn">
                     <a
-                        href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
+                        href="https://drive.google.com/file/d/1_KE5ITT4JoJn4OJrXrPz7XfLXiSvd4hx/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -148,7 +148,7 @@ const Deploy = () => {
                 </div>
                 <div className="buttonColumn">
                     <a
-                        href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
+                        href="https://drive.google.com/file/d/1aAtTobyUbN4ColJvKpR-cY7KbZTNjL3X/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -168,7 +168,7 @@ const Deploy = () => {
                 </div>
                 <div className="buttonColumn">
                     <a
-                        href="https://drive.google.com/open?id=1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse"
+                        href="https://drive.google.com/file/d/1YFd1rDFGmLc7qvMRsjEgoJCZXRmr5tbr/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
