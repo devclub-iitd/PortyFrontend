@@ -1,6 +1,6 @@
 import React from 'react';
 import './portfolio.css';
-import { Parallax, ParallaxLayer } from 'react-spring/renderprops-addons';
+import { Parallax, ParallaxLayer } from 'react-spring/renderprops-addons.cjs';
 import HeaderIcons from './components/header-icons/header-icons.component';
 import HeaderBackground from './components/header-background/header-background.component';
 

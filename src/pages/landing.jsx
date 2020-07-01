@@ -21,8 +21,11 @@ const Landing = ({ isAuthenticated, auth: { loading } }) => {
 };
 
 Landing.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
+    isAuthenticated: PropTypes.bool,
     auth: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
+Landing.defaultProps = {
+    isAuthenticated: null,
 };
 
 const mapStateToProps = (state) => ({

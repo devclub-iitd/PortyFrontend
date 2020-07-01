@@ -69,5 +69,11 @@
         "minimist": "^1.2.5",
         "prettier": "^2.0.5"
     },
+    "jest": {
+        "moduleNameMapper": {
+            "react-spring/renderprops": "<rootDir>/node_modules/react-spring/renderprops.cjs",
+            "react-spring/renderprops-addons": "<rootDir>/node_modules/react-spring/renderprops-addons.cjs"
+        }
+    },
     "proxy": "https://porty-backend-devclub.herokuapp.com/"
 }
