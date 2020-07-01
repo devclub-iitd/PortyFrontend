@@ -1,5 +1,5 @@
 .body{
-    background-color: #081b33;
+    background-color: none;
 }
 .portfolioContainer {
     width: 100%;
@@ -19,17 +19,16 @@
     width: 100%;
     height: 100%;
     margin: auto;
-    /* position: absolute; */
     top: 0;
     bottom: 0px;
     left: 0;
     right: 0;
     overflow-y: scroll;
-    background-color: white;
+    background-color: none;
 }
 .portfolioBodyCont {
     position: absolute;
-    background-color: white;
+    background-color: none;
     width: 100%;
 }
 .portfolioPage1 {
@@ -47,19 +46,20 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
 }
 .portfolioPage1SocialHolder {
     margin-top: 100px;
 }
 .portfolioUserImage {
+    border-radius:120px;
     width: 200px;
     height: 200px;
-    border-radius: 100%;
-    margin-right: 40px;
 }
 .portfolioUserDetails {
+    margin-top: 4rem;
+    color:#fff;
     font-size: 35px;
     margin-left: 40px;
 }
@@ -71,14 +71,7 @@
     font-weight: 600;
     letter-spacing: 2px;
 }
-.miniLine {
-    width: 20%;
-    height: 2px;
-    background-color: #b22222;
-    margin: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
+
 /* ------------------------------------------------------- */
 .portfolioBtn {
     font-family: 'Cereal';
@@ -89,8 +82,6 @@
     font-weight: 600;
     height: 45px;
     background: linear-gradient(315deg, #091d37, #07182e);
-    box-shadow:  36px -36px 70px #051221, 
-             -36px 36px 70px #0b2445;
     transition: 0.2s ease-out;
     color: #def2f1;
     line-height: 45px;
@@ -105,8 +96,6 @@
     font-weight: 400;
     height: 45px;
     background: linear-gradient(315deg, #07182e, #091d37);
-    box-shadow:  36px -36px 70px #051221, 
-             -36px 36px 70px #0b2445;
     transition: 0.2s ease-out;
     color: #def2f1;
     line-height: 45px;
@@ -135,7 +124,7 @@
 }
 .leftAbout {
     width: 50%;
-    background-color: #081b33;
+    background-color: none;
     color: #def2f1;
     display: flex;
     flex-direction:row;
@@ -152,13 +141,15 @@
     padding:50px;
     border-radius: 20px;
     background: linear-gradient(45deg, #091d37, #07182e);
-    box-shadow:  36px -36px 72px #061527, 
-             -36px 36px 72px #0a213f;
 }
 .rightAbout {
     color:#def2f1;
-   
-    background-color: #353c51;
+   width: 60%;
+    opacity: .8;
+    background-color: #081b33;
+    padding:20px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #091d37, #07182e);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -166,10 +157,11 @@
 .portfolioUserSummary {
     width: 60%;
     text-align: justify;
+    color:#fff;
 }
 /* ---------------------------------------------------------- */
 .workPage {
-    background-color: #e6e6e6;
+    background-color: none;
 }
 .portfolioPageTitle {
     display: flex;
@@ -180,25 +172,23 @@
     padding-top: 40px;
     font-weight: 600;
     font-size: 26px;
-    background-color:#2f4562;
     text-align: center;
     padding-bottom:40px;
 }
 .portfolioPage .portfolioEducationPage {
-    background-color:#2f4562;
+    background-color:none;
 }
 .titleCard{
     padding:10px;
     width: 200px;
     border-radius: 20px;
-    background: #2f4562;
-    box-shadow:  7px -7px 13px #2b3f5a, 
-             -7px 7px 13px #334b6a;
+    background: #3E65BA;
+    opacity: .8;
+
 }
 .portfolioCardContainer {
     width: 80%;
     height: auto;
-    /* background-color: red; */
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -213,10 +203,9 @@
     height: auto;
     margin-top: 30px;
 }
-/* .portfolioCardTitle{
-  background-color: red;
-} */
+
 .portfolioCardTitleMain {
+    color:#D585A7 !important;
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 500;
@@ -235,6 +224,7 @@
     text-align: justify;
 }
 .portfolioCardWebsite {
+    
     margin-top: 20px;
     font-size: 15px;
 }
@@ -243,62 +233,76 @@
     text-transform: uppercase;
 }
 .portfolioCardWebsite a {
-    color: #02aab0;
+    color:#D585A7 !important;
     text-decoration: none;
 }
 .portfolioCardDateContainer {
     width: 100%;
     height: 50px;
-    border: 2px solid #02aab0;
+    border: 2px solid #000000;
     line-height: 50px;
     text-align: center;
     margin: auto;
     margin-top: 20px;
     font-weight: 600;
-    background-color: #02aab0;
+    background-color: #000000;
 }
 /* -------------------------------------------------------------- */
 .volunteerPage {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     padding-bottom: 0px;
-    background-color: white;
+    background-color: none;
 }
 .rightVolunteer {
-    background-color: white;
-    color: black;
+    padding: 10px;
+    border-radius: 20px;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
     font-size: 20px;
     font-weight: 700;
+
+}
+.rightVolunteerTitle {
+    padding: 40px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #091d37, #07182e);
+    opacity:0.8;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+
 }
 .leftVolunteer {
-    width:100%;
-display: flex;
-text-align: center;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-justify-content: space-around;
-padding-top: 20px;
-padding-bottom: 30px;
-background-color: #02aab0;
-background-image: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    background-color: none;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 .portfolioVolunteerExpansionPanel {
-    font-size: 16px !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    background: linear-gradient(45deg, #091d37, #07182e);
+    opacity:0.8;
     width: 80%;
     margin: auto;
     margin-top: 3px;
     margin-bottom: 3px;
 }
 .portfolioExpansionPanelTitle {
-    font-size: 20px !important;
-    font-weight: bold !important;
     flex-basis: 60%;
     flex-shrink: 0;
     font-size: 16px;
@@ -306,83 +310,64 @@ background-image: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
     text-transform: uppercase;
 }
 .portfolioExpansionPanelSubTitle {
-    font-size: 20px !important;
+    color: #D585A7;
     font-weight: bold !important;
-    color: #02aab0;
     font-size: 13px;
     text-transform: capitalize;
 }
 .portfolioExpansionPanelDetails {
-    p{
-    font-size: 16px !important;
+    border-radius: 10px !important;
     display: flex;
     flex-direction: column;
-    }
-    .portfolioExpansionPanelDetails {
-        font-size: 16px !important;
-    display: flex;
-    flex-direction: column;
-    }
 }
 .portfolioExpansionPanelWebsite {
-    font-size: 16px !important;
     margin-top: 0px;
 }
 .portfolioExpansionPanelWebsite span {
-    font-size: 16px !important;
     font-weight: 600;
     text-transform: uppercase;
 }
 .portfolioExpansionPanelWebsite a {
-    font-size: 16px !important;
-    color: #02aab0;
+    color: #D585A7;
     text-decoration: none;
 }
 /* ------------------------------------------------------------ */
 .portfolioFlatContainer {
+    
     width: 100%;
     display: flex;
-    text-align: center;
-    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
     padding-top: 20px;
     padding-bottom: 30px;
-    background-color: #02aab0;
-    background-image: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
+    background-color: none;
 }
 .portfolioFlat {
-    background-color: #ffffff;
-    color: black;
+    background-color: #191F67 !important;
+    opacity: 0.8;
+    color: #def2f1;
     width: 300px;
     min-height: 380px;
     height: auto;
     padding: 40px;
-    border-radius: 0px;
+    border-radius: 20px;
+    border-radius: 20px;
     transition: 0.2s ease-out;
-    font-size: 16px;
-    .portfolioCardTitle{
-        font-weight: bold !important;
-        font-size: 20px;
-    }
 }
 .portfolioFlat:hover {
-    background: #083f41;
-    border-radius: 20px;
+    background-color: #D585A7 !important;
     color: white;
 }
 .portfolioFlat:hover .portfolioFlatSubTitle {
-    color: white;
+    color: black;
 }
 .portfolioFlat:hover .portfolioCardDateContainer {
-    background-color: #138c92;
-    border:none;
-    border-radius:10px;
+    background-color: black;
 }
 .portfolioFlatSubTitle {
     transition: 0.2s ease-out;
-    color: #02aab0;
+    color: #D585A7;
     text-transform: capitalize;
     font-weight: 400;
     margin-top: 10px;
@@ -392,21 +377,19 @@ background-image: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
 }
 /* ---------------------------------------------------- */
 .extrasPage {
-    background-color: rgba(238, 238, 238, 0.5);
+    background-color: none;
     padding-bottom: 20px;
 }
 .extrasPage .miniLine {
     margin-top: 30px;
 }
 .floodFill {
-    background-color:white;
-    color: black;
+    background-color: none;
+    color: white;
     height: 50px;
-    line-height: 50px;
-    padding-bottom: 40px;
+
 }
 .portfolioExtraCard {
-    font-size: 16px !important;
     display: flex;
     margin-top: 50px;
     width: 500px;
@@ -414,30 +397,27 @@ background-image: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
     height: auto;
     margin-left: 20px;
     margin-right: 20px;
-    background-color: #e6e6e6;
+    background-color: #192067be !important;
+    font-family:'Cereal' !important;
+    opacity: 0.8;
+    color: white !important;
 }
 .portfolioExtraDetails {
-    h5{
-        font-size: 20px !important;
-        font-weight: bold !important;
-    }
-    font-size: 16px !important;
+    font-family:'Cereal' !important;
+    color: white !important;
     display: flex;
     flex-direction: column;
     width: 300px;
 }
 .portfolioExtraContent {
-    font-size: 16px !important;
+    font-family:'Cereal' !important;
+    color: white !important;
     display: flex;
     flex-direction: column;
 }
-.Mui-dialogContent-root{
-    #alert-dialog-slide-description{
-        font-size: 16px !important;
-    }
-}
 .chip {
-    font-size: 16px !important;
+    font-family:'Cereal' !important;
+    color: white !important;
     margin-top: 10px;
 }
 .portfolioExtraImage {
@@ -469,50 +449,59 @@ background-image: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
     font-weight: 600;
 }
 .portfolioPublishWebsite a {
-    color: #02aab0;
+    color: #f1c40f;
     text-decoration: none;
 }
 
 /* --------------------------------------------- */
 /* .contactPage{
 } */
-.contactPage .portfolioPageTitle {
+.contactPage  {
     padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+   
+}
+.portfolioPageTitle {
+    color: #fff !important;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+   
 }
 .portfolioContactCard {
-    padding-top:20px;
-    padding-bottom:20px;
-    width: 100%;
-    margin-top:10px;margin-bottom: 10px;
-    background-color: #02aab0;
-background-image: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
-    height: auto;
-    font-size: 20px !important;
+    color: #fff !important;
+    align-self: center;
+    opacity: .8;
+    padding:50px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #091d37, #07182e);
+    margin-left: 40vw;
+    margin: 20px;
+    width:300px;
 }
 .portfolioContactCardAddress {
+    color: #fff !important;
     text-align: center;
     text-transform: capitalize;
     line-height: 24px;
-    font-size: 20px !important;
 }
 .portfolioContactCardAddress span {
-    color: black;
-    font-size: 20px !important;
+    color: #D585A7;
 }
 .portfolioContactCard li {
     margin-top: 10px;
-    font-size: 20px !important;
 }
 .portfolioContactCardInfoTitle {
     font-weight: 600;
-    color: black;
-    font-size: 20px !important;
+    color: #D585A7;
 }
 .portfolioContactSocialCard {
     text-align: center;
-    color: #02aab0;
+    color: #D585A7;
     background-color: black;
-    font-size: 20px !important;
 }
 .noProf {
     text-align: center;
@@ -535,78 +524,27 @@ background-image: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
     cursor: pointer;
 }
 
-.particles-bg{
-    width: 100%;
-    height: 100%;
-    background-color: #081b33;
-    position: absolute;
-    z-index: -1;
+.portfolioWorkCard{
+    background-color: #191F67 !important;
+    opacity: 0.8 !important;
+    color: #def2f1 !important;
+    width: 300px !important;
+    min-height: 380px !important;
+    height: auto !important;
+    padding: 40px !important;
+    border-radius: 20px !important;
+    border-radius: 20px !important;
+    transition: 0.2s ease-out !important;
 }
-
-.img-profile{
-    border-radius:120px;
-}
-
-.about-wrapper__info{
-    text-align: center;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-.about-wrapper__info-text{
-    margin-top:4em;
-    text-align:center !important;
-    font-size: 20px;
-    width:80%;
-}
-}
-
-.about-title{
-    font-size:50px !important;
-}
-
-
-
-#projects{
-
-    padding-bottom: 0 !important;
-
-}
-
-
-    .portfolioCardContent{
-    font-size:16px !important;
+.portfolioWorkCard:hover {
+    background-color: #D585A7 !important;
+    .portfolioCardWebsite a{
+        color: black!important;
     }
-
-.portfolioWorkCard:hover{
-    background: #083f41;
-    border-radius: 20px;
-    color: white;
-    transition: 0.2s ease-out;
-}
-
-.portfolioWorkCard:hover .portfolioCardSubTitle {
-    color: white;
-}
-.portfolioWorkCard:hover .portfolioCardDateContainer {
-    background-color: #138c92;
-    border:none;
-    border-radius:10px;
-}
-.portfoliCardTitleSub {
-    transition: 0.2s ease-out;
-    color: #02aab0;
-    text-transform: capitalize;
-    font-weight: 400;
-    margin-top: 10px;
-}
-
-
-    #contact{
-    margin-top: 50px !important;
-    background-image: none !important;
-    background-color:white !important;
-    .container{
-    background-color:white !important;
-    color:black;
+    .portfolioCardTitleMain {
+        color:#000000 !important;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 500;
     }
 }
