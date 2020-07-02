@@ -35,22 +35,22 @@ function App(props) {
                     <ParallaxLayer
                         offset={0}
                         speed={0}
-                        style={{ backgroundColor: '#00745F',  }}
+                        style={{ backgroundColor: '#00745F' }}
                     />
                     <ParallaxLayer
                         offset={1}
                         speed={0}
-                        style={{ backgroundColor: '#0A1034',  }}
+                        style={{ backgroundColor: '#0A1034' }}
                     />
                     <ParallaxLayer
                         offset={2}
                         speed={0}
-                        style={{ backgroundColor: '#65B0B1',  }}
+                        style={{ backgroundColor: '#65B0B1' }}
                     />
                     <ParallaxLayer
                         offset={3}
                         speed={0}
-                        style={{ backgroundColor: '#424C5E',  }}
+                        style={{ backgroundColor: '#424C5E' }}
                     />
                     <ParallaxLayer
                         offset={4}
@@ -58,7 +58,6 @@ function App(props) {
                         style={{
                             backgroundColor: 'rgb(1, 0, 34)',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer offset={0} speed={0}>
@@ -91,7 +90,7 @@ function App(props) {
                     <ParallaxLayer
                         offset={1}
                         speed={-0.2}
-                        style={{ opacity: 0.7,  }}
+                        style={{ opacity: 0.7 }}
                     >
                         <Cloud
                             style={{
@@ -177,9 +176,7 @@ function App(props) {
                             justifyContent: 'center',
                         }}
                     >
-                        <Mountain
-                            style={{ width: '20%', marginLeft: '60%' }}
-                        />
+                        <Mountain style={{ width: '20%', marginLeft: '60%' }} />
                     </ParallaxLayer>
 
                     <ParallaxLayer
@@ -228,22 +225,22 @@ function App(props) {
                     <ParallaxLayer
                         offset={0}
                         speed={0}
-                        style={{ backgroundColor: '#00745F',  }}
+                        style={{ backgroundColor: '#00745F' }}
                     />
                     <ParallaxLayer
                         offset={1}
                         speed={0}
-                        style={{ backgroundColor: '#0A1034',  }}
+                        style={{ backgroundColor: '#0A1034' }}
                     />
                     <ParallaxLayer
                         offset={2}
                         speed={0}
-                        style={{ backgroundColor: '#65B0B1',  }}
+                        style={{ backgroundColor: '#65B0B1' }}
                     />
                     <ParallaxLayer
                         offset={3}
                         speed={0}
-                        style={{ backgroundColor: '#424C5E',  }}
+                        style={{ backgroundColor: '#424C5E' }}
                     />
                     <ParallaxLayer
                         offset={4}
@@ -251,7 +248,6 @@ function App(props) {
                         style={{
                             backgroundColor: 'rgb(1, 0, 34)',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -260,7 +256,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#140951',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer offset={0} speed={0}>
@@ -293,7 +288,7 @@ function App(props) {
                     <ParallaxLayer
                         offset={1}
                         speed={-0.2}
-                        style={{ opacity: 0.7,  }}
+                        style={{ opacity: 0.7 }}
                     >
                         <Cloud
                             style={{
@@ -379,9 +374,7 @@ function App(props) {
                             justifyContent: 'center',
                         }}
                     >
-                        <Mountain
-                            style={{ width: '20%', marginLeft: '60%' }}
-                        />
+                        <Mountain style={{ width: '20%', marginLeft: '60%' }} />
                     </ParallaxLayer>
 
                     <ParallaxLayer
@@ -430,22 +423,22 @@ function App(props) {
                     <ParallaxLayer
                         offset={0}
                         speed={0}
-                        style={{ backgroundColor: '#00745F',  }}
+                        style={{ backgroundColor: '#00745F' }}
                     />
                     <ParallaxLayer
                         offset={1}
                         speed={0}
-                        style={{ backgroundColor: '#0A1034',  }}
+                        style={{ backgroundColor: '#0A1034' }}
                     />
                     <ParallaxLayer
                         offset={2}
                         speed={0}
-                        style={{ backgroundColor: '#65B0B1',  }}
+                        style={{ backgroundColor: '#65B0B1' }}
                     />
                     <ParallaxLayer
                         offset={3}
                         speed={0}
-                        style={{ backgroundColor: '#424C5E',  }}
+                        style={{ backgroundColor: '#424C5E' }}
                     />
                     <ParallaxLayer
                         offset={4}
@@ -453,7 +446,6 @@ function App(props) {
                         style={{
                             backgroundColor: 'rgb(1, 0, 34)',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -462,7 +454,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#140951',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -471,7 +462,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#000000',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -480,7 +470,6 @@ function App(props) {
                         style={{
                             backgroundColor: 'rgb(1, 0, 34)',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer offset={0} speed={0}>
@@ -513,7 +502,7 @@ function App(props) {
                     <ParallaxLayer
                         offset={1}
                         speed={-0.2}
-                        style={{ opacity: 0.7,  }}
+                        style={{ opacity: 0.7 }}
                     >
                         <Cloud
                             style={{
@@ -599,9 +588,7 @@ function App(props) {
                             justifyContent: 'center',
                         }}
                     >
-                        <Mountain
-                            style={{ width: '20%', marginLeft: '60%' }}
-                        />
+                        <Mountain style={{ width: '20%', marginLeft: '60%' }} />
                     </ParallaxLayer>
 
                     <ParallaxLayer
@@ -650,22 +637,22 @@ function App(props) {
                     <ParallaxLayer
                         offset={0}
                         speed={0}
-                        style={{ backgroundColor: '#00745F',  }}
+                        style={{ backgroundColor: '#00745F' }}
                     />
                     <ParallaxLayer
                         offset={1}
                         speed={0}
-                        style={{ backgroundColor: '#0A1034',  }}
+                        style={{ backgroundColor: '#0A1034' }}
                     />
                     <ParallaxLayer
                         offset={2}
                         speed={0}
-                        style={{ backgroundColor: '#65B0B1',  }}
+                        style={{ backgroundColor: '#65B0B1' }}
                     />
                     <ParallaxLayer
                         offset={3}
                         speed={0}
-                        style={{ backgroundColor: '#424C5E',  }}
+                        style={{ backgroundColor: '#424C5E' }}
                     />
                     <ParallaxLayer
                         offset={4}
@@ -673,7 +660,6 @@ function App(props) {
                         style={{
                             backgroundColor: 'rgb(1, 0, 34)',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -682,7 +668,6 @@ function App(props) {
                         style={{
                             backgroundColor: 'rgb(1, 0, 34)',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -691,7 +676,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#140951',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -700,7 +684,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#000000',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -709,7 +692,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#000000',
                             opacity: 1,
-                            
                         }}
                     />
                     <ParallaxLayer offset={0} speed={0}>
@@ -742,7 +724,7 @@ function App(props) {
                     <ParallaxLayer
                         offset={1}
                         speed={-0.2}
-                        style={{ opacity: 0.7,  }}
+                        style={{ opacity: 0.7 }}
                     >
                         <Cloud
                             style={{
@@ -828,9 +810,7 @@ function App(props) {
                             justifyContent: 'center',
                         }}
                     >
-                        <Mountain
-                            style={{ width: '20%', marginLeft: '60%' }}
-                        />
+                        <Mountain style={{ width: '20%', marginLeft: '60%' }} />
                     </ParallaxLayer>
 
                     <ParallaxLayer
@@ -879,22 +859,22 @@ function App(props) {
                     <ParallaxLayer
                         offset={0}
                         speed={0}
-                        style={{ backgroundColor: '#00745F',  }}
+                        style={{ backgroundColor: '#00745F' }}
                     />
                     <ParallaxLayer
                         offset={1}
                         speed={0}
-                        style={{ backgroundColor: '#0A1034',  }}
+                        style={{ backgroundColor: '#0A1034' }}
                     />
                     <ParallaxLayer
                         offset={2}
                         speed={0}
-                        style={{ backgroundColor: '#65B0B1',  }}
+                        style={{ backgroundColor: '#65B0B1' }}
                     />
                     <ParallaxLayer
                         offset={3}
                         speed={0}
-                        style={{ backgroundColor: '#424C5E',  }}
+                        style={{ backgroundColor: '#424C5E' }}
                     />
                     <ParallaxLayer
                         offset={4}
@@ -902,7 +882,6 @@ function App(props) {
                         style={{
                             backgroundColor: 'rgb(1, 0, 34)',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -911,7 +890,6 @@ function App(props) {
                         style={{
                             backgroundColor: 'rgb(1, 0, 34)',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -920,7 +898,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#140951',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -929,7 +906,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#000000',
                             opacity: 0.8,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -938,7 +914,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#000000',
                             opacity: 0.9,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -947,7 +922,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#000000',
                             opacity: 0.1,
-                            
                         }}
                     />
                     <ParallaxLayer
@@ -956,7 +930,6 @@ function App(props) {
                         style={{
                             backgroundColor: '#000000',
                             opacity: 1,
-                            
                         }}
                     />
                     <ParallaxLayer offset={0} speed={0}>
@@ -989,7 +962,7 @@ function App(props) {
                     <ParallaxLayer
                         offset={1}
                         speed={-0.2}
-                        style={{ opacity: 0.7,  }}
+                        style={{ opacity: 0.7 }}
                     >
                         <Cloud
                             style={{
@@ -1075,9 +1048,7 @@ function App(props) {
                             justifyContent: 'center',
                         }}
                     >
-                        <Mountain
-                            style={{ width: '20%', marginLeft: '60%' }}
-                        />
+                        <Mountain style={{ width: '20%', marginLeft: '60%' }} />
                     </ParallaxLayer>
 
                     <ParallaxLayer
