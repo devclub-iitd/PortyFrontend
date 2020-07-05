@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
     steps: {
         fontSize: '18px',
         paddingLeft: '20px',
-        lineHeight: '20px',
-        marginTop: '14px',
+        lineHeight: '28px',
+        marginTop: '24px',
     },
     bold: {
         fontWeight: 600,
@@ -61,34 +61,35 @@ const Deploy = () => {
                     To deploy your website -
                 </Typography>
                 <Typography className={classes.steps}>
-                    1) Create a github account
+                    <b>1)</b> Create a github account
                     <br />
-                    2) Create a new repository in your account with the name as
-                    username.github.io where username is your github username.
+                    <b>2)</b> Create a new repository in your account with the
+                    name as username.github.io where username is your github
+                    username.
                     <br />
-                    3) Click the Download button on the homepage to a download a
-                    file named - &quot;file.json&quot;
+                    <b>3)</b> Click the Download button on the homepage to a
+                    download a file named - &quot;file.json&quot;
                     <br />
-                    4) Choose a design template from below, download it and
-                    unzip it.
+                    <b>4)</b> Choose a design template from below, download it
+                    and unzip it.
                     <br />
-                    5) Place your file.json in the foldernamed &quot;data&quot;
-                    inside the unzipped content. If prompted, replace the
-                    existing file.
+                    <b>5)</b> Place your file.json in the foldernamed
+                    &quot;data&quot; inside the unzipped content. If prompted,
+                    replace the existing file.
                     <br />
-                    6) On your github repository, click &quot;add existing
-                    files&quot; and drag the entire content in the unzipped
-                    folder to the browser in order to upload them.
+                    <b>6)</b> On your github repository, click &quot;add
+                    existing files&quot; and drag the entire content in the
+                    unzipped folder to the browser in order to upload them.
                     <br />
-                    7) Click on done, and wait for the files to upload. In a
-                    couple of minutes your website should become live on the url
-                    - username.github.io
+                    <b>7)</b> Click on done, and wait for the files to upload.
+                    In a couple of minutes your website should become live on
+                    the url - username.github.io
                 </Typography>
             </div>
             <div className="buttonRow">
                 <div className="buttonColumn">
                     <a
-                        href="https://drive.google.com/file/d/136g5dZ4kcHDYm3BPJTDn7smO5Db6HZJ8/view?usp=sharing"
+                        href="https://drive.google.com/file/d/1OeiQuIqxdQqUUCwLIYFt4kICAee7MV8H/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -108,7 +109,7 @@ const Deploy = () => {
                 </div>
                 <div className="buttonColumn">
                     <a
-                        href="https://drive.google.com/file/d/1RfS3n0gFLTeA77AzyEVBMg7L9XrV6Lse/view?usp=sharing"
+                        href="https://drive.google.com/file/d/1mexg-1PMUwHRGEw_867gh2cBzgTQrUm5/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -128,7 +129,7 @@ const Deploy = () => {
                 </div>
                 <div className="buttonColumn">
                     <a
-                        href="https://drive.google.com/file/d/1_KE5ITT4JoJn4OJrXrPz7XfLXiSvd4hx/view?usp=sharing"
+                        href="https://drive.google.com/file/d/1otuB3bhpj3sTzD4nfD36Ka2iC31ctbdx/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -148,7 +149,7 @@ const Deploy = () => {
                 </div>
                 <div className="buttonColumn">
                     <a
-                        href="https://drive.google.com/file/d/1aAtTobyUbN4ColJvKpR-cY7KbZTNjL3X/view?usp=sharing"
+                        href="https://drive.google.com/file/d/1f4-ApI2y0BvPBXg1vTbeei2JKT98SeZ5/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -168,7 +169,7 @@ const Deploy = () => {
                 </div>
                 <div className="buttonColumn">
                     <a
-                        href="https://drive.google.com/file/d/1YFd1rDFGmLc7qvMRsjEgoJCZXRmr5tbr/view?usp=sharing"
+                        href="https://drive.google.com/file/d/1SVP10TfhC6YRbXurcz5MCgHs0m0XjAak/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
