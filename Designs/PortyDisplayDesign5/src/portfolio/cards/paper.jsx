@@ -16,7 +16,7 @@ const PaperCard = (props) => {
             <div className="portfolioCardWebsite">
                 <span>Website |</span>{' '}
                 <a href={website} target="_blank" rel="noopener noreferrer">
-                    {website}
+                    Link to page
                 </a>
             </div>
             <div className="portfolioCardDateContainer">

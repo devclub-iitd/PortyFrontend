@@ -50,6 +50,7 @@
 
 .portfolioContainerFull3 .portfolioPage1Details {
     width: 100%;
+    flex-wrap: wrap;
     display: flex;
     flex-direction: row;
     justify-content: center;

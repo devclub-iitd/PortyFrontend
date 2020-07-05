@@ -48,7 +48,7 @@ const ExpansionCard = (props) => {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            {website}
+                            Link to page
                         </a>
                     </div>
                     <div className="portfolioCardDateContainer">

@@ -23,7 +23,7 @@ const FlatCard = (props) => {
                 <div className="portfolioFlatSubTitle portfolioCardWebsite">
                     Website:{' '}
                     <a href={website} target="_blank" rel="noopener noreferrer">
-                        {website}
+                        Link to page
                     </a>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-.body{
+.body {
     background-color: #081b33;
 }
 .portfolioContainer {
@@ -45,6 +45,7 @@
 }
 .portfolioPage1Details {
     width: 100%;
+    flex-wrap: wrap;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -89,15 +90,14 @@
     font-weight: 600;
     height: 45px;
     background: linear-gradient(315deg, #091d37, #07182e);
-    box-shadow:  36px -36px 70px #051221,
-             -36px 36px 70px #0b2445;
+    box-shadow: 36px -36px 70px #051221, -36px 36px 70px #0b2445;
     transition: 0.2s ease-out;
     color: #def2f1;
     line-height: 45px;
     border-radius: 15px;
-
 }
-.portfolioBtn:hover, .portfolioBtn:active {
+.portfolioBtn:hover,
+.portfolioBtn:active {
     font-weight: 600;
     width: 200px;
     text-align: center;
@@ -105,15 +105,12 @@
     font-weight: 400;
     height: 45px;
     background: linear-gradient(315deg, #07182e, #091d37);
-    box-shadow:  36px -36px 70px #051221,
-             -36px 36px 70px #0b2445;
+    box-shadow: 36px -36px 70px #051221, -36px 36px 70px #0b2445;
     transition: 0.2s ease-out;
     color: #def2f1;
     line-height: 45px;
     border-radius: 15px;
 }
-
-
 
 .portfolioPage {
     width: 100%;
@@ -122,7 +119,7 @@
 }
 /* ----------------------------------------------------------- */
 .aboutPage {
-    background-color:#081b33;
+    background-color: #081b33;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -139,25 +136,24 @@
     background-color: #081b33;
     color: #def2f1;
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
     text-align: center;
     justify-content: center;
     font-size: 2em;
     font-weight: 700;
-    margin-left:auto;
+    margin-left: auto;
 }
-.aboutCard{
-    opacity: .8;
+.aboutCard {
+    opacity: 0.8;
     background-color: #081b33;
-    padding:50px;
+    padding: 50px;
     border-radius: 20px;
     background: linear-gradient(45deg, #091d37, #07182e);
-    box-shadow:  36px -36px 72px #061527,
-             -36px 36px 72px #0a213f;
+    box-shadow: 36px -36px 72px #061527, -36px 36px 72px #0a213f;
 }
 .rightAbout {
-    color:#def2f1;
+    color: #def2f1;
 
     background-color: #353c51;
     display: flex;
@@ -167,11 +163,10 @@
 .portfolioUserSummary {
     width: 60%;
     border-radius: 20px;
-    padding:20px;
+    padding: 20px;
     border-radius: 20px;
-background: #353c51;
-box-shadow:  20px -20px 60px #2d3345,
-             -20px 20px 60px #3d455d;
+    background: #353c51;
+    box-shadow: 20px -20px 60px #2d3345, -20px 20px 60px #3d455d;
 }
 /* ---------------------------------------------------------- */
 .workPage {
@@ -180,30 +175,28 @@ box-shadow:  20px -20px 60px #2d3345,
 .portfolioPageTitle {
     display: flex;
     flex-direction: row;
-    justify-content:center;
-    color:#def2f1;
+    justify-content: center;
+    color: #def2f1;
     text-align: center;
     padding-top: 40px;
     font-weight: 600;
     font-size: 26px;
-    background-color:#2f4562;
+    background-color: #2f4562;
     text-align: center;
-    padding-bottom:40px;
+    padding-bottom: 40px;
 }
-.portfolioPage{
-    padding-bottom:0;
+.portfolioPage {
+    padding-bottom: 0;
 }
 .portfolioPage .portfolioEducationPage {
-    background-color:#2f4562;
-
+    background-color: #2f4562;
 }
-.titleCard{
-    padding:10px;
+.titleCard {
+    padding: 10px;
     width: 200px;
     border-radius: 20px;
     background: #2f4562;
-    box-shadow:  7px -7px 13px #2b3f5a,
-             -7px 7px 13px #334b6a;
+    box-shadow: 7px -7px 13px #2b3f5a, -7px 7px 13px #334b6a;
 }
 .portfolioCardContainer {
     width: 80%;
@@ -215,15 +208,13 @@ box-shadow:  20px -20px 60px #2d3345,
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    .portfolioCardWorkContainer{
+    .portfolioCardWorkContainer {
         border-radius: 20px;
-background: #353c51;
-box-shadow:  20px -20px 60px #2d3345,
-             -20px 20px 60px #3d455d;
-
+        background: #353c51;
+        box-shadow: 20px -20px 60px #2d3345, -20px 20px 60px #3d455d;
     }
 }
-.workCard{
+.workCard {
     background-color: #15253f;
     color: #def2f1;
     width: 300px;
@@ -233,8 +224,7 @@ box-shadow:  20px -20px 60px #2d3345,
     border-radius: 20px;
     border-radius: 20px;
     background: #152642;
-    box-shadow:  23px -23px 46px #122139,
-                 -23px 23px 46px #182b4b;
+    box-shadow: 23px -23px 46px #122139, -23px 23px 46px #182b4b;
     transition: 0.2s ease-out;
 }
 
@@ -261,7 +251,6 @@ box-shadow:  20px -20px 60px #2d3345,
 .miniCardLine {
     margin-right: auto;
     margin-left: 0px;
-
 }
 .portfolioCardContent {
     width: 100%;
@@ -279,7 +268,7 @@ box-shadow:  20px -20px 60px #2d3345,
     color: #b22222;
     text-decoration: none;
 }
-.portfolioCard:hover{
+.portfolioCard:hover {
     .portfolioCardWebsite a {
         color: #000000;
         text-decoration: none;
@@ -323,7 +312,7 @@ box-shadow:  20px -20px 60px #2d3345,
     display: flex;
     width: 70%;
     flex-direction: column;
-    background-color:#081b33;
+    background-color: #081b33;
     align-items: center;
     justify-content: center;
     padding-top: 40px;
@@ -335,10 +324,10 @@ box-shadow:  20px -20px 60px #2d3345,
     margin-top: 3px;
     margin-bottom: 3px;
 }
-.expansionSummary{
+.expansionSummary {
     background: #152642 !important;
 }
-.expansionExpanded{
+.expansionExpanded {
     background-color: #5994bb !important;
     font-family: 'Cereal' !important;
     color: #def2f1;
@@ -352,7 +341,7 @@ box-shadow:  20px -20px 60px #2d3345,
     font-weight: 600;
     text-transform: uppercase;
 }
-.expandIcon{
+.expandIcon {
     color: #def2f1 !important;
 }
 .portfolioExpansionPanelSubTitle {
@@ -381,7 +370,7 @@ box-shadow:  20px -20px 60px #2d3345,
     color: #152642;
     text-decoration: none;
 }
-.portfolioWorkCard{
+.portfolioWorkCard {
     background-color: #15253f;
     color: #def2f1;
     width: 300px;
@@ -391,11 +380,10 @@ box-shadow:  20px -20px 60px #2d3345,
     border-radius: 20px;
     border-radius: 20px;
     background: #152642;
-    box-shadow:  23px -23px 46px #122139,
-                 -23px 23px 46px #182b4b;
+    box-shadow: 23px -23px 46px #122139, -23px 23px 46px #182b4b;
     transition: 0.2s ease-out;
 }
-.portfolioCardContainer{
+.portfolioCardContainer {
     width: 100%;
     display: flex;
     align-items: center;
@@ -406,18 +394,17 @@ box-shadow:  20px -20px 60px #2d3345,
     background-color: #152642;
     transition: 0.2s ease-out;
 }
-.portfolioWorkCard:hover{
+.portfolioWorkCard:hover {
     background: linear-gradient(45deg, #a01f1f, #be2424);
-    opacity:0.8;
+    opacity: 0.8;
     color: #def2f1;
     transition: 0.2s ease-out;
-    .miniCardLine{
-        background-color:#000000;
+    .miniCardLine {
+        background-color: #000000;
         transition: 0.2s ease-out;
     }
-
 }
-.portfolioWorkCard:hover .portfolioCardDateContainer{
+.portfolioWorkCard:hover .portfolioCardDateContainer {
     background-color: black;
 }
 /* ------------------------------------------------------------ */
@@ -441,13 +428,12 @@ box-shadow:  20px -20px 60px #2d3345,
     border-radius: 20px;
     border-radius: 20px;
     background: #152642;
-    box-shadow:  23px -23px 46px #122139,
-                 -23px 23px 46px #182b4b;
+    box-shadow: 23px -23px 46px #122139, -23px 23px 46px #182b4b;
     transition: 0.2s ease-out;
 }
 .portfolioFlat:hover {
     background: linear-gradient(45deg, #a01f1f, #be2424);
-    opacity:0.8;
+    opacity: 0.8;
     color: #def2f1;
 }
 .portfolioFlat:hover .portfolioFlatSubTitle {
@@ -467,7 +453,7 @@ box-shadow:  20px -20px 60px #2d3345,
     margin-top: 10px;
 }
 /* ---------------------------------------------------- */
-.portfolioExtrasContainer{
+.portfolioExtrasContainer {
     width: 100%;
     display: flex;
     align-items: center;
@@ -478,7 +464,7 @@ box-shadow:  20px -20px 60px #2d3345,
     background-color: #222222;
 }
 .extrasPage {
-    background-color:#222222;
+    background-color: #222222;
     padding-bottom: 30px;
     padding-top: 30px;
     display: flex;
@@ -490,22 +476,21 @@ box-shadow:  20px -20px 60px #2d3345,
 .floodFill {
     display: flex;
 
-    width:200px;
-    height:30px;
+    width: 200px;
+    height: 30px;
     border-radius: 50px;
     background: #222222;
-box-shadow:  21px -21px 42px #181818,
-             -21px 21px 42px #2c2c2c;
+    box-shadow: 21px -21px 42px #181818, -21px 21px 42px #2c2c2c;
     padding-top: 15px;
     padding-bottom: 15px;
 }
 .portfolioExtraCard {
-    h5{
+    h5 {
         font-family: 'Cereal' !important;
         font-weight: 900;
         color: #38576d !important;
     }
-    .chip{
+    .chip {
         font-family: 'Cereal' !important;
     }
     font-family: 'Cereal' !important;
@@ -573,22 +558,20 @@ box-shadow:  21px -21px 42px #181818,
 }
 
 /* --------------------------------------------- */
-.contactPage{
+.contactPage {
     background-color: #152642;
     padding-bottom: 40px;
 }
 .portfolioContactCard {
     background: #152642;
-    box-shadow:  21px -21px 42px #13223b,
-             -21px 21px 42px #172a49;
-            color: #def2f1;
+    box-shadow: 21px -21px 42px #13223b, -21px 21px 42px #172a49;
+    color: #def2f1;
     width: 360px;
     border-radius: 15px;
     margin: auto;
     margin-top: 20px;
     height: auto;
     padding: 30px;
-
 }
 .portfolioContactCardAddress {
     text-align: center;
@@ -631,7 +614,7 @@ box-shadow:  21px -21px 42px #181818,
     cursor: pointer;
 }
 
-.particles-bg{
+.particles-bg {
     width: 100%;
     height: 100%;
     background-color: #081b33;
@@ -639,27 +622,27 @@ box-shadow:  21px -21px 42px #181818,
     z-index: -1;
 }
 
-.awardDialog{
-    font-family:'Cereal' !important;
-    .awardDialogTitle{
-        h2{
-            font-family:'Cereal' !important;
-        font-weight: 900 !important;
-        color:#4095bb;
-        p .portfolioAwardCompany{
-            font-family:'Cereal' !important;
+.awardDialog {
+    font-family: 'Cereal' !important;
+    .awardDialogTitle {
+        h2 {
+            font-family: 'Cereal' !important;
             font-weight: 900 !important;
-            color:#4095bb;
-        }
-        p .portfolioAwardDate{
-            font-family:'Cereal' !important;
-            font-weight: 900 !important;
-            color:#4095bb;
+            color: #4095bb;
+            p .portfolioAwardCompany {
+                font-family: 'Cereal' !important;
+                font-weight: 900 !important;
+                color: #4095bb;
+            }
+            p .portfolioAwardDate {
+                font-family: 'Cereal' !important;
+                font-weight: 900 !important;
+                color: #4095bb;
+            }
         }
     }
-    }
-    .awardDialogTitle{
-        font-family:'Cereal' !important;
+    .awardDialogTitle {
+        font-family: 'Cereal' !important;
         font-weight: 900;
     }
 }
