@@ -43,6 +43,7 @@
 .portfolioPage1Details {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -54,11 +55,11 @@
     width: 200px;
     height: 200px;
     border-radius: 100%;
-    margin-right: 40px;
+    margin: 40px;
 }
 .portfolioUserDetails {
     font-size: 35px;
-    margin-left: 40px;
+    margin: 40px;
 }
 .portfolioUserName {
     font-weight: 700;

@@ -1,12 +1,10 @@
 .fullScreenInside {
-    /* height: 100%; */
-    overflow-y: hidden;
-    position: fixed;
+    height: auto;
     right: 0%;
     left: 0%;
     display: flex;
     text-align: left;
-    top: 50px;
+    top: 100px;
     bottom: 50px;
     justify-content: center;
     padding-left: 100px;

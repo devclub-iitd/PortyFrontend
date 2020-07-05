@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import store from './store';
 import Landing from './pages/landing';
@@ -48,55 +53,71 @@ const App = () => {
             <div>
                 <MuiThemeProvider theme={theme}>
                     <Router>
-                        <PrivateRoute
-                            exact
-                            path="/register"
-                            component={Register}
-                        />
-                        <PrivateRoute
-                            exact
-                            path="/home"
-                            component={HeaderMain}
-                        />
-                        <Route exact path="/" component={Landing} />
-                        <PrivateRoute
-                            exact
-                            path="/portfolio"
-                            component={Portfolio}
-                        />
-                        <PrivateRoute
-                            exact
-                            path="/portfolio2"
-                            component={Portfolio2}
-                        />
-                        <PrivateRoute
-                            exact
-                            path="/portfolio3"
-                            component={Portfolio3}
-                        />
-                        <PrivateRoute
-                            exact
-                            path="/portfolio4"
-                            component={Portfolio4}
-                        />
-                        <PrivateRoute
-                            exact
-                            path="/portfolio5"
-                            component={Portfolio5}
-                        />
-                        <Route exact path="/validate" component={Validation} />
-                        <Route
-                            exact
-                            path="/regenerate"
-                            component={Regenerate}
-                        />
-                        <Route exact path="/reset" component={Reset} />
-                        <Route exact path="/resetSucc" component={ResetSucc} />
-                        <Route
-                            exact
-                            path="/portfolio/:id"
-                            component={PublicPortfolio}
-                        />
+                        <Switch>
+                            <PrivateRoute
+                                exact
+                                path="/register"
+                                component={Register}
+                            />
+                            <PrivateRoute
+                                exact
+                                path="/home"
+                                component={HeaderMain}
+                            />
+                            <PrivateRoute
+                                exact
+                                path="/portfolio"
+                                component={Portfolio}
+                            />
+                            <PrivateRoute
+                                exact
+                                path="/portfolio2"
+                                component={Portfolio2}
+                            />
+                            <PrivateRoute
+                                exact
+                                path="/portfolio3"
+                                component={Portfolio3}
+                            />
+                            <PrivateRoute
+                                exact
+                                path="/portfolio4"
+                                component={Portfolio4}
+                            />
+                            <PrivateRoute
+                                exact
+                                path="/portfolio5"
+                                component={Portfolio5}
+                            />
+                            <Route
+                                exact
+                                path="/validate"
+                                component={Validation}
+                            />
+                            <Route
+                                exact
+                                path="/regenerate"
+                                component={Regenerate}
+                            />
+                            <Route exact path="/reset" component={Reset} />
+                            <Route
+                                exact
+                                path="/resetSucc"
+                                component={ResetSucc}
+                            />
+                            <Route
+                                exact
+                                path="/portfolio/:id"
+                                component={PublicPortfolio}
+                            />
+                            <Route exact path="/" component={Landing} />
+                            <Route
+                                path="*"
+                                render={() => (
+                                    <Redirect to={{ pathname: '/home' }} />
+                                )}
+                            />
+                        </Switch>
                     </Router>
                 </MuiThemeProvider>
             </div>

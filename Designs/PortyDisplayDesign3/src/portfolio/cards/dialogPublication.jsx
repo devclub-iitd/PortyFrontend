@@ -51,7 +51,7 @@ export default function AlertDialogSlide(props) {
                         <br />
                         <div className="portfolioPublishWebsite">
                             <span>Website -</span>{' '}
-                            <a href={website}>{website}</a>
+                            <a href={website}>Link to page</a>
                         </div>
                     </DialogContentText>
                 </DialogContent>

@@ -50,6 +50,7 @@
 
 .portfolioContainerFull3 .portfolioPage1Details {
     width: 100%;
+    flex-wrap: wrap;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -64,12 +65,12 @@
     width: 200px;
     height: 200px;
     border-radius: 100%;
-    margin-right: 40px;
+    margin: 40px;
 }
 
 .portfolioContainerFull3 .portfolioUserDetails {
     font-size: 35px;
-    margin-left: 40px;
+    margin: 40px;
 }
 
 .portfolioContainerFull3 .portfolioUserName {
