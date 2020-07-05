@@ -65,12 +65,12 @@
     width: 200px;
     height: 200px;
     border-radius: 100%;
-    margin-right: 40px;
+    margin: 40px;
 }
 
 .portfolioUserDetails {
     font-size: 35px;
-    margin-left: 40px;
+    margin: 40px;
 }
 
 .portfolioUserName {
