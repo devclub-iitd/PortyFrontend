@@ -33,23 +33,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const design1 = () => {
-    window.location.href = './portfolio';
+    window.open('./portfolio', '_blank');
 };
-
 const design2 = () => {
-    window.location.href = './portfolio2';
+    window.open('./portfolio2', '_blank');
 };
 const design3 = () => {
-    window.location.href = './portfolio3';
+    window.open('./portfolio3', '_blank');
 };
 const design4 = () => {
-    window.location.href = './portfolio4';
+    window.open('./portfolio4', '_blank');
 };
 const design5 = () => {
-    window.location.href = './portfolio5';
+    window.open('./portfolio5', '_blank');
 };
 const navToTutorial = () => {
-    window.location.href = 'https://youtu.be/nJmQA7kpay4';
+    window.open('https://youtu.be/nJmQA7kpay4', '_blank');
 };
 
 const Deploy = () => {
