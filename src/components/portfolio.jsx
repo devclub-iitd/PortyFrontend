@@ -61,24 +61,10 @@ const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
         );
     }
     if (!loading && profile === null) {
-        return (
-            <div className="noProf">
-                No profile found
-                <br />
-                please make one by clicking{' '}
-                <span
-                    onClick={navToReg}
-                    onKeyPress={navToReg}
-                    role="button"
-                    tabIndex={0}
-                >
-                    here
-                </span>
-            </div>
-        );
+        navToReg(); // class = noProf
     }
 
-    return <div>AN ERROR OCCURED</div>;
+    return <div className="noProf">No Profile Loaded</div>;
 };
 
 Portfolio.propTypes = {

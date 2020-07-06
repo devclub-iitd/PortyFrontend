@@ -341,12 +341,7 @@ class Edit extends React.Component {
         }
 
         if (!loading && profile == null) {
-            return (
-                <div className="noProf noProfLarge">
-                    Please create a profile first ...
-                    <br />
-                </div>
-            );
+            window.location.href = '/register'; // class = noProf noProfLarge
         }
 
         return (

@@ -9,7 +9,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-    token: localStorage.getItem('token'),
+    token: localStorage.token,
     isAuthenticated: null,
     loading: true,
     user: null,
@@ -36,6 +36,7 @@ export default function (state = initialState, action) {
         case USER_LOADED: {
             return {
                 ...state,
+                token: localStorage.token,
                 isAuthenticated: true,
                 loading: false,
                 user: payload,
