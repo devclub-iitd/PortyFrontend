@@ -18,6 +18,7 @@ import {
     createProfile,
     getCurrentProfile as getCurrentProfile_,
 } from '../actions/profile';
+import { logout as logout_ } from '../actions/auth';
 
 import AlertStatic from '../components/fancyAlertStatic';
 import Alert from '../components/fancyAlert';
@@ -189,7 +190,7 @@ class RegFinal extends React.Component {
             message,
             openConfirmation,
         } = this.state;
-        const { user, profile } = this.props;
+        const { user, profile, logout } = this.props;
         if (!profile.loading && profile.profile) {
             return <Redirect to="/home" />;
         }
@@ -388,6 +389,13 @@ class RegFinal extends React.Component {
                                         | Register
                                     </span>
                                 </Typography>
+                                <button
+                                    type="button"
+                                    className="headerLogoutBtn"
+                                    onClick={() => logout()}
+                                >
+                                    Logout
+                                </button>
                             </Toolbar>
                         </AppBar>
                     </div>
@@ -403,6 +411,7 @@ RegFinal.propTypes = {
     user: PropTypes.oneOfType([PropTypes.object]).isRequired,
     alert: PropTypes.oneOfType([PropTypes.object]).isRequired,
     profile: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    logout: PropTypes.func.isRequired,
     getCurrentProfile: PropTypes.func.isRequired,
     createProfile: PropTypes.func.isRequired,
 };
@@ -417,4 +426,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
     createProfile,
     getCurrentProfile: getCurrentProfile_,
+    logout: logout_,
 })(withRouter(RegFinal));

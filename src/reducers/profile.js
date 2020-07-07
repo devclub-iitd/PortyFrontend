@@ -40,7 +40,7 @@ export default function (state = intialState, action) {
             return {
                 ...state,
                 profile: null,
-                loading: false,
+                loading: true,
             };
         }
         default:

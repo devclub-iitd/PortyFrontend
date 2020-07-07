@@ -7,8 +7,8 @@
     top: 100px;
     bottom: 50px;
     justify-content: center;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
     flex-direction: column;
 }
 .buttonRow {
