@@ -22,7 +22,7 @@ import setAuthToken from './utility/setauthtoken';
 import { loadUser } from './actions/auth';
 import PrivateRoute from './components/privateRoute';
 // import PublicPortfolio from './pages/publicPortfolio';
-import Regenerate from './pages/regenerateOTP';
+// import Regenerate from './pages/regenerateOTP';
 import Reset from './pages/resetPassword';
 import ResetSucc from './pages/resetSucc';
 

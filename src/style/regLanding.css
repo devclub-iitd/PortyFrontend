@@ -2,16 +2,16 @@
     background-image: url('http://wallpapercrafter.com/uploads/posts/100625-typewriter_book_notebook_paper_writing_write.jpg');
     background-size: cover;
     background-position: right;
-    top: 0px;
+    top: 55px;
     position: fixed;
     left: 0px;
     right: 0px;
+    height: calc(100% - 55px);
+    overflow-y: scroll;
     bottom: 0px;
-    overflow: scroll;
 }
 .pageOverlay {
     width: 100%;
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,21 +20,18 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     color: white;
-    padding-bottom: 50px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     overflow-x: hidden;
-    overflow-y: scroll;
-    height: calc(100% - 100px);
+    min-height: calc(100% - 80px);
+    height: auto;
 }
 .lgnBtnCont {
-    /* margin-top: 10px; */
-    /* position: absolute; */
-    /* background-color: blue; */
     padding-top: 0px;
 }
 .title {
     text-transform: uppercase;
     font-weight: 600;
-    letter-spacing: 4px;
 }
 .formCont form {
     display: flex;

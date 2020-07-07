@@ -203,10 +203,14 @@ class Edit extends React.Component {
                     />
                 );
             }
+            let userImage;
+            if (profile.about.imgUrl.trim().length > 0) {
+                userImage = <Image img={profile.about.imgUrl} />;
+            }
             return (
                 <MuiThemeProvider theme={theme}>
                     <div style={{ paddingBottom: 100 }}>
-                        <Image img={profile.about.imgUrl} />
+                        {userImage}
                         <Intro name={user.name} caption="none" />
                         <form onSubmit={this.handleSumbit}>
                             <About

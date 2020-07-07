@@ -34,8 +34,10 @@ class LandingRegForm extends React.Component {
         this.setState({
             monthVal: event.target.innerText,
             monthValPlaceholder: '',
-            dateValPlaceholder: 'Date:',
-            dateVal: '',
+            dateValPlaceholder: '',
+            dateVal: '1',
+            yeareValPlaceholder: '',
+            yearVal: '2000',
         });
         if (
             event.target.innerText === 'April' ||
@@ -92,14 +94,11 @@ class LandingRegForm extends React.Component {
             this.setState({ emailVal: event.target.value });
         } else if (event.target.name === 'website') {
             this.setState({ webVal: event.target.value });
-        } else if (event.target.name === 'entryno') {
-            this.setState({ enoVal: event.target.value });
         }
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        //  TODO - add checks for all conditions especially dob and all
         const {
             nameVal,
             passVal,
@@ -118,9 +117,13 @@ class LandingRegForm extends React.Component {
             dob: `${dateVal}-${monthVal}-${yearVal}`,
             website: webVal,
         };
-
-        const { register: register_ } = this.props;
-        register_(obj);
+        if (monthVal.length > 0) {
+            const { register: register_ } = this.props;
+            register_(obj);
+        } else {
+            const { handleAlert } = this.props;
+            handleAlert(true, 'Please enter your date of birth');
+        }
     }
 
     render() {
@@ -137,7 +140,6 @@ class LandingRegForm extends React.Component {
             webVal,
             extendMonthDisp,
             specialMonth,
-            enoVal,
         } = this.state;
         return (
             <div className="formCont">
@@ -681,15 +683,6 @@ class LandingRegForm extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <input
-                        required
-                        style={{ width: '95.3%' }}
-                        type="text"
-                        name="entryno"
-                        placeholder="Entry Number: "
-                        value={enoVal}
-                        onChange={this.handleChange}
-                    />
                     <input
                         required
                         style={{ width: '95.3%' }}
