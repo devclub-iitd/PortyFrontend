@@ -117,7 +117,6 @@ class AboutExpansionPanel extends React.Component {
                                 onChange={this.handleInputChange}
                                 name="imgUrl"
                                 type="text"
-                                required
                                 placeholder="Image URL: Please upload a url link to your image"
                             />
                             <textarea

@@ -59,7 +59,7 @@ const EducationField = (props) => {
                     id="panel1bh-header"
                 >
                     <Typography style={{ fontWeight: 700 }}>
-                        EDUCATIONPLACE {id + 1}
+                        EDUCATION PLACE {id + 1}
                     </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>

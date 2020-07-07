@@ -4,6 +4,12 @@ import Particles from 'react-particles-js';
 
 const Landing = (props) => {
     const { name, label, img, initScroll } = props;
+    let userImage;
+    if (img.trim().length > 0) {
+        userImage = (
+            <img className="portfolioUserImage" src={img} alt="Broken URL" />
+        );
+    }
     return (
         <div className="portfolioPage1">
             <Particles
@@ -61,11 +67,7 @@ const Landing = (props) => {
                 }}
             />
             <div className="portfolioPage1Details">
-                <img
-                    className="portfolioUserImage"
-                    src={img}
-                    alt="user profile representation"
-                />
+                {userImage}
                 <div className="portfolioUserDetails">
                     <span className="portfolioUserName">{name}</span>{' '}
                     <span className="portfolioUserLabel">| {label}</span>
