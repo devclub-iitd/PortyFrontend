@@ -94,11 +94,6 @@ const App = () => {
                                 path="/validate"
                                 component={Validation}
                             />
-                            <Route
-                                exact
-                                path="/regenerate"
-                                component={Regenerate}
-                            />
                             <Route exact path="/reset" component={Reset} />
                             <Route
                                 exact

@@ -64,7 +64,10 @@ class LandingRegForm extends React.Component {
         const { monthVal } = this.state;
         if (monthVal === '') {
             const { handleAlert } = this.props;
-            handleAlert(true);
+            handleAlert(
+                true,
+                'Please select the month first, before selecting the date'
+            );
         } else {
             this.setState({
                 dateValPlaceholder: '',

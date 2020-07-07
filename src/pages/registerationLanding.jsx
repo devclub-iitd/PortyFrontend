@@ -55,14 +55,6 @@ TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-function navToRegOTP() {
-    window.location.href = './regenerate';
-}
-
-function navToResPass() {
-    window.location.href = './reset';
-}
-
 class IconLabelTabs extends React.Component {
     constructor(props) {
         super(props);
@@ -71,13 +63,12 @@ class IconLabelTabs extends React.Component {
             openDial: false,
             message: '',
             openConfirmation: false,
+            confirmationText: '',
         };
         this.handleClose = this.handleClose.bind(this);
         this.openDial = this.openDial.bind(this);
         this.openTemp = this.openTemp.bind(this);
         this.handleConfirmation = this.handleConfirmation.bind(this);
-        this.navToRegOTP = navToRegOTP.bind(this);
-        this.navToResPass = navToResPass.bind(this);
     }
 
     componentDidUpdate(oldProps) {
@@ -85,7 +76,8 @@ class IconLabelTabs extends React.Component {
         const { alerts } = this.props;
         if (oldProps.alerts.length !== alerts.length) {
             index = alerts.length - 1;
-            this.openDial(alerts[index].msg);
+            this.handleConfirmation(true, alerts[index].msg);
+            // this.openDial(alerts[index].msg);
         }
     }
 
@@ -114,21 +106,28 @@ class IconLabelTabs extends React.Component {
         });
     }
 
-    handleConfirmation(val) {
+    handleConfirmation(val, text) {
         this.setState({
             openConfirmation: val,
+            confirmationText: text,
         });
     }
 
     render() {
         const { classes } = this.props;
-        const { value, openDial, message, openConfirmation } = this.state;
+        const {
+            value,
+            openDial,
+            message,
+            openConfirmation,
+            confirmationText,
+        } = this.state;
         let confirmation;
         if (openConfirmation) {
             confirmation = (
                 <Confirmation
                     title="Note"
-                    text="Please select the month first, before selecting the date"
+                    text={confirmationText}
                     handleClose={this.handleConfirmation}
                 />
             );
@@ -161,22 +160,6 @@ class IconLabelTabs extends React.Component {
                     >
                         Let&apos;s Go
                     </Button>
-                    <div className="secBtnCont">
-                        <Button
-                            variant="outlined"
-                            color="primary"
-                            onClick={navToRegOTP}
-                        >
-                            Regenerate OTP
-                        </Button>
-                        <Button
-                            variant="outlined"
-                            color="primary"
-                            onClick={navToResPass}
-                        >
-                            Reset Password
-                        </Button>
-                    </div>
                     <Snackbar
                         anchorOrigin={{
                             vertical: 'bottom',

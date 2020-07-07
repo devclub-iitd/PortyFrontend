@@ -178,7 +178,7 @@ input:focus {
     color: white;
 }
 .secBtnCont {
-    margin-top: 25px;
+    margin-top: 35px;
     width: 400px;
     display: flex;
     flex-direction: row;

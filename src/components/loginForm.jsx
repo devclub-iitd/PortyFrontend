@@ -26,11 +26,13 @@ class LoginFrom extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         //  add checks for all conditions especially dob and all
+        const { handleEmail } = this.props;
         const { emailVal, passVal } = this.state;
         const obj = {
             email: emailVal,
             password: passVal,
         };
+        handleEmail(emailVal);
         const { login: login_ } = this.props;
         login_(obj);
     }
@@ -66,6 +68,7 @@ class LoginFrom extends React.Component {
 
 LoginFrom.propTypes = {
     login: PropTypes.func.isRequired,
+    handleEmail: PropTypes.func.isRequired,
 };
 
 export default connect(null, { login })(LoginFrom);

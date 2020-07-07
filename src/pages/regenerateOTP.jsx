@@ -83,7 +83,9 @@ class Regenerate extends React.Component {
                             <span style={{ fontWeight: 700, fontSize: '20px' }}>
                                 Portfolio Creator
                             </span>{' '}
-                            <span style={{ color: '#3d40d8' }}>| OTP</span>
+                            <span style={{ color: '#3d40d8' }}>
+                                | Verification Link
+                            </span>
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -91,10 +93,10 @@ class Regenerate extends React.Component {
                     <div className="overlay">
                         <div className="notFoundTextContainer">
                             <Typography
-                                variant="h3"
+                                variant="h4"
                                 style={{ marginTop: '0px', fontWeight: '600' }}
                             >
-                                Regenerate OTP -
+                                Regenerate Verification Link -
                             </Typography>
                             <Typography
                                 style={{

@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { AnimatePresence } from 'framer-motion';
+
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { connect } from 'react-redux';
 import InfoIcon from '@material-ui/icons/Info';
 
 import LoginForm from '../components/loginForm';
+import Confirmation from '../components/confirmation';
 
 import '../style/regLanding.css';
 
@@ -35,14 +38,22 @@ const styles = {
     },
 };
 
+function navToResPass() {
+    window.location.href = './reset';
+}
 class IconLabelTabs extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             openDial: false,
             message: '',
+            openConfirmation: false,
+            verify: false,
+            userEmail: '',
         };
         this.handleClose = this.handleClose.bind(this);
+        this.setUserEmail = this.setUserEmail.bind(this);
+        this.handleConfirmation = this.handleConfirmation.bind(this);
         this.openDial = this.openDial.bind(this);
     }
 
@@ -51,8 +62,23 @@ class IconLabelTabs extends React.Component {
         const { alerts } = this.props;
         if (oldProps.alerts.length !== alerts.length) {
             index = alerts.length - 1;
-            this.openDial(alerts[index].msg);
+            if (
+                alerts[index].msg.localeCompare(
+                    'Your account has not been verified, Please check your email for verification'
+                ) === 0
+            ) {
+                this.handleConfirmation(true, alerts[index].msg, true);
+            } else {
+                this.handleConfirmation(true, alerts[index].msg);
+            }
+            // this.openDial(alerts[index].msg);
         }
+    }
+
+    setUserEmail(mail) {
+        this.setState({
+            userEmail: mail,
+        });
     }
 
     handleClose() {
@@ -68,9 +94,36 @@ class IconLabelTabs extends React.Component {
         });
     }
 
+    handleConfirmation(val, message, verify = false) {
+        this.setState({
+            openConfirmation: val,
+            message,
+            verify,
+        });
+    }
+
     render() {
         const { classes } = this.props;
-        const { openDial, message } = this.state;
+        const {
+            openDial,
+            message,
+            openConfirmation,
+            verify,
+            userEmail,
+        } = this.state;
+        let confirmation;
+        if (openConfirmation) {
+            confirmation = (
+                <Confirmation
+                    title="Note"
+                    text={message}
+                    handleClose={this.handleConfirmation}
+                    login={verify}
+                    userEmail={userEmail}
+                />
+            );
+        }
+
         return (
             <div
                 className="loginPageContainer"
@@ -79,7 +132,7 @@ class IconLabelTabs extends React.Component {
                 <div className="pageOverlay">
                     <div className="title">Account Login</div>
                     <Paper className={classes.rootRegPage}>
-                        <LoginForm handleDial={this.openDial} />
+                        <LoginForm handleEmail={this.setUserEmail} />
                     </Paper>
                     <div className="lgnBtnCont">
                         <Button
@@ -91,6 +144,15 @@ class IconLabelTabs extends React.Component {
                         >
                             Sign-In
                         </Button>
+                        <div className="secBtnCont">
+                            <Button
+                                variant="outlined"
+                                color="primary"
+                                onClick={navToResPass}
+                            >
+                                Reset Password
+                            </Button>
+                        </div>
                     </div>
                     <Snackbar
                         anchorOrigin={{
@@ -130,6 +192,7 @@ class IconLabelTabs extends React.Component {
                         ]}
                     />
                 </div>
+                <AnimatePresence>{confirmation}</AnimatePresence>
             </div>
         );
     }
