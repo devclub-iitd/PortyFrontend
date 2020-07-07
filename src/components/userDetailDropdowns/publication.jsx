@@ -1,6 +1,3 @@
-// TODO: Add different alert UI
-/* eslint-disable no-alert */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -310,7 +307,8 @@ class PublicationExpansionPanel extends React.Component {
                 />
             );
         } else {
-            alert('you cant move this field any more');
+            const { handleAlert } = this.props;
+            handleAlert(true);
         }
         this.setState({
             publicationFields: tempFields,
@@ -363,7 +361,8 @@ class PublicationExpansionPanel extends React.Component {
                 />
             );
         } else {
-            alert('you cant move this field any more');
+            const { handleAlert } = this.props;
+            handleAlert(true);
         }
         this.setState({
             publicationFields: tempFields,
@@ -456,6 +455,7 @@ PublicationExpansionPanel.propTypes = {
     mode: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
     senData: PropTypes.func.isRequired,
+    handleAlert: PropTypes.func.isRequired,
     existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 

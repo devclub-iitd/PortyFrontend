@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { AnimatePresence } from 'framer-motion';
+import { connect } from 'react-redux';
+
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -9,9 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
 
-import { connect } from 'react-redux';
-
 import RegForm from '../components/landingRegForm';
+import Confirmation from '../components/confirmation';
 
 import '../style/regLanding.css';
 
@@ -68,10 +70,12 @@ class IconLabelTabs extends React.Component {
             value: 0,
             openDial: false,
             message: '',
+            openConfirmation: false,
         };
         this.handleClose = this.handleClose.bind(this);
         this.openDial = this.openDial.bind(this);
         this.openTemp = this.openTemp.bind(this);
+        this.handleConfirmation = this.handleConfirmation.bind(this);
         this.navToRegOTP = navToRegOTP.bind(this);
         this.navToResPass = navToResPass.bind(this);
     }
@@ -110,10 +114,25 @@ class IconLabelTabs extends React.Component {
         });
     }
 
+    handleConfirmation(val) {
+        this.setState({
+            openConfirmation: val,
+        });
+    }
+
     render() {
         const { classes } = this.props;
-        const { value, openDial, message } = this.state;
-
+        const { value, openDial, message, openConfirmation } = this.state;
+        let confirmation;
+        if (openConfirmation) {
+            confirmation = (
+                <Confirmation
+                    title="Note"
+                    text="Please select the month first, before selecting the date"
+                    handleClose={this.handleConfirmation}
+                />
+            );
+        }
         return (
             <div
                 className="loginPageContainer"
@@ -125,7 +144,10 @@ class IconLabelTabs extends React.Component {
                         {value === 0 && (
                             <TabContainer>
                                 {' '}
-                                <RegForm handleDial={this.openDial} />{' '}
+                                <RegForm
+                                    handleDial={this.openDial}
+                                    handleAlert={this.handleConfirmation}
+                                />{' '}
                             </TabContainer>
                         )}
                     </Paper>
@@ -193,6 +215,7 @@ class IconLabelTabs extends React.Component {
                         ]}
                     />
                 </div>
+                <AnimatePresence>{confirmation}</AnimatePresence>
             </div>
         );
     }

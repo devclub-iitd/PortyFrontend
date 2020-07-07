@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { AnimatePresence } from 'framer-motion';
+
 import Button from '@material-ui/core/Button';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import InfoIcon from '@material-ui/icons/Info';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+
 import Alert from '../components/fancyAlert';
 import { createProfile, getFullProfile } from '../actions/profile';
+import Confirmation from '../components/confirmation';
 
 import Intro from '../components/userDetailDropdowns/intro';
 import Image from '../components/userDetailDropdowns/image';
@@ -53,6 +57,7 @@ class Edit extends React.Component {
             message: '',
             alertTitle: '',
             alertContent: '',
+            openConfirmation: false,
         };
         this.account = React.createRef();
         this.about = React.createRef();
@@ -72,6 +77,7 @@ class Edit extends React.Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleCloseMini = this.handleCloseMini.bind(this);
+        this.handleConfirmation = this.handleConfirmation.bind(this);
     }
 
     componentDidMount() {
@@ -123,8 +129,13 @@ class Edit extends React.Component {
                 open: true,
                 openMini: false,
                 alertTitle: 'Whoops!!',
-                alertContent: alert[len - 1].msg,
+                alertContent:
+                    'An error occurred...Profile could not be edited. Please try again later.',
+                // alertContent: alert[len - 1].msg,
             });
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
         } else if (alert[len - 1].alertType === 'blue') {
             this.setState({
                 open: true,
@@ -155,6 +166,12 @@ class Edit extends React.Component {
         });
     }
 
+    handleConfirmation(val) {
+        this.setState({
+            openConfirmation: val,
+        });
+    }
+
     render() {
         const { profile: overallProfile, user } = this.props;
         const { loading, profile } = overallProfile;
@@ -165,6 +182,7 @@ class Edit extends React.Component {
             alertContent,
             openMini,
             message,
+            openConfirmation,
         } = this.state;
 
         if (loading) {
@@ -174,8 +192,17 @@ class Edit extends React.Component {
                 </div>
             );
         }
-
+        let confirmation;
         if (!loading && profile !== null) {
+            if (openConfirmation) {
+                confirmation = (
+                    <Confirmation
+                        title="Alert"
+                        text="This field has already reached it's maximum position, you can not move it any further. Please try moving a different field"
+                        handleClose={this.handleConfirmation}
+                    />
+                );
+            }
             return (
                 <MuiThemeProvider theme={theme}>
                     <div style={{ paddingBottom: 100 }}>
@@ -208,6 +235,7 @@ class Edit extends React.Component {
                                 existingData={profile.education}
                                 mode="edit"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Work
                                 ref={this.work}
@@ -216,6 +244,7 @@ class Edit extends React.Component {
                                 existingData={profile.work}
                                 mode="edit"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Volunteer
                                 ref={this.volunteer}
@@ -226,6 +255,7 @@ class Edit extends React.Component {
                                 existingData={profile.volunteer}
                                 mode="edit"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Language
                                 ref={this.language}
@@ -234,6 +264,7 @@ class Edit extends React.Component {
                                 existingData={profile.languages}
                                 mode="edit"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <div className="regSubTitle">Optionals -</div>
                             <Award
@@ -243,6 +274,7 @@ class Edit extends React.Component {
                                 existingData={profile.awards}
                                 mode="edit"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Publication
                                 ref={this.publication}
@@ -253,6 +285,7 @@ class Edit extends React.Component {
                                 existingData={profile.publications}
                                 mode="edit"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Skill
                                 ref={this.skill}
@@ -261,6 +294,7 @@ class Edit extends React.Component {
                                 existingData={profile.skills}
                                 mode="edit"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Interest
                                 ref={this.interest}
@@ -269,6 +303,7 @@ class Edit extends React.Component {
                                 existingData={profile.interests}
                                 mode="edit"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Reference
                                 ref={this.reference}
@@ -279,6 +314,7 @@ class Edit extends React.Component {
                                 existingData={profile.references}
                                 mode="edit"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <div className="btnContainer">
                                 <Button
@@ -336,6 +372,7 @@ class Edit extends React.Component {
                             ]}
                         />
                     </div>
+                    <AnimatePresence>{confirmation}</AnimatePresence>
                 </MuiThemeProvider>
             );
         }

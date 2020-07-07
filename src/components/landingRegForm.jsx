@@ -63,8 +63,8 @@ class LandingRegForm extends React.Component {
     handleDropdownDate(event) {
         const { monthVal } = this.state;
         if (monthVal === '') {
-            // eslint-disable-next-line no-alert
-            alert('Please select the month first');
+            const { handleAlert } = this.props;
+            handleAlert(true);
         } else {
             this.setState({
                 dateValPlaceholder: '',
@@ -712,6 +712,7 @@ class LandingRegForm extends React.Component {
 
 LandingRegForm.propTypes = {
     register: PropTypes.func.isRequired,
+    handleAlert: PropTypes.func.isRequired,
 };
 
 export default connect(null, { register, setAlert })(LandingRegForm);

@@ -21,7 +21,7 @@ import HeaderMain from './components/headerMain';
 import setAuthToken from './utility/setauthtoken';
 import { loadUser } from './actions/auth';
 import PrivateRoute from './components/privateRoute';
-import PublicPortfolio from './pages/publicPortfolio';
+// import PublicPortfolio from './pages/publicPortfolio';
 import Regenerate from './pages/regenerateOTP';
 import Reset from './pages/resetPassword';
 import ResetSucc from './pages/resetSucc';
@@ -105,11 +105,12 @@ const App = () => {
                                 path="/resetSucc"
                                 component={ResetSucc}
                             />
-                            <Route
+                            {/* TODO: ADD SUPPORT FOR PUBLIC PORTFOLIO LATER ON  */}
+                            {/* <Route
                                 exact
                                 path="/portfolio/:id"
                                 component={PublicPortfolio}
-                            />
+                            /> */}
                             <Route exact path="/" component={Landing} />
                             <Route
                                 path="*"

@@ -1,6 +1,4 @@
 .loginPageContainer {
-    /* background-image: url('https://www.nationalgeographic.com/content/dam/travel/2017-digital/aurora-viewing-destinations/aurora-kirkjufell-iceland.ngsversion.1487284205697.adapt.1900.1.jpg'); */
-    /* background-image: url('https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2018/08/what-not-to-put-in-your-photography-portfolio.jpg'); */
     background-image: url('http://wallpapercrafter.com/uploads/posts/100625-typewriter_book_notebook_paper_writing_write.jpg');
     background-size: cover;
     background-position: right;
@@ -18,8 +16,8 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.6);
-    -webkit-backdrop-filter: blur(15px);
-    /* padding-bottom: 50px; */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     color: white;
 }
 .lgnBtnCont {

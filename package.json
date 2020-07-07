@@ -8,6 +8,7 @@
         "@react-hook/window-size": "^3.0.6",
         "axios": "^0.19.0",
         "clsx": "^1.0.4",
+        "framer-motion": "^1.11.1",
         "node-sass": "^4.14.1",
         "particlesjs": "^2.2.3",
         "prop-types": "^15.7.2",

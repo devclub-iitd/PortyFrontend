@@ -4,6 +4,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -21,6 +22,7 @@ import {
 import AlertStatic from '../components/fancyAlertStatic';
 import Alert from '../components/fancyAlert';
 import Loader from '../components/loader';
+import Confirmation from '../components/confirmation';
 
 import Intro from '../components/userDetailDropdowns/intro';
 // import Image from '../components/regFinal/image';
@@ -65,6 +67,7 @@ class RegFinal extends React.Component {
             expanded: false,
             message: '',
             openDial: false,
+            openConfirmation: false,
         };
         this.account = React.createRef();
         this.about = React.createRef();
@@ -85,6 +88,7 @@ class RegFinal extends React.Component {
         this.handleOpen = this.handleOpen.bind(this);
         this.openDial = this.openDial.bind(this);
         this.handleCloseMini = this.handleCloseMini.bind(this);
+        this.handleConfirmation = this.handleConfirmation.bind(this);
         this.redirectHome = redirectHome.bind(this);
     }
 
@@ -151,7 +155,7 @@ class RegFinal extends React.Component {
 
     handleOpen() {
         this.openDial(
-            'Whoops...Please check you have filled all your details and try again'
+            'Whoops...Please check you have filled all your details and try again.'
         );
     }
 
@@ -168,6 +172,12 @@ class RegFinal extends React.Component {
         });
     }
 
+    handleConfirmation(val) {
+        this.setState({
+            openConfirmation: val,
+        });
+    }
+
     render() {
         const {
             expanded,
@@ -177,12 +187,23 @@ class RegFinal extends React.Component {
             openStatic,
             openDial,
             message,
+            openConfirmation,
         } = this.state;
         const { user, profile } = this.props;
         if (!profile.loading && profile.profile) {
             return <Redirect to="/home" />;
         }
+        let confirmation;
         if (!profile.loading) {
+            if (openConfirmation) {
+                confirmation = (
+                    <Confirmation
+                        title="Alert"
+                        text="This field has already reached it's maximum position, you can not move it any further. Please try moving a different field"
+                        handleClose={this.handleConfirmation}
+                    />
+                );
+            }
             return (
                 <MuiThemeProvider theme={theme}>
                     <div style={{ paddingBottom: 100 }}>
@@ -215,6 +236,7 @@ class RegFinal extends React.Component {
                                 }
                                 mode="register"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Work
                                 ref={this.work}
@@ -222,6 +244,7 @@ class RegFinal extends React.Component {
                                 action={() => this.handlePanel('workPanel')}
                                 mode="register"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Volunteer
                                 ref={this.volunteer}
@@ -231,6 +254,7 @@ class RegFinal extends React.Component {
                                 }
                                 mode="register"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Language
                                 ref={this.language}
@@ -238,6 +262,7 @@ class RegFinal extends React.Component {
                                 action={() => this.handlePanel('languagePanel')}
                                 mode="register"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <div className="regSubTitle">Optionals -</div>
                             <Award
@@ -246,6 +271,7 @@ class RegFinal extends React.Component {
                                 action={() => this.handlePanel('awardPanel')}
                                 mode="register"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Publication
                                 ref={this.publication}
@@ -255,6 +281,7 @@ class RegFinal extends React.Component {
                                 }
                                 mode="register"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Skill
                                 ref={this.skill}
@@ -262,6 +289,7 @@ class RegFinal extends React.Component {
                                 action={() => this.handlePanel('skillPanel')}
                                 mode="register"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Interest
                                 ref={this.interest}
@@ -269,6 +297,7 @@ class RegFinal extends React.Component {
                                 action={() => this.handlePanel('interestPanel')}
                                 mode="register"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <Reference
                                 ref={this.reference}
@@ -278,6 +307,7 @@ class RegFinal extends React.Component {
                                 }
                                 mode="register"
                                 senData={retrieveChildData}
+                                handleAlert={this.handleConfirmation}
                             />
                             <div className="btnContainer">
                                 <Button
@@ -361,6 +391,7 @@ class RegFinal extends React.Component {
                             </Toolbar>
                         </AppBar>
                     </div>
+                    <AnimatePresence>{confirmation}</AnimatePresence>
                 </MuiThemeProvider>
             );
         }
