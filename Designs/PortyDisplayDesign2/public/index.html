@@ -5,8 +5,44 @@
         <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
         <meta
             name="viewport"
-            content="width=device-width, initial-scale=0.55"
+            content="width=device-width, initial-scale=0.75"
+            id="myViewPort"
         />
+        <script>
+            const handleViewPort = () => {
+                if (screen.width > 600 && screen.height > 600) {
+                    var mvp = document.getElementById('myViewPort');
+                    mvp.setAttribute(
+                        'content',
+                        'width=device-width, initial-scale=1'
+                    );
+                } else if (screen.width > 600) {
+                    var mvp = document.getElementById('myViewPort');
+                    mvp.setAttribute(
+                        'content',
+                        'width=device-width, initial-scale=0.85'
+                    );
+                } else if (screen.width < 350) {
+                    var mvp = document.getElementById('myViewPort');
+                    mvp.setAttribute(
+                        'content',
+                        'width=device-width, initial-scale=0.65'
+                    );
+                } else {
+                    var mvp = document.getElementById('myViewPort');
+                    mvp.setAttribute(
+                        'content',
+                        'width=device-width, initial-scale=0.75'
+                    );
+                }
+            };
+            handleViewPort();
+            window.onload = () => {
+                window.onorientationchange = () => {
+                    handleViewPort();
+                };
+            };
+        </script>
         <meta name="theme-color" content="#000000" />
         <meta
             name="description"
@@ -14,9 +50,9 @@
         />
         <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
         <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+              manifest.json provides metadata used when your web app is installed on a
+              user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+            -->
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script
