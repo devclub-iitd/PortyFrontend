@@ -22,6 +22,14 @@ export default function AlertDialogSlide(props) {
         publisher,
         website,
     } = props;
+    let websiteSection;
+    if (website.trim().length > 0) {
+        websiteSection = (
+            <div className="portfolioPublishWebsite">
+                <span>Website -</span> <a href={website}>Link to page</a>
+            </div>
+        );
+    }
     return (
         <div>
             <Dialog
@@ -49,10 +57,7 @@ export default function AlertDialogSlide(props) {
                             {children}
                         </div>
                         <br />
-                        <div className="portfolioPublishWebsite">
-                            <span>Website -</span>{' '}
-                            <a href={website}>Link to page</a>
-                        </div>
+                        {websiteSection}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

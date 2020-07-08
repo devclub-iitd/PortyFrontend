@@ -90,7 +90,10 @@ class SimpleTabs extends React.Component {
     }
 
     handleChange = (event, value) => {
-        this.setState({ value });
+        const { loading } = this.props;
+        if (!loading) {
+            this.setState({ value });
+        }
     };
 
     render() {

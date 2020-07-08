@@ -11,6 +11,17 @@ const FlatCard = (props) => {
         startDate,
         endDate,
     } = props;
+    let websiteSection;
+    if (website.trim().length > 0) {
+        websiteSection = (
+            <div className="portfolioFlatSubTitle portfolioCardWebsite">
+                Website:{' '}
+                <a href={website} target="_blank" rel="noopener noreferrer">
+                    Link to page
+                </a>
+            </div>
+        );
+    }
     return (
         <div className="portfolioFlat">
             <div className="portfolioCardTitle">
@@ -20,12 +31,7 @@ const FlatCard = (props) => {
             </div>
             <div className="portfolioFlatContent">
                 <div className="portfolioFlatContentSummary">{children}</div>
-                <div className="portfolioFlatSubTitle portfolioCardWebsite">
-                    Website:{' '}
-                    <a href={website} target="_blank" rel="noopener noreferrer">
-                        Link to page
-                    </a>
-                </div>
+                {websiteSection}
             </div>
             <div className="portfolioCardDateContainer">
                 {startDate} - {endDate}

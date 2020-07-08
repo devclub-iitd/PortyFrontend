@@ -426,6 +426,12 @@ class WorkExpansionPanel extends React.Component {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="customDetailContainer">
+                            <div className="customDetailContainerInfo">
+                                <i>
+                                    The websites are optional but filling them
+                                    up would enhance your portfolio
+                                </i>
+                            </div>
                             <div>{workFields}</div>
                             <div className="btnRow">
                                 <div

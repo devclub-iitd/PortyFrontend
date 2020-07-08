@@ -19,6 +19,18 @@ const ExpansionCard = (props) => {
         id,
     } = props;
 
+    let websiteSection;
+    if (website.trim().length > 0) {
+        websiteSection = (
+            <div className="portfolioExpansionPanelWebsite">
+                <span>Website |</span>{' '}
+                <a href={website} target="_blank" rel="noopener noreferrer">
+                    Link to page
+                </a>
+            </div>
+        );
+    }
+
     return (
         <ExpansionPanel
             expanded={expanded === `panel${id}`}
@@ -41,16 +53,7 @@ const ExpansionCard = (props) => {
                 <div className="portfolioExpansionPanelDetails">
                     <Typography>{children}</Typography>
                     <div className="miniLine miniCardLine" />
-                    <div className="portfolioExpansionPanelWebsite">
-                        <span>Website |</span>{' '}
-                        <a
-                            href={website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Link to page
-                        </a>
-                    </div>
+                    {websiteSection}
                     <div className="portfolioCardDateContainer">
                         {startDate} | {endDate}
                     </div>

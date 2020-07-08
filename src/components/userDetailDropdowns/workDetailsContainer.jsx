@@ -88,7 +88,6 @@ const WorkField = (props) => {
                             onChange={handleChange}
                             type="text"
                             name="website"
-                            required
                             placeholder="Website:"
                         />
                         <div className="row rowtwo">

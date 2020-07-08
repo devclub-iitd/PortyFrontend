@@ -4,6 +4,17 @@ import Paper from '@material-ui/core/Paper';
 
 const PaperCard = (props) => {
     const { company, position, children, website, startDate, endDate } = props;
+    let websiteSection;
+    if (website.trim().length > 0) {
+        websiteSection = (
+            <div className="portfolioCardWebsite">
+                <span>Website |</span>{' '}
+                <a href={website} target="_blank" rel="noopener noreferrer">
+                    Link to page
+                </a>
+            </div>
+        );
+    }
     return (
         <Paper className="portfolioCard portfolioWorkCard">
             <div className="portfolioCardTitle">
@@ -13,12 +24,7 @@ const PaperCard = (props) => {
             <div className="miniLine miniCardLine" />
             <div className="portfolioCardContent">{children}</div>
             <div className="miniLine miniCardLine" />
-            <div className="portfolioCardWebsite">
-                <span>Website |</span>{' '}
-                <a href={website} target="_blank" rel="noopener noreferrer">
-                    Link to page
-                </a>
-            </div>
+            {websiteSection}
             <div className="portfolioCardDateContainer">
                 {startDate} - {endDate}
             </div>

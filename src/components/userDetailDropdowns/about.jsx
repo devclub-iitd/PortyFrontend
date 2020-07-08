@@ -97,8 +97,10 @@ class AboutExpansionPanel extends React.Component {
                     <ExpansionPanelDetails>
                         <div className="epDetails">
                             <div className="customDetailContainerInfo">
-                                The Image URL is optional but we recommend that
-                                you fill it for a better portfolio
+                                <i>
+                                    The Image URL is optional but we recommend
+                                    that you fill it for a better portfolio
+                                </i>
                             </div>
                             <input
                                 value={number}
