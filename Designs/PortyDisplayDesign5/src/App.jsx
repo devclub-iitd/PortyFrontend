@@ -28,6 +28,15 @@ function App(props) {
     const { appData } = props;
     const { profile } = appData;
     const windowSize = useWindowSize();
+    let volunteerSection;
+    const { volunteer } = profile;
+    if (
+        volunteer.length > 0 &&
+        volunteer[0].organisation.trim().length > 0 &&
+        volunteer[0].summary.trim().length > 0
+    ) {
+        volunteerSection = <Volunteer volunteer={profile.volunteer} />;
+    }
     return (
         <div className="portfolioContainerFull5">
             {windowSize.height > 1000 && (
@@ -204,7 +213,7 @@ function App(props) {
                         />
                         <Education education={profile.education} />
                         <Work work={profile.work} />
-                        <Volunteer volunteer={profile.volunteer} />
+                        {volunteerSection}
                         <Extra
                             awards={profile.awards}
                             publications={profile.publications}
@@ -402,7 +411,7 @@ function App(props) {
                         />
                         <Education education={profile.education} />
                         <Work work={profile.work} />
-                        <Volunteer volunteer={profile.volunteer} />
+                        {volunteerSection}
                         <Extra
                             awards={profile.awards}
                             publications={profile.publications}
@@ -616,7 +625,7 @@ function App(props) {
                         />
                         <Education education={profile.education} />
                         <Work work={profile.work} />
-                        <Volunteer volunteer={profile.volunteer} />
+                        {volunteerSection}
                         <Extra
                             awards={profile.awards}
                             publications={profile.publications}
@@ -838,7 +847,7 @@ function App(props) {
                         />
                         <Education education={profile.education} />
                         <Work work={profile.work} />
-                        <Volunteer volunteer={profile.volunteer} />
+                        {volunteerSection}
                         <Extra
                             awards={profile.awards}
                             publications={profile.publications}
@@ -1076,7 +1085,7 @@ function App(props) {
                         />
                         <Education education={profile.education} />
                         <Work work={profile.work} />
-                        <Volunteer volunteer={profile.volunteer} />
+                        {volunteerSection}
                         <Extra
                             awards={profile.awards}
                             publications={profile.publications}

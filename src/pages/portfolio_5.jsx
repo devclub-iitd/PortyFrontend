@@ -65,6 +65,15 @@ const Portfolio = ({
     }
 
     if (!loading && profile !== null && !auth.loading && auth.isAuthenticated) {
+        let volunteerSection;
+        const { volunteer } = profile;
+        if (
+            volunteer.length > 0 &&
+            volunteer[0].organisation.trim().length > 0 &&
+            volunteer[0].summary.trim().length > 0
+        ) {
+            volunteerSection = <Volunteer volunteer={profile.volunteer} />;
+        }
         return (
             <div className="portfolioContainerFull5">
                 {windowSize.height > 1000 && (
@@ -244,7 +253,7 @@ const Portfolio = ({
                             />
                             <Education education={profile.education} />
                             <Work work={profile.work} />
-                            <Volunteer volunteer={profile.volunteer} />
+                            {volunteerSection}
                             <Extra
                                 awards={profile.awards}
                                 publications={profile.publications}
@@ -446,7 +455,7 @@ const Portfolio = ({
                             />
                             <Education education={profile.education} />
                             <Work work={profile.work} />
-                            <Volunteer volunteer={profile.volunteer} />
+                            {volunteerSection}
                             <Extra
                                 awards={profile.awards}
                                 publications={profile.publications}
@@ -666,7 +675,7 @@ const Portfolio = ({
                             />
                             <Education education={profile.education} />
                             <Work work={profile.work} />
-                            <Volunteer volunteer={profile.volunteer} />
+                            {volunteerSection}
                             <Extra
                                 awards={profile.awards}
                                 publications={profile.publications}
@@ -886,7 +895,7 @@ const Portfolio = ({
                             />
                             <Education education={profile.education} />
                             <Work work={profile.work} />
-                            <Volunteer volunteer={profile.volunteer} />
+                            {volunteerSection}
                             <Extra
                                 awards={profile.awards}
                                 publications={profile.publications}
@@ -1110,7 +1119,7 @@ const Portfolio = ({
                             />
                             <Education education={profile.education} />
                             <Work work={profile.work} />
-                            <Volunteer volunteer={profile.volunteer} />
+                            {volunteerSection}
                             <Extra
                                 awards={profile.awards}
                                 publications={profile.publications}
@@ -1350,7 +1359,7 @@ const Portfolio = ({
                             />
                             <Education education={profile.education} />
                             <Work work={profile.work} />
-                            <Volunteer volunteer={profile.volunteer} />
+                            {volunteerSection}
                             <Extra
                                 awards={profile.awards}
                                 publications={profile.publications}

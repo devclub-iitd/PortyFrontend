@@ -429,6 +429,12 @@ class VolunteerExpansionPanel extends React.Component {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="customDetailContainer">
+                            <div className="customDetailContainerInfo">
+                                <i>
+                                    This section is optional but we recommend
+                                    that you fill it for a better portfolio
+                                </i>
+                            </div>
                             <div>{volunteerFields}</div>
                             <div className="btnRow">
                                 <div

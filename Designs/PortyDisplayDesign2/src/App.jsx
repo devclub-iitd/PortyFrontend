@@ -15,6 +15,15 @@ function App(props) {
     const scrollFunc = () => scroll.scrollTo(window.innerHeight);
     const { appData } = props;
     const { profile } = appData;
+    let volunteerSection;
+    const { volunteer } = profile;
+    if (
+        volunteer.length > 0 &&
+        volunteer[0].organisation.trim().length > 0 &&
+        volunteer[0].summary.trim().length > 0
+    ) {
+        volunteerSection = <Volunteer volunteer={profile.volunteer} />;
+    }
     return (
         <div className="portfolioContainerFull2">
             <Landing
@@ -30,7 +39,7 @@ function App(props) {
                 <About summary={profile.about} top={window.innerHeight} />
                 <Education education={profile.education} />
                 <Work work={profile.work} />
-                <Volunteer volunteer={profile.volunteer} />
+                {volunteerSection}
                 <Extra
                     awards={profile.awards}
                     publications={profile.publications}
