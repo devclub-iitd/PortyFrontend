@@ -688,7 +688,7 @@ class LandingRegForm extends React.Component {
                         style={{ width: '95.3%' }}
                         type="email"
                         name="email"
-                        placeholder="Email Adress: "
+                        placeholder="Email Address: "
                         value={emailVal}
                         onChange={this.handleChange}
                     />

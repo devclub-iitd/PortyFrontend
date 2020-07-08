@@ -49,7 +49,7 @@
     padding: 10px;
     margin: 0px;
     height: 25px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 .row {
     display: flex;
@@ -101,6 +101,11 @@ input:hover {
 input:focus {
     border: 2px solid #3d40d8;
 }
+.loginFormCont input {
+    width: 300px !important;
+    font-size: 14px;
+    background-color: rgba(230, 230, 230, 0.8);
+}
 /* input:hover::placeholder{
   color: rgba(255,255,255,0.8);
 } */
@@ -141,6 +146,7 @@ input:focus {
     line-height: 30px;
     text-indent: 10px;
     cursor: pointer;
+    background-color: white;
     border: 2px solid black;
 }
 .dropdownContainer:hover {

@@ -33,7 +33,8 @@ class LoginFrom extends React.Component {
             password: passVal,
         };
         handleEmail(emailVal);
-        const { login: login_ } = this.props;
+        const { login: login_, openSnack } = this.props;
+        openSnack('Attempting to log in, please wait...');
         login_(obj);
     }
 
@@ -47,7 +48,7 @@ class LoginFrom extends React.Component {
                         style={{ width: '95.3%' }}
                         type="email"
                         name="email"
-                        placeholder="Email Adress: "
+                        placeholder="Email Address: "
                         value={emailVal}
                         onChange={this.handleChange}
                     />
@@ -68,6 +69,7 @@ class LoginFrom extends React.Component {
 
 LoginFrom.propTypes = {
     login: PropTypes.func.isRequired,
+    openSnack: PropTypes.func.isRequired,
     handleEmail: PropTypes.func.isRequired,
 };
 

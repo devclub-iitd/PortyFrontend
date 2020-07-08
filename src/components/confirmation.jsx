@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -17,6 +18,7 @@ const Confirmation = (props) => {
                 type="button"
                 className="confirmationBtn"
                 onClick={() => handleClose(false)}
+                autoFocus
             >
                 Okay!
             </button>
@@ -28,6 +30,7 @@ const Confirmation = (props) => {
                     type="button"
                     className="confirmationBtn"
                     onClick={() => handleClose(false)}
+                    autoFocus
                 >
                     Cancel
                 </button>

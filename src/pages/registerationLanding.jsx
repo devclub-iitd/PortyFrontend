@@ -36,9 +36,10 @@ const styles = {
         minWidth: '570px',
         textAlign: 'left',
         width: '65%',
-        opacity: '0.6',
         minHeight: '240px', // 328px
         paddingBottom: '30px',
+        backgroundColor: 'rgba(230, 230, 230, 0.8)',
+        opacity: 0.8,
     },
 };
 
@@ -138,8 +139,8 @@ class IconLabelTabs extends React.Component {
                 style={{ textAlign: 'center', marginTop: '0px' }}
             >
                 <div className="pageOverlay">
-                    <div className="title">Register</div>
                     <Paper className={classes.rootRegPage}>
+                        <div className="title">Register</div>
                         {value === 0 && (
                             <TabContainer>
                                 {' '}

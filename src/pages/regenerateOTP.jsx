@@ -114,7 +114,7 @@ class Regenerate extends React.Component {
                                         required
                                         type="email"
                                         name="email"
-                                        placeholder="Email Adress: "
+                                        placeholder="Email Address: "
                                     />
                                 </form>
                             </Typography>

@@ -23,18 +23,15 @@ const styles = {
         marginTop: '40px',
     },
     button: {
-        width: '200px',
+        width: '324px',
         height: '55px',
         borderRadius: '10px',
-        marginTop: '40px',
+        marginTop: '20px',
     },
     rootRegPage: {
-        marginTop: '40px',
-        opacity: '0.6',
-        minWidth: '570px',
-        width: '35%',
-        height: 'auto',
-        padding: '20px',
+        backgroundColor: 'rgba(230, 230, 230, 0.6)',
+        padding: '20px 50px 40px 50px',
+        borderRadius: '10px',
     },
 };
 
@@ -130,30 +127,34 @@ class IconLabelTabs extends React.Component {
                 style={{ textAlign: 'center', marginTop: '0px' }}
             >
                 <div className="pageOverlay">
-                    <div className="title">Account Login</div>
                     <Paper className={classes.rootRegPage}>
-                        <LoginForm handleEmail={this.setUserEmail} />
-                    </Paper>
-                    <div className="lgnBtnCont">
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            className={classes.button}
-                            type="submit"
-                            form="loginform"
-                        >
-                            Sign-In
-                        </Button>
-                        <div className="secBtnCont">
+                        <div className="title">Portfolio Creator</div>
+                        <br />
+                        <LoginForm
+                            openSnack={this.openDial}
+                            handleEmail={this.setUserEmail}
+                        />
+                        <div className="lgnBtnCont">
                             <Button
-                                variant="outlined"
-                                color="primary"
-                                onClick={navToResPass}
+                                variant="contained"
+                                color="secondary"
+                                className={classes.button}
+                                type="submit"
+                                form="loginform"
                             >
-                                Reset Password
+                                Sign-In
                             </Button>
+                            <div className="secBtnCont">
+                                <Button
+                                    variant="outlined"
+                                    color="black"
+                                    onClick={navToResPass}
+                                >
+                                    Reset Password
+                                </Button>
+                            </div>
                         </div>
-                    </div>
+                    </Paper>
                     <Snackbar
                         anchorOrigin={{
                             vertical: 'bottom',
