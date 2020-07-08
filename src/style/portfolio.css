@@ -119,6 +119,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background-color: #f1c40f;
     padding-bottom: 0px;
 }
 .portfolioContainer1 .portfolioPageSplit,
@@ -140,9 +141,11 @@
 }
 .portfolioContainer1 .rightAbout,
 .portfolioContainerFull1 .rightAbout {
+    padding: 35px 0px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 .portfolioContainer1 .portfolioUserSummary,
 .portfolioContainerFull1 .portfolioUserSummary {

@@ -104,7 +104,7 @@
 .portfolioContainerFull2 .aboutPage {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     padding-bottom: 80px;
 }
@@ -129,6 +129,7 @@
     justify-content: center;
     align-items: center;
     background-color: white;
+    padding-top: 35px;
 }
 .portfolioContainerFull2 .portfolioUserSummary {
     width: 60%;

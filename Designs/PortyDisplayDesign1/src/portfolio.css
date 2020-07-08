@@ -126,6 +126,7 @@
 .rightAbout {
     display: flex;
     justify-content: center;
+    padding: 35px 0px;
     align-items: center;
 }
 .portfolioUserSummary {
