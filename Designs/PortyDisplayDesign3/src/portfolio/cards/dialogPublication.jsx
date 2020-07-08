@@ -47,10 +47,16 @@ export default function AlertDialogSlide(props) {
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
                         <div className="portfolioPublishCompany">
-                            <span>Published By -</span> {publisher}
+                            <span>
+                                <b>Published By -</b>
+                            </span>{' '}
+                            {publisher}
                         </div>
                         <div className="portfolioPublishDate">
-                            <span>Released On -</span> {date}
+                            <span>
+                                <b>Released On -</b>
+                            </span>{' '}
+                            {date}
                         </div>
                         <br />
                         <div className="portfolioPublishSummary">

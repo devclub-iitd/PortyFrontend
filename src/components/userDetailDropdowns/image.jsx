@@ -5,9 +5,7 @@ const Image = (props) => {
     const { img } = props;
     let userImage;
     if (img.trim().length > 0) {
-        userImage = (
-            <img className="portfolioUserImage" src={img} alt="Broken URL" />
-        );
+        userImage = <img className="userImg" src={img} alt="Broken URL" />;
     }
     return (
         <div className="imageContainerEdit">

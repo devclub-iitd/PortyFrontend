@@ -35,10 +35,16 @@ export default function AlertDialogSlide(props) {
                         style={{ overflowWrap: 'normal' }}
                     >
                         <div className="portfolioAwardCompany">
-                            <span>Awarded By -</span> {awarder}
+                            <span>
+                                <b>Awarded By -</b>
+                            </span>{' '}
+                            {awarder}
                         </div>
                         <div className="portfolioAwardDate">
-                            <span>On -</span> {date}
+                            <span>
+                                <b>Awarded On -</b>
+                            </span>{' '}
+                            {date}
                         </div>
                         <br />
                         <div className="portfolioAwardSummary">{children}</div>
