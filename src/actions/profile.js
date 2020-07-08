@@ -48,8 +48,10 @@ export const getFullProfile = () => async (dispatch) => {
         dispatch({
             type: GETTING_PROFILE,
         });
-
         const res = await axios.get('/api/profile/mefull');
+        dispatch({
+            type: GETTING_PROFILE,
+        });
 
         dispatch({
             type: GET_PROFILE,

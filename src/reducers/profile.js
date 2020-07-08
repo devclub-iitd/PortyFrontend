@@ -23,11 +23,14 @@ export default function (state = intialState, action) {
             };
         }
         case GETTING_PROFILE: {
-            return {
-                ...state,
-                profile: null,
-                loading: true,
-            };
+            if (!state.loading) {
+                return {
+                    ...state,
+                    profile: null,
+                    loading: true,
+                };
+            }
+            return state;
         }
         case PROFILE_ERROR: {
             return {
