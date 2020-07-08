@@ -22,6 +22,7 @@ class LandingRegForm extends React.Component {
             webVal: '',
             extendMonthDisp: { display: 'block' },
             specialMonth: { display: 'block' },
+            leapYear: false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,6 +39,7 @@ class LandingRegForm extends React.Component {
             dateVal: '1',
             yeareValPlaceholder: '',
             yearVal: '2000',
+            leapYear: true,
         });
         if (
             event.target.innerText === 'April' ||
@@ -79,10 +81,19 @@ class LandingRegForm extends React.Component {
     }
 
     handleDropdownYear(event) {
-        this.setState({
-            yearVal: event.target.innerText,
-            yeareValPlaceholder: '',
-        });
+        if (event.target.innerText % 4 === 0) {
+            this.setState({
+                yearVal: event.target.innerText,
+                yeareValPlaceholder: '',
+                leapYear: true,
+            });
+        } else {
+            this.setState({
+                yearVal: event.target.innerText,
+                yeareValPlaceholder: '',
+                leapYear: false,
+            });
+        }
     }
 
     handleChange(event) {
@@ -140,7 +151,20 @@ class LandingRegForm extends React.Component {
             webVal,
             extendMonthDisp,
             specialMonth,
+            leapYear,
         } = this.state;
+        let leapDay;
+        if (leapYear && monthVal === 'February') {
+            leapDay = (
+                <div
+                    className="dropdownElement"
+                    role="presentation"
+                    onClick={this.handleDropdownDate}
+                >
+                    29
+                </div>
+            );
+        }
         return (
             <div className="formCont">
                 <form
@@ -466,6 +490,7 @@ class LandingRegForm extends React.Component {
                                 >
                                     28
                                 </div>
+                                {leapDay}
                                 <div
                                     className="dropdownElement"
                                     role="presentation"
