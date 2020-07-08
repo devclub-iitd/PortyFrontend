@@ -161,14 +161,12 @@ const EducationField = (props) => {
                     size="small"
                 >
                     <IconButton
-                        color="primary"
                         aria-label="Move Field Up"
                         onClick={moveFieldUp}
                     >
                         <ArrowUp />
                     </IconButton>
                     <IconButton
-                        color="primary"
                         aria-label="Move Field Down"
                         onClick={moveFieldDown}
                     >

@@ -53,17 +53,14 @@ const Confirmation = (props) => {
                 initial={{
                     opacity: 0,
                     backdropFilter: 'blur(0px)',
-                    WebkitBackdropFilter: 'blur(0px)',
                 }}
                 exit={{
                     opacity: 0,
                     backdropFilter: 'blur(0px)',
-                    WebkitBackdropFilter: 'blur(0px)',
                 }}
                 animate={{
                     opacity: 1,
                     backdropFilter: 'blur(5px)',
-                    WebkitBackdropFilter: 'blur(5px)',
                 }}
                 transition={{ duration: 0.2 }}
                 className="confirmationBackgroundOverlay"
