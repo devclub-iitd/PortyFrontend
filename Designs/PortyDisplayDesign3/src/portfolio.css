@@ -354,6 +354,9 @@
     padding-bottom: 40px;
 }
 
+.portfolioVolunteerExpansionPanel .portfolioCardDateContainer {
+    padding: 0px 12px;
+}
 .portfolioVolunteerExpansionPanel {
     width: 80%;
     margin: auto;

@@ -277,6 +277,14 @@
     margin-top: 3px;
     margin-bottom: 3px;
 }
+.portfolioContainer1
+    .portfolioVolunteerExpansionPanel
+    .portfolioCardDateContainer,
+.portfolioContainerFull1
+    .portfolioVolunteerExpansionPanel
+    .portfolioCardDateContainer {
+    padding: 0px 12px;
+}
 .portfolioContainer1 .portfolioExpansionPanelTitle,
 .portfolioContainerFull1 .portfolioExpansionPanelTitle {
     flex-basis: 60%;

@@ -255,12 +255,18 @@
     padding-top: 40px;
     padding-bottom: 40px;
 }
+.portfolioContainerFull2
+    .portfolioVolunteerExpansionPanel
+    .portfolioCardDateContainer {
+    padding: 0px 12px;
+}
 .portfolioContainerFull2 .portfolioVolunteerExpansionPanel {
     width: 80%;
     margin: auto;
     margin-top: 3px;
     margin-bottom: 3px;
 }
+
 .portfolioContainerFull2 .portfolioExpansionPanelTitle {
     flex-basis: 60%;
     flex-shrink: 0;

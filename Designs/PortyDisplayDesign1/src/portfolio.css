@@ -244,6 +244,9 @@
     margin-top: 3px;
     margin-bottom: 3px;
 }
+.portfolioVolunteerExpansionPanel .portfolioCardDateContainer {
+    padding: 0px 12px;
+}
 .portfolioExpansionPanelTitle {
     flex-basis: 60%;
     flex-shrink: 0;
