@@ -1,13 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import { makeStyles } from '@material-ui/core/styles';
+import { AnimatePresence } from 'framer-motion';
 import { connect } from 'react-redux';
 import { logout as logout_ } from '../actions/auth';
+
+import axios from '../utility/axios';
+
 import Portfolio from '../components/portfolio';
+import Confirmation from '../components/confirmation';
 import '../style/home.css';
 
 // import { getProfile as getProfile_ } from '../actions/profile';
@@ -31,12 +36,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// TODO - FIX THE HARD CODED URL (JATIN FIX)
-const download = () => {
-    window.location.href =
-        'https://porty-backend-devclub.herokuapp.com/api/profile/download';
-    // window.location.href = 'http://localhost:5000/api/profile/download';
-};
 const portfolio = () => {
     window.location.href = './portfolio';
 };
@@ -46,7 +45,72 @@ const Home = ({ logout }) => {
     useEffect(() => {
         // getProfile();
     }, []);
+
+    const [confirmationState, setConfirmationState] = useState({
+        display: false,
+        title: '',
+        text: '',
+    });
+
+    const handleConfirmation = (val) => {
+        setConfirmationState({
+            ...confirmationState,
+            display: val,
+        });
+    };
+
+    const openConfirmation = (title, text) => {
+        setConfirmationState({
+            display: true,
+            title,
+            text,
+        });
+    };
+
+    const download = async () => {
+        try {
+            openConfirmation('Alert', 'Attempting to download your profile');
+            const res = await axios({
+                url: '/api/profile/me',
+                method: 'GET',
+            });
+            const { data } = res;
+            const element = document.createElement('a');
+            element.setAttribute(
+                'href',
+                `data:text/json;charset=utf-8,${encodeURIComponent(
+                    JSON.stringify({ profile: { ...data } })
+                )}`
+            );
+            element.setAttribute('download', 'file.json');
+            element.click();
+            openConfirmation(
+                'Success',
+                'Your profile (file.json) has been downloaded successfully!!'
+            );
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            console.log(err);
+            openConfirmation(
+                'Error',
+                'Unable to download your profile at the moment, please try again later'
+            );
+        }
+    };
+
     const classes = useStyles();
+
+    const { display, title, text } = confirmationState;
+    let confirmationContainer;
+    if (display) {
+        confirmationContainer = (
+            <Confirmation
+                title={title}
+                text={text}
+                handleClose={handleConfirmation}
+            />
+        );
+    }
     return (
         <div className="homeCont">
             <div className="homePageTitle">Your Portfolio is ...</div>
@@ -85,6 +149,7 @@ const Home = ({ logout }) => {
                     Download
                 </Fab>
             </div>
+            <AnimatePresence>{confirmationContainer}</AnimatePresence>
         </div>
     );
 };

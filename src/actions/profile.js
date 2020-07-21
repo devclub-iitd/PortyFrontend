@@ -133,9 +133,12 @@ export const createProfile = (formData, edit) => async (dispatch) => {
         );
     } catch (err) {
         const { errors } = err.response.data;
+
         dispatch(
             setAlert(
-                'An error occurred...Profile could not be created. Please try again.'
+                edit
+                    ? 'An error occurred...Profile could not be updated. Please try again.'
+                    : 'An error occurred...Profile could not be created. Please try again.'
             )
         );
         if (errors) {

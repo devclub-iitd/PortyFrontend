@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Landing from './portfolio/landing';
@@ -10,7 +11,6 @@ import Volunteer from './portfolio/volunteer';
 import Extra from './portfolio/extra';
 import Contact from './portfolio/contact';
 import '../style/portfolio.css';
-import Loader from './loader';
 import { getProfile as getProfile_ } from '../actions/profile';
 
 const navToReg = () => {
@@ -24,12 +24,29 @@ const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
 
     if (loading) {
         return (
-            <div>
-                <Loader />
+            <div
+                className="portfolioContainer1"
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: ' center',
+                    border: '0px',
+                }}
+            >
+                <CircularProgress color="secondary" />
             </div>
         );
     }
     if (!loading && profile !== null) {
+        let volunteerSection;
+        const { volunteer } = profile;
+        if (
+            volunteer.length > 0 &&
+            volunteer[0].organisation.trim().length > 0 &&
+            volunteer[0].summary.trim().length > 0
+        ) {
+            volunteerSection = <Volunteer volunteer={profile.volunteer} />;
+        }
         return (
             <Paper className="portfolioContainer1" elavation={4}>
                 <Landing
@@ -44,7 +61,7 @@ const Portfolio = ({ getProfile, profile: { profile, loading } }) => {
                     <About summary={profile.about} top={window.innerHeight} />
                     <Education education={profile.education} />
                     <Work work={profile.work} />
-                    <Volunteer volunteer={profile.volunteer} />
+                    {volunteerSection}
                     <Extra
                         awards={profile.awards}
                         publications={profile.publications}

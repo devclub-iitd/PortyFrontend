@@ -129,13 +129,10 @@ class Edit extends React.Component {
                 open: true,
                 openMini: false,
                 alertTitle: 'Whoops!!',
-                alertContent:
-                    'An error occurred...Profile could not be edited. Please try again later.',
-                // alertContent: alert[len - 1].msg,
+                // alertContent:
+                // 'An error occurred...Profile could not be edited. Please try again later.',
+                alertContent: alert[len - 1].msg,
             });
-            setTimeout(() => {
-                window.location.reload();
-            }, 3000);
         } else if (alert[len - 1].alertType === 'blue') {
             this.setState({
                 open: true,
