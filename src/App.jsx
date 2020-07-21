@@ -17,14 +17,15 @@ import Portfolio4 from './pages/portfolio_4';
 import Portfolio5 from './pages/portfolio_5';
 import Register from './pages/registerationFinal';
 import Validation from './pages/registerationValidation';
-import HeaderMain from './components/headerMain';
+import Reset from './pages/resetPassword';
+import ResetSucc from './pages/resetSucc';
+
 import setAuthToken from './utility/setauthtoken';
 import { loadUser } from './actions/auth';
 import PrivateRoute from './components/privateRoute';
+import HeaderMain from './components/headerMain';
 // import PublicPortfolio from './pages/publicPortfolio';
 // import Regenerate from './pages/regenerateOTP';
-import Reset from './pages/resetPassword';
-import ResetSucc from './pages/resetSucc';
 
 const theme = createMuiTheme({
     palette: {
