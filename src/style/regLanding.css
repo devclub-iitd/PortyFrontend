@@ -204,3 +204,11 @@ input:focus {
     background-color: #e74c3c;
     color: white;
 }
+.bottomButtonContainer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
