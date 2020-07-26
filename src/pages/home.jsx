@@ -5,13 +5,21 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import { makeStyles } from '@material-ui/core/styles';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import ArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import IconButton from '@material-ui/core/IconButton';
 import { AnimatePresence } from 'framer-motion';
 import { connect } from 'react-redux';
 import { logout as logout_ } from '../actions/auth';
 
 import axios from '../utility/axios';
 
-import Portfolio from '../components/portfolio';
+import Portfolio1 from './portfolio';
+import Portfolio2 from './portfolio_2';
+import Portfolio3 from './portfolio_3';
+import Portfolio4 from './portfolio_4';
+import Portfolio5 from './portfolio_5';
 import Confirmation from '../components/confirmation';
 import '../style/home.css';
 
@@ -36,8 +44,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const portfolio = () => {
-    window.location.href = './portfolio';
+const previewMapping = {
+    0: Portfolio1,
+    1: Portfolio2,
+    2: Portfolio3,
+    3: Portfolio4,
+    4: Portfolio5,
 };
 
 // const Home = ({ logout, getProfile }) => {
@@ -51,6 +63,30 @@ const Home = ({ logout }) => {
         title: '',
         text: '',
     });
+
+    const [portfolioPreview, setPortfolioPreview] = useState(0);
+
+    const handlePortfolioPreview = (increment) => {
+        const mod = Object.keys(previewMapping).length;
+        if (increment) {
+            setPortfolioPreview((prevState) => {
+                return (prevState + 1) % mod;
+            });
+        } else {
+            setPortfolioPreview((prevState) => {
+                const newVal = (prevState - 1) % mod;
+                return newVal >= 0 ? newVal : newVal + mod;
+            });
+        }
+    };
+
+    const navToPortfolio = () => {
+        let navVal = '';
+        if (portfolioPreview > 0) {
+            navVal = portfolioPreview + 1;
+        }
+        window.location.href = `./portfolio${navVal}`;
+    };
 
     const handleConfirmation = (val) => {
         setConfirmationState({
@@ -111,43 +147,77 @@ const Home = ({ logout }) => {
             />
         );
     }
+    const PortfolioName = previewMapping[portfolioPreview];
+    const portfolioPreviewContainer = <PortfolioName preview />;
     return (
         <div className="homeCont">
             <div className="homePageTitle">Your Portfolio is ...</div>
-            <div className="portfolioContainerFull">
-                <Portfolio />
+            <div className="portfolioContainer">
+                {portfolioPreviewContainer}
             </div>
             <div className="btnRowHome">
-                <Fab
-                    variant="extended"
-                    color="primary"
-                    aria-label="delete"
-                    className={`${classes.fab} ${classes.redBtn}`}
-                    onClick={logout}
-                >
-                    <PowerSettingsNewIcon className={classes.extendedIcon} />
-                    Logout
-                </Fab>
-                <Fab
-                    variant="extended"
-                    color="primary"
-                    aria-label="delete"
-                    className={classes.fab}
-                    onClick={portfolio}
-                >
-                    <NavigationIcon className={classes.extendedIcon} />
-                    <div className="remDec">Portfolio</div>
-                </Fab>
-                <Fab
-                    variant="extended"
-                    color="secondary"
-                    aria-label="delete"
-                    className={classes.fab}
-                    onClick={download}
-                >
-                    <GetAppIcon className={classes.extendedIcon} />
-                    Download
-                </Fab>
+                <div className="portfolioHomePreviewNavContainer">
+                    <ButtonGroup
+                        color="secondary"
+                        aria-label="Preview Navigation Buttons"
+                        size="large"
+                        style={{
+                            backgroundColor: 'white',
+                            borderRadius: '50px',
+                        }}
+                    >
+                        <IconButton
+                            aria-label="Previous Design"
+                            onClick={() => {
+                                handlePortfolioPreview(false);
+                            }}
+                        >
+                            <ArrowLeft />
+                        </IconButton>
+                        <IconButton
+                            aria-label="Next Design"
+                            onClick={() => {
+                                handlePortfolioPreview(true);
+                            }}
+                        >
+                            <ArrowRight />
+                        </IconButton>
+                    </ButtonGroup>
+                </div>
+                <div className="portfolioHomeActionButtons">
+                    <Fab
+                        variant="extended"
+                        color="primary"
+                        aria-label="delete"
+                        className={`${classes.fab} ${classes.redBtn}`}
+                        onClick={logout}
+                    >
+                        <PowerSettingsNewIcon
+                            className={classes.extendedIcon}
+                        />
+                        Logout
+                    </Fab>
+                    <Fab
+                        variant="extended"
+                        color="primary"
+                        aria-label="delete"
+                        className={classes.fab}
+                        onClick={navToPortfolio}
+                    >
+                        <NavigationIcon className={classes.extendedIcon} />
+                        <div className="remDec">Portfolio</div>
+                    </Fab>
+                    <Fab
+                        variant="extended"
+                        color="secondary"
+                        aria-label="delete"
+                        className={classes.fab}
+                        onClick={download}
+                    >
+                        <GetAppIcon className={classes.extendedIcon} />
+                        Download
+                    </Fab>
+                </div>
             </div>
             <AnimatePresence>{confirmationContainer}</AnimatePresence>
         </div>

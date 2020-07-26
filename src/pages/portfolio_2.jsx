@@ -41,6 +41,7 @@ const Portfolio = ({
     getCurrentProfile,
     isAuthenticated,
     auth,
+    preview,
     profile: { profile, loading },
 }) => {
     useEffect(() => {
@@ -78,7 +79,11 @@ const Portfolio = ({
                 />
                 <div
                     className="portfolioBodyCont"
-                    style={{ top: `${window.innerHeight}px` }}
+                    style={
+                        preview
+                            ? { top: `${window.innerHeight - 54}px` }
+                            : { top: `${window.innerHeight}px` }
+                    }
                 >
                     <About summary={profile.about} top={window.innerHeight} />
                     <Education education={profile.education} />
@@ -143,6 +148,11 @@ Portfolio.propTypes = {
     auth: PropTypes.oneOfType([PropTypes.object]).isRequired,
     profile: PropTypes.oneOfType([PropTypes.object]).isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
+    preview: PropTypes.bool,
+};
+
+Portfolio.defaultProps = {
+    preview: false,
 };
 
 const mapStateToProps = (state) => ({
