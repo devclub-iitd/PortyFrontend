@@ -27,7 +27,7 @@ import Confirmation from '../components/confirmation';
 
 import Intro from '../components/userDetailDropdowns/intro';
 // import Image from '../components/regFinal/image';
-// import Account from '../components/regFinal/account';
+import Account from '../components/userDetailDropdowns/account';
 import About from '../components/userDetailDropdowns/about';
 import Location from '../components/userDetailDropdowns/location';
 import Work from '../components/userDetailDropdowns/work';
@@ -114,6 +114,7 @@ class RegFinal extends React.Component {
     async handleSumbit(event) {
         event.preventDefault();
         this.openDial('Please wait while we create your profile...');
+        this.account.current.callApiRequest();
         this.about.current.callApiRequest();
         this.location.current.callApiRequest();
         this.work.current.callApiRequest();
@@ -208,13 +209,18 @@ class RegFinal extends React.Component {
             return (
                 <MuiThemeProvider theme={theme}>
                     <div style={{ paddingBottom: 100 }}>
-                        <Intro name={user.name} caption="block" />
+                        <Intro
+                            name={`${user.firstname} ${user.lastname}`}
+                            caption="block"
+                        />
                         <form onSubmit={this.handleSumbit}>
-                            {/* <Account
-              ref={this.account}
-              expanded={expanded}
-              action={() => this.handlePanel('accountPanel')}
-            />  */}
+                            <Account
+                                ref={this.account}
+                                expanded={expanded}
+                                action={() => this.handlePanel('accountPanel')}
+                                senData={retrieveChildData}
+                                mode="register"
+                            />
                             <About
                                 ref={this.about}
                                 expanded={expanded}

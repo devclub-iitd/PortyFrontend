@@ -15,6 +15,7 @@ import { createProfile, getFullProfile } from '../actions/profile';
 import Confirmation from '../components/confirmation';
 
 import Intro from '../components/userDetailDropdowns/intro';
+import Account from '../components/userDetailDropdowns/account';
 import Image from '../components/userDetailDropdowns/image';
 import About from '../components/userDetailDropdowns/about';
 import Location from '../components/userDetailDropdowns/location';
@@ -107,6 +108,7 @@ class Edit extends React.Component {
         this.setState({
             message: 'Please wait while we update your profile',
         });
+        this.account.current.callApiRequest();
         this.about.current.callApiRequest();
         this.location.current.callApiRequest();
         this.work.current.callApiRequest();
@@ -208,14 +210,24 @@ class Edit extends React.Component {
                 <MuiThemeProvider theme={theme}>
                     <div style={{ paddingBottom: 100 }}>
                         {userImage}
-                        <Intro name={user.name} caption="none" />
+                        <Intro
+                            name={`${user.firstname} ${user.lastname}`}
+                            caption="none"
+                        />
                         <form onSubmit={this.handleSumbit}>
+                            <Account
+                                ref={this.account}
+                                expanded={expanded}
+                                existingData={profile.user}
+                                action={() => this.handlePanel('accountPanel')}
+                                senData={retrieveChildData}
+                                mode="edit"
+                            />
                             <About
                                 ref={this.about}
                                 expanded={expanded}
                                 action={() => this.handlePanel('aboutPanel')}
                                 existingData={profile.about}
-                                existingContactData={profile.user}
                                 senData={retrieveChildData}
                                 mode="edit"
                             />

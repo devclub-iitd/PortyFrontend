@@ -39,10 +39,6 @@ const theme = createMuiTheme({
 });
 // import Portfolio from './components/portfolio';
 
-if (localStorage.token) {
-    setAuthToken(localStorage.token);
-}
-
 const App = () => {
     // useeffect hook
     useEffect(() => {

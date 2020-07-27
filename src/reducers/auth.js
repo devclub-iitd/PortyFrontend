@@ -9,7 +9,6 @@ import {
 } from '../actions/types';
 
 const initialState = {
-    token: localStorage.token,
     isAuthenticated: null,
     loading: true,
     user: null,
@@ -36,17 +35,14 @@ export default function (state = initialState, action) {
         case USER_LOADED: {
             return {
                 ...state,
-                token: localStorage.token,
                 isAuthenticated: true,
                 loading: false,
                 user: payload,
             };
         }
         case AUTH_ERROR: {
-            localStorage.removeItem('token');
             return {
                 ...state,
-                token: null,
                 isAuthenticated: false,
                 loading: false,
                 user: null,
@@ -54,17 +50,14 @@ export default function (state = initialState, action) {
         }
         case LOG_OUT:
         case LOGIN_FAIL: {
-            localStorage.removeItem('token');
             return {
                 ...state,
-                token: null,
                 isAuthenticated: false,
                 loading: false,
                 user: null,
             };
         }
         case LOGIN_SUCCESS: {
-            localStorage.setItem('token', payload.token);
             return {
                 ...state,
                 isAuthenticated: true,

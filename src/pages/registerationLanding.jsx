@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
 
-import RegForm from '../components/landingRegForm';
+// import RegForm from '../components/landingRegForm';
 import Confirmation from '../components/confirmation';
 
 import '../style/regLanding.css';
@@ -139,7 +139,7 @@ class IconLabelTabs extends React.Component {
                 style={{ textAlign: 'center', marginTop: '0px' }}
             >
                 <div className="pageOverlay">
-                    <Paper className={classes.rootRegPage}>
+                    {/* <Paper className={classes.rootRegPage}>
                         <div className="title">Register</div>
                         {value === 0 && (
                             <TabContainer>
@@ -150,7 +150,7 @@ class IconLabelTabs extends React.Component {
                                 />{' '}
                             </TabContainer>
                         )}
-                    </Paper>
+                    </Paper> */}
                     <Button
                         variant="contained"
                         color="secondary"

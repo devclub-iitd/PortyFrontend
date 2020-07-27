@@ -10,17 +10,26 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 class AccountExpansionPanel extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            password: '',
-            confirmPassword: '',
-            passwordHint: '',
-        };
+        const { mode } = this.props;
+        if (mode === 'register') {
+            this.state = {
+                name: '',
+                email: '',
+            };
+        } else if (mode === 'edit') {
+            const { existingData } = this.props;
+            this.state = {
+                name: existingData.name,
+                email: existingData.email,
+            };
+        }
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    // callApiRequest() {
-    //     alert('account');
-    // }
+    callApiRequest() {
+        const { senData } = this.props;
+        senData('user', this.state);
+    }
 
     handleInputChange(event) {
         const type = event.target.name;
@@ -60,7 +69,7 @@ class AccountExpansionPanel extends React.Component {
         };
         const { expanded } = this.props;
         const { action } = this.props;
-        const { password, confirmPassword, passwordHint } = this.state;
+        const { name, email } = this.state;
         return (
             <div style={useStyles.root}>
                 <ExpansionPanel
@@ -76,38 +85,28 @@ class AccountExpansionPanel extends React.Component {
                             Account
                         </Typography>
                         <Typography style={useStyles.secondaryHeading}>
-                            <i>help us keep your account secure</i>
+                            <i>
+                                Fill out some primary details about your account
+                            </i>
                         </Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="epDetails">
-                            <div className="row rowtwo">
-                                <input
-                                    value={password}
-                                    name="password"
-                                    onChange={this.handleInputChange}
-                                    className="left"
-                                    type="password"
-                                    required
-                                    placeholder="Password: "
-                                />
-                                <input
-                                    value={confirmPassword}
-                                    name="confirmPassword"
-                                    onChange={this.handleInputChange}
-                                    className="right"
-                                    type="password"
-                                    required
-                                    placeholder="Confirm Password: "
-                                />
-                            </div>
                             <input
-                                value={passwordHint}
-                                name="passwordHint"
+                                value={name}
+                                name="name"
                                 onChange={this.handleInputChange}
                                 type="text"
                                 required
-                                placeholder="Password Hint: To help you remember incase you forget"
+                                placeholder="Full Name: "
+                            />
+                            <input
+                                value={email}
+                                name="email"
+                                onChange={this.handleInputChange}
+                                type="email"
+                                required
+                                placeholder="Email ID: To be displayed on portfolio "
                             />
                         </div>
                     </ExpansionPanelDetails>
@@ -120,6 +119,13 @@ class AccountExpansionPanel extends React.Component {
 AccountExpansionPanel.propTypes = {
     expanded: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
+    senData: PropTypes.func.isRequired,
+    mode: PropTypes.string.isRequired,
+    existingData: PropTypes.oneOfType([PropTypes.object]),
+};
+
+AccountExpansionPanel.defaultProps = {
+    existingData: {},
 };
 
 export default AccountExpansionPanel;

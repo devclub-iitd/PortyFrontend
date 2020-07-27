@@ -130,7 +130,7 @@ class SimpleTabs extends React.Component {
                                         fontSize: '16px',
                                     }}
                                 >
-                                    | {user.name}
+                                    | {`${user.firstname} ${user.lastname}`}
                                 </span>
                             </div>
                         </div>

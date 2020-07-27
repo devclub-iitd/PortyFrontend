@@ -10,10 +10,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 class AboutExpansionPanel extends React.Component {
     constructor(props) {
         super(props);
-        const { existingContactData, existingData, mode } = this.props;
+        const { existingData, mode } = this.props;
         if (mode === 'edit') {
             this.state = {
-                name: existingContactData.name,
                 number: existingData.number,
                 label: existingData.label,
                 summary: existingData.summary,

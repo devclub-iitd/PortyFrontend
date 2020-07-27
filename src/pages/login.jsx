@@ -130,10 +130,10 @@ class IconLabelTabs extends React.Component {
                     <Paper className={classes.rootRegPage}>
                         <div className="title">Portfolio Creator</div>
                         <br />
-                        <LoginForm
+                        {/* <LoginForm
                             openSnack={this.openDial}
                             handleEmail={this.setUserEmail}
-                        />
+                        /> */}
                         <div className="lgnBtnCont">
                             <Button
                                 variant="contained"

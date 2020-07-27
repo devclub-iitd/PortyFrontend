@@ -53,7 +53,7 @@ const previewMapping = {
 };
 
 // const Home = ({ logout, getProfile }) => {
-const Home = ({ logout }) => {
+const Home = (props) => {
     useEffect(() => {
         // getProfile();
     }, []);
@@ -134,6 +134,39 @@ const Home = ({ logout }) => {
         }
     };
 
+    const handleLogout = async () => {
+        const { logout } = props;
+        try {
+            await logout();
+        } catch (_) {
+            openConfirmation(
+                'Error',
+                'Unable to log you out, please try again later'
+            );
+        }
+
+        // const { alert } = props;
+        // const len = alert.length;
+        // if (alert[len - 1].alertType !== 'blue') {
+        //     this.setState({
+        //         open: true,
+        //         openMini: false,
+        //         alertTitle: 'Whoops!!',
+        //         // alertContent:
+        //         // 'An error occurred...Profile could not be edited. Please try again later.',
+        //         alertContent: alert[len - 1].msg,
+        //     });
+        // } else if (alert[len - 1].alertType === 'blue') {
+        //     this.setState({
+        //         open: true,
+        //         openMini: false,
+        //         alertTitle: 'Profile updated successfully!',
+        //         alertContent:
+        //             'Kindly check the home page to view your updated portfolio',
+        //     });
+        // }
+    };
+
     const classes = useStyles();
 
     const { display, title, text } = confirmationState;
@@ -190,7 +223,7 @@ const Home = ({ logout }) => {
                         color="primary"
                         aria-label="delete"
                         className={`${classes.fab} ${classes.redBtn}`}
-                        onClick={logout}
+                        onClick={handleLogout}
                     >
                         <PowerSettingsNewIcon
                             className={classes.extendedIcon}
@@ -232,6 +265,7 @@ Home.propTypes = {
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
     auth: state.auth,
+    alert: state.alert,
 });
 
 // export default connect(mapStateToProps, { logout_, getProfile_ })(Home);
