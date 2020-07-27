@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// baseURL: 'https://porty-backend-devclub.herokuapp.com',
+// baseURL: 'https://portfolioback.devclub.in',
 export default axios.create({
     baseURL: 'http://localhost:5000',
     responseType: 'json',

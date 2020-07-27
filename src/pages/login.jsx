@@ -39,6 +39,13 @@ const styles = {
     },
 };
 
+const navToCasi = () => {
+    window.location.href =
+        'http://localhost:8000/user/login?serviceURL=http://localhost:3000/home';
+    // window.location.href =
+    // 'https://casi.devclub.in?serviceURL=https://portfolio.devclub.in/home';
+};
+
 class IconLabelTabs extends React.Component {
     constructor(props) {
         super(props);
@@ -111,8 +118,9 @@ class IconLabelTabs extends React.Component {
                                 variant="contained"
                                 color="secondary"
                                 className={classes.button}
+                                onClick={navToCasi}
                             >
-                                Continue with casi
+                                Continue with devclub casi
                             </Button>
                         </div>
                         <br />

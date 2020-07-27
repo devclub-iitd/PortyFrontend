@@ -145,7 +145,6 @@ AboutExpansionPanel.propTypes = {
     mode: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
     senData: PropTypes.func.isRequired,
-    existingContactData: PropTypes.oneOfType([PropTypes.object]).isRequired,
     existingData: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 

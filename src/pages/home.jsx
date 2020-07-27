@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import ArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import BackupIcon from '@material-ui/icons/Backup';
 import IconButton from '@material-ui/core/IconButton';
 import { AnimatePresence } from 'framer-motion';
 import { connect } from 'react-redux';
@@ -40,6 +41,13 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         '&:hover': {
             backgroundColor: '#c0392b',
+        },
+    },
+    blackBtn: {
+        backgroundColor: 'black',
+        color: 'white',
+        '&:hover': {
+            backgroundColor: 'rgba(10, 10, 10, 0.9)',
         },
     },
 }));
@@ -134,6 +142,13 @@ const Home = (props) => {
         }
     };
 
+    const handleGithubDeployment = () => {
+        openConfirmation(
+            'Surprise',
+            'This feature is currently under development. We are hard at work to bring it to you very soon!'
+        );
+    };
+
     const handleLogout = async () => {
         const { logout } = props;
         try {
@@ -207,7 +222,7 @@ const Home = (props) => {
                     <Fab
                         variant="extended"
                         color="primary"
-                        aria-label="delete"
+                        aria-label="Logout"
                         className={`${classes.fab} ${classes.redBtn}`}
                         onClick={handleLogout}
                     >
@@ -219,17 +234,27 @@ const Home = (props) => {
                     <Fab
                         variant="extended"
                         color="primary"
-                        aria-label="delete"
+                        aria-label="View Portfolio"
                         className={classes.fab}
                         onClick={navToPortfolio}
                     >
                         <NavigationIcon className={classes.extendedIcon} />
-                        <div className="remDec">Portfolio</div>
+                        <div className="remDec">View Portfolio</div>
+                    </Fab>
+                    <Fab
+                        variant="extended"
+                        color="primary"
+                        aria-label="Deploy to github"
+                        className={`${classes.fab} ${classes.blackBtn}`}
+                        onClick={handleGithubDeployment}
+                    >
+                        <BackupIcon className={classes.extendedIcon} />
+                        Deploy to Github
                     </Fab>
                     <Fab
                         variant="extended"
                         color="secondary"
-                        aria-label="delete"
+                        aria-label="Download"
                         className={classes.fab}
                         onClick={download}
                     >

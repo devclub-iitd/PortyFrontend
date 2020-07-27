@@ -57,7 +57,7 @@ const Deploy = () => {
         <div className="fullScreenInside">
             <div>
                 <Typography variant="h4" className={classes.bold}>
-                    To deploy your website -
+                    To deploy your website manually -
                 </Typography>
                 <Typography className={classes.steps}>
                     <b>1)</b> Create a github account
@@ -194,6 +194,15 @@ const Deploy = () => {
             >
                 Tutorial
             </Button>
+            <br />
+            <div style={{ textAlign: 'center' }}>
+                <h3>
+                    <i>
+                        Or... Just link your github account to CASI and let us
+                        handle the rest for you
+                    </i>
+                </h3>
+            </div>
         </div>
     );
 };
