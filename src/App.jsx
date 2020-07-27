@@ -16,11 +16,7 @@ import Portfolio3 from './pages/portfolio_3';
 import Portfolio4 from './pages/portfolio_4';
 import Portfolio5 from './pages/portfolio_5';
 import Register from './pages/registerationFinal';
-import Validation from './pages/registerationValidation';
-import Reset from './pages/resetPassword';
-import ResetSucc from './pages/resetSucc';
 
-import setAuthToken from './utility/setauthtoken';
 import { loadUser } from './actions/auth';
 import PrivateRoute from './components/privateRoute';
 import HeaderMain from './components/headerMain';
@@ -85,17 +81,6 @@ const App = () => {
                                 exact
                                 path="/portfolio5"
                                 component={Portfolio5}
-                            />
-                            <Route
-                                exact
-                                path="/validate"
-                                component={Validation}
-                            />
-                            <Route exact path="/reset" component={Reset} />
-                            <Route
-                                exact
-                                path="/resetSucc"
-                                component={ResetSucc}
                             />
                             {/* TODO: ADD SUPPORT FOR PUBLIC PORTFOLIO LATER ON  */}
                             {/* <Route

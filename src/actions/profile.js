@@ -111,8 +111,6 @@ export const getPublicProfile = (entryno) => async (dispatch) => {
 };
 export const createProfile = (formData, edit) => async (dispatch) => {
     try {
-        // console.log(formData)
-
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -120,14 +118,6 @@ export const createProfile = (formData, edit) => async (dispatch) => {
         };
 
         await axios.post('/api/profile', formData, config);
-        // const res = await axios.post('/api/profile', formData, config);
-
-        // dispatch(loadUser())   used in edit only previously
-
-        // dispatch({     used in both previously
-        //   type: GET_PROFILE,
-        //   payload: res.data
-        // });
         dispatch(
             setAlert(edit ? 'Profile Updated' : 'Profile Created', 'blue')
         );

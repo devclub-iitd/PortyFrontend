@@ -144,27 +144,6 @@ const Home = (props) => {
                 'Unable to log you out, please try again later'
             );
         }
-
-        // const { alert } = props;
-        // const len = alert.length;
-        // if (alert[len - 1].alertType !== 'blue') {
-        //     this.setState({
-        //         open: true,
-        //         openMini: false,
-        //         alertTitle: 'Whoops!!',
-        //         // alertContent:
-        //         // 'An error occurred...Profile could not be edited. Please try again later.',
-        //         alertContent: alert[len - 1].msg,
-        //     });
-        // } else if (alert[len - 1].alertType === 'blue') {
-        //     this.setState({
-        //         open: true,
-        //         openMini: false,
-        //         alertTitle: 'Profile updated successfully!',
-        //         alertContent:
-        //             'Kindly check the home page to view your updated portfolio',
-        //     });
-        // }
     };
 
     const classes = useStyles();
@@ -182,6 +161,38 @@ const Home = (props) => {
     }
     const PortfolioName = previewMapping[portfolioPreview];
     const portfolioPreviewContainer = <PortfolioName preview />;
+    let portfolioPreviewNavButtonContainer;
+    const { profile } = props;
+    if (profile) {
+        portfolioPreviewNavButtonContainer = (
+            <ButtonGroup
+                color="secondary"
+                aria-label="Preview Navigation Buttons"
+                size="large"
+                style={{
+                    backgroundColor: 'white',
+                    borderRadius: '50px',
+                }}
+            >
+                <IconButton
+                    aria-label="Previous Design"
+                    onClick={() => {
+                        handlePortfolioPreview(false);
+                    }}
+                >
+                    <ArrowLeft />
+                </IconButton>
+                <IconButton
+                    aria-label="Next Design"
+                    onClick={() => {
+                        handlePortfolioPreview(true);
+                    }}
+                >
+                    <ArrowRight />
+                </IconButton>
+            </ButtonGroup>
+        );
+    }
     return (
         <div className="homeCont">
             <div className="homePageTitle">Your Portfolio is ...</div>
@@ -190,32 +201,7 @@ const Home = (props) => {
             </div>
             <div className="btnRowHome">
                 <div className="portfolioHomePreviewNavContainer">
-                    <ButtonGroup
-                        color="secondary"
-                        aria-label="Preview Navigation Buttons"
-                        size="large"
-                        style={{
-                            backgroundColor: 'white',
-                            borderRadius: '50px',
-                        }}
-                    >
-                        <IconButton
-                            aria-label="Previous Design"
-                            onClick={() => {
-                                handlePortfolioPreview(false);
-                            }}
-                        >
-                            <ArrowLeft />
-                        </IconButton>
-                        <IconButton
-                            aria-label="Next Design"
-                            onClick={() => {
-                                handlePortfolioPreview(true);
-                            }}
-                        >
-                            <ArrowRight />
-                        </IconButton>
-                    </ButtonGroup>
+                    {portfolioPreviewNavButtonContainer}
                 </div>
                 <div className="portfolioHomeActionButtons">
                     <Fab
@@ -259,14 +245,14 @@ const Home = (props) => {
 
 Home.propTypes = {
     logout: PropTypes.func.isRequired,
-    // getProfile: PropTypes.func.isRequired,
+    profile: PropTypes.oneOfType([PropTypes.object, null]).isRequired,
 };
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
     auth: state.auth,
     alert: state.alert,
+    profile: state.profile.profile,
 });
 
-// export default connect(mapStateToProps, { logout_, getProfile_ })(Home);
 export default connect(mapStateToProps, { logout: logout_ })(Home);

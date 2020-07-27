@@ -11,7 +11,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import '../style/header.css';
-import Register from '../pages/registerationLanding';
 import Login from '../pages/login';
 
 const theme = createMuiTheme({
@@ -118,20 +117,11 @@ class SimpleTabs extends React.Component {
                             className={classes.navbarContainer}
                         >
                             <Tab className={classes.navbarItem} label="Login" />
-                            <Tab
-                                className={classes.navbarItem}
-                                label="Register"
-                            />
                         </Tabs>
                     </AppBar>
                     {value === 0 && (
                         <TabContainer className={classes.tcalign}>
                             <Login />
-                        </TabContainer>
-                    )}
-                    {value === 1 && (
-                        <TabContainer>
-                            <Register />
                         </TabContainer>
                     )}
                 </div>

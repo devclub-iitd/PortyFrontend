@@ -11,7 +11,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
 
-import LoginForm from '../components/loginForm';
 import Confirmation from '../components/confirmation';
 
 import '../style/regLanding.css';
@@ -32,12 +31,14 @@ const styles = {
         backgroundColor: 'rgba(230, 230, 230, 0.6)',
         padding: '20px 50px 40px 50px',
         borderRadius: '10px',
+        maxWidth: '450px',
+    },
+    rootRegPageSubTitle: {
+        color: 'rgba(0, 0, 0 , 0.5)',
+        fontSize: '14px',
     },
 };
 
-function navToResPass() {
-    window.location.href = './reset';
-}
 class IconLabelTabs extends React.Component {
     constructor(props) {
         super(props);
@@ -46,10 +47,8 @@ class IconLabelTabs extends React.Component {
             message: '',
             openConfirmation: false,
             verify: false,
-            userEmail: '',
         };
         this.handleClose = this.handleClose.bind(this);
-        this.setUserEmail = this.setUserEmail.bind(this);
         this.handleConfirmation = this.handleConfirmation.bind(this);
         this.openDial = this.openDial.bind(this);
     }
@@ -59,23 +58,8 @@ class IconLabelTabs extends React.Component {
         const { alerts } = this.props;
         if (oldProps.alerts.length !== alerts.length) {
             index = alerts.length - 1;
-            if (
-                alerts[index].msg.localeCompare(
-                    'Your account has not been verified, Please check your email for verification'
-                ) === 0
-            ) {
-                this.handleConfirmation(true, alerts[index].msg, true);
-            } else {
-                this.handleConfirmation(true, alerts[index].msg);
-            }
-            // this.openDial(alerts[index].msg);
+            this.handleConfirmation(true, alerts[index].msg);
         }
-    }
-
-    setUserEmail(mail) {
-        this.setState({
-            userEmail: mail,
-        });
     }
 
     handleClose() {
@@ -101,13 +85,7 @@ class IconLabelTabs extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const {
-            openDial,
-            message,
-            openConfirmation,
-            verify,
-            userEmail,
-        } = this.state;
+        const { openDial, message, openConfirmation, verify } = this.state;
         let confirmation;
         if (openConfirmation) {
             confirmation = (
@@ -116,7 +94,6 @@ class IconLabelTabs extends React.Component {
                     text={message}
                     handleClose={this.handleConfirmation}
                     login={verify}
-                    userEmail={userEmail}
                 />
             );
         }
@@ -129,32 +106,32 @@ class IconLabelTabs extends React.Component {
                 <div className="pageOverlay">
                     <Paper className={classes.rootRegPage}>
                         <div className="title">Portfolio Creator</div>
-                        <br />
-                        {/* <LoginForm
-                            openSnack={this.openDial}
-                            handleEmail={this.setUserEmail}
-                        /> */}
                         <div className="lgnBtnCont">
                             <Button
                                 variant="contained"
                                 color="secondary"
                                 className={classes.button}
-                                type="submit"
-                                form="loginform"
                             >
-                                Sign-In
+                                Continue with casi
                             </Button>
-                            <div className="secBtnCont">
-                                <Button
-                                    variant="outlined"
-                                    color="black"
-                                    onClick={navToResPass}
-                                >
-                                    Reset Password
-                                </Button>
-                            </div>
+                        </div>
+                        <br />
+                        <div className={classes.rootRegPageSubTitle}>
+                            <i>
+                                The perfect tool to create your very own
+                                personal portfolio website and deploy it
+                                instantly.
+                            </i>
                         </div>
                     </Paper>
+                    <br />
+                    <div style={{ padding: '20px', fontSize: '14px' }}>
+                        <i>
+                            To get started, simply click on the button to create
+                            or sign in to your common account and enjoy all
+                            services provided by <b>Devclub IIT Delhi.</b>
+                        </i>
+                    </div>
                     <Snackbar
                         anchorOrigin={{
                             vertical: 'bottom',
