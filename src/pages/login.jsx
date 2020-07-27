@@ -40,10 +40,10 @@ const styles = {
 };
 
 const navToCasi = () => {
-    window.location.href =
-        'http://localhost:8000/user/login?serviceURL=http://localhost:3000/home';
     // window.location.href =
-    // 'https://casi.devclub.in?serviceURL=https://portfolio.devclub.in/home';
+    // 'http://localhost:8000/user/login?serviceURL=http://localhost:3000/home';
+    window.location.href =
+        'https://auth.devclub.in?serviceURL=https://portfolio.devclub.in';
 };
 
 class IconLabelTabs extends React.Component {
