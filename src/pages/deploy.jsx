@@ -198,8 +198,10 @@ const Deploy = () => {
             <div style={{ textAlign: 'center' }}>
                 <h3>
                     <i>
-                        Or... Just link your github account to CASI and let us
-                        handle the rest for you
+                        Or just click the &quot;Github&quot; button on the
+                        homepage and let us handle the rest for you
+                        <br />
+                        <span style={{ fontWeight: 400 }}>(Coming soon)</span>
                     </i>
                 </h3>
             </div>

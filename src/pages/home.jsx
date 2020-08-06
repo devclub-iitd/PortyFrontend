@@ -239,7 +239,7 @@ const Home = (props) => {
                         onClick={navToPortfolio}
                     >
                         <NavigationIcon className={classes.extendedIcon} />
-                        <div className="remDec">View Portfolio</div>
+                        <div className="remDec">Portfolio</div>
                     </Fab>
                     <Fab
                         variant="extended"
@@ -249,7 +249,7 @@ const Home = (props) => {
                         onClick={handleGithubDeployment}
                     >
                         <BackupIcon className={classes.extendedIcon} />
-                        Deploy to Github
+                        Github
                     </Fab>
                     <Fab
                         variant="extended"

@@ -43,7 +43,7 @@ const navToCasi = () => {
     // window.location.href =
     // 'http://localhost:8000/user/login?serviceURL=http://localhost:3000/home';
     window.location.href =
-        'https://auth.devclub.in?serviceURL=https://portfolio.devclub.in';
+        'https://auth.devclub.in/user/login?serviceURL=https://portfolio.devclub.in';
 };
 
 class IconLabelTabs extends React.Component {
