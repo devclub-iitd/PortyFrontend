@@ -141,12 +141,18 @@ const Home = (props) => {
             );
         }
     };
-
     const handleGithubDeployment = () => {
-        openConfirmation(
-            'Surprise',
-            'This feature is currently under development. We are hard at work to bring it to you very soon!'
-        );
+        const clientId = process.env.CLIENT_ID;
+        let navVal = '';
+        if (portfolioPreview > 0) {
+            navVal = portfolioPreview + 1;
+        }
+        const redirectUri = `https://portfolioback.devclub.in/api/user/github_deploy?theme=${navVal}`;
+        window.location.href = `https://github.com/login/oauth/authorize?scope=public_repo%20delete_repo&client_id=${clientId}&redirect_uri=${redirectUri}`;
+        // openConfirmation(
+        //     'Surprise',
+        //     'This feature is currently under development. We are hard at work to bring it to you very soon!'
+        // );
     };
 
     const handleLogout = async () => {
