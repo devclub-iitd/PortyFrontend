@@ -72,3 +72,12 @@
     background-color: #3d40d8;
     color: white;
 }
+.confirmationBtnDanger {
+    border: 1.5px solid #e74c3c;
+    background-color: #e74c3c;
+    color: white;
+}
+.confirmationBtnDanger:hover {
+    background-color: #c0392b;
+    border: 1.5px solid #c0392b;
+}

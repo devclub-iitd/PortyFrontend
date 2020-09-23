@@ -10,6 +10,7 @@ import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import ArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import BackupIcon from '@material-ui/icons/Backup';
 import IconButton from '@material-ui/core/IconButton';
+import queryString from 'query-string';
 import { AnimatePresence } from 'framer-motion';
 import { connect } from 'react-redux';
 import { logout as logout_ } from '../actions/auth';
@@ -62,15 +63,70 @@ const previewMapping = {
 
 // const Home = ({ logout, getProfile }) => {
 const Home = (props) => {
-    useEffect(() => {
-        // getProfile();
-    }, []);
+    const { urlQuery } = props;
 
     const [confirmationState, setConfirmationState] = useState({
         display: false,
         title: '',
         text: '',
+        reload: false,
+        redirection: false,
+        redirectionUrl: '',
     });
+
+    const handleConfirmation = (val) => {
+        setConfirmationState({
+            ...confirmationState,
+            display: val,
+        });
+        const { reload } = confirmationState;
+        if (reload) {
+            window.location.href = '/home';
+        }
+    };
+
+    const openConfirmation = (title, text, reload = false) => {
+        setConfirmationState({
+            display: true,
+            title,
+            text,
+            reload,
+        });
+    };
+
+    useEffect(() => {
+        const urlQueryObject = queryString.parse(urlQuery);
+        const { status, redirectUrl } = urlQueryObject;
+        if (status) {
+            if (status !== 'confirmation') {
+                let title;
+                let text;
+                if (status === 'success') {
+                    title = 'Success';
+                    text =
+                        'Your portfolio has succesfully been deployed to github pages';
+                    openConfirmation(title, text);
+                } else if (status === 'error') {
+                    title = 'Error';
+                    text =
+                        'We were unable to deploy your portfolio to github at this moment. Please try again later.';
+                    openConfirmation(title, text);
+                }
+            } else if (status === 'confirmation') {
+                const title = 'Confirmation';
+                const text =
+                    'Are you sure you want to Proceed? This will delete your existing github pages repository and create a new one with your chosen portfolio template.';
+                setConfirmationState({
+                    display: true,
+                    title,
+                    text,
+                    reload: true,
+                    redirection: true,
+                    redirectionUrl: redirectUrl,
+                });
+            }
+        }
+    }, [urlQuery]);
 
     const [portfolioPreview, setPortfolioPreview] = useState(0);
 
@@ -94,21 +150,6 @@ const Home = (props) => {
             navVal = portfolioPreview + 1;
         }
         window.location.href = `./portfolio${navVal}`;
-    };
-
-    const handleConfirmation = (val) => {
-        setConfirmationState({
-            ...confirmationState,
-            display: val,
-        });
-    };
-
-    const openConfirmation = (title, text) => {
-        setConfirmationState({
-            display: true,
-            title,
-            text,
-        });
     };
 
     const download = async () => {
@@ -142,7 +183,7 @@ const Home = (props) => {
         }
     };
     const handleGithubDeployment = () => {
-        const clientId = process.env.CLIENT_ID;
+        const clientId = process.env.REACT_APP_CLIENT_ID;
         let navVal = '';
         if (portfolioPreview > 0) {
             navVal = portfolioPreview + 1;
@@ -169,14 +210,22 @@ const Home = (props) => {
 
     const classes = useStyles();
 
-    const { display, title, text } = confirmationState;
+    const {
+        display,
+        title,
+        text,
+        redirection,
+        redirectionUrl,
+    } = confirmationState;
     let confirmationContainer;
     if (display) {
         confirmationContainer = (
             <Confirmation
                 title={title}
                 text={text}
+                confirmation={redirection}
                 handleClose={handleConfirmation}
+                redirectUrl={redirectionUrl}
             />
         );
     }
@@ -277,6 +326,7 @@ const Home = (props) => {
 Home.propTypes = {
     logout: PropTypes.func.isRequired,
     profile: PropTypes.oneOfType([PropTypes.object, null]).isRequired,
+    urlQuery: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

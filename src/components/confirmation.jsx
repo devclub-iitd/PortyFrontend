@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React from 'react';
+import React, { useState } from 'react';
+import Checkbox from '@material-ui/core/Checkbox';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { Typography } from '@material-ui/core';
@@ -7,18 +8,97 @@ import { Typography } from '@material-ui/core';
 import '../style/confirmation.css';
 
 const Confirmation = (props) => {
-    const { title, text, handleClose } = props;
-
-    const actionButtons = (
-        <button
-            type="button"
-            className="confirmationBtn"
-            onClick={() => handleClose(false)}
-            autoFocus
-        >
-            Okay!
-        </button>
-    );
+    const { title, text, handleClose, confirmation, redirectUrl } = props;
+    const [checked, setChecked] = useState(false);
+    const [reminder, setReminder] = useState(false);
+    const checkboxRef = React.createRef();
+    const handleCheckBox = (e) => {
+        setChecked(e.target.checked);
+    };
+    let actionButtons;
+    const handleConfirmation = () => {
+        if (checked) {
+            window.location.href = redirectUrl;
+        } else {
+            setReminder(true);
+        }
+    };
+    if (confirmation) {
+        actionButtons = (
+            <div
+                style={{
+                    width: '100%',
+                }}
+            >
+                <button
+                    type="button"
+                    className="confirmationBtn"
+                    onClick={() => handleClose(false)}
+                    autoFocus
+                >
+                    Cancel
+                </button>
+                <button
+                    type="button"
+                    className="confirmationBtn confirmationBtnDanger"
+                    onClick={handleConfirmation}
+                    style={{
+                        marginLeft: '15px',
+                    }}
+                    autoFocus
+                >
+                    Confirm
+                </button>
+            </div>
+        );
+    } else {
+        actionButtons = (
+            <button
+                type="button"
+                className="confirmationBtn"
+                onClick={() => handleClose(false)}
+                autoFocus
+            >
+                Okay!
+            </button>
+        );
+    }
+    let checkboxBody;
+    if (confirmation) {
+        checkboxBody = (
+            <Typography
+                variant="caption"
+                style={{
+                    marginTop: '15px',
+                }}
+            >
+                <Checkbox
+                    checked={checked}
+                    onChange={handleCheckBox}
+                    ref={checkboxRef}
+                    inputProps={{ 'aria-label': 'checkbox' }}
+                />
+                Check the box to proceed with confirmation
+            </Typography>
+        );
+    }
+    let checkboxReminder;
+    if (reminder) {
+        checkboxReminder = (
+            <Typography
+                variant="body"
+                style={{
+                    textAlign: 'left',
+                    marginLeft: '3px',
+                    marginTop: '4px',
+                    color: '#3d40d8',
+                    display: 'block',
+                }}
+            >
+                <i>Whoops!! You have not checked the box!</i>
+            </Typography>
+        );
+    }
     return (
         <div className="confirmationRootContainer">
             <motion.div
@@ -33,7 +113,11 @@ const Confirmation = (props) => {
                 }}
                 transition={{ duration: 0.2 }}
                 className="confirmationBackgroundOverlay"
-                onClick={() => handleClose(false)}
+                onClick={() => {
+                    if (!confirmation) {
+                        handleClose(false);
+                    }
+                }}
             />
             <motion.div
                 initial={{ scale: 1, opacity: 0, y: 10 }}
@@ -77,6 +161,8 @@ const Confirmation = (props) => {
                     >
                         {text}
                     </Typography>
+                    {checkboxBody}
+                    {checkboxReminder}
                 </motion.div>
                 <motion.div
                     initial={{ opacity: 0, x: 10 }}
@@ -94,11 +180,14 @@ const Confirmation = (props) => {
 Confirmation.propTypes = {
     title: PropTypes.string,
     text: PropTypes.string.isRequired,
+    redirectUrl: PropTypes.string.isRequired,
     handleClose: PropTypes.func.isRequired,
+    confirmation: PropTypes.bool,
 };
 
 Confirmation.defaultProps = {
     title: 'Alert',
+    confirmation: false,
 };
 
 export default Confirmation;

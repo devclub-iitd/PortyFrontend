@@ -97,7 +97,7 @@ class SimpleTabs extends React.Component {
     };
 
     render() {
-        const { classes, loading, user } = this.props;
+        const { classes, loading, user, location } = this.props;
         const { value } = this.state;
         if (loading) {
             return (
@@ -149,7 +149,7 @@ class SimpleTabs extends React.Component {
                     </AppBar>
                     {value === 0 && (
                         <TabContainer>
-                            <Home />
+                            <Home urlQuery={location.search} />
                         </TabContainer>
                     )}
                     {value === 1 && (
@@ -173,6 +173,7 @@ SimpleTabs.propTypes = {
     classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
     user: PropTypes.oneOfType([PropTypes.object]).isRequired,
     loading: PropTypes.bool.isRequired,
+    location: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = (state) => ({
