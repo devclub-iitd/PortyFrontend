@@ -14,7 +14,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import Confirmation from '../components/confirmation';
 
 import '../style/regLanding.css';
-import { getNavUrl } from '../utility/utils'
+import { getNavUrl } from '../utility/utils';
 
 const styles = {
     rootRegNav: {

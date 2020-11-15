@@ -189,7 +189,7 @@ const Home = (props) => {
         if (portfolioPreview >= 0) {
             navVal = portfolioPreview + 1;
         }
-        const redirectUri = getBaseUrl() + `/api/user/github_deploy?template=${navVal}`;
+        const redirectUri = `${getBaseUrl()}/api/user/github_deploy?template=${navVal}`;
         window.location.href = `https://github.com/login/oauth/authorize?scope=public_repo%20delete_repo&client_id=${clientId}&redirect_uri=${redirectUri}`;
         // openConfirmation(
         //     'Surprise',
