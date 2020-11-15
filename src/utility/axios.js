@@ -1,8 +1,8 @@
 import axios from 'axios';
+import { getBaseUrl } from './utils'
 
 export default axios.create({
-    // baseURL: 'http://localhost:5000',
-    baseURL: 'https://portfolioback.devclub.in',
+    baseURL : getBaseUrl(),
     responseType: 'json',
     withCredentials: true,
 });
