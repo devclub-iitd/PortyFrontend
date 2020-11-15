@@ -24,6 +24,7 @@ import Portfolio4 from './portfolio_4';
 import Portfolio5 from './portfolio_5';
 import Confirmation from '../components/confirmation';
 import '../style/home.css';
+import { getBaseUrl } from '../utility/utils';
 
 // import { getProfile as getProfile_ } from '../actions/profile';
 
@@ -185,10 +186,10 @@ const Home = (props) => {
     const handleGithubDeployment = () => {
         const clientId = process.env.REACT_APP_CLIENT_ID;
         let navVal = '';
-        if (portfolioPreview > 0) {
+        if (portfolioPreview >= 0) {
             navVal = portfolioPreview + 1;
         }
-        const redirectUri = `https://portfolioback.devclub.in/api/user/github_deploy?theme=${navVal}`;
+        const redirectUri = `${getBaseUrl()}/api/user/github_deploy?template=${navVal}`;
         window.location.href = `https://github.com/login/oauth/authorize?scope=public_repo%20delete_repo&client_id=${clientId}&redirect_uri=${redirectUri}`;
         // openConfirmation(
         //     'Surprise',

@@ -14,6 +14,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import Confirmation from '../components/confirmation';
 
 import '../style/regLanding.css';
+import { getNavUrl } from '../utility/utils';
 
 const styles = {
     rootRegNav: {
@@ -40,10 +41,7 @@ const styles = {
 };
 
 const navToCasi = () => {
-    // window.location.href =
-    // 'http://localhost:8000/user/login?serviceURL=http://localhost:3000/home';
-    window.location.href =
-        'https://auth.devclub.in/user/login?serviceURL=https://portfolio.devclub.in';
+    window.location.href = getNavUrl();
 };
 
 class IconLabelTabs extends React.Component {
